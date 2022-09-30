@@ -1,11 +1,13 @@
-package com.project.yameokja.dto;
+package com.project.yameokja.domain;
 
 import java.sql.Timestamp;
 
 public class Report {
 
 	private int rpNo;
+	private String mbId;
 	private String rpType;
+	private int cNo;
 	private String rpTarget;
 	private String rpContent;
 	private Timestamp rpDate;
@@ -15,10 +17,12 @@ public class Report {
 	
 	public Report() {}
 
-	public Report(int rpNo, String rpType, String rpTarget, String rpContent, Timestamp rpDate, String rpFile,
-			int rpPunishCheck, String rpPunishContent) {
+	public Report(int rpNo, String mbId, String rpType, int cNo, String rpTarget, String rpContent, Timestamp rpDate,
+			String rpFile, int rpPunishCheck, String rpPunishContent) {
 		this.rpNo = rpNo;
+		this.mbId = mbId;
 		this.rpType = rpType;
+		this.cNo = cNo;
 		this.rpTarget = rpTarget;
 		this.rpContent = rpContent;
 		this.rpDate = rpDate;
@@ -35,12 +39,28 @@ public class Report {
 		this.rpNo = rpNo;
 	}
 
+	public String getMbId() {
+		return mbId;
+	}
+
+	public void setMbId(String mbId) {
+		this.mbId = mbId;
+	}
+
 	public String getRpType() {
 		return rpType;
 	}
 
 	public void setRpType(String rpType) {
 		this.rpType = rpType;
+	}
+
+	public int getcNo() {
+		return cNo;
+	}
+
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
 	}
 
 	public String getRpTarget() {
@@ -90,6 +110,5 @@ public class Report {
 	public void setRpPunishContent(String rpPunishContent) {
 		this.rpPunishContent = rpPunishContent;
 	}
-	
 	
 }
