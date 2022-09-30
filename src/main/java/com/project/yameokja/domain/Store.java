@@ -1,7 +1,8 @@
-package com.project.yameokja.dto;
+package com.project.yameokja.domain;
 
 public class Store {
 	private int stNo;
+	private String mbId;
 	private String stName;
 	private String stPhone;
 	private String stLatitude;
@@ -10,6 +11,7 @@ public class Store {
 	private String stFileMain;
 	private String stFileMenu;
 	private String stAddress;
+	private int cNo;
 	private int stReviewCount;
 	private int stStar;
 	private int stBookmarks;
@@ -19,10 +21,11 @@ public class Store {
 
 	public Store() {}
 
-	public Store(int stNo, String stName, String stPhone, String stLatitude, String stLongitude, int stReadCount,
-			String stFileMain, String stFileMenu, String stAddress, int stReviewCount, int stStar, int stBookmarks,
+	public Store(int stNo, String mbId, String stName, String stPhone, String stLatitude, String stLongitude, int stReadCount,
+			String stFileMain, String stFileMenu, String stAddress, int cNo, int stReviewCount, int stStar, int stBookmarks,
 			String stTime, String stDayOff, String stParking) {
 		this.stNo = stNo;
+		this.mbId = mbId;
 		this.stName = stName;
 		this.stPhone = stPhone;
 		this.stLatitude = stLatitude;
@@ -31,6 +34,7 @@ public class Store {
 		this.stFileMain = stFileMain;
 		this.stFileMenu = stFileMenu;
 		this.stAddress = stAddress;
+		this.cNo = cNo;
 		this.stReviewCount = stReviewCount;
 		this.stStar = stStar;
 		this.stBookmarks = stBookmarks;
@@ -128,6 +132,30 @@ public class Store {
 	}
 	public void setStParking(String stParking) {
 		this.stParking = stParking;
+	}
+
+	public String getMbId() {
+		return mbId;
+	}
+
+	public void setMbId(String mbId) {
+		this.mbId = mbId;
+	}
+
+	public int getcNo() {
+		return cNo;
+	}
+
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
+
+	public int getStBookmarks() {
+		return stBookmarks;
+	}
+
+	public void setStBookmarks(int stBookmarks) {
+		this.stBookmarks = stBookmarks;
 	}
 	
 }

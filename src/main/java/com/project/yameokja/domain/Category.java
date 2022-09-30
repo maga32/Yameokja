@@ -1,4 +1,4 @@
-package com.project.yameokja.dto;
+package com.project.yameokja.domain;
 
 public class Category {
 	private int cNo;
