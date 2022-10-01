@@ -1,0 +1,143 @@
+/* 전체틀 */
+
+body{
+	font-size: 16px;
+	margin: 10px;
+	background-color: white;
+	
+}
+.fullFrame {
+	background-color: white;
+	height: 1536px;
+	margin: auto;
+	padding: 10px;	
+
+}
+.nbsp; {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+/* 내정보 */
+.myInformationsFrame{
+	border: 1px solid #7A7A80;
+	border-radius: 10px;
+	height: auto;
+	display: inline-block;
+	text-align: center;
+}
+
+.myInformation1, .myInformation2, .myInformation3{
+	border: 1px dotted #7A7A80;	
+	font-size: 16px;
+	display: inline-block;
+	
+}
+
+.myInformation1 {
+	width: 160px;
+	height: 160px;
+	border-radius: 100px;
+	text-align: center;
+	
+}
+.myInformation2 {
+	width: 360px;	
+	text-align: left;
+	padding: 10px;
+}
+.mbIdFont {
+	font-size: 30px;
+	font-weight: 900;
+
+}
+.myInformationFont {
+	font-size: 16px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
+.myInformation3 {
+	width: 130px;
+}
+.buttons_ {
+	text-align: left;
+	margin: 10px;
+}
+/* 리스트 별로 이동하는 버튼 */
+
+.postListHeader {
+	border: 1px;
+}
+.postListbutton {
+	border-top: 1px solid #7A7A80;
+	border-left: 1px solid #7A7A80;
+	border-right: 1px solid #7A7A80;
+	border-bottom: 1px solid #ffffff;
+	padding: 10px; 
+	display: inline-block;
+}
+.replyListbutton {
+	border: 1px solid #7A7A80;
+	padding: 10px; 
+	display: inline-block;
+}
+.communityListbutton {
+	border: 1px solid #7A7A80;
+	padding: 10px; 
+	display: inline-block;
+}
+.likeListbutton {
+	border: 1px solid #7A7A80;
+	padding: 10px; 
+	display: inline-block;
+}
+/* 리스트 */
+.postListFrame {
+	border: 1px solid black;
+	display: inline-block;
+	margin: -1px auto 10px;
+}
+.postFrame{
+	border: 1px solid #7A7A80;
+	margin: 10px;
+	display: inline-block;
+}
+.mainImg, .postContent, .upAndDel{
+	border: 1px dotted black;
+	height: 150px;	
+	margin: 10px ;
+	display: inline-table;
+}
+.mainImg {
+	width: 130px;
+	
+}
+.postContent {
+	width: 400px;
+	padding: 10px;
+}
+.myInformationFont img{
+	width: 25px;
+	height: 25px;
+}
+.postTitle {
+	font-size: 25px;
+	font-weight: 900;
+}
+.upAndDel {
+	width: 100px;
+}
+.페이지그룹버튼 {
+	font-family: Inter;
+	text-align: center;
+	margin: 14px;
+	font-size: 16px;
+	display: inline-table;
+}
+
+.페이지그룹 {
+	border: 1px solid black;
+	width: 760px;
+	height: 95px;
+	text-align: right;
+}
