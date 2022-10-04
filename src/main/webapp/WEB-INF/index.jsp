@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="resources/css/index.css" />
   <link rel="stylesheet" type="text/css" href="resources/css/myPostList.css">
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/formcheck.js"></script>	
   <meta charset="UTF-8">
   <title>MyPage</title>
 </head>

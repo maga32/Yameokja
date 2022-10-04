@@ -15,22 +15,23 @@
 
 	<resources mapping="/resources/**" location="/resources/" />
 	
-	<context:component-scan base-package="com.springstudy.bbs" />
+	<context:component-scan base-package="com.project.yameokja" />
 
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/WEB-INF/index.jsp?body=views/"
 		p:suffix=".jsp"/>
 		
-	<beans:bean id="loginCheckInterceptor" 
-		class="com.springstudy.bbs.controller.LoginCheckInterceptor"/>
-		<interceptors>
-			<interceptor>
-				<mapping path="My*"/>
-				<beans:ref bean="loginCheckInterceptor"/>
-			</interceptor>
-		</interceptors>
+<!-- 	<beans:bean id="loginCheckInterceptor"  -->
+<!-- 		class="com.springstudy.bbs.controller.LoginCheckInterceptor"/> -->
+<!-- 		<interceptors> -->
+<!-- 			<interceptor> -->
+<!-- 				<mapping path="My*"/> -->
+<!-- 				<beans:ref bean="loginCheckInterceptor"/> -->
+<!-- 			</interceptor> -->
+<!-- 		</interceptors> -->
 
-	<view-controller path="/" view-name="redirect:MyPostList" />
+<!-- 	<view-controller path="/" view-name="redirect:myPostList" /> -->
+	<view-controller path="/" view-name="redirect:main" />
 
 </beans:beans>
