@@ -18,18 +18,19 @@ public class MemberServiceImpl implements MemberService {
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
+	
+	@Override
+	public Member getMember(String mbId) {
+		return memberDao.getMember(mbId);
+	}
 
 	@Override
-	public List<Member> myPostList(String mbId) {
+	public List<Post> myPostList(String mbId) {
 		return memberDao.myPostList(mbId);
 	}
 
 }
-//@Override
-//public Member getMember(String mbId) {
-//	return memberDao.getMember(mbId);
-//}
-//
+
 //@Override
 //public List<Post> myPostList(String mbId, int pNo) {
 //	return memberDao.myPostList(mbId, pNo);

@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <article>
-<form name="postList" id="postList">
-	<input type="hidden" name="mbId" value="${ mbId }"/>
+<form name="postListForm" id="postListForm">
+	<input type="hidden" name="mbId" value="${ member.mbId }"/>
 </form>
 <div class="row">
 <div class="fullFrame col-md-12">
@@ -13,11 +13,11 @@
 			<div>프로필 사진</div>
 		</div>
 		<div class="myInformation2 col-md-6 m-md-2">
-			<div class="mbIdFont">${ sessionScope.m.mbId }님</div>
+			<div class="mbIdFont">sessionScope.${ member.mbId }님</div>
 			<div class="nbsp;">&nbsp;</div>
 			<div class="nbsp;">&nbsp;</div>
-			<div class="myInformationFont">이메일 : <span>${ post }</span></div>
-<%-- 			<div class="myInformationFont">가입일 :<span>${ post.mbJoinDate }</span></div> --%>
+			<div class="myInformationFont">이메일 : <span>${ member.mbEmail }</span></div>
+			<div class="myInformationFont">가입일 :<span>${ member.mbJoinDate }</span></div>
 		</div>
 		<div class="myInformation3 col-md-3 m-md-2">				
 			<div class="buttons_">회원 정보 수정</div>
@@ -36,25 +36,26 @@
 	</div><!--postListHeader 끝 -->
 	
 	<div class="postListFrame">
-	<c:forEach var="i" items="무슨 List">
-<%-- 	<c:if test=""></c:if> --%>
+	<c:if test="${ not empty postList }">
+	<c:forEach var="p" items="${ postList }">
+	
 		<div class="postFrame">
 			<div class="mainImg">
 				<div class="buttons_">mainImg</div>
 			</div>
 			<div class="postContent">
-<%-- 				<div class="postTitle">${ post.pRegDate }리뷰 제목은 한줄로 보여주게 됩니다아아아아</div> --%>
+				<div class="postTitle">${ p.pTitle }pTitle</div>
 				<div class="myInformationFont">
 					<img alt="regDateIMG" src="resources/IMG/regDateIMG.PNG"/> 
-<%-- 					${ post.pRegDate }2022-09-20 --%>
+<%-- 					${ p.pRegDate }2022-09-20 --%>
 				</div>
 				<div class="myInformationFont">
 					<img alt="readCountIMG" src="resources/IMG/readCountIMG.PNG"/> 
-<%-- 					${ post.pUpCount }12,345 --%>
+<%-- 					${ p.pUpCount }12,345 --%>
 				</div>
 				<div class="myInformationFont">
 					<img alt="likeIMG" src="resources/IMG/likeIMG.PNG"/> 
-<%-- 					${ post.pRegDate }245 --%>
+<%-- 					${ p.pUpList }245 --%>
 				</div>
 			</div>
 			<div class="upAndDel">
@@ -68,7 +69,9 @@
 				</div>
 			</div>
 		</div>
-		</c:forEach>
+	
+	</c:forEach>
+	</c:if>
 	</div><!--postListFrame 끝 -->
 	<div class="페이지그룹">
 		<div class="페이지그룹버튼"><</div>

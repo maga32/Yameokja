@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.yameokja.domain.Member;
+import com.project.yameokja.domain.Post;
 
 // 이 클래스가 데이터 액세스(데이터 저장소) 계층의 컴포넌트(Bean) 임을 선언한다.
 @Repository
 public class MemberDaoImpl implements MemberDao {
 	
-	private final String NAME_SPACE = "com.project.yameokja.MemberMapper";
+	private final String MEMBER_NAME_SPACE = "com.project.yameokja.MemberMapper";
+	private final String POST_NAME_SPACE = "com.project.yameokja.PostMapper";
 	
 	private SqlSessionTemplate sqlSession;
 
@@ -23,15 +25,16 @@ public class MemberDaoImpl implements MemberDao {
 		this.sqlSession = sqlSession;
 	}
 
-//	@Override
-//	public Member getMember(String mbId) {
-//		return sqlSession.selectOne(MEMBER_NAME_SPACE+".getMember", mbId);
-//	}
+	@Override
+	public Member getMember(String mbId) {
+		return sqlSession.selectOne(MEMBER_NAME_SPACE+".getMember", mbId);
+	}
 	
 	@Override
-	public List<Member> myPostList(String mbId) {
-		return sqlSession.selectList(NAME_SPACE+".myPostList", mbId);
+	public List<Post> myPostList(String mbId) {
+		return sqlSession.selectList(POST_NAME_SPACE+".myPostList", mbId);
 	}
+
 
 }
 //@Override

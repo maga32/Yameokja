@@ -4,31 +4,24 @@
 
 <mapper namespace="com.project.yameokja.MemberMapper" >
 
-<!-- 	<select id="getMember" resultType="Member" > -->
-<!-- 		SELECT  -->
-<!-- 			mb_id as mbId, -->
-<!-- 			mb_name as mbName, -->
-<!-- 			mb_photo as mbPhoto, -->
-<!-- 			mb_nickname as mbNickname, -->
-<!-- 			mb_password as mbPassword, -->
-<!-- 			mb_email as mbEmail, -->
-<!-- 			mb_address as mbAddress, -->
-<!-- 			mb_mobile as mbMobile, -->
-<!-- 			mb_bookmarks as mbBookmarks, -->
-<!-- 			mb_join_date as mbJoinDate, -->
-<!-- 			mb_del_date as mbDelDate, -->
-<!-- 			mb_favorite_category as mbFavoriteCategory, -->
-<!-- 			mb_level as mbLevel, -->
-<!-- 			mb_block_ids as mbBlockIds -->
-<!-- 		FROM member  -->
-<!-- 		WHERE mb_id = #{mb_id} -->
-<!-- 	</select> -->
-	
-	<select id="myPostList" resultType="Member" >
-		SELECT mb_id as mbId,
-					mb_email as mbEmail
+	<select id="getMember" resultType="Member">
+		SELECT 
+					mb_id as mbId,
+					mb_name as mbName,
+					mb_photo as mbPhoto,
+					mb_nickname as mbNickname,
+					mb_password as mbPassword,
+					mb_email as mbEmail,
+					mb_address as mbAddress,
+					mb_mobile as mbMobile,
+					mb_bookmarks as mbBookmarks,
+					mb_join_date as mbJoinDate,
+					mb_del_date as mbDelDate,
+					mb_favorite_category as mbFavoriteCategory,
+					mb_level as mbLevel,
+					mb_block_ids as mbBlockIds
 		FROM member 
-		WHERE mb_id = #{mbId}
+		WHERE mb_id = #{mb_id}
 	</select>
 
 
@@ -49,24 +42,7 @@
 		<result property="mbLevel" column="mb_level" />
 		<result property="mbBlockIds" column="mb_block_ids" />
 	</resultMap>
-	
-	<resultMap id="PostResultMap" type="Post">
-		<id property="pNo" column="p_no" />
-		<result property="pTitle" column="p_title" />
-		<result property="pContent" column="p_content" />
-		<result property="pReadCount" column="p_read_count" />
-		<result property="pFile1" column="p_file1" />
-		<result property="pFile2" column="p_file2" />
-		<result property="pFile3" column="p_file3" />
-		<result property="pFile4" column="p_file4" />
-		<result property="pFile5" column="p_file5" />
-		<result property="pRegDate" column="p_reg_date" />
-		<result property="pIsPost" column="p_is_post" />
-		<result property="pStar" column="p_star" />
-		<result property="pUpCount" column="p_up_count" />
-		<result property="pUpList" column="p_up_list" />
-		<result property="mbId" column="mb_id" />
-	</resultMap>
+
 </mapper>	
 
 
