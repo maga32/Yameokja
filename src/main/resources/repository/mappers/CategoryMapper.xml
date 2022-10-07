@@ -4,21 +4,21 @@
 	
 <mapper namespace="com.project.yameokja.mappers.CategoryMapper">
 
-	<resultMap id="cateResultMap" type="Category">
-		<id property="cNo" column="c_no" />
+	<resultMap id="categoryResultMap" type="Category">
+		<id property="categoryNo" column="category_no" />
 		
-		<result property="cName" column="c_name" />
-		<result property="cOrder" column="c_order" />
+		<result property="categoryName" column="category_name" />
+		<result property="categoryOrder" column="category_order" />
 	</resultMap>
 
-	<select id="caList" resultType="Category" resultMap="cateResultMap">
+	<select id="categoryList" resultType="Category" resultMap="categoryResultMap">
 		SELECT * FROM category
 			<where>
 				<if test="type == 'store'">
-					c_no &lt; 100
+					category_no &lt; 100
 				</if>
 			</where>
-			ORDER BY c_order
+			ORDER BY category_order
 	</select>
 
 </mapper>

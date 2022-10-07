@@ -18,8 +18,8 @@ public class MainServiceImpl implements MainService {
 		this.categoryDao = categoryDao;
 	}
 	
-	public List<Category> caList(String type) {
-		return categoryDao.caList(type);
+	public List<Category> categoryList(String type) {
+		return categoryDao.categoryList(type);
 	}
 	
 }

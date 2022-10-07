@@ -5,5 +5,5 @@ import java.util.List;
 import com.project.yameokja.domain.Category;
 
 public interface MainService {
-	public List<Category> caList(String type);
+	public List<Category> categoryList(String type);
 }

@@ -20,8 +20,8 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public List<Category> caList(String type) {
-		return sqlSession.selectList(NAME_SPACE + ".caList", type);
+	public List<Category> categoryList(String type) {
+		return sqlSession.selectList(NAME_SPACE + ".categoryList", type);
 	}
 
 }

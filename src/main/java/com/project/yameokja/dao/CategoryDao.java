@@ -6,6 +6,6 @@ import com.project.yameokja.domain.Category;
 
 public interface CategoryDao {
 
-	List<Category> caList(String type);
+	List<Category> categoryList(String type);
 
 }
