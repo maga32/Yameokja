@@ -19,11 +19,11 @@ public class MainController {
 		this.mainService = mainService;
 	}
 	
-	@RequestMapping("/")
+	@RequestMapping({"/", "/main"})
 	public String main(Model model) {
-		List<Category> caList = mainService.caList("store");
+		List<Category> categoryList = mainService.categoryList("store");
 		
-		model.addAttribute("caList", caList);
+		model.addAttribute("categoryList", categoryList);
 		
 		return "/main";
 	}
