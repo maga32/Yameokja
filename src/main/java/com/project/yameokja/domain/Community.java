@@ -4,220 +4,184 @@ import java.sql.Timestamp;
 
 public class Community {
 	
-	private String mbId;
-	private String mbNickname;
-	private int coNo;
-	private int cNo;
-	private String coTitle;
-	private Timestamp coRegDate;
-	private int coReplyCount;
-	private int coReadCount;
-	private String coContent;
-	private String coFile;
-	private int coParentNo;
-	private int coReReply;
-	private String coReplyTarget;
+	private String memberId;
+	private String memberNickname;
+	private int communityNo;
+	private int categoryNo;
+	private String communityTitle;
+	private Timestamp communityRegDate;
+	private int communityReplyCount;
+	private int communityReadCount;
+	private String communityContent;
+	private String communityFile;
+	private int communityParentNo;
+	private int communityReReply;
+	private String communityReplyTarget;
 	private int partyMembers;
-	private String partyMbIds;
+	private String partyMemberIds;
 	private Timestamp partyDDay;
 	private String partyPlace;
 	
-	
 	public Community() {}
 
-
-	public Community(String mbId, String mbNickname, int coNo, int cNo, String coTitle, Timestamp coRegDate,
-			int coReplyCount, int coReadCount, String coContent, String coFile, int coParentNo, int coReReply,
-			String coReplyTarget, int partyMembers, String partyMbIds, Timestamp partyDDay, String partyPlace) {
-		this.mbId = mbId;
-		this.mbNickname = mbNickname;
-		this.coNo = coNo;
-		this.cNo = cNo;
-		this.coTitle = coTitle;
-		this.coRegDate = coRegDate;
-		this.coReplyCount = coReplyCount;
-		this.coReadCount = coReadCount;
-		this.coContent = coContent;
-		this.coFile = coFile;
-		this.coParentNo = coParentNo;
-		this.coReReply = coReReply;
-		this.coReplyTarget = coReplyTarget;
+	public Community(String memberId, String memberNickname, int communityNo, int categoryNo, String communityTitle,
+			Timestamp communityRegDate, int communityReplyCount, int communityReadCount, String communityContent,
+			String communityFile, int communityParentNo, int communityReReply, String communityReplyTarget,
+			int partyMembers, String partyMemberIds, Timestamp partyDDay, String partyPlace) {
+	
+		this.memberId = memberId;
+		this.memberNickname = memberNickname;
+		this.communityNo = communityNo;
+		this.categoryNo = categoryNo;
+		this.communityTitle = communityTitle;
+		this.communityRegDate = communityRegDate;
+		this.communityReplyCount = communityReplyCount;
+		this.communityReadCount = communityReadCount;
+		this.communityContent = communityContent;
+		this.communityFile = communityFile;
+		this.communityParentNo = communityParentNo;
+		this.communityReReply = communityReReply;
+		this.communityReplyTarget = communityReplyTarget;
 		this.partyMembers = partyMembers;
-		this.partyMbIds = partyMbIds;
+		this.partyMemberIds = partyMemberIds;
 		this.partyDDay = partyDDay;
 		this.partyPlace = partyPlace;
 	}
 
-
-	public String getMbId() {
-		return mbId;
+	public String getmemberId() {
+		return memberId;
 	}
 
-
-	public void setMbId(String mbId) {
-		this.mbId = mbId;
+	public void setmemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
-
-	public String getMbNickname() {
-		return mbNickname;
+	public String getmemberNickname() {
+		return memberNickname;
 	}
 
-
-	public void setMbNickname(String mbNickname) {
-		this.mbNickname = mbNickname;
+	public void setmemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
 	}
 
-
-	public int getCoNo() {
-		return coNo;
+	public int getCommunityNo() {
+		return communityNo;
 	}
 
-
-	public void setCoNo(int coNo) {
-		this.coNo = coNo;
+	public void setCommunityNo(int communityNo) {
+		this.communityNo = communityNo;
 	}
 
-
-	public int getcNo() {
-		return cNo;
+	public int getCategoryNo() {
+		return categoryNo;
 	}
 
-
-	public void setcNo(int cNo) {
-		this.cNo = cNo;
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 
-
-	public String getCoTitle() {
-		return coTitle;
+	public String getCommunityTitle() {
+		return communityTitle;
 	}
 
-
-	public void setCoTitle(String coTitle) {
-		this.coTitle = coTitle;
+	public void setCommunityTitle(String communityTitle) {
+		this.communityTitle = communityTitle;
 	}
 
-
-	public Timestamp getCoRegDate() {
-		return coRegDate;
+	public Timestamp getCommunityRegDate() {
+		return communityRegDate;
 	}
 
-
-	public void setCoRegDate(Timestamp coRegDate) {
-		this.coRegDate = coRegDate;
+	public void setCommunityRegDate(Timestamp communityRegDate) {
+		this.communityRegDate = communityRegDate;
 	}
 
-
-	public int getCoReplyCount() {
-		return coReplyCount;
+	public int getCommunityReplyCount() {
+		return communityReplyCount;
 	}
 
-
-	public void setCoReplyCount(int coReplyCount) {
-		this.coReplyCount = coReplyCount;
+	public void setCommunityReplyCount(int communityReplyCount) {
+		this.communityReplyCount = communityReplyCount;
 	}
 
-
-	public int getCoReadCount() {
-		return coReadCount;
+	public int getCommunityReadCount() {
+		return communityReadCount;
 	}
 
-
-	public void setCoReadCount(int coReadCount) {
-		this.coReadCount = coReadCount;
+	public void setCommunityReadCount(int communityReadCount) {
+		this.communityReadCount = communityReadCount;
 	}
 
-
-	public String getCoContent() {
-		return coContent;
+	public String getCommunityContent() {
+		return communityContent;
 	}
 
-
-	public void setCoContent(String coContent) {
-		this.coContent = coContent;
+	public void setCommunityContent(String communityContent) {
+		this.communityContent = communityContent;
 	}
 
-
-	public String getCoFile() {
-		return coFile;
+	public String getCommunityFile() {
+		return communityFile;
 	}
 
-
-	public void setCoFile(String coFile) {
-		this.coFile = coFile;
+	public void setCommunityFile(String communityFile) {
+		this.communityFile = communityFile;
 	}
 
-
-	public int getCoParentNo() {
-		return coParentNo;
+	public int getCommunityParentNo() {
+		return communityParentNo;
 	}
 
-
-	public void setCoParentNo(int coParentNo) {
-		this.coParentNo = coParentNo;
+	public void setCommunityParentNo(int communityParentNo) {
+		this.communityParentNo = communityParentNo;
 	}
 
-
-	public int getCoReReply() {
-		return coReReply;
+	public int getCommunityReReply() {
+		return communityReReply;
 	}
 
-
-	public void setCoReReply(int coReReply) {
-		this.coReReply = coReReply;
+	public void setCommunityReReply(int communityReReply) {
+		this.communityReReply = communityReReply;
 	}
 
-
-	public String getCoReplyTarget() {
-		return coReplyTarget;
+	public String getCommunityReplyTarget() {
+		return communityReplyTarget;
 	}
 
-
-	public void setCoReplyTarget(String coReplyTarget) {
-		this.coReplyTarget = coReplyTarget;
+	public void setCommunityReplyTarget(String communityReplyTarget) {
+		this.communityReplyTarget = communityReplyTarget;
 	}
-
 
 	public int getPartyMembers() {
 		return partyMembers;
 	}
 
-
 	public void setPartyMembers(int partyMembers) {
 		this.partyMembers = partyMembers;
 	}
 
-
-	public String getPartyMbIds() {
-		return partyMbIds;
+	public String getpartyMemberIds() {
+		return partyMemberIds;
 	}
 
-
-	public void setPartyMbIds(String partyMbIds) {
-		this.partyMbIds = partyMbIds;
+	public void setpartyMemberIds(String partyMemberIds) {
+		this.partyMemberIds = partyMemberIds;
 	}
-
 
 	public Timestamp getPartyDDay() {
 		return partyDDay;
 	}
 
-
 	public void setPartyDDay(Timestamp partyDDay) {
 		this.partyDDay = partyDDay;
 	}
-
 
 	public String getPartyPlace() {
 		return partyPlace;
 	}
 
-
 	public void setPartyPlace(String partyPlace) {
 		this.partyPlace = partyPlace;
 	}
-	
-	
 	
 }

@@ -1,37 +1,51 @@
 package com.project.yameokja.domain;
 
 public class Category {
-	private int cNo;
-	private String cName;
-	private int cOrder;
-	
+	private int categoryNo;
+	private String categoryName;
+	private int categoryOrder;
 
-	public Category(int cNo, String cName, int cOrder) {
-		this.cNo = cNo;
-		this.cName = cName;
-		this.cOrder = cOrder;
-	}
 
 	public Category() {}
+
+
+	public Category(int categoryNo, String categoryName, int categoryOrder) {
 	
+		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
+		this.categoryOrder = categoryOrder;
+	}
+
+
+	public int getCategoryNo() {
+		return categoryNo;
+	}
+
+
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
+	}
+
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+
+	public int getCategoryOrder() {
+		return categoryOrder;
+	}
+
+
+	public void setCategoryOrder(int categoryOrder) {
+		this.categoryOrder = categoryOrder;
+	}
 	
-	public int getcNo() {
-		return cNo;
-	}
-	public void setcNo(int cNo) {
-		this.cNo = cNo;
-	}
-	public String getcName() {
-		return cName;
-	}
-	public void setcName(String cName) {
-		this.cName = cName;
-	}
-	public int getcOrder() {
-		return cOrder;
-	}
-	public void setcOrder(int cOrder) {
-		this.cOrder = cOrder;
-	}
+
 	
 }

@@ -4,111 +4,113 @@ import java.sql.Timestamp;
 
 public class Report {
 
-	private int rpNo;
-	private String mbId;
-	private String rpType;
-	private int cNo;
-	private String rpTarget;
-	private String rpContent;
-	private Timestamp rpDate;
-	private String rpFile;
-	private int rpPunishCheck;
-	private String rpPunishContent;
+	private int reportNo;
+	private String memberId;
+	private String reportType;
+	private int categoryNo;
+	private String reportTarget;
+	private String reportContent;
+	private Timestamp reportDate;
+	private String reportFile;
+	private int reportPunishCheck;
+	private String reportPunishContent;
 	
 	public Report() {}
 
-	public Report(int rpNo, String mbId, String rpType, int cNo, String rpTarget, String rpContent, Timestamp rpDate,
-			String rpFile, int rpPunishCheck, String rpPunishContent) {
-		this.rpNo = rpNo;
-		this.mbId = mbId;
-		this.rpType = rpType;
-		this.cNo = cNo;
-		this.rpTarget = rpTarget;
-		this.rpContent = rpContent;
-		this.rpDate = rpDate;
-		this.rpFile = rpFile;
-		this.rpPunishCheck = rpPunishCheck;
-		this.rpPunishContent = rpPunishContent;
+	public Report(int reportNo, String memberId, String reportType, int categoryNo, String reportTarget,
+			String reportContent, Timestamp reportDate, String reportFile, int reportPunishCheck,
+			String reportPunishContent) {
+		
+		this.reportNo = reportNo;
+		this.memberId = memberId;
+		this.reportType = reportType;
+		this.categoryNo = categoryNo;
+		this.reportTarget = reportTarget;
+		this.reportContent = reportContent;
+		this.reportDate = reportDate;
+		this.reportFile = reportFile;
+		this.reportPunishCheck = reportPunishCheck;
+		this.reportPunishContent = reportPunishContent;
 	}
 
-	public int getRpNo() {
-		return rpNo;
+	public int getReportNo() {
+		return reportNo;
 	}
 
-	public void setRpNo(int rpNo) {
-		this.rpNo = rpNo;
+	public void setReportNo(int reportNo) {
+		this.reportNo = reportNo;
 	}
 
-	public String getMbId() {
-		return mbId;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMbId(String mbId) {
-		this.mbId = mbId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getRpType() {
-		return rpType;
+	public String getReportType() {
+		return reportType;
 	}
 
-	public void setRpType(String rpType) {
-		this.rpType = rpType;
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
 	}
 
-	public int getcNo() {
-		return cNo;
+	public int getCategoryNo() {
+		return categoryNo;
 	}
 
-	public void setcNo(int cNo) {
-		this.cNo = cNo;
+	public void setCategoryNo(int categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 
-	public String getRpTarget() {
-		return rpTarget;
+	public String getReportTarget() {
+		return reportTarget;
 	}
 
-	public void setRpTarget(String rpTarget) {
-		this.rpTarget = rpTarget;
+	public void setReportTarget(String reportTarget) {
+		this.reportTarget = reportTarget;
 	}
 
-	public String getRpContent() {
-		return rpContent;
+	public String getReportContent() {
+		return reportContent;
 	}
 
-	public void setRpContent(String rpContent) {
-		this.rpContent = rpContent;
+	public void setReportContent(String reportContent) {
+		this.reportContent = reportContent;
 	}
 
-	public Timestamp getRpDate() {
-		return rpDate;
+	public Timestamp getReportDate() {
+		return reportDate;
 	}
 
-	public void setRpDate(Timestamp rpDate) {
-		this.rpDate = rpDate;
+	public void setReportDate(Timestamp reportDate) {
+		this.reportDate = reportDate;
 	}
 
-	public String getRpFile() {
-		return rpFile;
+	public String getReportFile() {
+		return reportFile;
 	}
 
-	public void setRpFile(String rpFile) {
-		this.rpFile = rpFile;
+	public void setReportFile(String reportFile) {
+		this.reportFile = reportFile;
 	}
 
-	public int getRpPunishCheck() {
-		return rpPunishCheck;
+	public int getReportPunishCheck() {
+		return reportPunishCheck;
 	}
 
-	public void setRpPunishCheck(int rpPunishCheck) {
-		this.rpPunishCheck = rpPunishCheck;
+	public void setReportPunishCheck(int reportPunishCheck) {
+		this.reportPunishCheck = reportPunishCheck;
 	}
 
-	public String getRpPunishContent() {
-		return rpPunishContent;
+	public String getReportPunishContent() {
+		return reportPunishContent;
 	}
 
-	public void setRpPunishContent(String rpPunishContent) {
-		this.rpPunishContent = rpPunishContent;
+	public void setReportPunishContent(String reportPunishContent) {
+		this.reportPunishContent = reportPunishContent;
 	}
 	
 }

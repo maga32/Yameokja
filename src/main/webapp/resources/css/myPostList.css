@@ -2,7 +2,6 @@
 
 body{
 	font-size: 16px;
-	margin: 10px;
 	background-color: white;
 	
 }
@@ -34,19 +33,19 @@ body{
 }
 
 .myInformation1 {
-	width: 160px;
-	height: 160px;
+	width: 100px;
+	height: 100px;
 	border-radius: 100px;
 	text-align: center;
 	
 }
 .myInformation2 {
-	width: 360px;	
+	width: 320px;	
 	text-align: left;
 	padding: 10px;
 }
 .mbIdFont {
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: 900;
 
 }
@@ -109,11 +108,11 @@ body{
 	display: inline-table;
 }
 .mainImg {
-	width: 130px;
+	width: 100px;
 	
 }
 .postContent {
-	width: 400px;
+	width: 200px;
 	padding: 10px;
 }
 .myInformationFont img{
@@ -125,7 +124,7 @@ body{
 	font-weight: 900;
 }
 .upAndDel {
-	width: 100px;
+	width: 50px;
 }
 .페이지그룹버튼 {
 	font-family: Inter;
@@ -137,7 +136,7 @@ body{
 
 .페이지그룹 {
 	border: 1px solid black;
-	width: 760px;
+	width: 300px;
 	height: 95px;
 	text-align: right;
 }
