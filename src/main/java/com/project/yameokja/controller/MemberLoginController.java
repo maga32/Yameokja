@@ -23,25 +23,6 @@ public class MemberLoginController {
 	@Autowired
 	MemberLoginService memberLoginService;
 	
-	// 메인화면
-	@RequestMapping("/main")
-	public @ResponseBody String main(HttpSession session, HttpServletResponse response) {
-		response.setContentType("text/html; charset=utf-8");
-		
-		
-		Member member = (Member) session.getAttribute("member");
-		if(member != null) {
-			
-			String memberId = member.getMemberId();
-			
-			return memberId;
-		}
-		
-		String str = "not login, session Empty";
-		
-		return str;
-	}
-	
 	// 로그인 뷰
 	@RequestMapping("/loginForm")
 	public String loginForm() {
