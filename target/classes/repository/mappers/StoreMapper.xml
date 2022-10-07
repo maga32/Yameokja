@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.project.mappers.StoreMapper">
+
+<select id="storeList" resultType="Store" resultMap="storeResultMap">
+	
+	SELECT * FROM store ORDER BY st_read_count DESC
+	
+</select>
+	
+	<resultMap id="storeResultMap" type="Store">
+		<id property="storeNo" column="st_no" />
+		<result property="memberId" column="mb_id" />
+		<result property="storeName" column="st_name" />
+		<result property="storePhone" column="st_phone" />
+		<result property="storeLatitude" column="st_latitude" />
+		<result property="storeLongitude" column="st_longitude" />
+		<result property="storeReadCount" column="st_read_count" />
+		<result property="storeFileMain" column="st_file_main" />
+		<result property="storeFileMenu" column="st_file_menu" />
+		<result property="storeAddress" column="st_address" />
+		<result property="categoryNo" column="c_no" />
+		<result property="storeReviewCount" column="st_review_count" />
+		<result property="storeStar" column="st_star" />
+		<result property="storeBookmarks" column="st_bookmarks" />
+		<result property="storeTime" column="st_time" />
+		<result property="storeDayOff" column="st_day_off" />
+		<result property="storeParking" column="st_parking" />
+		
+		
+	
+	</resultMap>
+	
+	
+</mapper>
