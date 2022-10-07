@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+<footer>
+	<div id="footer_info">
+		이용약관 개인정보처리방침<br/> 
+      	Copyright ⓒ 2022 (주)야먹자 All Rights Reserved.
+	</div>	
 </footer>

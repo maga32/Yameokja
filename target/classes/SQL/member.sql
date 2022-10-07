@@ -2,11 +2,9 @@
 ## DATABASE 생성 및 선택
 CREATE DATABASE IF NOT EXISTS yameokja;
 use yameokja;
--- 테이블 넣는 순서 member-category-store-post
--- 								-community
--- 								-report
--- 상관없는 테이블 chat
 
+-- 아이디, 이름, 사진, 닉네임, 비밀번호, 이메일, 주소, 핸드폰번호, 찜 목록, 
+-- 회원 가입일, 회원 탈퇴일, 선호 음식 종류, 회원 등급, 차단한 회원 id 목록
 -- mb_id, mb_name, mb_photo, mb_nickname, mb_password, 
 -- mb_email, mb_address, mb_mobile, mb_bookmarks, mb_join_date,
 -- mb_del_date, mb_favorite_category, mb_level, mb_block_ids
@@ -15,7 +13,7 @@ CREATE TABLE IF NOT EXISTS member(
   mb_id VARCHAR(20) PRIMARY KEY,
   mb_name VARCHAR(10) NOT NULL,
   mb_photo VARCHAR(100) NULL,  
-  mb_nickname VARCHAR(20) NOT NULL unique KEY,
+  mb_nickname VARCHAR(20) NOT NULL,
   mb_password VARCHAR(20) NOT NULL,
   mb_email VARCHAR(20) NOT NULL,
   mb_address VARCHAR(20) NOT NULL,
