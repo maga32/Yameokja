@@ -4,95 +4,95 @@ import java.sql.Timestamp;
 
 public class Chat {
 
-	private int chNo;
-	private String chIds;
-	private String chSender;
-	private String chReceiver;
-	private String chContent;
-	private Timestamp chSendDate;
-	private String chReadCheck;
-	private int chLeaveCheck;
-	
+	private int chatNo;
+	private String chatIds;
+	private String chatSender;
+	private String chatReceiver;
+	private String chatContent;
+	private Timestamp chatSendDate;
+	private String chatReadCheck;
+	private int chatLeaveCheck;
 	
 	public Chat() {}
 
-	
-	public Chat(int chNo, String chIds, String chSender, String chReceiver, String chContent, Timestamp chSendDate,
-			String chReadCheck, int chLeaveCheck) {
-		this.chNo = chNo;
-		this.chIds = chIds;
-		this.chSender = chSender;
-		this.chReceiver = chReceiver;
-		this.chContent = chContent;
-		this.chSendDate = chSendDate;
-		this.chReadCheck = chReadCheck;
-		this.chLeaveCheck = chLeaveCheck;
+	public Chat(int chatNo, String chatIds, String chatSender, String chatReceiver, String chatContent,
+			Timestamp chatSendDate, String chatReadCheck, int chatLeaveCheck) {
+		
+		this.chatNo = chatNo;
+		this.chatIds = chatIds;
+		this.chatSender = chatSender;
+		this.chatReceiver = chatReceiver;
+		this.chatContent = chatContent;
+		this.chatSendDate = chatSendDate;
+		this.chatReadCheck = chatReadCheck;
+		this.chatLeaveCheck = chatLeaveCheck;
+	}
+
+	public int getChatNo() {
+		return chatNo;
+	}
+
+	public void setChatNo(int chatNo) {
+		this.chatNo = chatNo;
+	}
+
+	public String getChatIds() {
+		return chatIds;
+	}
+
+	public void setChatIds(String chatIds) {
+		this.chatIds = chatIds;
+	}
+
+	public String getChatSender() {
+		return chatSender;
+	}
+
+	public void setChatSender(String chatSender) {
+		this.chatSender = chatSender;
+	}
+
+	public String getChatReceiver() {
+		return chatReceiver;
+	}
+
+	public void setChatReceiver(String chatReceiver) {
+		this.chatReceiver = chatReceiver;
+	}
+
+	public String getChatContent() {
+		return chatContent;
+	}
+
+	public void setChatContent(String chatContent) {
+		this.chatContent = chatContent;
+	}
+
+	public Timestamp getChatSendDate() {
+		return chatSendDate;
+	}
+
+	public void setChatSendDate(Timestamp chatSendDate) {
+		this.chatSendDate = chatSendDate;
+	}
+
+	public String getChatReadCheck() {
+		return chatReadCheck;
+	}
+
+	public void setChatReadCheck(String chatReadCheck) {
+		this.chatReadCheck = chatReadCheck;
+	}
+
+	public int getChatLeaveCheck() {
+		return chatLeaveCheck;
+	}
+
+	public void setChatLeaveCheck(int chatLeaveCheck) {
+		this.chatLeaveCheck = chatLeaveCheck;
 	}
 
 
-	public int getChNo() {
-		return chNo;
-	}
 
-	public void setChNo(int chNo) {
-		this.chNo = chNo;
-	}
-
-	public String getChIds() {
-		return chIds;
-	}
-
-	public void setChIds(String chIds) {
-		this.chIds = chIds;
-	}
-
-	public String getChSender() {
-		return chSender;
-	}
-
-	public void setChSender(String chSender) {
-		this.chSender = chSender;
-	}
-
-	public String getChReceiver() {
-		return chReceiver;
-	}
-
-	public void setChReceiver(String chReceiver) {
-		this.chReceiver = chReceiver;
-	}
-
-	public String getChContent() {
-		return chContent;
-	}
-
-	public void setChContent(String chContent) {
-		this.chContent = chContent;
-	}
-
-	public Timestamp getChSendDate() {
-		return chSendDate;
-	}
-
-	public void setChSendDate(Timestamp chSendDate) {
-		this.chSendDate = chSendDate;
-	}
-
-	public String getChReadCheck() {
-		return chReadCheck;
-	}
-
-	public void setChReadCheck(String chReadCheck) {
-		this.chReadCheck = chReadCheck;
-	}
-
-	public int getChLeaveCheck() {
-		return chLeaveCheck;
-	}
-
-	public void setChLeaveCheck(int chLeaveCheck) {
-		this.chLeaveCheck = chLeaveCheck;
-	}
-	
 	
 }

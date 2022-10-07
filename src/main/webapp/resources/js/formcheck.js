@@ -1,10 +1,10 @@
 $(function() {	
-
-	 $("#loginForm").submit(function(e){
+	
+	 $("#mainForm").submit(function(e){
 	 	//e.preventDefault();
-	 	if($("#mbId").val().length <= 0) {
+	 	if($("#memberId").val().length <= 0) {
 			alert("아이디가 입력되지 않았습니다.");
-			$("#mbId").focus();			
+			$("#memberId").focus();			
 			return false;
 		}	
 	/*	else if($("#mbId").val() != "memberId01") {

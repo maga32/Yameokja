@@ -1,6 +1,5 @@
 package com.project.yameokja.controller;
 
-import java.io.Console; 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,25 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
-import com.project.yameokja.service.MemberService;
+import com.project.yameokja.service.MyPageService;
 
 //스프링 MVC의 컨트롤러임을 선언하고 있다.
 @Controller
-public class MemberController {
+public class MyPageController {
 
 	@Autowired
-	private MemberService memberService;
+	private MyPageService memberService;
 	
-	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String main(Model model, String mbId) {
-		mbId = "memberId01";  
-		model.addAttribute("mbId", mbId);
-		System.out.println(mbId);
-		return "main";
+	@RequestMapping(value="/mainmain", method=RequestMethod.GET)
+	public String main(Model model, String memberId) {
+		memberId = "memberId01";  
+		model.addAttribute("memberId", memberId);
+		return "mainmain";
 	}
 
 //	@RequestMapping(value="/userPostList", method=RequestMethod.GET)
@@ -36,9 +34,10 @@ public class MemberController {
 //	}
 //	
 	// 로그인 상태에서 동작
-	@RequestMapping(value="/myPostList", method=RequestMethod.GET)
-	public String myPostList(Model model, 
-			@RequestParam(value="mbId", required=false, defaultValue = "null") String mbId) {
+	@RequestMapping(value="/myPagePost")
+	public String myPagePost(Model model, 
+//			@RequestParam(value="mbId", required=false, defaultValue = "null") 
+	String memberId) {
 		
 //		if(mbId.equals("null")) { // 자신
 //			
@@ -50,18 +49,33 @@ public class MemberController {
 		
 		
 		// 로그인 상태라고 작업
-		mbId = "memberId01";		
+		memberId = "memberId01";	
 		
 //		 회원정보 하나 
-		Member member = memberService.getMember(mbId);
+		Member member = memberService.getMember(memberId);
 		
 		// 회원이 쓴 글 리스트
-		 List<Post> postList = memberService.myPostList(mbId);
+		 List<Post> postList = memberService.myPagePost(memberId);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("postList", postList);
 		
-		return "myPostList";
+		return "myPagePost";
+	}
+	
+	@RequestMapping(value="/myPageCommunity")
+	public String myPageCommunity(Model model, String memberId) {
+
+		memberId = "memberId01";	
+
+		Member member = memberService.getMember(memberId);
+
+		 List<Community> communityList = memberService.myPageCommunity(memberId);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("communityList", communityList);
+		
+		return "myPageCommunity";
 	}
 
 }

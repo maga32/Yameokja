@@ -3,127 +3,185 @@ package com.project.yameokja.domain;
 import java.sql.Timestamp;
 
 public class Member {
-	private String mbName;
-	private String mbPhoto;
-	private String mbId;
-	private String mbNickname;
-	private String mbPassword;
-	private String mbEmail;
-	private String mbAddress;
-	private String mbMobile;
-	private String mbBookmarks;
-	private Timestamp mbJoinDate;
-	private Timestamp mbDelDate;
-	private String mbFavoriteCategory;
-	private int mbLevel;
-	private String mbBlockIds;
+	private String memberName;
+	private String memberPhoto;
+	private String memberId;
+	private String memberNickname;
+	private String memberPassword;
+	private String memberEmail;
+	private String memberAddress;
+	private String memberMobile;
+	private String memberBookmarks;
+	private Timestamp memberJoinDate;
+	private Timestamp memberDelDate;
+	private String memberFavoriteCategory;
+	private int memberLevel;
+	private String memberBlockIds;
 	
 	
 	public Member() {	}
-	
-	
-	public Member(String mbName, String mbPhoto, String mbId, String mbNickname, String mbPassword, String mbEmail,
-			String mbAddress, String mbMobile, String mbBookmarks, Timestamp mbJoinDate, Timestamp mbDelDate,
-			String mbFavoriteCategory, int mbLevel, String mbBlockIds) {
 
-		this.mbName = mbName;
-		this.mbPhoto = mbPhoto;
-		this.mbId = mbId;
-		this.mbNickname = mbNickname;
-		this.mbPassword = mbPassword;
-		this.mbEmail = mbEmail;
-		this.mbAddress = mbAddress;
-		this.mbMobile = mbMobile;
-		this.mbBookmarks = mbBookmarks;
-		this.mbJoinDate = mbJoinDate;
-		this.mbDelDate = mbDelDate;
-		this.mbFavoriteCategory = mbFavoriteCategory;
-		this.mbLevel = mbLevel;
-		this.mbBlockIds = mbBlockIds;
+
+	public Member(String memberName, String memberPhoto, String memberId, String memberNickname, String memberPassword,
+			String memberEmail, String memberAddress, String memberMobile, String memberBookmarks,
+			Timestamp memberJoinDate, Timestamp memberDelDate, String memberFavoriteCategory, int memberLevel,
+			String memberBlockIds) {
+		
+		this.memberName = memberName;
+		this.memberPhoto = memberPhoto;
+		this.memberId = memberId;
+		this.memberNickname = memberNickname;
+		this.memberPassword = memberPassword;
+		this.memberEmail = memberEmail;
+		this.memberAddress = memberAddress;
+		this.memberMobile = memberMobile;
+		this.memberBookmarks = memberBookmarks;
+		this.memberJoinDate = memberJoinDate;
+		this.memberDelDate = memberDelDate;
+		this.memberFavoriteCategory = memberFavoriteCategory;
+		this.memberLevel = memberLevel;
+		this.memberBlockIds = memberBlockIds;
 	}
-	public String getMbName() {
-		return mbName;
+
+
+	public String getMemberName() {
+		return memberName;
 	}
-	public void setMbName(String mbName) {
-		this.mbName = mbName;
+
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
-	public String getMbPhoto() {
-		return mbPhoto;
+
+
+	public String getMemberPhoto() {
+		return memberPhoto;
 	}
-	public void setMbPhoto(String mbPhoto) {
-		this.mbPhoto = mbPhoto;
+
+
+	public void setMemberPhoto(String memberPhoto) {
+		this.memberPhoto = memberPhoto;
 	}
-	public String getMbId() {
-		return mbId;
+
+
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMbId(String mbId) {
-		this.mbId = mbId;
+
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public String getMbNickname() {
-		return mbNickname;
+
+
+	public String getMemberNickname() {
+		return memberNickname;
 	}
-	public void setMbNickname(String mbNickname) {
-		this.mbNickname = mbNickname;
+
+
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
 	}
-	public String getMbPassword() {
-		return mbPassword;
+
+
+	public String getMemberPassword() {
+		return memberPassword;
 	}
-	public void setMbPassword(String mbPassword) {
-		this.mbPassword = mbPassword;
+
+
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
 	}
-	public String getMbEmail() {
-		return mbEmail;
+
+
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public void setMbEmail(String mbEmail) {
-		this.mbEmail = mbEmail;
+
+
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
-	public String getMbAddress() {
-		return mbAddress;
+
+
+	public String getMemberAddress() {
+		return memberAddress;
 	}
-	public void setMbAddress(String mbAddress) {
-		this.mbAddress = mbAddress;
+
+
+	public void setMemberAddress(String memberAddress) {
+		this.memberAddress = memberAddress;
 	}
-	public String getMbMobile() {
-		return mbMobile;
+
+
+	public String getMemberMobile() {
+		return memberMobile;
 	}
-	public void setMbMobile(String mbMobile) {
-		this.mbMobile = mbMobile;
+
+
+	public void setMemberMobile(String memberMobile) {
+		this.memberMobile = memberMobile;
 	}
-	public String getmbBookmarks() {
-		return mbBookmarks;
+
+
+	public String getMemberBookmarks() {
+		return memberBookmarks;
 	}
-	public void setmbBookmarks(String mbBookmarks) {
-		this.mbBookmarks = mbBookmarks;
+
+
+	public void setMemberBookmarks(String memberBookmarks) {
+		this.memberBookmarks = memberBookmarks;
 	}
-	public Timestamp getMbJoinDate() {
-		return mbJoinDate;
+
+
+	public Timestamp getMemberJoinDate() {
+		return memberJoinDate;
 	}
-	public void setMbJoinDate(Timestamp mbJoinDate) {
-		this.mbJoinDate = mbJoinDate;
+
+
+	public void setMemberJoinDate(Timestamp memberJoinDate) {
+		this.memberJoinDate = memberJoinDate;
 	}
-	public Timestamp getMbDelDate() {
-		return mbDelDate;
+
+
+	public Timestamp getMemberDelDate() {
+		return memberDelDate;
 	}
-	public void setMbDelDate(Timestamp mbDelDate) {
-		this.mbDelDate = mbDelDate;
+
+
+	public void setMemberDelDate(Timestamp memberDelDate) {
+		this.memberDelDate = memberDelDate;
 	}
-	public String getMbFavoriteCategory() {
-		return mbFavoriteCategory;
+
+
+	public String getMemberFavoriteCategory() {
+		return memberFavoriteCategory;
 	}
-	public void setMbFavoriteCategory(String mbFavoriteCategory) {
-		this.mbFavoriteCategory = mbFavoriteCategory;
+
+
+	public void setMemberFavoriteCategory(String memberFavoriteCategory) {
+		this.memberFavoriteCategory = memberFavoriteCategory;
 	}
-	public int getMbLevel() {
-		return mbLevel;
+
+
+	public int getMemberLevel() {
+		return memberLevel;
 	}
-	public void setMbLevel(int mbLevel) {
-		this.mbLevel = mbLevel;
+
+
+	public void setMemberLevel(int memberLevel) {
+		this.memberLevel = memberLevel;
 	}
-	public String getMbBlockIds() {
-		return mbBlockIds;
+
+
+	public String getMemberBlockIds() {
+		return memberBlockIds;
 	}
-	public void setMbBlockIds(String mbBlockIds) {
-		this.mbBlockIds = mbBlockIds;
+
+
+	public void setMemberBlockIds(String memberBlockIds) {
+		this.memberBlockIds = memberBlockIds;
 	}
+
 	
 }

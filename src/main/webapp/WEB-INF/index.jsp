@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="resources/css/myPostList.css">
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
 	<script src="resources/js/formcheck.js"></script>	
+	<script src="resources/js/community.js"></script>
   <meta charset="UTF-8">
   <title>MyPage</title>
 </head>

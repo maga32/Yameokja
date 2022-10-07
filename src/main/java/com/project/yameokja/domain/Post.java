@@ -4,186 +4,185 @@ import java.sql.Timestamp;
 
 public class Post {
 
-	private int pNo;
-	private int stNo;
-	private String pTitle;
-	private String pContent;
-	private int pReadCount; 
-	private String pFile1;
-	private String pFile2;
-	private String pFile3;
-	private String pFile4;
-	private String pFile5;
-	private Timestamp pRegDate;
-	private String pIsPost;
-	private int pStar;
-	private int pUpCount;
-	private String pUpList;
-	private String mbId;
-	private String mbNickname;
+	private int postNo;
+	private int storetNo;
+	private String postTitle;
+	private String postContent;
+	private int postReadCount; 
+	private String postFile1;
+	private String postFile2;
+	private String postFile3;
+	private String postFile4;
+	private String postFile5;
+	private Timestamp postRegDate;
+	private String postIsPost;
+	private int postStar;
+	private int postUpCount;
+	private String postUpList;
+	private String memberId;
+	private String memberNickname;
 	
 	public Post() {}
 
-	public Post(int pNo, int stNo, String pTitle, String pContent, int pReadCount, String pFile1, String pFile2,
-			String pFile3, String pFile4, String pFile5, Timestamp pRegDate, String pIsPost, int pStar, int pUpCount,
-			String pUpList, String mbId, String mbNickname) {
-		this.pNo = pNo;
-		this.stNo = stNo;
-		this.pTitle = pTitle;
-		this.pContent = pContent;
-		this.pReadCount = pReadCount;
-		this.pFile1 = pFile1;
-		this.pFile2 = pFile2;
-		this.pFile3 = pFile3;
-		this.pFile4 = pFile4;
-		this.pFile5 = pFile5;
-		this.pRegDate = pRegDate;
-		this.pIsPost = pIsPost;
-		this.pStar = pStar;
-		this.pUpCount = pUpCount;
-		this.pUpList = pUpList;
-		this.mbId = mbId;
-		this.mbNickname = mbNickname;
+	public Post(int postNo, int storetNo, String postTitle, String postContent, int postReadCount, String postFile1,
+			String postFile2, String postFile3, String postFile4, String postFile5, Timestamp postRegDate,
+			String postIsPost, int postStar, int postUpCount, String postUpList, String memberId,
+			String memberNickname) {
+		
+		this.postNo = postNo;
+		this.storetNo = storetNo;
+		this.postTitle = postTitle;
+		this.postContent = postContent;
+		this.postReadCount = postReadCount;
+		this.postFile1 = postFile1;
+		this.postFile2 = postFile2;
+		this.postFile3 = postFile3;
+		this.postFile4 = postFile4;
+		this.postFile5 = postFile5;
+		this.postRegDate = postRegDate;
+		this.postIsPost = postIsPost;
+		this.postStar = postStar;
+		this.postUpCount = postUpCount;
+		this.postUpList = postUpList;
+		this.memberId = memberId;
+		this.memberNickname = memberNickname;
 	}
 
-	public int getpNo() {
-		return pNo;
+	public int getPostNo() {
+		return postNo;
 	}
 
-	public void setpNo(int pNo) {
-		this.pNo = pNo;
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
 	}
 
-	public int getStNo() {
-		return stNo;
+	public int getStoretNo() {
+		return storetNo;
 	}
 
-	public void setStNo(int stNo) {
-		this.stNo = stNo;
+	public void setStoretNo(int storetNo) {
+		this.storetNo = storetNo;
 	}
 
-	public String getpTitle() {
-		return pTitle;
+	public String getPostTitle() {
+		return postTitle;
 	}
 
-	public void setpTitle(String pTitle) {
-		this.pTitle = pTitle;
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
 	}
 
-	public String getpContent() {
-		return pContent;
+	public String getPostContent() {
+		return postContent;
 	}
 
-	public void setpContent(String pContent) {
-		this.pContent = pContent;
+	public void setPostContent(String postContent) {
+		this.postContent = postContent;
 	}
 
-	public int getpReadCount() {
-		return pReadCount;
+	public int getPostReadCount() {
+		return postReadCount;
 	}
 
-	public void setpReadCount(int pReadCount) {
-		this.pReadCount = pReadCount;
+	public void setPostReadCount(int postReadCount) {
+		this.postReadCount = postReadCount;
 	}
 
-	public String getpFile1() {
-		return pFile1;
+	public String getPostFile1() {
+		return postFile1;
 	}
 
-	public void setpFile1(String pFile1) {
-		this.pFile1 = pFile1;
+	public void setPostFile1(String postFile1) {
+		this.postFile1 = postFile1;
 	}
 
-	public String getpFile2() {
-		return pFile2;
+	public String getPostFile2() {
+		return postFile2;
 	}
 
-	public void setpFile2(String pFile2) {
-		this.pFile2 = pFile2;
+	public void setPostFile2(String postFile2) {
+		this.postFile2 = postFile2;
 	}
 
-	public String getpFile3() {
-		return pFile3;
+	public String getPostFile3() {
+		return postFile3;
 	}
 
-	public void setpFile3(String pFile3) {
-		this.pFile3 = pFile3;
+	public void setPostFile3(String postFile3) {
+		this.postFile3 = postFile3;
 	}
 
-	public String getpFile4() {
-		return pFile4;
+	public String getPostFile4() {
+		return postFile4;
 	}
 
-	public void setpFile4(String pFile4) {
-		this.pFile4 = pFile4;
+	public void setPostFile4(String postFile4) {
+		this.postFile4 = postFile4;
 	}
 
-	public String getpFile5() {
-		return pFile5;
+	public String getPostFile5() {
+		return postFile5;
 	}
 
-	public void setpFile5(String pFile5) {
-		this.pFile5 = pFile5;
+	public void setPostFile5(String postFile5) {
+		this.postFile5 = postFile5;
 	}
 
-	public Timestamp getpRegDate() {
-		return pRegDate;
+	public Timestamp getPostRegDate() {
+		return postRegDate;
 	}
 
-	public void setpRegDate(Timestamp pRegDate) {
-		this.pRegDate = pRegDate;
+	public void setPostRegDate(Timestamp postRegDate) {
+		this.postRegDate = postRegDate;
 	}
 
-	public String getpIsPost() {
-		return pIsPost;
+	public String getPostIsPost() {
+		return postIsPost;
 	}
 
-	public void setpIsPost(String pIsPost) {
-		this.pIsPost = pIsPost;
+	public void setPostIsPost(String postIsPost) {
+		this.postIsPost = postIsPost;
 	}
 
-	public int getpStar() {
-		return pStar;
+	public int getPostStar() {
+		return postStar;
 	}
 
-	public void setpStar(int pStar) {
-		this.pStar = pStar;
+	public void setPostStar(int postStar) {
+		this.postStar = postStar;
 	}
 
-	public int getpUpCount() {
-		return pUpCount;
+	public int getPostUpCount() {
+		return postUpCount;
 	}
 
-	public void setpUpCount(int pUpCount) {
-		this.pUpCount = pUpCount;
+	public void setPostUpCount(int postUpCount) {
+		this.postUpCount = postUpCount;
 	}
 
-	public String getpUpList() {
-		return pUpList;
+	public String getPostUpList() {
+		return postUpList;
 	}
 
-	public void setpUpList(String pUpList) {
-		this.pUpList = pUpList;
+	public void setPostUpList(String postUpList) {
+		this.postUpList = postUpList;
 	}
 
-	public String getMbId() {
-		return mbId;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMbId(String mbId) {
-		this.mbId = mbId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getMbNickname() {
-		return mbNickname;
+	public String getMemberNickname() {
+		return memberNickname;
 	}
 
-	public void setMbNickname(String mbNickname) {
-		this.mbNickname = mbNickname;
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
 	}
-	
-	
-	
-	
+
 	
 }
