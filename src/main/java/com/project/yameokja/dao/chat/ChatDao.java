@@ -10,4 +10,6 @@ public interface ChatDao {
 
 	Chat chatLists(String chatIds);
 	
+	List<Chat> chatTargetList(String chatIds, String leaveCheck);
+	
 }

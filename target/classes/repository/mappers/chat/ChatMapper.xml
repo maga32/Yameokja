@@ -18,6 +18,20 @@
 		LIMIT 0,1
 	</select>
 	
+	<select id="chatTargetList" resultMap="ChatResultMap">
+		SELECT * FROM chat 
+		<where>
+			chat_ids = #{chatIds}
+			<if test="leaveCheck == 'id0'">
+				AND chat_leave_check = 1 OR chat_leave_check = -1
+			</if>
+			<if test="leaveCheck == 'id1'">
+				AND chat_leave_check = 1 OR chat_leave_check = 2
+			</if>
+		</where>
+		ORDER BY chat_no
+	</select>
+	
 	<resultMap type="Chat" id="ChatResultMap">
 		<id property="chatNo" column="chat_no" />
 		<result property="chatIds" column="chat_ids" />

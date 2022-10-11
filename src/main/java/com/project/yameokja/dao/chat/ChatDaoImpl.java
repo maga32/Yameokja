@@ -1,6 +1,8 @@
 package com.project.yameokja.dao.chat;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,15 @@ public class ChatDaoImpl implements ChatDao {
 	@Override
 	public Chat chatLists(String chatIds) {
 		return sqlSession.selectOne(NAME_SPACE + ".chatLists", chatIds);
+	}
+
+	@Override
+	public List<Chat> chatTargetList(String chatIds, String leaveCheck) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("chatIds", chatIds);
+		map.put("leaveCheck", leaveCheck);
+		
+		return sqlSession.selectList(NAME_SPACE + ".chatTargetList", map);
 	}
 
 }

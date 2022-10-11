@@ -10,4 +10,6 @@ public interface ChatService {
 
 	Map<String, Object> chatList(String memberId);
 	
+	List<Chat> chatTargetList(String chatIds, String leaveCheck);
+	
 }

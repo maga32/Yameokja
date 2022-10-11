@@ -53,4 +53,9 @@ public class ChatServiceImpl implements ChatService {
 		return chatList;
 	}
 
+	@Override
+	public List<Chat> chatTargetList(String chatIds, String leaveCheck) {
+		return chatDao.chatTargetList(chatIds, leaveCheck);
+	}
+
 }
