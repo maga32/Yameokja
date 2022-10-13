@@ -4,16 +4,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <article>
 <form name="postListForm" id="postListForm">
-	<input type="hidden" name="mbId" value="${ member.memberId }"/>
+	<input type="hidden" name="memberId" value="${ member.memberId }"/>
+	<input type="hidden" name="pageNum" value="${ pageNum }"/>
 </form>
 <div class="row">
-<div class="fullFrame col-md-12">
+<div class="fullFrame col-md-12 p-2">
 	<div class="myInformationsFrame col-md-12 ">
+	
 		<div class="myInformation1 col-md-3 ">
 			<div>프로필 사진</div>
 		</div>
 		<div class="myInformation2 col-md-6 ">
-			<div class="mbIdFont">sessionScope.${ member.memberId }님</div>
+<!-- 		sessionScope.memberId -->
+			<div class="mbIdFont">${ member.memberId }님</div>
 			<div class="nbsp;">&nbsp;</div>
 			<div class="nbsp;">&nbsp;</div>
 			<div class="myInformationFont">이메일 : <span>${ member.memberEmail }</span></div>
@@ -29,23 +32,21 @@
 	</div><!--내정보틀 끝 -->
 	<div class="nbsp;">&nbsp;</div>
 	<div class="postListHeader">
-		<div class="postListbutton">맛집 리뷰</div>
-		<div class="replyListbutton">댓글 리뷰</div>
-		<div class="communityListbutton">동네글</div>
-		<div class="likeListbutton">찜 목록</div>
+		<span class="postListbutton px-3 py-2">맛집 리뷰</span>
+		<span class="replyListbutton px-3 py-2"><a href="#">댓글 리뷰</a></span>
+		<span class="communityListbutton px-3 py-2"><a href="#">동네글</a></span>
+		<span class="likeListbutton px-3 py-2"><a href="#">찜 목록</a></span>
 	</div><!--postListHeader 끝 -->
 	
-	<div class="postListFrame">
+	<div class="postListFrame col-md-12 p-2">
 	
 	<c:if test="${ not empty postList }">
 	<c:forEach var="p" items="${ postList }">
 	
-		<div class="postFrame">
-			<div class="mainImg">
-				<div class="buttons_">mainImg</div>
-			</div>
-			<div class="postContent">
-				<div class="postTitle">${ p.postTitle }</div>
+		<div class="postFrame col-md-12 mb-2">
+			<div class="mainImg col-md-3">${ p.postNo }<br/>mainImg</div>
+			<div class="postContent col-md-6 p-2">
+				<div class="postTitle"><a href="#">${ p.postTitle }</a></div>
 				<div class="myInformationFont">
 					<img alt="regDateIMG" src="resources/IMG/regDateIMG.PNG"/> 
 					${ p.postRegDate }
@@ -59,7 +60,7 @@
 					${ p.postUpList }
 				</div>
 			</div>
-			<div class="upAndDel">
+			<div class="upAndDel col-md-3">
 				<div class="nbsp;">&nbsp;</div>
 				<div class="nbsp;">&nbsp;</div>
 				<div class="myInformationFont">
@@ -70,15 +71,30 @@
 				</div>
 			</div>
 		</div>
-	
+		
 	</c:forEach>
-	</c:if>
-	</div><!--postListFrame 끝 -->
-	<div class="페이지그룹">
-		<div class="페이지그룹버튼"><</div>
-		<div class="페이지그룹버튼">1 2 3 4 5 6 7 8 9 10</div>
-		<div class="페이지그룹버튼">></div>		
+	<div class="pageGroup col-md-12">
+		<div class="페이지그룹버튼">
+			<c:if test="${ startPage > pageGroup }">
+				<a href="myPagePost?pageNum=${ startPage - pageGroup }">[이전]</a>
+			</c:if>
+		</div>
+		<div class="페이지그룹버튼">
+		<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+			<c:if test="${ i == currentPage }">[ ${ i } ]	</c:if>			
+			<c:if test="${ i != currentPage }">
+				<a href="myPagePost?pageNum=${ i }">[ ${ i } ]</a>
+			</c:if>			
+		</c:forEach>
+		</div>
+		<div class="페이지그룹버튼">
+		<c:if test="${ endPage < pageCount }">
+			<a href="myPagePost?pageNum=${ startPage + pageGroup }">[다음]</a>
+		</c:if>	
+		</div>		
 	</div><!--페이지그룹 끝 -->
+	</c:if>
+	</div><!--postListFrame 끝 -->	
 </div>
 </div><!--전체틀 끝 -->
 </article>
