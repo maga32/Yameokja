@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.yameokja.MyPageMapper" >
+
+	<select id="getMember" resultType="Member">
+		SELECT 
+					member_id as memberId,
+					member_name as memberName,
+					member_photo as memberPhoto,
+					member_nickname as memberNickname,
+					member_password as memberPassword,
+					member_email as memberEmail,
+					member_address as memberAddress,
+					member_mobile as memberMobile,
+					member_bookmarks as memberBookmarks,
+					member_join_date as memberJoinDate,
+					member_del_date as memberDelDate,
+					member_favorite_category as memberFavoriteCategory,
+					member_level as memberLevel,
+					member_block_ids as memberBlockIds
+		FROM member 
+		WHERE member_id = #{memberId}
+	</select>
+	
+	<select id="myPostList" resultType="Post" >
+		SELECT
+					post_no as postNo,
+					post_title as postTitle,
+					post_content as postContent,
+					post_read_count as postReadCount,
+					post_file1 as postFile1,
+					post_file2 as postFile2,
+					post_file3 as postFile3,
+					post_file4 as postFile4,
+					post_file5 as postFile5,
+					post_reg_date as postRegDate,
+					post_is_post as postIsPost,
+					post_star as postStar,
+					post_up_count as postUpCount,
+					post_up_list as postUpList,
+					member_id as memberId
+		FROM post
+		WHERE member_id = #{memberId}
+		ORDER BY post_no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<select id="getPostListCount" resultType="int">
+		SELECT count(post_no) FROM post WHERE member_id = #{memberId}
+	</select>
+
+	<select id="myPageCommunity" resultType="Community" resultMap="CommunityResultMap">
+		SELECT *
+		FROM community
+		WHERE member_id = #{memberId}
+		ORDER BY community_no DESC
+		LIMIT #{startRow}, #{num}
+		
+	</select>
+	
+	<select id="getCommunityListCount" resultType="int">
+		SELECT count(community_no) FROM community WHERE member_id = #{memberId}
+	</select>
+
+
+<resultMap id="CommunityResultMap" type="Community">
+		<id property="communityNo" column="community_no" />
+		<result property="memberId" column="member_id" />
+		<result property="memberNickname" column="member_nickname" />
+		<result property="categoryNo" column="category_no" />
+		<result property="communityTitle" column="community_title" />
+		<result property="communityRegDate" column="community_reg_date" />
+		<result property="communityReplyCount" column="community_reply_count" />
+		<result property="communityReadCount" column="community_read_count" />
+		<result property="communityContent" column="community_content" />
+		<result property="communityFile" column="community_file" />
+		<result property="communityParentNo" column="community_parent_no" />
+		<result property="communityReReply" column="community_re_reply" />
+		<result property="communityReplyTarget" column="community_reply_target" />
+		<result property="partyMembers" column="party_members" />
+		<result property="partyMemberIds" column="party_member_ids" />
+		<result property="partyDDay" column="party_d_day" />
+		<result property="partyPlace" column="party_place" />
+	</resultMap>
+</mapper>

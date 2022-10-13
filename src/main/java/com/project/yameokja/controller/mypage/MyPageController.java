@@ -1,79 +1,89 @@
-package com.project.yameokja.controller;
+package com.project.yameokja.controller.mypage;
 
 import java.util.List;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
-import com.project.yameokja.service.MyPageService;
+import com.project.yameokja.service.mypage.MyPageService;
 
 //스프링 MVC의 컨트롤러임을 선언하고 있다.
 @Controller
 public class MyPageController {
 
 	@Autowired
-	private MyPageService memberService;
+	private MyPageService myPageService;
 	
 	@RequestMapping(value="/mainmain", method=RequestMethod.GET)
-	public String main(Model model, String memberId) {
-		memberId = "memberId01";  
-		model.addAttribute("memberId", memberId);
+	public String main(
+//			Model model,@RequestParam(value = "pageNum" ,required = false, 
+//			defaultValue = "1")int pageNum
+//			 
+//			HttpSession session,
+//			@RequestParam(value="memberId", defaultValue = "memberId01")String memberId
+			) {
+//		session.getAttribute(memberId);
+		
+//		model.addAttribute("pageNum", pageNum);
 		return "mainmain";
 	}
 
-//	@RequestMapping(value="/userPostList", method=RequestMethod.GET)
-//	public String userPostList(Model model, String mId) {
-//		
-//		return "";
-//	}
-//	
+
 	// 로그인 상태에서 동작
 	@RequestMapping(value="/myPagePost")
-	public String myPagePost(Model model, 
-//			@RequestParam(value="mbId", required=false, defaultValue = "null") 
-	String memberId) {
+	public String myPagePost(
+//			HttpSession session,
+			Model model, 
+			@RequestParam(value="memberId", required=false, 
+			defaultValue = "memberId01") String memberId, 
+			@RequestParam(value = "pageNum" ,required = false, 
+			defaultValue = "1")int pageNum) {
 		
-//		if(mbId.equals("null")) { // 자신
-//			
-//		} else {	// 타인
-//			
-//		}
-		//프로필 페이지를 통해 접근하면 mbId가 있는 거고,
-		//로그인이 안 됬을 때는 
+//		파라미터로 들어온 아이디가 없으면 자신의 정보를 불러오기
+//		현재 아이디와 파라미터에 있는 아이디의 값이 같으면 자신의 정보를 불러오기
 		
-		
-		// 로그인 상태라고 작업
-		memberId = "memberId01";	
+//		파라미터로 들어온 아이디가 있으면 파라미터 아이디의 정보를 불러오기
+//		현재 아이디와 파라미터에 있는 아이디의 값이 다르면 파라미터 아이디의 정보를 불러오기
 		
 //		 회원정보 하나 
-		Member member = memberService.getMember(memberId);
+		Member member = myPageService.getMember(memberId);
 		
 		// 회원이 쓴 글 리스트
-		 List<Post> postList = memberService.myPagePost(memberId);
-		
+		Map<String, Object> modelMap = myPageService.myPagePost(memberId, pageNum);
+		model.addAllAttributes(modelMap);
 		model.addAttribute("member", member);
-		model.addAttribute("postList", postList);
+		model.addAttribute("pageNum", pageNum);
 		
 		return "myPagePost";
 	}
 	
 	@RequestMapping(value="/myPageCommunity")
-	public String myPageCommunity(Model model, String memberId) {
+	public String myPageCommunity(
+			@RequestParam(value="communityStatus", required=false, 
+			defaultValue="all") String status,
+			Model model, 
+			@RequestParam(value = "memberId", required = false, 
+			defaultValue = "memberId01")String memberId, 
+			@RequestParam(value = "pageNum", required = false, 
+			defaultValue = "1")int pageNum) {
 
-		memberId = "memberId01";	
+		Member member = myPageService.getMember(memberId);
 
-		Member member = memberService.getMember(memberId);
-
-		 List<Community> communityList = memberService.myPageCommunity(memberId);
-		
+		Map<String, Object> myPageCommunityList = myPageService.myPageCommunity(memberId, pageNum, status);
+		model.addAllAttributes(myPageCommunityList);
 		model.addAttribute("member", member);
-		model.addAttribute("communityList", communityList);
 		
 		return "myPageCommunity";
 	}

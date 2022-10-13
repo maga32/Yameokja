@@ -43,16 +43,29 @@
 					member_id as memberId
 		FROM post
 		WHERE member_id = #{memberId}
+		ORDER BY post_no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<select id="getPostListCount" resultType="int">
+		SELECT count(post_no) FROM post WHERE member_id = #{memberId}
 	</select>
 
 	<select id="myPageCommunity" resultType="Community" resultMap="CommunityResultMap">
 		SELECT *
-		FROM post
+		FROM community
 		WHERE member_id = #{memberId}
+		ORDER BY community_no DESC
+		LIMIT #{startRow}, #{num}
+		
+	</select>
+	
+	<select id="getCommunityListCount" resultType="int">
+		SELECT count(community_no) FROM community WHERE member_id = #{memberId}
 	</select>
 
 
-<resultMap type="Community" id="CommunityResultMap">
+<resultMap id="CommunityResultMap" type="Community">
 		<id property="communityNo" column="community_no" />
 		<result property="memberId" column="member_id" />
 		<result property="memberNickname" column="member_nickname" />

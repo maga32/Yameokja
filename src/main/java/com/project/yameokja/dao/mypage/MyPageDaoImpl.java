@@ -1,4 +1,4 @@
-package com.project.yameokja.dao;
+package com.project.yameokja.dao.mypage;
 
 import java.util.HashMap; 
 import java.util.List;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
+import com.project.yameokja.domain.Store;
 
 // 이 클래스가 데이터 액세스(데이터 저장소) 계층의 컴포넌트(Bean) 임을 선언한다.
 @Repository
@@ -31,22 +32,43 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 	
 	@Override
-	public List<Post> myPagePost(String memberId) {
-		return sqlSession.selectList(NAME_SPACE+".myPostList", memberId);
+	public List<Post> myPagePost(String memberId, int startRow, int num) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("memberId", memberId);
+		params.put("startRow", startRow);
+		params.put("num", num);
+		
+		return sqlSession.selectList(NAME_SPACE+".myPostList", params);
 		
 	}
 
 	@Override
-	public List<Community> myPageCommunity(String memberId) {
-		return sqlSession.selectList(NAME_SPACE+".myPageCommunity", memberId);
+	public List<Community> myPageCommunity(String memberId, int startRow, int num, String status) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("memberId", memberId);
+		params.put("startRow", startRow);
+		params.put("num", num);
+		params.put("status", status);
+		
+		return sqlSession.selectList(NAME_SPACE+".myPageCommunity", params);
+	}
+
+	@Override
+	public List<Store> myPageStore(String memberId) {
+		return sqlSession.selectList(NAME_SPACE+".myPageStore", memberId);
+	}
+
+	@Override
+	public int getPostListCount(String memberId) {
+		return sqlSession.selectOne(NAME_SPACE+".getPostListCount", memberId);
+	}
+
+	@Override
+	public int getCommunityListCount(String memberId) {
+		return sqlSession.selectOne(NAME_SPACE+".getCommunityListCount", memberId);
 	}
 
 
 }
-//@Override
-//public List<Post> myPostList(String mbId, int pNo) {
-//	Map<String, Object> param = new HashMap<String, Object>();
-//	param.put("mbId", mbId);
-//	param.put("pNo", pNo);
-//	return sqlSession.selectList(POST_NAME_SPACE+".myPostList", param);
-//}
