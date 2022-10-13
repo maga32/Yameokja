@@ -58,4 +58,9 @@ public class ChatServiceImpl implements ChatService {
 		return chatDao.chatTargetList(chatIds, leaveCheck);
 	}
 
+	@Override
+	public void chatSend(Chat chat) {
+		chatDao.chatSend(chat);
+	}
+
 }

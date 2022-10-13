@@ -12,4 +12,6 @@ public interface ChatDao {
 	
 	List<Chat> chatTargetList(String chatIds, String leaveCheck);
 	
+	void chatSend(Chat chat);
+	
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.yameokja.domain.Chat;
 import com.project.yameokja.domain.Member;
@@ -42,9 +43,9 @@ public class ChatController {
 	public String chatDetail(Model model, HttpSession session, HttpServletResponse response, String chatIds) throws IOException {
 		String memberId = (String)session.getAttribute("memberId");
 		String[] ids = chatIds.split(",");
-		String leaveCheck = "";
 		String targetId = "";
 		
+		//아이디0이 아이디1보다 사전순으로 큰경우(수동입력 등)
 		if(ids[0].compareTo(ids[1]) >= 0) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -57,10 +58,8 @@ public class ChatController {
 		}
 		
 		if(ids[0].equals(memberId)) {
-			leaveCheck = "id0";
 			targetId = ids[1];
 		} else if(ids[1].equals(memberId)) {
-			leaveCheck = "id1";
 			targetId = ids[0];
 		} else {
 			response.setContentType("text/html; charset=utf-8");
@@ -74,9 +73,67 @@ public class ChatController {
 		}
 		
 		model.addAttribute("memberId", memberId);
-		model.addAttribute("chatTargetList", chatService.chatTargetList(chatIds, leaveCheck));
+		model.addAttribute("chatIds", chatIds);
 		model.addAttribute("target", memberLoginService.getMember(targetId));
 		
 		return "chat/chatDetail";
+	}
+	
+	
+	@RequestMapping("chat/chatting")
+	public String chatting(Model model, HttpSession session, String chatIds) throws IOException {
+		String memberId = (String)session.getAttribute("memberId");
+		String[] ids = chatIds.split(",");
+		String leaveCheck = "";
+		String targetId = "";
+		
+		//아이디0이 아이디1보다 사전순으로 큰경우(수동입력 등)
+		if(ids[0].compareTo(ids[1]) >= 0) return null;
+		
+		if(ids[0].equals(memberId)) {
+			leaveCheck = "id0";
+			targetId = ids[1];
+		} else if(ids[1].equals(memberId)) {
+			leaveCheck = "id1";
+			targetId = ids[0];
+		} else {
+			return null;
+		}
+		
+		model.addAttribute("memberId", memberId);
+		model.addAttribute("chatTargetList", chatService.chatTargetList(chatIds, leaveCheck));
+		model.addAttribute("target", memberLoginService.getMember(targetId));
+		
+		return "chat/chatting";
+	}
+	
+	
+	@RequestMapping("chat/chatSend.ajax")
+	@ResponseBody
+	public Map<String, Integer> chatSend(HttpSession session, HttpServletResponse response, Chat chat) throws IOException {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String memberId = (String)session.getAttribute("memberId");
+		String[] ids = chat.getChatIds().split(",");
+		
+		if(ids[0].compareTo(ids[1]) >= 0) {
+			map.put("result", -1);
+			return map;
+		}
+		
+		if(ids[0].equals(memberId)) {
+			chat.setChatReceiver(ids[1]);
+		} else if(ids[1].equals(memberId)) {
+			chat.setChatReceiver(ids[0]);
+		} else {
+			map.put("result", 0);
+			return map;
+		}
+		
+		chat.setChatSender(memberId);
+		chatService.chatSend(chat);
+		
+		map.put("result", 1);
+		
+		return map;
 	}
 }

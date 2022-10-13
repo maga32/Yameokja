@@ -5,8 +5,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <link rel="stylesheet" type="text/css" href="../resources/css/chat.css" />
+<script type="text/javascript" src="../resources/js/chat.js"></script>
 
 <article>
+	<div class="fixed-top fs-1 d-flex justify-content-between">
+			<!-- 헤더 생기면 대체 -->
+		<div class="col-12 bg-warning py-4 mb-2"></div>
+	</div>
 	<div class="fixed-top fs-1 d-flex justify-content-between">
 		<div class="text-start">
 			&nbsp;
@@ -23,8 +28,7 @@
 	</div>
 	
 	<div class="row">
-		<!-- 헤더 생기면 대체 -->
-		<div class="col-12 bg-warning py-4 mb-2"></div>
+		<div class="col-12 py-4 mb-2"></div>
 		<div class="px-4">			
 			<div class="pt-2 px-2">
 				<h1>대화창</h1>
@@ -45,47 +49,16 @@
 					</div>
 				</div>
 				<div class="p-3">
-					<div class="border" style="overflow:scroll; height:400px" id="chatting">
-						<div class="row px-3">
-							<c:forEach var="li" items="${ chatTargetList }">
-								<c:if test="${ memberId == li.chatSender }">
-									<div class="col-4 text-end text-warning">
-										${ li.chatReadCheck == 0 ? "1" : "" }
-									</div>
-									<div class="col-8 py-2">
-										<div class="bg-warning p-2">
-											${ li.chatContent }
-										</div>
-										<div class="text-small">
-											<fmt:formatDate value="${ li.chatSendDate }" pattern="MM/dd HH:mm"/>
-										</div>
-									</div>
-								</c:if>
-								<c:if test="${ memberId == li.chatReceiver }">
-									<div class="col-8 py-2">
-										<div class="bg-info p-2">
-											${ li.chatContent }
-										</div>
-										<div class="text-small text-end">
-											<fmt:formatDate value="${ li.chatSendDate }" pattern="MM/dd HH:mm"/>
-										</div>
-									</div>
-									<div class="col-4"></div>
-								</c:if>
-							</c:forEach>
+					<iframe src="chatting?chatIds=${ chatIds }" width="100%" height="400px" id="chattingFrame"></iframe>
+					<form id="chatSend" name="chatSend">
+						<input type="hidden" name="chatIds" id="chatIds" value="${ chatIds }">
+						<div class="input-group pt-1">
+							<textarea class="form-control" rows="4" cols="50" name="chatContent" id="chatContent"></textarea>
+							<button id="chatSendConfirm" class="input-group-text btn btn-secondary px-4">입력</button>
 						</div>
-					</div>
-					<div class="input-group pt-1">
-						<textarea class="form-control" rows="4" cols="50"></textarea>
-						<button class="input-group-text btn btn-secondary px-4">입력</button>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script>
-		window.onload=function(){
-			document.getElementById("chatting").scrollTop = document.getElementById("chatting").scrollHeight;
-		}
-	</script>
 </article>

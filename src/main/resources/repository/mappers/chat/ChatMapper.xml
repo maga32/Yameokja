@@ -31,6 +31,10 @@
 		</where>
 		ORDER BY chat_no
 	</select>
+	<insert id="chatSend">
+		INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check)
+		VALUE(#{chatIds}, #{chatSender}, #{chatReceiver}, #{chatContent}, SYSDATE(), 0, 1)
+	</insert>
 	
 	<resultMap type="Chat" id="ChatResultMap">
 		<id property="chatNo" column="chat_no" />

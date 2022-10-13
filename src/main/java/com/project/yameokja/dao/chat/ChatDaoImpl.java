@@ -37,4 +37,9 @@ public class ChatDaoImpl implements ChatDao {
 		return sqlSession.selectList(NAME_SPACE + ".chatTargetList", map);
 	}
 
+	@Override
+	public void chatSend(Chat chat) {
+		sqlSession.insert(NAME_SPACE + ".chatSend", chat);
+	}
+
 }
