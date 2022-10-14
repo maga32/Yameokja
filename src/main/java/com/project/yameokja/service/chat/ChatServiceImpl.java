@@ -1,4 +1,4 @@
-package com.project.yameokja.service;
+package com.project.yameokja.service.chat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.yameokja.dao.ChatDao;
-import com.project.yameokja.dao.MemberDao;
+import com.project.yameokja.dao.MemberLoginDao;
+import com.project.yameokja.dao.chat.ChatDao;
 import com.project.yameokja.domain.Chat;
 import com.project.yameokja.domain.Member;
 
@@ -17,7 +17,7 @@ import com.project.yameokja.domain.Member;
 public class ChatServiceImpl implements ChatService {
 	
 	ChatDao chatDao;
-	MemberDao memberDao;
+	MemberLoginDao memberLoginDao;
 	
 	@Autowired
 	public void setChatDao(ChatDao chatDao) {
@@ -25,25 +25,33 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Autowired
-	public void setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
+	public void setMemberLoginDao(MemberLoginDao memberLoginDao) {
+		this.memberLoginDao = memberLoginDao;
 	}
 
+
+	@Override
+	public Chat getChat(int chatNo) {
+		return chatDao.getChat(chatNo);
+	}
+	
 	@Override
 	public Map<String, Object> chatList(String memberId) {
 		Map<String, Object> chatList = new HashMap<String, Object>();
 		ArrayList<Chat> chats = new ArrayList<Chat>();
 		ArrayList<Member> members = new ArrayList<Member>();
 		
+		// 멤버id가 갖는 대화방(chatIds)목록을 리스트로 받아옴
 		List<String> chatIds = chatDao.chatIds(memberId);
 		
 		String tempId = "";
 		
+		//가져온 대화방별로 가장 최근대화, 상대방의 아이디를 가져옴
 		for(int i=0; i < chatIds.size(); i++) {
 			chats.add(chatDao.chatLists(chatIds.get(i)));
 			
 			tempId = chats.get(i).getChatSender().equals(memberId) ? chats.get(i).getChatReceiver() : chats.get(i).getChatSender(); 			
-			members.add(memberDao.getMember(tempId));
+			members.add(memberLoginDao.getMember(tempId));
 		}
 		
 		
@@ -51,6 +59,32 @@ public class ChatServiceImpl implements ChatService {
 		chatList.put("members", members);
 		
 		return chatList;
+	}
+
+	@Override
+	public List<Chat> chatTargetList(String chatIds, String orderCheck) {
+		return chatDao.chatTargetList(chatIds, orderCheck);
+	}
+
+	@Override
+	public void chatSend(Chat chat) {
+		chatDao.chatSend(chat);
+	}
+
+	@Override
+	public void chatReadUpdate(String chatIds, String chatReceiver) {
+		chatDao.chatReadUpdate(chatIds, chatReceiver);
+		
+	}
+
+	@Override
+	public void chatDelete(int chatNo) {
+		chatDao.chatDelete(chatNo);
+	}
+
+	@Override
+	public void chatLeave(int chatNo, String orderCheck) {
+		chatDao.chatLeave(chatNo, orderCheck);
 	}
 
 }

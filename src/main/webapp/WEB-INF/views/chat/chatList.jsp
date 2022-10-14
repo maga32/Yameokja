@@ -4,9 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<link rel="stylesheet" type="text/css" href="resources/css/chat.css" />
+<link rel="stylesheet" type="text/css" href="../resources/css/chat.css" />
 
 <article>
+	<div class="fixed-top fs-1 d-flex justify-content-between">
+			<!-- 헤더 생기면 대체 -->
+		<div class="col-12 bg-warning py-4 mb-2"></div>
+	</div>
 	<div class="fixed-top text-end fs-1">
 		<a href="#" onclick="javascript:window.close();">
 			<i class="fa fa-times" aria-hidden="true"></i>
@@ -15,8 +19,7 @@
 	</div>
 	
 	<div class="row">
-		<!-- 헤더 생기면 대체 -->
-		<div class="col-12 bg-warning py-4 mb-2"></div>
+		<div class="col-12 py-4 mb-2"></div>
 		<div class="px-4">			
 			<c:forEach var="li" items="${ chats }">
 				<c:set var="i" value="${ i+1 }"/>
@@ -57,7 +60,6 @@
 					</div>
 				</div>
 			</c:forEach>
-			
 		</div>
 	</div>
 </article>
