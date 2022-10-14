@@ -1,9 +1,9 @@
-package com.project.yameokja.service;
+package com.project.yameokja.service.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.yameokja.dao.MemberLoginDao;
+import com.project.yameokja.dao.member.MemberLoginDao;
 import com.project.yameokja.domain.Member;
 
 @Service

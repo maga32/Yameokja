@@ -1,4 +1,4 @@
-package com.project.yameokja.dao;
+package com.project.yameokja.dao.member;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

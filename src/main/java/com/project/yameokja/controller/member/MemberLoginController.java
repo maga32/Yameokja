@@ -1,4 +1,4 @@
-package com.project.yameokja.controller;
+package com.project.yameokja.controller.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.yameokja.domain.Member;
-import com.project.yameokja.service.MemberLoginService;
+import com.project.yameokja.service.member.MemberLoginService;
 
 @Controller
 public class MemberLoginController {

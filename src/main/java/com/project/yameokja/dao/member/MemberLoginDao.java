@@ -1,4 +1,4 @@
-package com.project.yameokja.dao;
+package com.project.yameokja.dao.member;
 
 import com.project.yameokja.domain.Member;
 
