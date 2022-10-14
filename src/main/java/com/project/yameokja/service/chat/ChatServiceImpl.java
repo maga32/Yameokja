@@ -54,13 +54,19 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public List<Chat> chatTargetList(String chatIds, String leaveCheck) {
-		return chatDao.chatTargetList(chatIds, leaveCheck);
+	public List<Chat> chatTargetList(String chatIds, String orderCheck) {
+		return chatDao.chatTargetList(chatIds, orderCheck);
 	}
 
 	@Override
 	public void chatSend(Chat chat) {
 		chatDao.chatSend(chat);
+	}
+
+	@Override
+	public void chatReadUpdate(String chatIds, String chatReceiver) {
+		chatDao.chatReadUpdate(chatIds, chatReceiver);
+		
 	}
 
 }

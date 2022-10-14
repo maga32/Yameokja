@@ -84,24 +84,26 @@ public class ChatController {
 	public String chatting(Model model, HttpSession session, String chatIds) throws IOException {
 		String memberId = (String)session.getAttribute("memberId");
 		String[] ids = chatIds.split(",");
-		String leaveCheck = "";
+		String orderCheck = "";
 		String targetId = "";
 		
 		//아이디0이 아이디1보다 사전순으로 큰경우(수동입력 등)
 		if(ids[0].compareTo(ids[1]) >= 0) return null;
 		
 		if(ids[0].equals(memberId)) {
-			leaveCheck = "id0";
+			orderCheck = "id0";
 			targetId = ids[1];
 		} else if(ids[1].equals(memberId)) {
-			leaveCheck = "id1";
+			orderCheck = "id1";
 			targetId = ids[0];
 		} else {
 			return null;
 		}
 		
+		chatService.chatReadUpdate(chatIds, memberId);
+		
 		model.addAttribute("memberId", memberId);
-		model.addAttribute("chatTargetList", chatService.chatTargetList(chatIds, leaveCheck));
+		model.addAttribute("chatTargetList", chatService.chatTargetList(chatIds, orderCheck));
 		model.addAttribute("target", memberLoginService.getMember(targetId));
 		
 		return "chat/chatting";

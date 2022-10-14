@@ -10,8 +10,10 @@ public interface ChatService {
 
 	Map<String, Object> chatList(String memberId);
 	
-	List<Chat> chatTargetList(String chatIds, String leaveCheck);
+	List<Chat> chatTargetList(String chatIds, String orderCheck);
 	
 	void chatSend(Chat chat);
+
+	void chatReadUpdate(String chatIds, String chatReceiver);
 	
 }

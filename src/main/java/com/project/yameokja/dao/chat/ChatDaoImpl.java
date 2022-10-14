@@ -29,10 +29,10 @@ public class ChatDaoImpl implements ChatDao {
 	}
 
 	@Override
-	public List<Chat> chatTargetList(String chatIds, String leaveCheck) {
-		Map<String, Object> map = new HashMap<String, Object>();
+	public List<Chat> chatTargetList(String chatIds, String orderCheck) {
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("chatIds", chatIds);
-		map.put("leaveCheck", leaveCheck);
+		map.put("orderCheck", orderCheck);
 		
 		return sqlSession.selectList(NAME_SPACE + ".chatTargetList", map);
 	}
@@ -40,6 +40,15 @@ public class ChatDaoImpl implements ChatDao {
 	@Override
 	public void chatSend(Chat chat) {
 		sqlSession.insert(NAME_SPACE + ".chatSend", chat);
+	}
+
+	@Override
+	public void chatReadUpdate(String chatIds, String chatReceiver) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("chatIds", chatIds);
+		map.put("chatReceiver", chatReceiver);
+		
+		sqlSession.update(NAME_SPACE + ".chatReadUpdate", map);
 	}
 
 }
