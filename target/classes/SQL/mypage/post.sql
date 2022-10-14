@@ -48,4 +48,34 @@ INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_fi
 
 COMMIT;
 
-SELECT * FROM post;
+SELECT * FROM post order by post_no DESC;
+SELECT count(post_no) FROM post;
+
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title11', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1231', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_titl112', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1234', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title13', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '45616', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title14', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '6124', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title15', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '4163', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
+
+SELECT
+					post_no as postNo,
+					post_title as postTitle,
+					post_content as postContent,
+					post_read_count as postReadCount,
+					post_file1 as postFile1,
+					post_file2 as postFile2,
+					post_file3 as postFile3,
+					post_file4 as postFile4,
+					post_file5 as postFile5,
+					post_reg_date as postRegDate,
+					post_is_post as postIsPost,
+					post_star as postStar,
+					post_up_count as postUpCount,
+					post_up_list as postUpList,
+					member_id as memberId
+		FROM post
+		WHERE member_id = "memberId01"
+		ORDER BY post_no DESC
+		LIMIT 0, 10;
+        
+        SELECT count(post_no) FROM post WHERE member_id = "memberId01";
