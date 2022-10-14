@@ -1,5 +1,6 @@
 $(function(){
 
+
 	// 회원가입 필수 입력값 검사
 	$("#memberJoinForm").on("submit", function(){
 		return joinFormCheck();
