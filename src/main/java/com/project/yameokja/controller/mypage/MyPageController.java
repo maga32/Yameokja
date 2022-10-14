@@ -96,5 +96,14 @@ public class MyPageController {
 		model.addAttribute("memberId", memberId);
 		return "mypage/blockList";
 	}
+	
+	@RequestMapping("userProfile")
+	public String userProfile(Model model, 
+			@RequestParam(value = "memberId", required = false, 
+			defaultValue = "memberId01")String memberId) {
+		
+		model.addAttribute("memberId", memberId);
+		return "mypage/userProfile";
+	}
 
 }

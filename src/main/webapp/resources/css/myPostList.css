@@ -6,6 +6,9 @@ body{
 	background-color: white;
 	
 }
+.inlineBlock{
+	display: table-cell;
+}
 .fullFrame {
 	background-color: white;
 	
@@ -24,9 +27,7 @@ body{
     text-align: center;
     align-items: center;
 }
-.inlineBlock{
-	display: table-cell;
-}
+
 .myInformation1, .myInformation2, .myInformation3{
 /* 	border: 1px dotted #7A7A80;	 */
 	font-size: 16px;
@@ -35,9 +36,7 @@ body{
 .myInformation1 {
 	width: 100%;
 	border-radius: 100%;
-	text-align: center;
-	
-	
+	text-align: center;	
 }
 .myInformation2 {
 	width: 100%;	

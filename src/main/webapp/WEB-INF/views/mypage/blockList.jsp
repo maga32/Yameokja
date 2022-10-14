@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <article>
-<form name="postListForm" id="postListForm">
+<form name="blockListForm" id="blockListForm">
 	<input type="hidden" name="memberId" value="${ member.memberId }"/>
 </form>
 <div class="row">
