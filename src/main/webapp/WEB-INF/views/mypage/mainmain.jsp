@@ -10,7 +10,11 @@
 		<td>
 			<h2>Main Page</h2>
 			<input type="text" name="memberId" id="memberId"/>
+			<input type="hidden" name="pageNum" id="pageNum"/>
 			<input type="submit" value="로그인" id="btnJoin" />
+		</td>
+		<td>
+			<a href="myPageCommunity">커뮤니티 바로가기</a>
 		</td>
 	</tr>
 </table>

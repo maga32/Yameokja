@@ -8,7 +8,7 @@
 	<input type="hidden" name="pageNum" value="${ pageNum }"/>
 </form>
 <div class="row">
-<div class="fullFrame col-md-12">
+<div class="fullFrame col-md-12 p-2">
 	<div class="myInformationsFrame col-md-12 ">
 	
 		<div class="myInformation1 col-md-3 ">
@@ -32,10 +32,10 @@
 	</div><!--내정보틀 끝 -->
 	<div class="nbsp;">&nbsp;</div>
 	<div class="postListHeader">
-		<div class="postListbutton"><a href="#">맛집 리뷰</a></div>
-		<div class="replyListbutton"><a href="#">댓글 리뷰</a></div>
-		<div class="communityListbutton"><a href="#">동네글</a></div>
-		<div class="likeListbutton"><a href="#">찜 목록</a></div>
+		<span class="postListbutton px-3 py-2"><a href="#">맛집 리뷰</a></span>
+		<span class="replyListbutton px-3 py-2">댓글 리뷰</span>
+		<span class="communityListbutton px-3 py-2"><a href="#">동네글</a></span>
+		<span class="likeListbutton px-3 py-2"><a href="#">찜 목록</a></span>
 	</div><!--postListHeader 끝 -->
 
 	<div class="postListFrame col-md-12 p-2">
@@ -47,7 +47,7 @@
 	<%-- 	<c:if test="${ empty c.communityFile }"></c:if> --%>
 	<%-- 	<c:if test="${ not empty c.communityFile }"> --%>
 	<div class="col-3 col-md-3 col-sm-3">
-		<img src="resources/IMG/deleteIMG.PNG"
+		<img src="resources/IMG/mypage/deleteIMG.PNG"
 			class="img-thumbnail rounded float-start" alt="...">
 	</div>
 	<%-- 	</c:if> --%>
@@ -59,7 +59,7 @@
 			${ c.communityTitle }제목
 		</a>
 	</h4>
-	<p class="text-secondary" id="communityMemberNickname">${ c.memberId }</p>
+	<p class="text-secondary" id="communityMemberNickname">${ c.memberId }<br>[임시communityNo]${ c.communityNo}</p>
 	<p class="text-secondary" id="communityRegDate">${ c.communityRegDate }</p>
 	</div>
 	<div class="col-3 col-md-2 col-sm-3 border-start border-1">

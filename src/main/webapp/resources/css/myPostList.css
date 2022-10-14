@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* 전체틀 */
 
 body{
@@ -7,9 +8,7 @@ body{
 }
 .fullFrame {
 	background-color: white;
-	height: 1536px;
-	margin: auto;
-	padding: 10px;	
+	
 
 }
 .nbsp; {
@@ -21,28 +20,29 @@ body{
 	border: 1px solid #7A7A80;
 	border-radius: 10px;
 	height: auto;
-	display: inline-block;
-	text-align: center;
+	display: flex;
+    text-align: center;
+    align-items: center;
 }
-
+.inlineBlock{
+	display: table-cell;
+}
 .myInformation1, .myInformation2, .myInformation3{
-	border: 1px dotted #7A7A80;	
+/* 	border: 1px dotted #7A7A80;	 */
 	font-size: 16px;
-	display: inline-block;
-	
 }
 
 .myInformation1 {
-	width: 100px;
-	height: 100px;
-	border-radius: 100px;
+	width: 100%;
+	border-radius: 100%;
 	text-align: center;
+	
 	
 }
 .myInformation2 {
-	width: 320px;	
+	width: 100%;	
 	text-align: left;
-	padding: 10px;
+	
 }
 .mbIdFont {
 	font-size: 20px;
@@ -56,64 +56,70 @@ body{
 
 }
 .myInformation3 {
-	width: 130px;
+	width: 100%;	
+	font-size: 10px;
 }
+
 .buttons_ {
-	text-align: left;
-	margin: 10px;
+	text-align: center;
+    margin: 4px;
+    font-size: 16px;
+    font-weight: 900;
+    color: gray;
+    
 }
 /* 리스트 별로 이동하는 버튼 */
 
 .postListHeader {
-	border: 1px;
+	
+}
+.postListbutton, .replyListbutton, 
+.communityListbutton, .likeListbutton{
+	border-radius: 20px 0 0 0;
+	display: table-cell;
 }
 .postListbutton {
 	border-top: 1px solid #7A7A80;
 	border-left: 1px solid #7A7A80;
 	border-right: 1px solid #7A7A80;
 	border-bottom: 1px solid #ffffff;
-	padding: 10px; 
-	display: inline-block;
+	
 }
 .replyListbutton {
 	border: 1px solid #7A7A80;
-	padding: 10px; 
-	display: inline-block;
 }
 .communityListbutton {
-	border: 1px solid #7A7A80;
-	padding: 10px; 
-	display: inline-block;
+	border: 1px solid #7A7A80; 
 }
 .likeListbutton {
 	border: 1px solid #7A7A80;
-	padding: 10px; 
-	display: inline-block;
 }
 /* 리스트 */
 .postListFrame {
 	border: 1px solid black;
 	display: inline-block;
 	margin: -1px auto 10px;
+	text-align: center;
 }
 .postFrame{
 	border: 1px solid #7A7A80;
-	margin: 10px;
-	display: inline-block;
+	text-align: center;
+	display: flex;
+    align-items: center;
 }
 .mainImg, .postContent, .upAndDel{
-	border: 1px dotted black;
-	height: 150px;	
-	margin: 10px ;
-	display: inline-table;
+/* 	border: 1px dotted black; */
+	display: inline-block;
 }
 .mainImg {
-	width: 100px;
-	
+	border: 1px dotted black;
+	width: 25%;
+	height: 150px;
+	border-radius: 10px;
 }
 .postContent {
-	width: 200px;
-	padding: 10px;
+	width: 60%;
+	text-align: left;
 }
 .myInformationFont img{
 	width: 25px;
@@ -124,7 +130,12 @@ body{
 	font-weight: 900;
 }
 .upAndDel {
-	width: 50px;
+	width: 10%;
+	display: inline-block;
+}
+.pageGroup {
+/* 	border: 1px solid black; */
+	text-align: right;
 }
 .페이지그룹버튼 {
 	font-family: Inter;
@@ -133,10 +144,13 @@ body{
 	font-size: 16px;
 	display: inline-table;
 }
+/* a 태그 */
+a {text-decoration: none;}
 
-.페이지그룹 {
-	border: 1px solid black;
-	width: 300px;
-	height: 95px;
-	text-align: right;
-}
+.buttons_ a:link {color: gray;}
+
+.buttons_ a:visited {color: gray;}
+
+.buttons_ a:hover {color: #4aa5ff;}
+
+.buttons_ a:active {color: 4aa5ff;}

@@ -37,7 +37,7 @@ public class MyPageController {
 //		session.getAttribute(memberId);
 		
 //		model.addAttribute("pageNum", pageNum);
-		return "mainmain";
+		return "mypage/mainmain";
 	}
 
 
@@ -66,7 +66,7 @@ public class MyPageController {
 		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
 		
-		return "myPagePost";
+		return "mypage/myPagePost";
 	}
 	
 	@RequestMapping(value="/myPageCommunity")
@@ -85,7 +85,16 @@ public class MyPageController {
 		model.addAllAttributes(myPageCommunityList);
 		model.addAttribute("member", member);
 		
-		return "myPageCommunity";
+		return "mypage/myPageCommunity";
+	}
+	
+	@RequestMapping("blockList")
+	public String blockList(Model model, 
+			@RequestParam(value = "memberId", required = false, 
+			defaultValue = "memberId01")String memberId) {
+		
+		model.addAttribute("memberId", memberId);
+		return "mypage/blockList";
 	}
 
 }

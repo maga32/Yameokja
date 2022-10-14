@@ -11,23 +11,27 @@
 <div class="fullFrame col-md-12 p-2">
 	<div class="myInformationsFrame col-md-12 ">
 	
-		<div class="myInformation1 col-md-3 ">
-			<div>프로필 사진</div>
+		<div class="inlineBlock col-md-2.5 mx-1">
+			<img alt="프로필 사진" class="myInformation1 col-md-12" src="resources/IMG/mypage/likeIMG.PNG">
 		</div>
-		<div class="myInformation2 col-md-6 ">
+		<div class="inlineBlock col-md-6 mx-1">
+			<div class="myInformation2 col-md-12 ">
 <!-- 		sessionScope.memberId -->
-			<div class="mbIdFont">${ member.memberId }님</div>
-			<div class="nbsp;">&nbsp;</div>
-			<div class="nbsp;">&nbsp;</div>
-			<div class="myInformationFont">이메일 : <span>${ member.memberEmail }</span></div>
-			<div class="myInformationFont">가입일 :<span>${ member.memberJoinDate }</span></div>
+				<div class="mbIdFont">${ member.memberId }님</div>
+				<div class="myInformationFont">이메일 : ${ member.memberEmail }</div>
+				<div class="myInformationFont">가입일 : ${ member.memberJoinDate }</div>
+			</div>
 		</div>
-		<div class="myInformation3 col-md-3 ">				
-			<div class="buttons_"><a href="#">회원 정보 수정</a></div>
+		<div class="inlineBlock col-md-3 mx-1">
+			<div class="myInformation3 col-md-12 ">					
+			<div class="buttons_"><a href="#">회원정보수정</a></div>
 			<div class="buttons_">회 원 탈 퇴</div>
 			<div class="buttons_"><a href="#">나 의 프 로 필</a></div>
-			<div class="buttons_"><a href="#" onclick='window.open("blockList","차단목록","width=500, height=600")'>차 단 목 록</a></div>
+			<div class="buttons_"><a href="blockList">차 단 목 록</a></div>
+			<!--  위에 추가 onclick='window.open("mypage/blockList","차단목록","width=500, height=600")' -->
+			
 			<div class="buttons_"><a href="#">신 고 목 록</a></div>
+			</div>
 		</div>
 	</div><!--내정보틀 끝 -->
 	<div class="nbsp;">&nbsp;</div>
@@ -44,19 +48,19 @@
 	<c:forEach var="p" items="${ postList }">
 	
 		<div class="postFrame col-md-12 mb-2">
-			<div class="mainImg col-md-3">${ p.postNo }<br/>mainImg</div>
-			<div class="postContent col-md-6 p-2">
+			<div class="mainImg col-md-3 mx-2">${ p.postNo }<br/>mainImg</div>
+			<div class="postContent col-md-6 mx-2">
 				<div class="postTitle"><a href="#">${ p.postTitle }</a></div>
 				<div class="myInformationFont">
-					<img alt="regDateIMG" src="resources/IMG/regDateIMG.PNG"/> 
+					<img alt="regDateIMG" src="resources/IMG/mypage/regDateIMG.PNG"/> 
 					${ p.postRegDate }
 				</div>
 				<div class="myInformationFont">
-					<img alt="readCountIMG" src="resources/IMG/readCountIMG.PNG"/> 
+					<img alt="readCountIMG" src="resources/IMG/mypage/readCountIMG.PNG"/> 
 					${ p.postUpCount }
 				</div>
 				<div class="myInformationFont">
-					<img alt="likeIMG" src="resources/IMG/likeIMG.PNG"/> 
+					<img alt="likeIMG" src="resources/IMG/mypage/likeIMG.PNG"/> 
 					${ p.postUpList }
 				</div>
 			</div>
@@ -64,10 +68,10 @@
 				<div class="nbsp;">&nbsp;</div>
 				<div class="nbsp;">&nbsp;</div>
 				<div class="myInformationFont">
-					<img alt="updateIMG" src="resources/IMG/updateIMG.PNG"/>
+					<img alt="updateIMG" src="resources/IMG/mypage/updateIMG.PNG"/>
 				</div>
 				<div class="myInformationFont">
-					<img alt="deleteIMG" src="resources/IMG/deleteIMG.PNG"/>
+					<img alt="deleteIMG" src="resources/IMG/mypage/deleteIMG.PNG"/>
 				</div>
 			</div>
 		</div>
