@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <link rel="stylesheet" type="text/css" href="../resources/css/chat.css" />
+<script type="text/javascript" src="../resources/js/chat.js"></script>
 
 <article>
 	<div class="border" style="overflow:scroll; height:400px" id="chatting">
@@ -17,11 +18,16 @@
 							<div class="d-flex flex-row-reverse">
 								<div class="text-warning pt-3 px-0 float-end">▶</div>
 								<div class="d-inline px-3 py-2 bg-warning border border-warning rounded float-end">
-									${ li.chatContent }
+									<span style="white-space:pre-line;">${ li.chatContent }</span>
 								</div>
-								<div class="d-inline text-warning">
-									${ li.chatReadCheck == 0 ? "1" : "" }
-									&nbsp;&nbsp;
+								<div class="d-inline text-center mx-2">
+									<span class="text-warning">
+										${ li.chatReadCheck == 0 ? "1" : "" }
+									</span>
+									<br>
+									<a href="javascript:;" onclick="chatDelete('${ li.chatNo }')">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+									</a>
 								</div>
 							</div>
 							<div class="col-12 text-small text-end">
@@ -37,7 +43,13 @@
 							<div class="d-flex flex-row">
 								<div class="text-info pt-3 float-start">◀</div>
 								<div class="d-inline px-3 py-2 bg-info border border-info rounded float-start">
-									${ li.chatContent }
+									<span style="white-space:pre-line;">${ li.chatContent }</span>
+								</div>
+								<div class="d-inline text-center mx-2">
+									<br>
+									<a href="javascript:;" onclick="chatDelete('${ li.chatNo }')">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+									</a>
 								</div>
 							</div>
 							<div class="col-12 text-small text-start">

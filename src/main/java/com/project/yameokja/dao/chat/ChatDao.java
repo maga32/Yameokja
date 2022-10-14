@@ -6,6 +6,8 @@ import com.project.yameokja.domain.Chat;
 
 public interface ChatDao {
 
+	Chat getChat(int chatNo);
+	
 	List<String> chatIds(String memberId);
 
 	Chat chatLists(String chatIds);
@@ -15,5 +17,9 @@ public interface ChatDao {
 	void chatSend(Chat chat);
 
 	void chatReadUpdate(String chatIds, String chatReceiver);
+
+	void chatDelete(int chatNo);
+
+	void chatLeave(int chatNo, String orderCheck);
 	
 }

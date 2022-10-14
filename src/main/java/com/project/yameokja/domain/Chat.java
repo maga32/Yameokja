@@ -10,13 +10,13 @@ public class Chat {
 	private String chatReceiver;
 	private String chatContent;
 	private Timestamp chatSendDate;
-	private String chatReadCheck;
+	private int chatReadCheck;
 	private int chatLeaveCheck;
 	
 	public Chat() {}
 
 	public Chat(int chatNo, String chatIds, String chatSender, String chatReceiver, String chatContent,
-			Timestamp chatSendDate, String chatReadCheck, int chatLeaveCheck) {
+			Timestamp chatSendDate, int chatReadCheck, int chatLeaveCheck) {
 		
 		this.chatNo = chatNo;
 		this.chatIds = chatIds;
@@ -76,11 +76,11 @@ public class Chat {
 		this.chatSendDate = chatSendDate;
 	}
 
-	public String getChatReadCheck() {
+	public int getChatReadCheck() {
 		return chatReadCheck;
 	}
 
-	public void setChatReadCheck(String chatReadCheck) {
+	public void setChatReadCheck(int chatReadCheck) {
 		this.chatReadCheck = chatReadCheck;
 	}
 

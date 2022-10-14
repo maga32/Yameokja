@@ -17,9 +17,15 @@ public class ChatDaoImpl implements ChatDao {
 	
 	@Autowired
 	SqlSessionTemplate sqlSession;
+
+	@Override
+	public Chat getChat(int chatNo) {
+		return sqlSession.selectOne(NAME_SPACE + ".getChat", chatNo);
+	}
 	
 	@Override
 	public List<String> chatIds(String memberId) {
+		//memberId가 갖고있는 chatIds들을 리스트로 가져옴
 		return sqlSession.selectList(NAME_SPACE + ".chatIds", memberId);
 	}
 
@@ -49,6 +55,20 @@ public class ChatDaoImpl implements ChatDao {
 		map.put("chatReceiver", chatReceiver);
 		
 		sqlSession.update(NAME_SPACE + ".chatReadUpdate", map);
+	}
+
+	@Override
+	public void chatDelete(int chatNo) {
+		sqlSession.delete(NAME_SPACE + ".chatDelete", chatNo);
+	}
+
+	@Override
+	public void chatLeave(int chatNo, String orderCheck) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("chatNo", chatNo);
+		map.put("orderCheck", orderCheck);
+		
+		sqlSession.update(NAME_SPACE + ".chatLeaveOne", map);
 	}
 
 }

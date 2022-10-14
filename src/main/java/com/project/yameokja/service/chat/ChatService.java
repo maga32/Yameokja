@@ -8,6 +8,8 @@ import com.project.yameokja.domain.Chat;
 
 public interface ChatService {
 
+	Chat getChat(int chatNo);
+	
 	Map<String, Object> chatList(String memberId);
 	
 	List<Chat> chatTargetList(String chatIds, String orderCheck);
@@ -15,5 +17,9 @@ public interface ChatService {
 	void chatSend(Chat chat);
 
 	void chatReadUpdate(String chatIds, String chatReceiver);
+
+	void chatDelete(int chatNo);
+
+	void chatLeave(int chatNo, String orderCheck);
 	
 }

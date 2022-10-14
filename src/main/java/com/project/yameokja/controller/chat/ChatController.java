@@ -81,7 +81,7 @@ public class ChatController {
 	
 	
 	@RequestMapping("chat/chatting")
-	public String chatting(Model model, HttpSession session, String chatIds) throws IOException {
+	public String chatting(Model model, HttpSession session, String chatIds) {
 		String memberId = (String)session.getAttribute("memberId");
 		String[] ids = chatIds.split(",");
 		String orderCheck = "";
@@ -112,7 +112,7 @@ public class ChatController {
 	
 	@RequestMapping("chat/chatSend.ajax")
 	@ResponseBody
-	public Map<String, Integer> chatSend(HttpSession session, HttpServletResponse response, Chat chat) throws IOException {
+	public Map<String, Integer> chatSend(HttpSession session, Chat chat) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String memberId = (String)session.getAttribute("memberId");
 		String[] ids = chat.getChatIds().split(",");
@@ -134,6 +134,34 @@ public class ChatController {
 		chat.setChatSender(memberId);
 		chatService.chatSend(chat);
 		
+		map.put("result", 1);
+		
+		return map;
+	}
+	
+	@RequestMapping("chat/chatDelete.ajax")
+	@ResponseBody
+	public Map<String, Integer> chatDelete(HttpSession session, int chatNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String memberId = (String)session.getAttribute("memberId");
+		Chat chat = chatService.getChat(chatNo);
+		String[] ids = chat.getChatIds().split(",");
+		String orderCheck = "";
+		
+		if(ids[0].equals(memberId)) {
+			orderCheck = "id0";
+		} else if(ids[1].equals(memberId)) {
+			orderCheck = "id1";
+		} else {
+			map.put("result", 0);
+			return map;
+		}
+		
+		if(chat.getChatReadCheck() == 0) {
+			chatService.chatDelete(chatNo);
+		} else {
+			chatService.chatLeave(chatNo, orderCheck);			
+		}
 		map.put("result", 1);
 		
 		return map;

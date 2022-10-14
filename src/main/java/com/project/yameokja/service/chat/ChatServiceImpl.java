@@ -29,16 +29,24 @@ public class ChatServiceImpl implements ChatService {
 		this.memberLoginDao = memberLoginDao;
 	}
 
+
+	@Override
+	public Chat getChat(int chatNo) {
+		return chatDao.getChat(chatNo);
+	}
+	
 	@Override
 	public Map<String, Object> chatList(String memberId) {
 		Map<String, Object> chatList = new HashMap<String, Object>();
 		ArrayList<Chat> chats = new ArrayList<Chat>();
 		ArrayList<Member> members = new ArrayList<Member>();
 		
+		// 멤버id가 갖는 대화방(chatIds)목록을 리스트로 받아옴
 		List<String> chatIds = chatDao.chatIds(memberId);
 		
 		String tempId = "";
 		
+		//가져온 대화방별로 가장 최근대화, 상대방의 아이디를 가져옴
 		for(int i=0; i < chatIds.size(); i++) {
 			chats.add(chatDao.chatLists(chatIds.get(i)));
 			
@@ -67,6 +75,16 @@ public class ChatServiceImpl implements ChatService {
 	public void chatReadUpdate(String chatIds, String chatReceiver) {
 		chatDao.chatReadUpdate(chatIds, chatReceiver);
 		
+	}
+
+	@Override
+	public void chatDelete(int chatNo) {
+		chatDao.chatDelete(chatNo);
+	}
+
+	@Override
+	public void chatLeave(int chatNo, String orderCheck) {
+		chatDao.chatLeave(chatNo, orderCheck);
 	}
 
 }

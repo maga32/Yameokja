@@ -4,6 +4,11 @@
 	
 <mapper namespace="com.project.yameokja.mappers.chat.ChatMapper">
 	
+	<select id="getChat" resultMap="ChatResultMap">
+		SELECT * FROM chat
+			WHERE chat_no = #{ chatNo }
+	</select>
+	
 	<select id="chatIds" resultType="String">
 		SELECT chat_ids FROM chat 
 			WHERE chat_sender = #{memberId} or chat_receiver = #{memberId} 
@@ -42,6 +47,23 @@
 			SET chat_read_check = 1
 			WHERE chat_ids = #{chatIds} AND chat_receiver = #{chatReceiver} AND chat_read_check = 0
 	</update>
+	
+	<update id="chatLeaveOne">
+		UPDATE chat
+			<if test="orderCheck == 'id0'">
+			SET chat_leave_check = chat_leave_check +1
+				WHERE chat_no = #{chatNo} AND chat_leave_check = 1 OR chat_leave_check = -1
+			</if>
+			<if test="orderCheck == 'id1'">
+			SET chat_leave_check = chat_leave_check -2
+				WHERE chat_no = #{chatNo} AND chat_leave_check = 1 OR chat_leave_check = 2
+			</if>
+	</update>
+	
+	<delete id="chatDelete">
+		DELETE FROM chat
+			WHERE chat_no = #{chatNo}
+	</delete>
 	
 	<resultMap type="Chat" id="ChatResultMap">
 		<id property="chatNo" column="chat_no" />
