@@ -88,7 +88,7 @@ public class MyPageController {
 		return "mypage/myPageCommunity";
 	}
 	
-	@RequestMapping("blockList")
+	@RequestMapping("/blockList")
 	public String blockList(Model model, 
 			@RequestParam(value = "memberId", required = false, 
 			defaultValue = "memberId01")String memberId) {
@@ -97,7 +97,7 @@ public class MyPageController {
 		return "mypage/blockList";
 	}
 	
-	@RequestMapping("userProfile")
+	@RequestMapping("/userProfile")
 	public String userProfile(Model model, 
 			@RequestParam(value = "memberId", required = false, 
 			defaultValue = "memberId01")String memberId) {

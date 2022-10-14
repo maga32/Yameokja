@@ -1,6 +1,5 @@
 
-## DATABASE 삭제 및 생성 및 선택
-DROP DATABASE yameokja;
+## DATABASE 생성 및 선택
 CREATE DATABASE IF NOT EXISTS yameokja;
 use yameokja;
 -- 테이블 넣는 순서 member-category-store-post
@@ -11,29 +10,41 @@ use yameokja;
 -- ch_no, ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check
 DROP TABLE IF EXISTS chat;
 CREATE TABLE IF NOT EXISTS chat(
-  ch_no INTEGER AUTO_INCREMENT PRIMARY KEY,
-  ch_ids VARCHAR(30) NOT NULL,
-  ch_sender VARCHAR(100) NOT NULL,  
-  ch_receiver VARCHAR(100) NOT NULL,
-  ch_content VARCHAR(1000) NOT NULL,
-  ch_send_date TIMESTAMP NOT NULL,
-  ch_read_check VARCHAR(20) NOT NULL,
-  ch_leave_check INTEGER(5) NOT NULL
+  chat_no INTEGER AUTO_INCREMENT PRIMARY KEY,
+  chat_ids VARCHAR(30) NOT NULL,
+  chat_sender VARCHAR(100) NOT NULL,  
+  chat_receiver VARCHAR(100) NOT NULL,
+  chat_content VARCHAR(1000) NOT NULL,
+  chat_send_date TIMESTAMP NOT NULL,
+  chat_read_check INTEGER(5) NOT NULL,
+  chat_leave_check INTEGER(5) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 #######################################################################################################################ch_no, ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check
 
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids01', 'ch_sender01', 'ch_receiver01', 'ch_content01', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids02', 'ch_sender02', 'ch_receiver02', 'ch_content02', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids03', 'ch_sender03', 'ch_receiver03', 'ch_content03', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids04', 'ch_sender04', 'ch_receiver04', 'ch_content04', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids05', 'ch_sender05', 'ch_receiver05', 'ch_content05', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids06', 'ch_sender06', 'ch_receiver06', 'ch_content06', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids07', 'ch_sender07', 'ch_receiver07', 'ch_content07', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids08', 'ch_sender08', 'ch_receiver08', 'ch_content08', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids09', 'ch_sender09', 'ch_receiver09', 'ch_content09', '2017-12-01 05:44:32', 'ch_read_check', '1');
-INSERT INTO chat (ch_ids, ch_sender, ch_receiver, ch_content, ch_send_date, ch_read_check, ch_leave_check) VALUES ('ch_ids10', 'ch_sender10', 'ch_receiver10', 'ch_content10', '2017-12-01 05:44:32', 'ch_read_check', '1');
-
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId01', 'memberId02', '멤버1->멤버2 채팅1', '2017-12-01 05:44:32', '1', '0');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId03', 'memberId01', 'memberId03', '멤버1->멤버3 채팅2', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId04', 'memberId01', 'memberId04', '멤버1->멤버4 채팅3', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId01', 'memberId02', '멤버1->멤버2 채팅4', '2017-12-01 05:44:32', '1', '2');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId02', 'memberId01', '멤버2->멤버1 채팅5', '2017-12-01 05:44:32', '1', '-1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId02,memberId03', 'memberId02', 'memberId03', '멤버2->멤버3 채팅6', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId03,memberId04', 'memberId03', 'memberId04', '멤버3->멤버4 채팅7', '2017-12-01 05:44:32', '0', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId03', 'memberId03', 'memberId01', '멤버3->멤버1 채팅8', '2017-12-01 05:44:32', '0', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId02', 'memberId01', '멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2멤버2->멤버1 채팅2', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId04', 'memberId01', 'memberId04', '멤버1->멤버4 채팅9', '2017-12-01 05:44:32', '0', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId01', 'memberId02', '멤버1->멤버2 채팅10', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId02', 'memberId01', '멤버2->멤버1 채팅11', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId01', 'memberId02', '멤버1->멤버2 채팅12', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId02', 'memberId01', '멤버2->멤버1 채팅13', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId01', 'memberId02', '멤버1->멤버2 채팅14', '2017-12-01 05:44:32', '1', '1');
+INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId02', 'memberId01', '멤버2->멤버1 채팅15', '2017-12-01 05:44:32', '1', '1');
 
 COMMIT;
 
-SELECT * FROM chat;
+SELECT * FROM chat ORDER BY chat_no DESC;
+
+SELECT chat_ids FROM (SELECT chat_no, chat_ids FROM chat WHERE chat_sender = "memberId01" or chat_receiver = "memberId01" ORDER BY chat_no DESC)chat_ids;
+SELECT chat_ids FROM chat WHERE chat_sender = "memberId01" or chat_receiver = "memberId01" GROUP BY chat_ids ORDER BY MAX(chat_no) DESC;
+SELECT * FROM chat WHERE chat_ids = "memberId01,memberId03" ORDER BY chat_no DESC LIMIT 0,1;
+SELECT * FROM chat WHERE chat_ids = "memberId01,memberId03" AND chat_leave_check = 1 OR chat_leave_check = -1 ORDER BY chat_no;
+UPDATE chat SET chat_read_check = 1 WHERE chat_ids = 'memberId01,memberId02' AND chat_receiver = 'memberId02' AND chat_read_check = 0;
+UPDATE chat SET chat_read_check = 0 WHERE chat_ids = 'memberId01,memberId02' AND chat_receiver = 'memberId02' AND chat_read_check = 1;

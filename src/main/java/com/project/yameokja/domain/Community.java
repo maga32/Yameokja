@@ -48,19 +48,19 @@ public class Community {
 		this.partyPlace = partyPlace;
 	}
 
-	public String getmemberId() {
+	public String getMemberId() {
 		return memberId;
 	}
 
-	public void setmemberId(String memberId) {
+	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
 
-	public String getmemberNickname() {
+	public String getMemberNickname() {
 		return memberNickname;
 	}
 
-	public void setmemberNickname(String memberNickname) {
+	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
 	}
 
