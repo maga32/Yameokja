@@ -3,14 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="resources/js/community.js"></script>
-<html>
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta charset="UTF-8">
-  <title>수다글 상세보기</title>
-</head>
-<body>
+<article>
 	<!-- 작성자 정보, 제목 -->
 	<div>
 		<h4>
@@ -87,7 +80,4 @@
 		
 	</c:forEach>
 	</div>
-
-
-</body>
-</html>
+</article>
