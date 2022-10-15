@@ -11,7 +11,7 @@
 </form>
 <div class="row">
 <div class="fullFrame col-md-12 p-2">
-	<div class="myInformationsFrame col-md-12 ">
+	<div class="myInformationsFrame col-md-12">
 	
 		<div class="inlineBlock col-md-2.5 mx-1">
 			<img alt="프로필 사진" class="myInformation1 col-md-12" src="resources/IMG/mypage/likeIMG.PNG">
@@ -29,9 +29,7 @@
 			<div class="buttons_"><a href="#">회원정보수정</a></div>
 			<div class="buttons_">회 원 탈 퇴</div>
 			<div class="buttons_"><a href="userProfile">나 의 프 로 필</a></div>
-			<div class="buttons_"><a href="blockList">차 단 목 록</a></div>
-			<!--  위에 추가 onclick='window.open("mypage/blockList","차단목록","width=500, height=600")' -->
-			
+			<div class="buttons_"><a href="#" onclick='window.open("blockList","차단목록","width=500, height=600")'>차 단 목 록</a></div>
 			<div class="buttons_"><a href="#">신 고 목 록</a></div>
 			</div>
 		</div>

@@ -41,6 +41,37 @@ body{
 	width: 50%;
 	height: 50%;
 }
+.내위치{
+	border: 1px dotted black;
+}
+.내위치동네{
+	border: 1px dotted black;
+	border-radius: 5px 0 0 5px;
+	display: inline-flex;
+}
+.내위치구{
+	border: 1px dotted black;
+	border-radius: 0 5px 5px 0;
+	display: inline-flex;
+}
+.가입일틀{
+	border: 1px dotted black;
+	
+	
+}
+.가입일, .작성한리뷰총합, .받은추천총합{
+	font-weight: 600;
+}
+.D+100, 500개, 1,000개{
+	font-weight: 600;
+	color: #7A7A80;
+}
+.작성한리뷰총합틀{
+	border: 1px dotted black;
+}
+.받은추천총합틀{
+	border: 1px dotted black;
+}
 /* .blockListFrame{ */
 /* /* 	border: 1px solid black; */ */
 	
