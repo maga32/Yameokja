@@ -89,26 +89,69 @@ function replyAjaxAction(u, d){
 				console.log(resultData);
 				$.each(resultData, function(index, value) {					
 
-					var date = new Date(value.communityRegDate);
 					var id = $("#communityParentNo").val();
-		
-					var result = 
-						"<div style='border:1px solid black'>"
-						+ "	작성자" + value.memberId + "<br>"
-						+ "	작성일" + date + "<br>"
-						+ "	내용" + value.communityContent + "<br>"
-						+ '<input type="button" id="" value="답글">'
-						+ '<input type="button" id="" value="수정">'
-						+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
-						+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
-						+ '<input type="hidden" name="replyCommunityNo" value="'+value.communityNo+'">'
-						+ '<input type="submit" name="replyDelete">'
-						+ '</form>'
-						+ '<input type="button" id="" value="신고">'
-						+ "</div>";
+					var communityReReplyZeroCheck = value.communityReReply;
+					let parentCommunityNo = value.communityNo;
 					
+					if(communityReReplyZeroCheck == 0){
+						var result = 
+							"<div style='border:1px solid black'>"
+							+ "	작성자" + value.memberId + "<br>"
+							+ "	작성일" + value.communityRegDate + "<br>"
+							+ "	내용" + value.communityContent + "<br>"
+							// 답글 여부, 글 번호 체크
+							+ "	글 번호" + value.communityNo + "<br>"
+							+ "	답글 여부" + value.communityReReply + "<br>"
+							+ '<input type="button" id="" value="답글">'
+							+ '<input type="button" id="" value="수정">'
+							+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
+							+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
+							+ '<input type="hidden" name="replyCommunityNo" value="'+value.communityNo+'">'
+							+ '<input type="submit" name="replyDelete">'
+							+ '</form>'
+							+ '<input type="button" id="" value="신고">'
+							+ "</div>";
+							
+							$("#communityReplyList").append(result);		
+							
+							$.each(resultData, function(index, value){
+								
+								// 반복되는 parentCommunityNo = 0 초기화 해결 - 값 유지하기
+								if(parentCommunityNo != 0) {
+									var parentCommunityNoEach2 = parentCommunityNo;
+								}
 
-					$("#communityReplyList").append(result);								
+								var childCommunityReReply = value.communityReReply;
+								console.log("parentCommunityNoEach2 : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
+								
+								// 355번호 글 = 새로운 for문 안의 reReply가 355일 때
+								if(parentCommunityNoEach2 == childCommunityReReply){
+									var result2 = 
+										"<div style='border:1px solid black'>"
+										+ "	작성자" + value.memberId + "<br>"
+										+ "	작성일" + value.communityRegDate + "<br>"
+										+ "	내용" + value.communityContent + "<br>"
+										// 답글 여부, 글 번호 체크
+										+ "	글 번호" + value.communityNo + "<br>"
+										+ "	답글 여부" + value.communityReReply + "<br>"
+										+ '<input type="button" id="" value="답글">'
+										+ '<input type="button" id="" value="수정">'
+										+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
+										+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
+										+ '<input type="hidden" name="replyCommunityNo" value="'+value.communityNo+'">'
+										+ '<input type="submit" name="replyDelete">'
+										+ '</form>'
+										+ '<input type="button" id="" value="신고">'
+										+ "</div>";
+										
+										$("#communityReplyList").append(result2);
+										console.log("parentCommunityNoEach2 : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
+										console.log("출력 시점 - communityNo:" + value.communityNo);
+								}
+							});
+						}
+					
+											
 				});				
 			},
 			error: function(xhr, status, error) {
