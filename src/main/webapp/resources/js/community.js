@@ -62,6 +62,8 @@ $(function(){
 			return false;
 		}
 		
+		
+		
 		var u = "replyDelete.ajax";
 		var params = $(this).serialize();
 
@@ -70,6 +72,21 @@ $(function(){
 		// 폼이 submit 되는 것을 취소한다.
 		return false;
 	});	
+	
+// 커뮤니티 답글 작성폼 출력
+	$("#communityReplyArea").on("click", ".btnCommunityReReplyWriteFormOpen", function(){
+	//$(".btnCommunityReReplyWriteFormOpen").on("click", function(){
+		var targetNo = $(this).val();
+		var status = $("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style");
+		
+		alert("답글을 달아주세요!" + targetNo + status);
+		if( status == "display : none"){
+			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : block");
+		}
+		else if( status == "display : block"){
+			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : none");
+		}	
+	});
 	
 });
 
@@ -86,7 +103,6 @@ function replyAjaxAction(u, d){
 			success: function(resultData, status, xhr) {								
 
 				$("#communityReplyList").empty();				
-				console.log(resultData);
 				$.each(resultData, function(index, value) {					
 
 					var id = $("#communityParentNo").val();
@@ -102,7 +118,7 @@ function replyAjaxAction(u, d){
 							// 답글 여부, 글 번호 체크
 							+ "	글 번호" + value.communityNo + "<br>"
 							+ "	답글 여부" + value.communityReReply + "<br>"
-							+ '<input type="button" id="" value="답글">'
+							+ '<button class="btnCommunityReReplyWriteFormOpen" value="'+value.communityNo +'">답글</button>'
 							+ '<input type="button" id="" value="수정">'
 							+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
 							+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
@@ -110,6 +126,18 @@ function replyAjaxAction(u, d){
 							+ '<input type="submit" name="replyDelete">'
 							+ '</form>'
 							+ '<input type="button" id="" value="신고">'
+							+ '<div id="communityReReplyWriteFormNo' + value.communityNo + '" style="display : none">'
+							+ '<form id="communityReplyWriteForm" name="communityReplyWriteForm" >'
+							+ '<input type="hidden" name="communityParentNo" id="communityParentNo" value="' + value.communityParentNo + '">'
+							+ '<input type="hidden" name="communityReReplyNo" id="communityReReply" value=0>'
+							+ '<input type="hidden" name="communityReplyTarget" id="communityReplyTarget"	 value="">'
+							+ '<div>'
+							+ '<textarea id="communityContent" name="communityContent" placeholder="댓글을 입력해주세요">'
+							+ '</textarea>'
+							+ '<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">'
+							+ 	'</div>'
+							+ '</form>'
+							+ "</div>"
 							+ "</div>";
 							
 							$("#communityReplyList").append(result);		
@@ -122,7 +150,7 @@ function replyAjaxAction(u, d){
 								}
 
 								var childCommunityReReply = value.communityReReply;
-								console.log("parentCommunityNoEach2 : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
+								//console.log("parentCommunityNoEach2 : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
 								
 								// 355번호 글 = 새로운 for문 안의 reReply가 355일 때
 								if(parentCommunityNoEach2 == childCommunityReReply){
@@ -134,7 +162,7 @@ function replyAjaxAction(u, d){
 										// 답글 여부, 글 번호 체크
 										+ "	글 번호" + value.communityNo + "<br>"
 										+ "	답글 여부" + value.communityReReply + "<br>"
-										+ '<input type="button" id="" value="답글">'
+										+ '<button class="btnCommunityReReplyWriteFormOpen" value="'+value.communityNo +'">답글</button>'
 										+ '<input type="button" id="" value="수정">'
 										+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
 										+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
@@ -142,11 +170,23 @@ function replyAjaxAction(u, d){
 										+ '<input type="submit" name="replyDelete">'
 										+ '</form>'
 										+ '<input type="button" id="" value="신고">'
+										+ '<div id="communityReReplyWriteFormNo' + value.communityNo + '" style="display : none">'
+										+ '<form id="communityReplyWriteForm" name="communityReplyWriteForm" >'
+										+ '<input type="hidden" name="communityParentNo" id="communityParentNo" value="' + value.communityParentNo + '">'
+										+ '<input type="hidden" name="communityReReply" id="communityReReply" value=0>'
+										+ '<input type="hidden" name="communityReplyTarget" id="communityReplyTarget"	 value="">'
+										+ '<div>'
+										+ '<textarea id="communityContent" name="communityContent" placeholder="댓글을 입력해주세요">'
+										+ '</textarea>'
+										+ '<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">'
+										+ 	'</div>'
+										+ '</form>'
+										+ "</div>"
 										+ "</div>";
 										
 										$("#communityReplyList").append(result2);
-										console.log("parentCommunityNoEach2 : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
-										console.log("출력 시점 - communityNo:" + value.communityNo);
+										// console.log("parentCommunityNoEach2 : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
+										// console.log("출력 시점 - communityNo:" + value.communityNo);
 								}
 							});
 						}

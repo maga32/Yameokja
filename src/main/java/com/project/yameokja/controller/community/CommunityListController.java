@@ -164,8 +164,16 @@ public class CommunityListController {
 	// 커뮤니티 댓글 작성
 	@RequestMapping(value="/replyWrite.ajax", method=RequestMethod.POST)
 	@ResponseBody
-	public List<Community> replyWriteAjax(Community community) throws IOException {
+	public List<Community> replyWriteAjax(Community community, HttpSession session) throws IOException {
 
+		// 답글의 경우 session에 있는 작성자 정보를 못가져와서, if문으로 제어
+		if( community != null) {
+			if(community.getMemberId() == null) {
+				community.setMemberId((String) session.getAttribute("memberId"));
+				community.setMemberNickname((String) session.getAttribute("memberNickname"));
+			}
+		}
+		
 		communityListService.addCommunityReply(community);
 		
 		return communityListService.getCommunityReply(community);
