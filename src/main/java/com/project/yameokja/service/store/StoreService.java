@@ -1,4 +1,4 @@
-package com.project.yameokja.service;
+package com.project.yameokja.service.store;
 
 import java.util.List;
 
@@ -20,11 +20,13 @@ public interface StoreService {
 	public abstract void updateStore(Store store);
 	
 	// 가게 정보에서 리뷰 리스트
-	public abstract List<Post> postList(int storeNo);
-	
-	// 가게 정보에서 리뷰 리스트 상세보기
+	public abstract List<Post> postList(int storeNo, int postNo);
+		
 
-	// 가게 정보에서 가게 댓글 불러오는 메소드
+	// 가게 정보에서 가게 댓글 리스트
+	
+	
+	// 가게 정보에서 가게 댓글 쓰기
 	
 	
 }

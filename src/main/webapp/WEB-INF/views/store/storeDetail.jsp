@@ -98,16 +98,20 @@
 						</div>
 						<div class="row d-flex justify-content-end border border-success mt-1">
 							<div class="col-3">
-							최고의 리뷰
+							상위리뷰
 							</div>
 							<div class="col-3">
-							맛집 리뷰
+							맛집리뷰
 							</div>
 							<div class="col-3">
-							댓글 리뷰
+							댓글리뷰
+							</div>
+							<div class="col-3">
+							
 							</div>
 							
 						</div>
+						
 						<div class="row d-flex justify-content-end border border-primary mt-1">
 							
 						

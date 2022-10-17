@@ -1,4 +1,4 @@
-package com.project.yameokja.dao;
+package com.project.yameokja.dao.store;
 
 import java.util.List;
 
@@ -29,31 +29,10 @@ public class StoreDaoImpl implements StoreDao {
 	
 	//가게 정보
 	@Override
-	public Store getStoreInfo(int storeNo) {
+	public Store getStore(int storeNo) {
 		return sqlSession.selectOne(NAME_SPACE + ".getStore", storeNo);
 	}
-
-	// 가게 정보 리스트
-	@Override
-	public Store getStoreInfoList(int storeNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	// 가게 정보 리스트 상세
-	@Override
-	public Store getStoreInfoListDetail(int storeNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	// 가게 정보 댓글
-	@Override
-	public Store getStoreInfoReply(int storeNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	//가게 글쓰기
 	@Override
 	public void insertStore(Store store) {
@@ -63,11 +42,12 @@ public class StoreDaoImpl implements StoreDao {
 		}
 		sqlSession.insert(NAME_SPACE + ".insertStore", store);
 	}
-
+	
+	//가게 수정
 	@Override
 	public void updateStore(Store store) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }
