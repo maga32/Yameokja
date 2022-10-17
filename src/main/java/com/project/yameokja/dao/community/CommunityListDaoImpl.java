@@ -77,9 +77,32 @@ public class CommunityListDaoImpl implements CommunityListDao {
 	// 커뮤니티 댓글 삭제
 	@Override
 	public void delCommunityReply(int no) {
-		sqlSession.delete(NAME_SPACE + ".delCommunityReply", no);
+		/*List<Object> reReplyList = sqlSession.selectList(NAME_SPACE + ".getCommunityReReply", no); 
 		
+		String str = "";
+		for( int i=0; i < reReplyList.size(); i++) {
+			str += reReplyList.get(i);
+		}*/
+		sqlSession.delete(NAME_SPACE + ".delCommunityReply", no);
 	}
+
+	// 커뮤니티 댓글 삭제 - 답글이 있는 경우
+	@Override
+	public void updateCommunityReply(int no) {
+		
+		/*List<Integer> reReplyList = sqlSession.selectList(NAME_SPACE + ".getCommunityReReply", no); 
+		
+		String str = "";
+		for( int i=0; i < reReplyList.size(); i++) {
+			str += reReplyList.get(i);
+		}
+		System.out.println("communityListDao - reReplyList : " + str);
+		*/
+		sqlSession.update(NAME_SPACE + ".updateCommunityReply", no);
+	}
+	
+
+	
 	
 
 	

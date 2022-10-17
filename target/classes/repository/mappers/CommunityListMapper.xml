@@ -101,6 +101,12 @@
 	<delete id="delCommunityReply">
 		DELETE From community WHERE community_no = #{ no }
 	</delete>
+	
+<!-- 커뮤니티 댓글 reReply 추출문 -->
+	<select id="getCommunityReReply">
+		SELECT community_re_reply as communityReReply FROM community
+		WHERE community_re_reply = #{no}
+	</select>
 
 	
 	<resultMap type="Community" id="CommunityResultMap">

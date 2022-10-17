@@ -35,4 +35,7 @@ public interface CommunityListDao {
 	// 커뮤니티 댓글 삭제
 	public void delCommunityReply(int no);
 	
+	// 커뮤니티 댓글 삭제 - 답글이 있는 경우 update
+	public void updateCommunityReply(int no);
+	
 }

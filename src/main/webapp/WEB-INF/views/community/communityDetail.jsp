@@ -68,6 +68,7 @@
 						닉네임 : ${re.memberNickname}
 						작성일 : ${re.communityRegDate }
 						글 번호 : ${re.communityNo}
+						답글 여부 : ${re.communityReReply}
 						<button class="btnCommunityReReplyWriteFormOpen" value="${ re.communityNo },${re.memberId}">답글</button>
 						<input type="button" id="" value="수정">
 						<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">
@@ -88,7 +89,7 @@
 						<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt${ re.communityNo }"	 value="">
 	
 						<div>
-							<textarea id="communityContent" name="communityContent" placeholder="댓글을 입력해주세요">
+							<textarea id="communityReplyContent" name="communityContent" placeholder="댓글을 입력해주세요">
 							</textarea>
 							<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">
 						</div>

@@ -57,7 +57,7 @@ public class CommunityListController {
 		return "community/communityList";
 	}
 	
-	// 수다글 작성폼 - communityWriteController 
+	// 수다글 작성폼
 	@RequestMapping("community101WriteForm")
 	public String community101WriteForm(HttpSession session,
 			HttpServletResponse respones, PrintWriter out) {
