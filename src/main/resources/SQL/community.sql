@@ -1,6 +1,5 @@
 
-## DATABASE 삭제 및 생성 및 선택
-DROP DATABASE yameokja;
+## DATABASE 생성 및 선택
 CREATE DATABASE IF NOT EXISTS yameokja;
 use yameokja;
 -- 테이블 넣는 순서 member-category-store-post
@@ -16,17 +15,17 @@ CREATE TABLE IF NOT EXISTS community(
   community_title VARCHAR(10) NULL,
   community_reg_date TIMESTAMP NOT NULL,  
   community_reply_count INTEGER(10) NULL,
-  community_read_count INTEGER(10) NULL,
+  community_read_count integer(10) default '0',
   community_content VARCHAR(1000) NOT NULL,
-  community_file VARCHAR(40) NULL,
-  community_parent_no INTEGER(10) NOT NULL,
-  community_re_reply INTEGER(10) NOT NULL,
+  community_file VARCHAR(1000) NULL,
+  community_parent_no INTEGER(10) NOT NULL default '0',
+  community_re_reply INTEGER(10) NOT NULL default '0',
   community_reply_target VARCHAR(20) NULL,
   party_members INTEGER(5) NULL,
   party_member_ids VARCHAR(300) NULL,
   party_d_day TIMESTAMP NULL,
   party_place VARCHAR(40) NULL,
-  category_no INTEGER(10) NOT NULL,
+  category_no INTEGER(10) NOT NULL default '0',
   member_id VARCHAR(10) NOT NULL,
   member_nickname VARCHAR(20) NOT NULL,
   
@@ -34,21 +33,46 @@ CREATE TABLE IF NOT EXISTS community(
   CONSTRAINT community_member_fk FOREIGN KEY(member_id) REFERENCES member(member_id),
   CONSTRAINT community_member_fk2 FOREIGN KEY(member_nickname) REFERENCES member(member_nickname)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE community CHANGE community_parent_no community_parent_no integer(10) NOT NULL default '0';
+ALTER TABLE community CHANGE community_re_reply community_re_reply integer(10) NOT NULL default '0';
+ALTER TABLE community CHANGE community_read_count community_read_count integer(10) default '0';
+ALTER TABLE community CHANGE community_file community_file VARCHAR(1000) NULL;
+ALTER TABLE community CHANGE category_no category_no INTEGER(10) NOT NULL default '0';
+
+ 
+
 #######################################################################################################################################################################################################################################community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname
 
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content01', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId01', 'nickname01');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content02', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId02', 'nickname02');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content03', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId03', 'nickname03');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content04', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId04', 'nickname04');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content05', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId05', 'nickname05');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content06', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId06', 'nickname06');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content07', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId07', 'nickname07');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content08', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId08', 'nickname08');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content09', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId09', 'nickname09');
-INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content10', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId10', 'nickname10');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하1", '2017-12-01 05:44:32', NULL, NULL, 'community_content01', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '101', 'memberId01', 'nickname01');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하2", '2017-12-01 05:44:32', NULL, NULL, 'community_content02', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '102', 'memberId02', 'nickname02');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하1", '2017-12-01 05:44:32', NULL, NULL, 'community_content01', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '101', 'memberId01', 'nickname01');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하2", '2017-12-01 05:44:32', NULL, NULL, 'community_content02', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '102', 'memberId02', 'nickname02');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하1", '2017-12-01 05:44:32', NULL, NULL, 'community_content01', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '101', 'memberId01', 'nickname01');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하2", '2017-12-01 05:44:32', NULL, NULL, 'community_content02', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '102', 'memberId02', 'nickname02');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하1", '2017-12-01 05:44:32', NULL, NULL, 'community_content01', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '101', 'memberId01', 'nickname01');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하2", '2017-12-01 05:44:32', NULL, NULL, 'community_content02', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '102', 'memberId02', 'nickname02');
+INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하날짜확인", '2007-1-21 05:44:32', NULL, NULL, 'community_content02', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '102', 'memberId02', 'nickname02');
 
+INSERT INTO community (community_title, community_reg_date, community_content, community_file, category_no, member_id, member_nickname) VALUES ("dd", sysdate(), "222", null, '101', "memberId01", "nickname01");
 
-
+INSERT INTO community
+			(community_reg_date, community_content, community_parent_no, community_re_reply,
+			 community_reply_target, category_no, member_id, member_nickname)
+			 VALUES (SYSDATE(), "22", '23', '0',
+				  "MEM", "101", 'memberId02', 'nickname02');
 COMMIT;
 
-SELECT * FROM community;
+SELECT * FROM community order by community_no DESC;
+SELECT * FROM community where community_no = 1 AND category_no > '100' order by community_no DESC;
+UPDATE community
+			SET community_read_count = IF (community_read_count = "0", '1', community_read_count + '1')
+		WHERE community_no = 278;      
+select community_read_count FROM community where community_no = 278;
+select * from community order by community_no DESC;
+
+
+SELECT * FROM community
+WHERE community_parent_no = 287 AND category_no = '0';
+
+DELETE FRom community WHERE community_no = 291;

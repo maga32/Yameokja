@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.yameokja.domain.Category;
-import com.project.yameokja.service.MainService;
+import com.project.yameokja.service.main.MainService;
 
 @Controller
 public class MainController {

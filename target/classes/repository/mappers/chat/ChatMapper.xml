@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.project.yameokja.mappers.chat.ChatMapper">
+	
+	<select id="getChat" resultMap="ChatResultMap">
+		SELECT * FROM chat
+			WHERE chat_no = #{ chatNo }
+	</select>
+	
+	<select id="chatIds" resultType="String">
+		SELECT chat_ids FROM chat 
+			WHERE chat_sender = #{memberId} or chat_receiver = #{memberId} 
+			GROUP BY chat_ids 
+		ORDER BY MAX(chat_no) DESC
+	</select>
+
+	<select id="chatLists" resultMap="ChatResultMap">
+		SELECT * FROM chat 
+			WHERE chat_ids = #{chatIds} 
+		ORDER BY chat_no DESC
+		LIMIT 0,1
+	</select>
+	
+	<select id="chatTargetList" resultMap="ChatResultMap">
+		SELECT * FROM chat 
+		<where>
+			chat_ids = #{chatIds}
+			<if test="orderCheck == 'id0'">
+				AND chat_leave_check = 1 OR chat_leave_check = -1
+			</if>
+			<if test="orderCheck == 'id1'">
+				AND chat_leave_check = 1 OR chat_leave_check = 2
+			</if>
+		</where>
+		ORDER BY chat_no
+	</select>
+	
+	<insert id="chatSend" parameterType="Chat" useGeneratedKeys="true" keyProperty="chatNo">
+		INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check)
+			VALUE(#{chatIds}, #{chatSender}, #{chatReceiver}, #{chatContent}, SYSDATE(), 0, 1)
+	</insert>
+	
+	<update id="chatReadUpdate">
+		UPDATE chat
+			SET chat_read_check = 1
+			WHERE chat_ids = #{chatIds} AND chat_receiver = #{chatReceiver} AND chat_read_check = 0
+	</update>
+	
+	<update id="chatLeaveOne">
+		UPDATE chat
+			<if test="orderCheck == 'id0'">
+			SET chat_leave_check = chat_leave_check +1
+				WHERE chat_no = #{chatNo} AND chat_leave_check = 1 OR chat_leave_check = -1
+			</if>
+			<if test="orderCheck == 'id1'">
+			SET chat_leave_check = chat_leave_check -2
+				WHERE chat_no = #{chatNo} AND chat_leave_check = 1 OR chat_leave_check = 2
+			</if>
+	</update>
+	
+	<delete id="chatDelete">
+		DELETE FROM chat
+			WHERE chat_no = #{chatNo}
+	</delete>
+	
+	<resultMap type="Chat" id="ChatResultMap">
+		<id property="chatNo" column="chat_no" />
+		<result property="chatIds" column="chat_ids" />
+		<result property="chatSender" column="chat_sender" />
+		<result property="chatReceiver" column="chat_receiver" />
+		<result property="chatContent" column="chat_content" />
+		<result property="chatSendDate" column="chat_send_date" />
+		<result property="chatReadCheck" column="chat_read_check" />
+		<result property="chatLeaveCheck" column="chat_leave_check" />
+	</resultMap>
+	
+	
+</mapper>
