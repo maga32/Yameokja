@@ -2,13 +2,29 @@ package com.project.yameokja.service;
 
 import java.util.List;
 
+import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
 
 public interface StoreService {
 	
-	// °¡°Ô °Ô½Ã±Û ¸®½ºÆ®¸¦ ÀĞ¾î¿Í ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	// ê°€ê²Œ ë¦¬ìŠ¤íŠ¸
 	public abstract List<Store> storeList();
+
+	// ê°€ê²Œ ì •ë³´
+	public abstract Store getStore(int storeNo);
 	
-	// °¡°Ô °Ô½Ã±Û Áß no¿¡ ÇØ´çÇÏ´Â ±ÛÀ» ÀĞ¾î¿Í ¹İÈ¯ÇÏ´Â ¸Ş¼Òµå
+	// ê°€ê²Œ ì •ë³´ ê¸€ì“°ê¸°
+	public abstract void insertStore(Store store);
+	
+	// ê°€ê²Œ ì •ë³´ ìˆ˜ì •
+	public abstract void updateStore(Store store);
+	
+	// ê°€ê²Œ ì •ë³´ì—ì„œ ë¦¬ë·° ë¦¬ìŠ¤íŠ¸
+	public abstract List<Post> postList(int storeNo);
+	
+	// ê°€ê²Œ ì •ë³´ì—ì„œ ë¦¬ë·° ë¦¬ìŠ¤íŠ¸ ìƒì„¸ë³´ê¸°
+
+	// ê°€ê²Œ ì •ë³´ì—ì„œ ê°€ê²Œ ëŒ“ê¸€ ë¶ˆëŸ¬ì˜¤ëŠ” ë©”ì†Œë“œ
+	
 	
 }
