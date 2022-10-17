@@ -1,21 +1,19 @@
 @CHARSET "UTF-8";
-.frame {
+/* body { */
 /* 	background-color: #FDDD77; */
-	background-color: #F58500;
-}
+/* } */
 
 header { 
-	background-color: #FDDD77;
-	border-bottom: 1px dashed blue;
 	text-align: center;
 }
 
 
 footer {	
-	border-top: 1px dashed blue;
 	background-color: #999999;
 	text-align: right;
 	color: white;
-	height: 67px;
 }
-
+.LogoIMGSize{
+	width: 120px;
+	height: 35px;
+}
