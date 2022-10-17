@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
 import com.project.yameokja.dao.StoreDao;
 
@@ -23,4 +24,26 @@ public class StoreServiceImpl implements StoreService {
 		return StoreDao.StoreList();
 	}
 
+	
+	@Override
+	public Store getStore(int storeNo) {
+		return StoreDao.getStoreInfo(storeNo);
+	}
+
+	@Override
+	public List<Post> postList(int storeNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public void insertStore(Store store) {
+		StoreDao.insertStore(store);
+	}
+
+	@Override
+	public void updateStore(Store store) {
+		// TODO Auto-generated method stub
+		
+	}
 }
