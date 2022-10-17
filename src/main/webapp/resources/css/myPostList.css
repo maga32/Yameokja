@@ -20,8 +20,8 @@ body{
 }
 /* 내정보 */
 .myInformationsFrame{
-	border: 1px solid #7A7A80;
-	border-radius: 10px;
+	border: 3px solid #B8BBC0;
+	border-radius: 5px;
 	height: auto;
 	display: flex;
     text-align: center;
@@ -78,30 +78,46 @@ body{
 	display: table-cell;
 }
 .postListbutton {
-	border-top: 1px solid #7A7A80;
-	border-left: 1px solid #7A7A80;
-	border-right: 1px solid #7A7A80;
+	border-top: 1px solid #B8BBC0;
+	border-left: 1px solid #B8BBC0;
+	border-right: 1px solid #B8BBC0;
 	border-bottom: 1px solid #ffffff;
+	text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: gray;
 	
 }
 .replyListbutton {
-	border: 1px solid #7A7A80;
+	border: 1px solid #B8BBC0;
+	text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: gray;
 }
 .communityListbutton {
-	border: 1px solid #7A7A80; 
+	border: 1px solid #B8BBC0;
+	text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: gray;
 }
 .likeListbutton {
-	border: 1px solid #7A7A80;
+	border: 1px solid #B8BBC0;
+	text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: gray;
 }
 /* 리스트 */
 .postListFrame {
-	border: 1px solid black;
+	border: 1px solid #B8BBC0;
 	display: inline-block;
 	margin: -1px auto 10px;
 	text-align: center;
 }
 .postFrame{
-	border: 1px solid #7A7A80;
+	border: 1px solid #B8BBC0;
 	text-align: center;
 	display: flex;
     align-items: center;
@@ -147,9 +163,26 @@ body{
 a {text-decoration: none;}
 
 .buttons_ a:link {color: gray;}
-
 .buttons_ a:visited {color: gray;}
-
 .buttons_ a:hover {color: #4aa5ff;}
-
 .buttons_ a:active {color: 4aa5ff;}
+
+.postListbutton a:link {color: gray;}
+.postListbutton a:visited {color: gray;}
+.postListbutton a:hover {color: #4aa5ff;}
+.postListbutton a:active {color: 4aa5ff;}
+
+.replyListbutton a:link {color: gray;}
+.replyListbutton a:visited {color: gray;}
+.replyListbutton a:hover {color: #4aa5ff;}
+.replyListbutton a:active {color: 4aa5ff;}
+
+.communityListbutton a:link {color: gray;}
+.communityListbutton a:visited {color: gray;}
+.communityListbutton a:hover {color: #4aa5ff;}
+.communityListbutton a:active {color: 4aa5ff;}
+
+.likeListbutton a:link {color: gray;}
+.likeListbutton a:visited {color: gray;}
+.likeListbutton a:hover {color: #4aa5ff;}
+.likeListbutton a:active {color: 4aa5ff;}

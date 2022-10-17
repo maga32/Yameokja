@@ -94,7 +94,7 @@ public class MyPageController {
 			defaultValue = "memberId01")String memberId) {
 		
 		model.addAttribute("memberId", memberId);
-		return "mypage/blockList";
+		return "forward:WEB-INF/views/mypage/blockList.jsp";
 	}
 	
 	@RequestMapping("/userProfile")
@@ -103,7 +103,7 @@ public class MyPageController {
 			defaultValue = "memberId01")String memberId) {
 		
 		model.addAttribute("memberId", memberId);
-		return "mypage/userProfile";
+		return "forward:WEB-INF/views/mypage/userProfile.jsp";
 	}
 
 }

@@ -1,26 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css" href="resources/css/userProfile.css" />
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>야먹자</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+	 integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  	<link rel="stylesheet" type="text/css" href="resources/css/index.css" />
+  	<link rel="stylesheet" type="text/css" href="resources/css/userProfile.css" />
 <!-- <script type="text/javascript" src="resources/js/chat.js"></script> -->
-<article>
+  	<script src="resources/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<form name="blockListForm" id="blockListForm">
+	<input type="hidden" name="memberId" value="${ member.memberId }" />
+</form>
+<div class="row">
+<!-- 좌측날개 -->
+<div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
+	<!-- 센터 -->
+	<div class="col-12 col-sm-8 col-lg-6 p-5">
 	<form name="blockListForm" id="blockListForm">
 		<input type="hidden" name="memberId" value="${ member.memberId }" />
 	</form>
-	<div class="row">
 	<!-- 	profileHeader -->
-	<div class="col-12 p-4">
+	<div class="fullFrame col-12">
 		<div class="profileHeaderFrame col-12">
 			<div class="profileheader col-12 py-3">김핑구짱짱맨 님의 프로필</div>
 		</div>	
 		<!-- 	profileHeader 끝-->
 		<!-- 	profileFrame1 -->
-		<div class="profileFrame1 col-12 py-3">
-			<div class=" inlineBlock col-4">
+		<div class="profileFrame1 col-12">
+			<div class=" inlineBlock col-4 p-3">
 				<img alt="프로필 사진" class="profileIMG col-12" src="resources/IMG/mypage/likeIMG.PNG">
-			</div>
-			<div class="profileCategoryFrame inlineBlock col-7">
+			</div><div class="profileCategoryFrame inlineBlock col-8">
 				<div class="col-12">
 					<div class="profileheader col-12">좋아하는 음식 종류</div>
 				<div class="col-12">
@@ -30,37 +49,44 @@
 				</div>
 				</div>
 			</div>
-		</div><!-- 	profileFrame1 끝-->
+		</div><div class="myLocation col-12"><!-- 	profileFrame1 끝-->
 		<!-- 	profileFrame2 -->
-		<div class="profileFrame2 col-12">
-			<div class="내위치 col-12 m-2">
-				<div class="내위치동네 inlineBlock col-4">동네</div>			
-				<div class="내위치구 inlineBlock col-8">서울시 관악구</div>			
-			</div>
-			<div class="가입일틀 col-12">
-				<div class="가입일 inlineBlock">가입일</div>			
-				<div class="D+100 inlineBlock">D+100</div>			
-			</div>
-			<div class="작성한리뷰총합틀 col-12">
-				<div class="작성한리뷰총합 inlineBlock">작성한리뷰총합</div>			
-				<div class="500개 inlineBlock">500개</div>			
-			</div>
-			<div class="받은추천총합틀 col-12">
-				<div class="받은추천총합 inlineBlock">받은추천총합</div>			
-				<div class="1,000개 inlineBlock">1,000개</div>			
-			</div>
-			<div class="활동내역틀 col-12">
-				<div class="활동내역 inlineBlock"><a>활동내역구경가기 -></a></div>
-				<div class="종모양 inlineBlock">종모양이미지</div>
-			</div>
-			<div>________</div>	
+		
+			<div class="myLocationTh col-4 p-1">동네</div><div class="myLocationTd col-8 p-1">서울시 관악구</div>
+		</div>
+		<div class="profileFrame2 col-12 mt-3">
+		<table class="col-12">
+		<tbody class="col-12">			
+			<tr class="col-12">
+				<th class="내위치 col-6 p-1">가입일</th>
+				<td class="내위치 col-6 p-1">D+100</td>
+			</tr>
+			<tr class="col-12">
+				<th class="내위치 col-6 p-1">작성한리뷰총합</th>
+				<td class="내위치 col-6 p-1">500개</td>
+			</tr>
+			<tr class="col-12">
+				<th class="내위치 col-6 p-1">받은추천총합</th>
+				<td class="내위치 col-6 p-1">1,000개</td>
+			</tr>
+			<tr class="col-12">
+				<th class="내위치 col-6 p-1">활동내역구경가기 -></th>
+				<td class="내위치 col-6 p-1">종모양이미지</td>
+			</tr>
+		</tbody>
+		</table>
 		</div>
 		<!-- 	profileFrame2 끝-->
-		<div class="buttonFrame col-12 my-3">
-			<button type="button" class="closeButton btn">확인</button>
-			<button type="button" class="closeButton btn">채팅확인</button>
+		<div class="buttonFrame col-12 mt-3 py-3">
+			<button type="button" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<button type="button" class="chatButton btn col-6 ">채팅신청</button>
 <!-- 			<button type="button" class="UnblockIdButton btn">차단 해제</button> -->
 		</div>
 	</div>
 	</div>
-</article>
+
+	</div>
+<!-- 우측날개 -->
+<div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
+</body>
+</html>
