@@ -76,7 +76,7 @@
 						닉네임 : ${re.memberNickname}
 						작성일 : ${re.communityRegDate }
 						글 번호 : ${re.communityNo}
-						<button class="btnCommunityReReplyWriteFormOpen" value="${ re.communityNo }">답글</button>
+						<button class="btnCommunityReReplyWriteFormOpen" value="${ re.communityNo },${re.memberId}">답글</button>
 						<input type="button" id="" value="수정">
 						<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">
 							<input type="hidden" name="replyCommunityParentNo" value="${ co.communityNo }">
@@ -92,8 +92,8 @@
 				<div id="communityReReplyWriteFormNo${ re.communityNo }" style="display : none">
 					<form id="communityReplyWriteForm" name="communityReplyWriteForm" >
 						<input type="hidden" name="communityParentNo" id="communityParentNo" value="${co.communityNo}">
-						<input type="hidden" name="communityReReply" id="communityReReply" value=0>
-						<input type="hidden" name="communityReplyTarget" id="communityReplyTarget"	 value="">
+						<input type="hidden" name="communityReReply" id="communityReReplyAt${ re.communityNo }" value=0>
+						<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt${ re.communityNo }"	 value="">
 	
 						<div>
 							<textarea id="communityContent" name="communityContent" placeholder="댓글을 입력해주세요">

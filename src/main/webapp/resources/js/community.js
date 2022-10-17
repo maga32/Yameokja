@@ -76,12 +76,20 @@ $(function(){
 // 커뮤니티 답글 작성폼 출력
 	$("#communityReplyArea").on("click", ".btnCommunityReReplyWriteFormOpen", function(){
 	//$(".btnCommunityReReplyWriteFormOpen").on("click", function(){
-		var targetNo = $(this).val();
+		var target = $(this).val();
+		target = target.split(",");
+		
+		var targetNo = target[0];
+		var targetId = target[1];
 		var status = $("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style");
 		
+		
+		alert(target+ " - " + targetNo + " - " + targetId);
 		alert("답글을 달아주세요!" + targetNo + status);
 		if( status == "display : none"){
 			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : block");
+			$("#communityReReplyAt" + targetNo).val(targetNo);
+			$("#communityReplyTargetAt" + targetNo).val(targetId);
 		}
 		else if( status == "display : block"){
 			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : none");
