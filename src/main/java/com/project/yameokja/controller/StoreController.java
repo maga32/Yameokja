@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
 import com.project.yameokja.service.StoreService;
 
@@ -32,7 +34,7 @@ public class StoreController {
 		return "store/storeList";
 	}
 	
-	// 가게 정보
+	// 리스트에서 정보 불러오기
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo) {
 		
@@ -42,13 +44,38 @@ public class StoreController {
 		return "store/storeDetail";
 	}
 	
+	// sad
+	@RequestMapping(value="/storeWriteForm")
+	public String storeWriteForm() {
+		
+		return "store/storeWriteForm";
+	}
+	
+	
 	// 가게 정보 글쓰기
 	@RequestMapping(value="/storeWrite", method=RequestMethod.GET)
-	public String insertStore(Store store) {
+	public String insertStore(String storeName) {
+		Store store new Store();
+		
+		store.setStoreName(storeName);
+		store.setStoreLatitude(storeLatitude);
+		store.setStoreLongitude(storeLongitude);
+		store.setStoreFileMain(storeFileMain);
+		store.setStoreFileMenu(storeFileMenu);
+		store.setStoreAddress(storeAddress);
+		store.setStoreTime(storeTime);
+		store.setStoreDayOff(storeDayOff);
+		store.setStoreParking(storeParking);
+		store.setCategoryNo(categoryNo);
+		
+		
+		
 		
 		StoreService.insertStore(store);
 		
-		return "redirect:store/storeList";
+		return "store/storeWrite";
 	}
+	
+
 	
 }

@@ -57,6 +57,10 @@ public class StoreDaoImpl implements StoreDao {
 	//가게 글쓰기
 	@Override
 	public void insertStore(Store store) {
+		if(store != null) {
+			
+			System.out.println("streDao : " + store.getStoreName());
+		}
 		sqlSession.insert(NAME_SPACE + ".insertStore", store);
 	}
 
