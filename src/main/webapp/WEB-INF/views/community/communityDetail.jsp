@@ -70,7 +70,8 @@
 						글 번호 : ${re.communityNo}
 						답글 여부 : ${re.communityReReply}
 						<button class="btnCommunityReReplyWriteFormOpen" value="${ re.communityNo },${re.memberId}">답글</button>
-						<input type="button" id="" value="수정">
+	<!-- 변경1 -->
+						<button class="btnCommunityReReplyUpdateFormOpen" value="${ re.communityNo },${re.memberId}">수정</button>
 						<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">
 							<input type="hidden" name="replyCommunityParentNo" value="${ co.communityNo }">
 							<input type="hidden" name="replyCommunityNo" value="${ re.communityNo }">
@@ -95,8 +96,6 @@
 						</div>
 					</form>
 				</div>
-	<!-- jquery로 추가할 내용들 -->
-							
 	<!-- 답글 입력폼 end -->
 				
 				

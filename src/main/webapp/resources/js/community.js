@@ -76,7 +76,32 @@ $(function(){
 	
 // 커뮤니티 답글 작성폼 출력
 	$("#communityReplyArea").on("click", ".btnCommunityReReplyWriteFormOpen", function(){
-	//$(".btnCommunityReReplyWriteFormOpen").on("click", function(){
+		var target = $(this).val();
+		target = target.split(",");
+		
+		var targetNo = target[0];
+		var targetId = target[1];
+		var status = $("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style");
+		var communityParent = $("#communityReReplyParentNoAt" + targetNo).val();
+		alert(communityParent);
+		
+		alert(target+ " - " + targetNo + " - " + targetId + " - " + communityParent);
+		alert("답글을 달아주세요!" + targetNo + status);
+		if( status == "display : none"){
+			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : block");
+			$("#communityReReplyAt" + targetNo).val(targetNo);
+			$("#communityReplyTargetAt" + targetNo).val(targetId);
+			if( communityParent != '0' ){
+				$("#communityReReplyAt" + targetNo).val(communityParent);
+			}
+		}
+		else if( status == "display : block"){
+			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : none");
+		}	
+	});
+	
+// 커뮤니티 답글 수정폼 출력
+	$("#communityReplyArea").on("click", ".btnCommunityReReplyUpdateFormOpen", function(){
 		var target = $(this).val();
 		target = target.split(",");
 		
@@ -123,7 +148,7 @@ function replyAjaxAction(u, d){
 					let parentCommunityNo = value.communityNo;
 					
 					if(communityReReplyZeroCheck == 0){
-						var result = 
+						var result1 = 
 							"<div style='border:1px solid black'>"
 							+ "	작성자" + value.memberId + "<br>"
 							+ "	작성일" + value.communityRegDate + "<br>"
@@ -132,13 +157,22 @@ function replyAjaxAction(u, d){
 							+ "	글 번호" + value.communityNo + "<br>"
 							+ "	답글 여부" + value.communityReReply + "<br>"
 							+ '<button class="btnCommunityReReplyWriteFormOpen" value="' + value.communityNo + ',' + value.memberId + '">답글</button>'
-							+ '<input type="button" id="" value="수정">'
+							+ '<input type="hidden" id="communityReReplyParentNoAt' + value.communityNo + '" value="' + value.communityReReply + '">';
+							
+						if( value.categoryNo == -1 ){
+							var result2 = "";
+						}else{
+							var result2 = 
+							'<button class="btnCommunityReReplyUpdateFormOpen" value="' + value.communityNo + ',' + value.memberId + '">수정</button>'
 							+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
 							+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
 							+ '<input type="hidden" name="replyCommunityNo" value="'+value.communityNo+'">'
 							+ '<input type="submit" name="replyDelete">'
-							+ '</form>'
-							+ '<input type="button" id="" value="신고">'
+							+ '</form>';					
+						}							
+				
+						var result3 = 
+							'<input type="button" id="" value="신고">'
 							+ '<div id="communityReReplyWriteFormNo' + value.communityNo + '" style="display : none">'
 							+ '<form id="communityReplyWriteForm" name="communityReplyWriteForm" >'
 							+ '<input type="hidden" name="communityParentNo" id="communityParentNo" value="' + value.communityParentNo + '">'
@@ -153,7 +187,8 @@ function replyAjaxAction(u, d){
 							+ "</div>"
 							+ "</div>";
 							
-							$("#communityReplyList").append(result);		
+							var str = result1 + result2 + result3;
+							$("#communityReplyList").append(str);		
 							
 							$.each(resultData, function(index, value){
 								

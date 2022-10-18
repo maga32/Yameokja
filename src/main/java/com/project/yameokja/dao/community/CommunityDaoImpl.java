@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.project.yameokja.domain.Community;
 
 @Repository
-public class CommunityListDaoImpl implements CommunityListDao {
+public class CommunityDaoImpl implements CommunityDao {
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	private static final String NAME_SPACE = "com.project.yameokja.mappers.CommunityListMapper";
+	private static final String NAME_SPACE = "com.project.yameokja.mappers.CommunityMapper";
 	
 	// 커뮤니티 글 목록
 	@Override
@@ -77,35 +77,24 @@ public class CommunityListDaoImpl implements CommunityListDao {
 	// 커뮤니티 댓글 삭제
 	@Override
 	public void delCommunityReply(int no) {
-		/*List<Object> reReplyList = sqlSession.selectList(NAME_SPACE + ".getCommunityReReply", no); 
 		
-		String str = "";
-		for( int i=0; i < reReplyList.size(); i++) {
-			str += reReplyList.get(i);
-		}*/
-		sqlSession.delete(NAME_SPACE + ".delCommunityReply", no);
-	}
-
-	// 커뮤니티 댓글 삭제 - 답글이 있는 경우
-	@Override
-	public void updateCommunityReply(int no) {
-		
-		/*List<Integer> reReplyList = sqlSession.selectList(NAME_SPACE + ".getCommunityReReply", no); 
-		
-		String str = "";
-		for( int i=0; i < reReplyList.size(); i++) {
-			str += reReplyList.get(i);
+		int reReplyCount = sqlSession.selectOne(NAME_SPACE + ".countCommunityReReply", no); 
+		if( reReplyCount < 1) {
+			System.out.println("답글 없음, 답글 갯수 : " + reReplyCount);
+			sqlSession.delete(NAME_SPACE + ".delCommunityReply", no);
+			
+		}else {
+			System.out.println("답글 있음, 답글 갯수 : " + reReplyCount);
+			sqlSession.update(NAME_SPACE + ".delCommunityReplyType2", no);
 		}
-		System.out.println("communityListDao - reReplyList : " + str);
-		*/
-		sqlSession.update(NAME_SPACE + ".updateCommunityReply", no);
+
 	}
-	
 
-	
-	
-
-	
+	// 커뮤니티 댓글 작성자 출력
+	@Override
+	public String getCommunityReplyMemberId(int no) {
+		return sqlSession.selectOne(NAME_SPACE + ".getCommunityReplyMemberId", no);
+	}
 	
 }
 

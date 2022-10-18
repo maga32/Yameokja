@@ -49,7 +49,15 @@ INSERT INTO community (community_title, community_reg_date, community_reply_coun
 
 SELECT * FROM community;
 SELECT * From community ORDER BY community_no DESC;
-UPDATE community SET community_re_reply = 355 WHERE community_no = 360;
+UPDATE community SET category_no = '-1', community_content = "삭제된 메세지입니다." WHERE community_no = 448;
+
+SELECT community_re_reply as communityReReply FROM community
+		WHERE community_re_reply = 0;
+        
+SELECT * FROM community
+WHERE community_parent_no = 287 AND category_no <= '0';
+        
+        
 
 COMMIT;
 

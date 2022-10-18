@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.yameokja.domain.Chat;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.service.chat.ChatService;
-import com.project.yameokja.service.member.MemberLoginService;
+import com.project.yameokja.service.member.MemberService;
 
 @Controller
 public class ChatController {
@@ -28,7 +28,7 @@ public class ChatController {
 	ChatService chatService;
 	
 	@Autowired
-	MemberLoginService memberLoginService;
+	MemberService memberLoginService;
 	
 	@RequestMapping("chat/chatList")
 	public String chatList(Model model, HttpSession session) {

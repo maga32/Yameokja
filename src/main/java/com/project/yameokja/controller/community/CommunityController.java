@@ -1,6 +1,6 @@
 package com.project.yameokja.controller.community;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.yameokja.domain.Community;
-import com.project.yameokja.service.community.CommunityListService;
+import com.project.yameokja.service.community.CommunityService;
 
 
 @Controller
-public class CommunityListController {
+public class CommunityController {
 	
 	@Autowired
-	CommunityListService communityListService;
+	CommunityService communityListService;
 	
 	private final static String DEFAULT_PATH = "/resources/upload/";
 
@@ -182,10 +182,22 @@ public class CommunityListController {
 	// 커뮤니티 댓글 삭제
 	@RequestMapping(value="/replyDelete.ajax", method=RequestMethod.POST)
 	@ResponseBody
-	public List<Community> replyDeleteAjax(
-			int replyCommunityNo, int replyCommunityParentNo) {
+	public List<Community> replyDeleteAjax(HttpServletResponse response, HttpSession session,
+			int replyCommunityNo, int replyCommunityParentNo) throws IOException {
 		
-		communityListService.delCommunityReply(replyCommunityNo);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		String memberId = communityListService.getCommunityReplyMemberId(replyCommunityNo);
+		
+		if( memberId == (session.getAttribute("memberId"))){
+			communityListService.delCommunityReply(replyCommunityNo);
+		}else {
+			out.println("<script>");
+			out.println("alert('작성자 본인만 삭제할 수 있습니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+		}
 		
 		Community co = new Community();
 		co.setCommunityParentNo(replyCommunityParentNo);
