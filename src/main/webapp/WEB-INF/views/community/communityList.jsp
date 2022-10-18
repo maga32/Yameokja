@@ -2,25 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/community.js"></script>
-<html>
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta charset="UTF-8">
-  <title>동네 게시판</title>
-</head>
-<body>
-  <div class="row">
-    
-    <div class="d-none d-sm-block col-sm-1 col-lg-3">
-    </div>
-    
-    <div class="col-12 col-sm-10 col-lg-6">
+<article>      
       <div class="row">
-      
-        <div class="col-12 bg-warning py-2">대충 헤더 들어갈곳</div>
+        <div>
         <div>
         	<a href="communityList?categoryNo=all">전체</a>
         	<a href="communityList?categoryNo=101">수다</a>
@@ -227,10 +212,5 @@
 
 	        <div class="col-12 bg-primary">가게 리스트 들어갈 곳</div>
 	        </div>
-        </div>
 
-    <div class="d-none d-sm-block col-sm-1 col-lg-3">
-    </div>
-    
-</body>
-</html>
+</article>

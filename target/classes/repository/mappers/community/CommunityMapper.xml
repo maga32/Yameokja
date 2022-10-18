@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="com.project.yameokja.mappers.CommunityListMapper">
+<mapper namespace="com.project.yameokja.mappers.CommunityMapper">
 	
 <!-- 커뮤니티 글 목록 -->
 	<select id="getCommunity" resultType="Community" resultMap="CommunityResultMap" parameterType="hashmap">
@@ -94,13 +94,33 @@
 <!-- 커뮤니티 댓글 출력 -->
 	<select id="getCommunityReply" parameterType="Community" resultMap="CommunityResultMap">
 		SELECT * FROM community
-		WHERE community_parent_no = #{ communityParentNo } AND category_no = '0'
+		WHERE community_parent_no = #{ communityParentNo } AND category_no <![CDATA[<=]]>  '0'
 	</select>
 	
-<!-- 커뮤니티 댓글 삭제 -->
+<!-- 커뮤니티 댓글 삭제 - 답글이 없는경우 -->
 	<delete id="delCommunityReply">
 		DELETE From community WHERE community_no = #{ no }
 	</delete>
+	
+<!--  커뮤니티 댓글 삭제 - 답글이 있는경우 -->
+	<update id="delCommunityReplyType2">
+		UPDATE community
+			SET category_no = '-1', community_content = "삭제된 메세지입니다."
+		WHERE community_no = #{no}
+	</update>	
+	
+	
+<!-- 커뮤니티 댓글 reReply 갯수 출력 -->
+	<select id="countCommunityReReply" resultType="Integer">
+		SELECT COUNT(community_re_reply) FROM community
+		WHERE community_re_reply = #{no}
+	</select>
+	
+<!-- 커뮤니티 댓글 작성자 - communityNo기준 -->	
+	<select id="getCommunityReplyMemberId" resultType="String">
+		SELECT member_id as memberId FROM community
+		WHERE community_no = #{no}
+	</select>
 
 	
 	<resultMap type="Community" id="CommunityResultMap">

@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.yameokja.domain.Member;
-import com.project.yameokja.service.member.MemberLoginService;
+import com.project.yameokja.service.member.MemberService;
 
 @Controller
 public class MemberLoginController {
 
 	@Autowired
-	MemberLoginService memberLoginService;
+	MemberService memberService;
 	
 	// 로그인 뷰
 	@RequestMapping("/loginForm")
@@ -37,7 +37,7 @@ public class MemberLoginController {
 			@RequestParam("memberPassword") String password,
 			HttpSession session, HttpServletResponse response) throws IOException {
 		
-		int result = memberLoginService.login(id, password);
+		int result = memberService.login(id, password);
 		
 		if(result == 2) {
 			response.setContentType("text/html; charset=utf-8");
@@ -59,7 +59,7 @@ public class MemberLoginController {
 			
 			return null;
 		}
-		Member member = memberLoginService.getMember(id);
+		Member member = memberService.getMember(id);
 		
 		session.setAttribute("member", member);
 		session.setAttribute("memberId", member.getMemberId());

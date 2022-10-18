@@ -47,11 +47,21 @@ INSERT INTO community (community_title, community_reg_date, community_reply_coun
 INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content09', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId09', 'nickname09');
 INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES (NULL, '2017-12-01 05:44:32', NULL, NULL, 'community_content10', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId10', 'nickname10');
 
+SELECT * FROM community;
+SELECT * From community ORDER BY community_no DESC;
+UPDATE community SET category_no = '-1', community_content = "삭제된 메세지입니다." WHERE community_no = 448;
 
+SELECT community_re_reply as communityReReply FROM community
+		WHERE community_re_reply = 0;
+        
+SELECT * FROM community
+WHERE community_parent_no = 287 AND category_no <= '0';
+        
+        
 
 COMMIT;
 
-SELECT * FROM community;
+
 
 INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ('제목 자리', '2017-12-01 05:44:32', NULL, NULL, 'community_content01', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId01', 'nickname01');
 INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ('제목 자리', '2017-12-01 05:44:32', NULL, NULL, 'community_content01', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '1', 'memberId01', 'nickname01');

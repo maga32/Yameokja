@@ -1,23 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/formcheck.js"></script>
 <script src="resources/js/member.js"></script>
-<html>
-<head>
-<title>회원가입</title>
-<style type="text/css">
-#memberPasswordWarning {
-	visibility: visible;
-}
+<article>
+<!-- <style type="text/css"> -->
+<!-- /* #memberPasswordWarning { */ -->
+<!-- /* 	visibility: visible; */ -->
+<!-- /* } */ -->
 
-/* div[class*=address2] {
-	visibility: hidden;
-} */
-</style>
-</head>
-<body>
-
+<!-- /* /* div[class*=address2] { */ -->
+<!-- /* 	visibility: hidden; */ -->
+<!-- /* } */ */ -->
+<!-- </style> -->
 	<h1>회원가입</h1>
 	* 표시는 필수입력사항
 	<hr>
@@ -129,7 +123,4 @@
 			value="회원가입">
 
 	</form>
-
-</body>
-
-</html>
+</article>

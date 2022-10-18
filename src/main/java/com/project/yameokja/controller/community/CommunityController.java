@@ -1,6 +1,6 @@
 package com.project.yameokja.controller.community;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.yameokja.domain.Community;
-import com.project.yameokja.service.community.CommunityListService;
+import com.project.yameokja.service.community.CommunityService;
 
 
 @Controller
-public class CommunityListController {
+public class CommunityController {
 	
 	@Autowired
-	CommunityListService communityListService;
+	CommunityService communityListService;
 	
 	private final static String DEFAULT_PATH = "/resources/upload/";
 
@@ -57,7 +57,7 @@ public class CommunityListController {
 		return "community/communityList";
 	}
 	
-	// 수다글 작성폼 - communityWriteController 
+	// 수다글 작성폼
 	@RequestMapping("community101WriteForm")
 	public String community101WriteForm(HttpSession session,
 			HttpServletResponse respones, PrintWriter out) {
@@ -164,8 +164,16 @@ public class CommunityListController {
 	// 커뮤니티 댓글 작성
 	@RequestMapping(value="/replyWrite.ajax", method=RequestMethod.POST)
 	@ResponseBody
-	public List<Community> replyWriteAjax(Community community) throws IOException {
+	public List<Community> replyWriteAjax(Community community, HttpSession session) throws IOException {
 
+		// 답글의 경우 session에 있는 작성자 정보를 못가져와서, if문으로 제어
+		if( community != null) {
+			if(community.getMemberId() == null) {
+				community.setMemberId((String) session.getAttribute("memberId"));
+				community.setMemberNickname((String) session.getAttribute("memberNickname"));
+			}
+		}
+		
 		communityListService.addCommunityReply(community);
 		
 		return communityListService.getCommunityReply(community);
@@ -174,10 +182,22 @@ public class CommunityListController {
 	// 커뮤니티 댓글 삭제
 	@RequestMapping(value="/replyDelete.ajax", method=RequestMethod.POST)
 	@ResponseBody
-	public List<Community> replyDeleteAjax(
-			int replyCommunityNo, int replyCommunityParentNo) {
+	public List<Community> replyDeleteAjax(HttpServletResponse response, HttpSession session,
+			int replyCommunityNo, int replyCommunityParentNo) throws IOException {
 		
-		communityListService.delCommunityReply(replyCommunityNo);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		String memberId = communityListService.getCommunityReplyMemberId(replyCommunityNo);
+		
+		if( memberId == (session.getAttribute("memberId"))){
+			communityListService.delCommunityReply(replyCommunityNo);
+		}else {
+			out.println("<script>");
+			out.println("alert('작성자 본인만 삭제할 수 있습니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+		}
 		
 		Community co = new Community();
 		co.setCommunityParentNo(replyCommunityParentNo);

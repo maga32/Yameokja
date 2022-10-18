@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" href="resources/css/blockList.css" />
+<!-- <script type="text/javascript" src="resources/js/chat.js"></script> -->
 <article>
 <form name="blockListForm" id="blockListForm">
 	<input type="hidden" name="memberId" value="${ member.memberId }"/>
@@ -46,7 +48,7 @@
 <!-- 	끝	blockList 반복구간 -->		
 	</div>
 	<div class="buttonFrame col-12 my-3">
-		<button type="button" class="closeButton btn">확인</button>
+		<a class="closeButton btn" onclick='window.close()'>확인</a>
 	</div>
 </div><!--전체틀 끝 -->
 </div>

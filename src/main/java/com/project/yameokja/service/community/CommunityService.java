@@ -7,14 +7,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.yameokja.dao.community.CommunityListDao;
+import com.project.yameokja.dao.community.CommunityDao;
 import com.project.yameokja.domain.Community;
 
 @Service
-public class CommunityListService {
+public class CommunityService {
 
 	@Autowired
-	CommunityListDao communityListDao;
+	CommunityDao communityListDao;
 	
 	private static final int PAGE_SIZE = 10;
 	private static final int PAGE_GROUP = 10;
@@ -91,6 +91,11 @@ public class CommunityListService {
 	// 커뮤니티 댓글 삭제
 	public void delCommunityReply(int no) {
 		communityListDao.delCommunityReply(no);
+	}
+	
+	// 커뮤니티 댓글 작성자 출력
+	public String getCommunityReplyMemberId(int no) {
+		return communityListDao.getCommunityReplyMemberId(no);
 	}
 	
 	
