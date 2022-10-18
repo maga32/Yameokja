@@ -2,8 +2,14 @@ package com.project.yameokja.dao.member;
 
 import com.project.yameokja.domain.Member;
 
-public interface MemberJoinDao {
+public interface MemberDao {
 
+	// 로그인
+	public int login(String memberId, String password);
+	
+	// 회원정보 불러오기
+	public Member getMember(String memberId);
+	
 	// 회원가입
 	public void addMember(Member member);
 	
@@ -12,4 +18,5 @@ public interface MemberJoinDao {
 	
 	// 닉네임 중복확인
 	public boolean nicknameOverlapCheck(String memberNickname);
+	
 }

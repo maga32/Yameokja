@@ -18,17 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.yameokja.domain.Member;
-import com.project.yameokja.service.member.MemberJoinService;
-import com.project.yameokja.service.member.MemberLoginService;
+import com.project.yameokja.service.member.MemberService;
 
 @Controller
-public class MemberJoinController {
+public class MemberController {
 	
 	@Autowired
-	MemberJoinService memberJoinService;
-	
-	@Autowired
-	MemberLoginService memberLoginService;
+	MemberService memberService;
 
 	private static final String DEFAULT_PATH = "/resources/upload/userProfile";
 
@@ -82,7 +78,7 @@ public class MemberJoinController {
 		out.println("alert('회원가입이 완료되었습니다.');");
 		out.println("</script>");
 		
-		memberJoinService.addMember(m);
+		memberService.addMember(m);
 		
 		return "redirect:/main";
 	};
@@ -104,7 +100,7 @@ public class MemberJoinController {
 			return null;
 		}
 		
-		boolean overlap = memberJoinService.idOverlapCheck(memberId);
+		boolean overlap = memberService.idOverlapCheck(memberId);
 
 		model.addAttribute("overlap", overlap);
 		model.addAttribute("memberId", memberId);
@@ -131,7 +127,7 @@ public class MemberJoinController {
 			return null;
 		}
 		
-		boolean overlap = memberJoinService.nicknameOverlapCheck(memberNickname);
+		boolean overlap = memberService.nicknameOverlapCheck(memberNickname);
 		
 		model.addAttribute("overlap", overlap);
 		model.addAttribute("memberNickname", memberNickname);
