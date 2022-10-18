@@ -87,4 +87,9 @@ public class ChatServiceImpl implements ChatService {
 		chatDao.chatLeave(chatNo, orderCheck);
 	}
 
+	@Override
+	public void chatLeave(String chatIds, String orderCheck) {
+		chatDao.chatLeave(chatIds, orderCheck);
+	}
+
 }

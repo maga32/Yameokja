@@ -50,13 +50,20 @@
 				</div>
 				<div class="p-3">
 					<iframe src="chatting?chatIds=${ chatIds }" width="100%" height="400px" id="chattingFrame"></iframe>
-					<form id="chatSend" name="chatSend">
-						<input type="hidden" name="chatIds" id="chatIds" value="${ chatIds }">
-						<div class="input-group pt-1">
-							<textarea class="form-control" rows="4" cols="50" name="chatContent" id="chatContent"></textarea>
-							<button id="chatSendConfirm" class="input-group-text btn btn-secondary px-4">입력</button>
+					<c:if test="${ not isBlockedMe }">
+						<form id="chatSend" name="chatSend">
+							<input type="hidden" name="chatIds" id="chatIds" value="${ chatIds }">
+							<div class="input-group pt-1">
+								<textarea class="form-control" rows="4" cols="50" name="chatContent" id="chatContent"></textarea>
+								<button id="chatSendConfirm" class="input-group-text btn btn-secondary px-4">입력</button>
+							</div>
+						</form>
+					</c:if>
+					<c:if test="${ isBlockedMe }">
+						<div class="text-center py-4">
+							나를 차단한 상대입니다.
 						</div>
-					</form>
+					</c:if>
 				</div>
 			</div>
 		</div>

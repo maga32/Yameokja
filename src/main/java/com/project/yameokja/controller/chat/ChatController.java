@@ -39,6 +39,7 @@ public class ChatController {
 		return "chat/chatList";
 	}
 	
+	// 채팅방 뷰
 	@RequestMapping("chat/chatDetail")
 	public String chatDetail(Model model, HttpSession session, HttpServletResponse response, String chatIds) throws IOException {
 		String memberId = (String)session.getAttribute("memberId");
@@ -75,11 +76,12 @@ public class ChatController {
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("chatIds", chatIds);
 		model.addAttribute("target", memberLoginService.getMember(targetId));
+		model.addAttribute("isBlockedMe", memberLoginService.isBlockedMe(memberId, targetId));
 		
 		return "chat/chatDetail";
 	}
 	
-	
+	//채팅방 내 채팅내용 뷰
 	@RequestMapping("chat/chatting")
 	public String chatting(Model model, HttpSession session, String chatIds) {
 		String memberId = (String)session.getAttribute("memberId");
@@ -109,7 +111,7 @@ public class ChatController {
 		return "chat/chatting";
 	}
 	
-	
+	// 채팅보내기 ajax
 	@RequestMapping("chat/chatSend.ajax")
 	@ResponseBody
 	public Map<String, Integer> chatSend(HttpSession session, Chat chat) {
@@ -139,6 +141,7 @@ public class ChatController {
 		return map;
 	}
 	
+	// 단일채팅 삭제 ajax
 	@RequestMapping("chat/chatDelete.ajax")
 	@ResponseBody
 	public Map<String, Integer> chatDelete(HttpSession session, int chatNo) {
@@ -165,5 +168,44 @@ public class ChatController {
 		map.put("result", 1);
 		
 		return map;
+	}
+	
+	// 채팅방 나가기
+	@RequestMapping("chat/chatLeave")
+	public String chatLeave(HttpSession session, HttpServletResponse response, String chatIds) throws IOException {
+		String memberId = (String)session.getAttribute("memberId");
+		String[] ids = chatIds.split(",");
+		String orderCheck = "";
+		
+		//아이디0이 아이디1보다 사전순으로 큰경우(수동입력 등)
+		if(ids[0].compareTo(ids[1]) >= 0) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('잘못된 접근입니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
+		
+		if(ids[0].equals(memberId)) {
+			orderCheck = "id0";
+		} else if(ids[1].equals(memberId)) {
+			orderCheck = "id1";
+		} else {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('본인의 채팅방만 접근할 수 있습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
+		
+		chatService.chatLeave(chatIds, orderCheck);
+		
+		return "redirect:chat/chatList";
 	}
 }
