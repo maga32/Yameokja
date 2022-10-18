@@ -1,0 +1,63 @@
+@charset "UTF-8";
+h2{
+	font-size: 50px;
+	font-weight: 900;
+	text-align: center;
+}
+.legend{
+	color: #A4A4A4;
+	border-bottom: 2px solid #B8BBC0;
+	padding: 10px 0 10px;
+	margin: 10px 0 10px;
+	
+}
+.login{
+	
+	text-align: left;
+}
+.inlineBlock{
+	display: inline-block;
+	align-items: center;
+	
+}
+
+.labelStyle{
+	color: #A4A4A4;
+	border-bottom: 1px solid #A4A4A4;
+	margin: 10px;
+	text-align: left;
+	
+}
+#memberId{
+	border: 1px solid white;
+	border-bottom: 1px solid #A4A4A4;
+	background-color: white;
+}
+#memberPassword{
+	border: 1px solid white;
+	border-bottom: 1px solid #A4A4A4;
+	background-color: white;
+}
+.loginButton{
+	background-color: #F58500;
+	color: white;
+	font-weight: 600;
+	border-radius: 6px;
+	box-sizing: border-box;
+	padding: 6px 12px 6px;
+	border: 2px solid #E3E5E9;
+	font-size: 30px;
+}
+#btn2{
+	text-align: center;
+}
+#btnJoin{
+	color: #7A7A80;
+	border: none;
+	background-color: white;
+}
+#btnSearch{
+	color: #7A7A80;
+	border: none;
+	background-color: white;
+}
