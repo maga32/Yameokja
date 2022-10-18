@@ -4,15 +4,15 @@
 
 <mapper namespace="com.project.mappers.StoreMapper">
 
- <select id="storeList" resultType="Store" resultMap="storeResultMap">
-	SELECT * FROM store
-		
-	ORDER BY store_no DESC
+ 	<select id="storeList" resultType="Store" resultMap="storeResultMap">
+		SELECT * FROM store
+			WHERE category_no = #{category_no}
+		ORDER BY store_no DESC
 	</select>
 	
-<select id="getStore" resultType="Store" resultMap="storeResultMap">
-	SELECT * FROM store 
-		WHERE store_no = #{store_no}
+	<select id="getStore" resultType="Store" resultMap="storeResultMap">
+		SELECT * FROM store 
+			WHERE store_no = #{store_no}
 	</select>
 	
 	<insert id="insertStore" parameterType="Store"
@@ -46,9 +46,6 @@
     			#{categoryNo},
     			"memberId01")
 	</insert>
-	
-	
-	
 	
 	
 	

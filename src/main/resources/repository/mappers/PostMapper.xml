@@ -4,11 +4,6 @@
 
 <mapper namespace="com.project.mappers.StoreMapper">
  
-	<!-- 가게 정보 상세의 리스트 -->
-<!-- <select id="getPost" resultType="Post" resultMap="PostResultMap">
-	SELECT * FROM post
-		WHERE store_no = #{storeNo}
-</select> -->
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="p_no" />
@@ -22,7 +17,8 @@
 		<result property="postIsPost" column="p_is_post" />
 		<result property="postStar" column="p_star" />
 		<result property="postUpCount" column="p_up_count" />
-		<result property="postUpList" column="p_up_list" />	
+		<result property="postUpList" column="p_up_list" />
+		<result property="storeNo" column="store_no" />
 	</resultMap>
 	
 </mapper>

@@ -26,9 +26,9 @@ public class StoreController {
 
 	// 가게 리스트
 	@RequestMapping("/storeList")
-	public String StoreList(Model model) {
+	public String StoreList(Model model,int categoryNo) {
 
-		List<Store> sList = StoreService.storeList();
+		List<Store> sList = StoreService.storeList(categoryNo);
 		model.addAttribute("sList", sList);
 
 		return "store/storeList";
@@ -51,7 +51,7 @@ public class StoreController {
 			String storeFileMenu, String storeAddress, String storeTime,
 			String storeDayOff, String storeParking, int categoryNo) { 
 		
-		Store store new Store();
+		Store store =  new Store();
 	
 		store.setStoreName(storeName); 
 		store.setStoreLatitude(storeLatitude);
@@ -69,5 +69,4 @@ public class StoreController {
 		return "store/storeWrite"; 
 	 }
 	 
-
 }

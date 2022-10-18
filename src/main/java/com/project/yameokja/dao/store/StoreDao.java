@@ -6,8 +6,8 @@ import com.project.yameokja.domain.Store;
 
 public interface StoreDao {
 	
-	// 가게 리스트 불러오는 메소드
-	public abstract List<Store> StoreList();
+	// 음식종류에 해당하는 가게 리스트
+	public abstract List<Store> StoreList(int categoryNo);
 	
 	// 가게 정보 상세
 	public abstract Store getStore(int storeNo);
@@ -17,6 +17,5 @@ public interface StoreDao {
 		
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);
-	
 	
 }

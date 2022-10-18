@@ -112,8 +112,8 @@
 							
 						</div>
 						
-						<div class="row d-flex justify-content-end border border-primary mt-1">
-							
+						<div class="row d-flex border border-primary mt-1">
+						이제 여기에 리뷰목록/댓글목록을 불러올것임	
 						
 						
 						</div>

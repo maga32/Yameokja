@@ -1,8 +1,11 @@
 package com.project.yameokja.dao.store;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.yameokja.domain.Post;
 
@@ -12,17 +15,25 @@ public class PostDaoImpl implements PostDao {
 	
 	private SqlSessionTemplate sqlSession;
 	
+	@Autowired
+	public void setSqlSession(SqlSessionTemplate sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+	
 	
 	@Override
-	public List<Post> postList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Post> postList(int categoryNo, int storeNo) {
+		
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put("categoryNo", categoryNo);
+		params.put("storeNo", storeNo);
+		
+		return sqlSession.selectList(NAME_SPACE + ".storeDetail", params); 
 	}
 
 	@Override
 	public Post getPost(int postNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(NAME_SPACE + ".storeDetail");
 	}
 
 	@Override

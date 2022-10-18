@@ -15,25 +15,22 @@ public class StoreServiceImpl implements StoreService {
 	@Autowired
 	private StoreDao StoreDao;
 	
+	
 	public void setStoreDao(StoreDao StoreDao) {
 		this.StoreDao = StoreDao;
 	}
 
 	@Override
-	public List<Store> storeList() {
-		return StoreDao.StoreList();
+	public List<Store> storeList(int categoryNo) {
+		return StoreDao.StoreList(categoryNo);
 	}
 
 	
 	@Override
 	public Store getStore(int storeNo) {
-		return StoreDao.getStoreInfo(storeNo);
+		return StoreDao.getStore(storeNo);
 	}
 
-	@Override
-	public List<Post> postList(int storeNo, int postNo) {
-		return PostDao.get;
-	}
 	
 	@Override
 	public void insertStore(Store store) {
@@ -42,7 +39,7 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public void updateStore(Store store) {
-		// TODO Auto-generated method stub
+		StoreDao.insertStore(store);
 		
 	}
 }

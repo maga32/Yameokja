@@ -23,8 +23,8 @@ public class StoreDaoImpl implements StoreDao {
 	
 	//가게 리스트
 	@Override
-	public List<Store> StoreList() {
-		return sqlSession.selectList(NAME_SPACE + ".storeList");
+	public List<Store> StoreList(int categoryNo) {
+		return sqlSession.selectList(NAME_SPACE + ".storeList", categoryNo);
 	}
 	
 	//가게 정보

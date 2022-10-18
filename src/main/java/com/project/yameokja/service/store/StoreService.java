@@ -8,7 +8,7 @@ import com.project.yameokja.domain.Store;
 public interface StoreService {
 	
 	// 가게 리스트
-	public abstract List<Store> storeList();
+	public abstract List<Store> storeList(int categoryNo);
 
 	// 가게 정보
 	public abstract Store getStore(int storeNo);
@@ -18,10 +18,6 @@ public interface StoreService {
 	
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);
-	
-	// 가게 정보에서 리뷰 리스트
-	public abstract List<Post> postList(int storeNo, int postNo);
-		
 
 	// 가게 정보에서 가게 댓글 리스트
 	

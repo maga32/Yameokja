@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <article>
 	<form name="storeListForm" id="storeListForm">
-		<input type="hidden" name="categoryNo" value="${ store.category_no }">
+		<input type="hidden" name="categoryNo" value="${ store.categoryNo }">
 	</form>
 	<div class="row">
     
