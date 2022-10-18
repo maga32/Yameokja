@@ -3,14 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="resources/js/community.js"></script>
-<html>
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta charset="UTF-8">
-  <title>수다글 상세보기</title>
-</head>
-<body>
+<article>
 	<!-- 작성자 정보, 제목 -->
 	<div>
 		<h4>
@@ -21,7 +14,7 @@
 		<img class="rounded-circle"
 			src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
 			alt="..." />
-		<div>닉네임 : ${ memberNickname }</div>
+		<div>닉네임 : ${ co.memberNickname }</div>
 		<div>작성일 : ${ co.communityRegDate }</div>
 		<div>조회수 : ${ co.communityReadCount }</div>
 		<div>
@@ -59,35 +52,55 @@
 	</div>
 	
 <!-- 댓글 목록 -->
-	<div id="communityReplyList" name="communityReplyList">
-	<c:forEach var="re" items="${ coReplyList }" >
-		
-		
-			<div class="flex-shrink-0">
-				<img class="rounded-circle"
-					src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
-					alt="..." />
-			</div>
-			<div class="ms-3">
-				<!--  댓글 하위 데이터 / 댓글 삭제, 답글 -->
-				<div class="fw-bold">
-					${re.memberNickname}
-					${re.communityRegDate }
-					<input type="button" id="" value="답글">
-					<input type="button" id="" value="수정">
-					<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">
-						<input type="hidden" name="replyCommunityParentNo" value="${ co.communityNo }">
-						<input type="hidden" name="replyCommunityNo" value="${ re.communityNo }">
-						<input type="submit" name="replyDelete">
-					</form>
-					<input type="button" id="" value="신고">
+	<div id="communityReplyArea">
+		<div id="communityReplyList">
+		<c:forEach var="re" items="${ coReplyList }" >
+			
+			<div style="border: 1px solid black">
+				<div class="flex-shrink-0">
+					<img class="rounded-circle"
+						src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"
+						alt="..." />
 				</div>
-				${re.communityContent}
-			</div>
-		
-	</c:forEach>
+				<div class="ms-3">
+					<!--  댓글 하위 데이터 / 댓글 삭제, 답글 -->
+					<div class="fw-bold">
+						닉네임 : ${re.memberNickname}
+						작성일 : ${re.communityRegDate }
+						글 번호 : ${re.communityNo}
+						답글 여부 : ${re.communityReReply}
+						<button class="btnCommunityReReplyWriteFormOpen" value="${ re.communityNo },${re.memberId}">답글</button>
+	<!-- 변경1 -->
+						<button class="btnCommunityReReplyUpdateFormOpen" value="${ re.communityNo },${re.memberId}">수정</button>
+						<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">
+							<input type="hidden" name="replyCommunityParentNo" value="${ co.communityNo }">
+							<input type="hidden" name="replyCommunityNo" value="${ re.communityNo }">
+							<input type="submit" name="replyDelete">
+						</form>
+						<input type="button" id="" value="신고">
+					</div>
+					${re.communityContent}
+				</div>
+				
+	<!-- 답글 입력폼 -->
+				<div id="communityReReplyWriteFormNo${ re.communityNo }" style="display : none">
+					<form id="communityReplyWriteForm" name="communityReplyWriteForm" >
+						<input type="hidden" name="communityParentNo" id="communityParentNo" value="${co.communityNo}">
+						<input type="hidden" name="communityReReply" id="communityReReplyAt${ re.communityNo }" value=0>
+						<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt${ re.communityNo }"	 value="">
+	
+						<div>
+							<textarea id="communityReplyContent" name="communityContent" placeholder="댓글을 입력해주세요">
+							</textarea>
+							<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">
+						</div>
+					</form>
+				</div>
+	<!-- 답글 입력폼 end -->
+				
+				
+				</div>
+		</c:forEach>
+		</div>
 	</div>
-
-
-</body>
-</html>
+</article>

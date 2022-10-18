@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.yameokja.dao.member.MemberLoginDao;
+import com.project.yameokja.dao.member.MemberDao;
 import com.project.yameokja.dao.chat.ChatDao;
 import com.project.yameokja.domain.Chat;
 import com.project.yameokja.domain.Member;
@@ -17,7 +17,7 @@ import com.project.yameokja.domain.Member;
 public class ChatServiceImpl implements ChatService {
 	
 	ChatDao chatDao;
-	MemberLoginDao memberLoginDao;
+	MemberDao memberLoginDao;
 	
 	@Autowired
 	public void setChatDao(ChatDao chatDao) {
@@ -25,7 +25,7 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Autowired
-	public void setMemberLoginDao(MemberLoginDao memberLoginDao) {
+	public void setMemberLoginDao(MemberDao memberLoginDao) {
 		this.memberLoginDao = memberLoginDao;
 	}
 

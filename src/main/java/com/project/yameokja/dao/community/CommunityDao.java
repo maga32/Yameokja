@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.yameokja.domain.Community;
 
-public interface CommunityListDao {
+public interface CommunityDao {
 	
 	// 커뮤니티 글 목록
 	public List<Community> getCommunity(int startRow, int num, String type, String keyword, String categoryNo);
@@ -34,5 +34,8 @@ public interface CommunityListDao {
 	
 	// 커뮤니티 댓글 삭제
 	public void delCommunityReply(int no);
+	
+	// 커뮤니티 댓글 작성자 출력
+	public String getCommunityReplyMemberId(int no);
 	
 }
