@@ -28,7 +28,7 @@ public class ChatController {
 	ChatService chatService;
 	
 	@Autowired
-	MemberService memberLoginService;
+	MemberService memberService;
 	
 	@RequestMapping("chat/chatList")
 	public String chatList(Model model, HttpSession session) {
@@ -36,7 +36,7 @@ public class ChatController {
 		
 		model.addAllAttributes(chatList);
 		
-		return "chat/chatList";
+		return "forward:/WEB-INF/views/chat/chatList.jsp";
 	}
 	
 	// 채팅방 뷰
@@ -75,10 +75,10 @@ public class ChatController {
 		
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("chatIds", chatIds);
-		model.addAttribute("target", memberLoginService.getMember(targetId));
-		model.addAttribute("isBlockedMe", memberLoginService.isBlockedMe(memberId, targetId));
+		model.addAttribute("target", memberService.getMember(targetId));
+		model.addAttribute("isBlockedMe", memberService.isBlockedMe(memberId, targetId));
 		
-		return "chat/chatDetail";
+		return "forward:/WEB-INF/views/chat/chatDetail.jsp";
 	}
 	
 	//채팅방 내 채팅내용 뷰
@@ -106,9 +106,9 @@ public class ChatController {
 		
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("chatTargetList", chatService.chatTargetList(chatIds, orderCheck));
-		model.addAttribute("target", memberLoginService.getMember(targetId));
+		model.addAttribute("target", memberService.getMember(targetId));
 		
-		return "chat/chatting";
+		return "forward:/WEB-INF/views/chat/chatting.jsp";
 	}
 	
 	// 채팅보내기 ajax
@@ -206,6 +206,6 @@ public class ChatController {
 		
 		chatService.chatLeave(chatIds, orderCheck);
 		
-		return "redirect:chat/chatList";
+		return "redirect:chatList";
 	}
 }

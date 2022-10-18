@@ -60,6 +60,18 @@
 			</if>
 	</update>
 	
+	<update id="chatLeaveAll">
+		UPDATE chat
+			<if test="orderCheck == 'id0'">
+			SET chat_leave_check = chat_leave_check +1
+				WHERE chat_ids = #{chatIds} AND chat_leave_check = 1 OR chat_leave_check = -1
+			</if>
+			<if test="orderCheck == 'id1'">
+			SET chat_leave_check = chat_leave_check -2
+				WHERE chat_ids = #{chatIds} AND chat_leave_check = 1 OR chat_leave_check = 2
+			</if>
+	</update>
+	
 	<delete id="chatDelete">
 		DELETE FROM chat
 			WHERE chat_no = #{chatNo}

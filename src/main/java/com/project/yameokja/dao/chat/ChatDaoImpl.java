@@ -74,7 +74,7 @@ public class ChatDaoImpl implements ChatDao {
 	@Override
 	public void chatLeave(String chatIds, String orderCheck) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("chatNo", chatIds);
+		map.put("chatIds", chatIds);
 		map.put("orderCheck", orderCheck);
 		
 		sqlSession.update(NAME_SPACE + ".chatLeaveAll", map);
