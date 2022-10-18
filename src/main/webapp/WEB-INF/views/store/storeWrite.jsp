@@ -33,7 +33,7 @@
 	            				<div class="col-12"><h3 class="text-start">가게 이름</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
-		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
+		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" name="storeName"></div>
 		            				<div class="col-3"><button class="col-12">중복 확인</button>
 		            				</div>
 	            				</div>
@@ -41,86 +41,86 @@
 	            				<div class="col-12"><h3 class="text-start">전화번호</h3></div>
 	            				<div class="row mb-4">
 		            				<div class="col-3">
-			            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
+			            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" name="storePhone1">
 			            			</div>
 			            			<div class="col-1 text-center fs-5">
 			            			-
 			            			</div>
 			            			<div class="col-3">
-			            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
+			            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" name="storePhone2">
 			            			</div>
 			            			<div class="col-1 text-center fs-5">
 			            			-
 			            			</div>
 			            			<div class="col-3">
-			            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
+			            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" name="storePhone3">
 			            			</div>
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">주소</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
-		            				<input class="col-12 form-control-sm mb-1" type="text" aria-label=".form-control-sm example"></div>
+		            				<input class="col-12 form-control-sm mb-1" type="text" aria-label=".form-control-sm example" name="storeAddress1"></div>
 		            				<div class="col-3"><button class="col-12">주소 확인</button>
 		            				</div>
 		            				<div class="col-9">
-		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
+		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" name="storeAddress2"></div>
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">맛집 종류</h3></div>
 	            			<div class="row mb-4">
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">한식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=1>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">양식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=2>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">중식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=3>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">일식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=4>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            			</div>
 		            			
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">한식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=1>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">양식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=2>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">중식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=3>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">일식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=4>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            			</div>
 		            			
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">한식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=1>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">양식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=2>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">중식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value=3>
+			            					<label class="form-check-label" for="categoryNo" >한식</label>
 		            				</div>
-
+		            				
 		            			</div>
 		            			
 	            			</div>
@@ -128,14 +128,14 @@
 	            				<div class="col-12"><h3 class="text-start">대표 사진</h3></div>
 	            				<div class="row mb-4">
 		            				<div class="col-12">
-										  <input class="form-control" type="file" id="formFile">
+										  <input class="form-control" type="file" name="storeFileMain">
 									</div>
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">메뉴판 사진</h3></div>
 	            				<div class="row mb-4">
 		            				<div class="col-12">
-										  <input class="form-control" type="file" id="formFile">
+										  <input class="form-control" type="file" name="storeFileMenu">
 									</div>
 	            				</div>
 	            				
@@ -152,15 +152,14 @@
 	            				
 	            				<div class="col-12"><h3 class="text-start">휴무일</h3></div>
 	            					<div class="row mb-4">
-		            					<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
+		            					<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" name="storeDayOff">
 	            					</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">주차가능 유무</h3></div>
 	            						<div class="row mb-4">
-		            					<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
+		            					<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" name="storeParking">
 	            					</div>
-	            				
-	            				
+
 	            			
 	            			</div>
 	            			
@@ -172,7 +171,7 @@
 	            					<button class="col-12 p-2 fw-bold rounded">취소</button>
 	            				</div>
 	            				<div class="col-3 text-center fs-6">
-	            					<button class="col-12 p-2 fw-bold rounded">작성완료</button>
+	            					<button type="submit" class="col-12 p-2 fw-bold rounded">작성완료</button>
 	            				</div>
 							</div>
 	            			</div>

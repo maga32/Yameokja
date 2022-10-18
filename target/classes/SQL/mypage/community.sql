@@ -55,7 +55,6 @@ INSERT INTO community (community_title, community_reg_date, community_reply_coun
 INSERT INTO community (community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname) VALUES ("하하날짜확인", '2007-1-21 05:44:32', NULL, NULL, 'community_content02', NULL, '1', '0', NULL, NULL, NULL, NULL, NULL, '102', 'memberId02', 'nickname02');
 
 INSERT INTO community (community_title, community_reg_date, community_content, community_file, category_no, member_id, member_nickname) VALUES ("dd", sysdate(), "222", null, '101', "memberId01", "nickname01");
->>>>>>> Stashed changes
 
 INSERT INTO community
 			(community_reg_date, community_content, community_parent_no, community_re_reply,
@@ -71,7 +70,6 @@ UPDATE community
 		WHERE community_no = 278;      
 select community_read_count FROM community where community_no = 278;
 select * from community order by community_no DESC;
->>>>>>> Stashed changes
 
 
 SELECT * FROM community

@@ -4,6 +4,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <article>
+	<form name="storeListForm" id="storeListForm">
+		<input type="hidden" name="categoryNo" value="${ store.categoryNo }">
+	</form>
 	<div class="row">
     
     <div class="d-none d-sm-block col-sm-1 col-lg-3">
@@ -23,6 +26,7 @@
             <option selected>관악구</option>
             <option value="1">동작구</option>
           </select>
+  		<a href="storeWrite">글쓰기</a>
 	        </div>
 	        
 	        <div class="col-10 p-2">
@@ -50,14 +54,16 @@
 			</div>
 			
 			</div>
-	        <c:forEach var="s" items="${ sList }" >
+			
+	        <c:forEach var="s" items="${ sList }">
 	        <div class=" border border-2 rounded col-12 p-2 col-md-12">
 	        	<div class="row mb-2">
 	        	<div class="col-3 col-md-3 col-sm-3">
 	        		<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
 	        	</div>
 	        		<div class="col-6 col-md-7 col-sm-6">
-		        		<h4 class="text-muted font-weight-bold" role="button" tabindex="0">${ s.storeName }</h4>
+		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }" class="text-muted font-weight-bold" role="button" tabindex="0">
+		        			${ s.storeName }</a></h4>
 	        			<p class="text-secondary">${ s.storeAddress }</p>
 	        			<p class="text-secondary">${ s.storeStar }</p>
 	        		</div>
