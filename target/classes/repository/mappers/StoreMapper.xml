@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.mappers.StoreMapper">
+<mapper namespace="com.project.yameokja.mappers.StoreMapper">
 
  	<select id="storeList" resultType="Store" resultMap="storeResultMap">
 		SELECT * FROM store
@@ -29,8 +29,7 @@
 				store_bookmarks,
 				store_day_off, 
 				store_parking, 
-				category_no,
-				member_id)
+				category_no)
 				
     VALUES(#{storeName}, 
     			#{storePhone}, 
@@ -43,8 +42,7 @@
     			"null",
     			#{storeDayOff}, 
     			#{storeParking}, 
-    			#{categoryNo},
-    			"memberId01")
+    			#{categoryNo})
 	</insert>
 	
 	

@@ -2,23 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.mappers.StoreMapper">
- 
+<mapper namespace="com.project.yameokja.mappers.StoreMapper">
+
+	<!-- <select id="postList" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post
+			WHERE store_no = #{store_no}
+		OREDER BY post_no DESC
+	</select>
+ 	 -->
 
 	<resultMap id="postResultMap" type="Post">
-		<id property="postNo" column="p_no" />
-		<result property="postContent" column="p_content" />
-		<result property="postFile1" column="p_file1" />
-		<result property="postFile2" column="p_file2" />
-		<result property="postFile3" column="p_file3" />
-		<result property="postFile4" column="p_file4" />
-		<result property="postFile5" column="p_file5" />
-		<result property="postRegDate" column="p_reg_date" />
-		<result property="postIsPost" column="p_is_post" />
-		<result property="postStar" column="p_star" />
-		<result property="postUpCount" column="p_up_count" />
-		<result property="postUpList" column="p_up_list" />
+		<id property="postNo" column="post_no" />
+		<result property="postTitle" column="post_title"/>
+		<result property="postContent" column="post_content" />
+		<result property="postFile1" column="post_file1" />
+		<result property="postFile2" column="post_file2" />
+		<result property="postFile3" column="post_file3" />
+		<result property="postFile4" column="post_file4" />
+		<result property="postFile5" column="post_file5" />
+		<result property="postRegDate" column="post_reg_date" />
+		<result property="postIsPost" column="post_is_post" />
+		<result property="postStar" column="post_star" />
+		<result property="postUpCount" column="post_up_count" />
+		<result property="postUpList" column="post_up_list" />
 		<result property="storeNo" column="store_no" />
+		<result property="memberId" column="member_id" />
+		<result property="memberNickname" column="member_Nickname" />
 	</resultMap>
 	
 </mapper>

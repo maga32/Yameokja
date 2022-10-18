@@ -12,7 +12,7 @@ import com.project.yameokja.domain.Store;
 public class StoreDaoImpl implements StoreDao {
 	
 	// 네임 스페이스
-	private final String NAME_SPACE = "com.project.mappers.StoreMapper";
+	private final String NAME_SPACE = "com.project.yameokja.mappers.StoreMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	
@@ -38,7 +38,7 @@ public class StoreDaoImpl implements StoreDao {
 	public void insertStore(Store store) {
 		if(store != null) {
 			
-			System.out.println("streDao : " + store.getStoreName());
+			System.out.println("storeDao : " + store.getStoreName());
 		}
 		sqlSession.insert(NAME_SPACE + ".insertStore", store);
 	}

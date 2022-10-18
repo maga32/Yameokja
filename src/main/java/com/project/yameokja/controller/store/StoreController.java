@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
+import com.project.yameokja.service.store.PostService;
 import com.project.yameokja.service.store.StoreService;
 
 @Controller
@@ -43,10 +44,10 @@ public class StoreController {
 
 		return "store/storeDetail";
 	}
-	
+
 	
 	 // 가게 정보 글쓰기
-	@RequestMapping(value="/storeWrite")
+	@RequestMapping(value="/storeWriteForm", method=RequestMethod.GET)
 	public String insertStore(String storeName, String storeLatitude, String storeLongitude, String storeFileMain,
 			String storeFileMenu, String storeAddress, String storeTime,
 			String storeDayOff, String storeParking, int categoryNo) { 
@@ -63,10 +64,10 @@ public class StoreController {
 		store.setStoreDayOff(storeDayOff); 
 		store.setStoreParking(storeParking);
 		store.setCategoryNo(categoryNo);
-	 
+		
 		StoreService.insertStore(store);
 	 
-		return "store/storeWrite"; 
+		return "store/storeWriteFrom"; 
 	 }
 	 
 }

@@ -26,6 +26,7 @@
             <option selected>관악구</option>
             <option value="1">동작구</option>
           </select>
+  		<a href="storeWrite">글쓰기</a>
 	        </div>
 	        
 	        <div class="col-10 p-2">
