@@ -49,7 +49,7 @@ body{
 
 }
 .myInformationFont {
-	font-size: 16px;
+	font-size: 13px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 
@@ -129,7 +129,7 @@ body{
 .mainImg {
 	border: 1px dotted black;
 	width: 25%;
-	height: 150px;
+	height: 100px;
 	border-radius: 10px;
 }
 .postContent {
@@ -137,8 +137,8 @@ body{
 	text-align: left;
 }
 .myInformationFont img{
-	width: 25px;
-	height: 25px;
+	width: 15px;
+	height: 15px;
 }
 .postTitle {
 	font-size: 25px;
@@ -175,14 +175,19 @@ a {text-decoration: none;}
 .replyListbutton a:link {color: gray;}
 .replyListbutton a:visited {color: gray;}
 .replyListbutton a:hover {color: #4aa5ff;}
-.replyListbutton a:active {color: 4aa5ff;}
+.replyListbutton a:active {color: #4aa5ff;}
 
 .communityListbutton a:link {color: gray;}
 .communityListbutton a:visited {color: gray;}
 .communityListbutton a:hover {color: #4aa5ff;}
-.communityListbutton a:active {color: 4aa5ff;}
+.communityListbutton a:active {color: #4aa5ff;}
 
 .likeListbutton a:link {color: gray;}
 .likeListbutton a:visited {color: gray;}
 .likeListbutton a:hover {color: #4aa5ff;}
-.likeListbutton a:active {color: 4aa5ff;}
+.likeListbutton a:active {color: #4aa5ff;}
+
+.postTitle a:link {color: #6a6767;}
+.postTitle a:visited {color: #6a6767;}
+.postTitle a:hover {color: #4aa5ff;}
+.postTitle a:active {color: 4aa5ff;}
