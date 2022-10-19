@@ -28,14 +28,13 @@
 			<div class="myInformation3 col-md-12 ">					
 			<div class="buttons_"><a href="#">회원정보수정</a></div>
 			<div class="buttons_">회 원 탈 퇴</div>
-			<div class="buttons_"><a href="userProfile">나 의 프 로 필</a></div>
+			<div class="buttons_"><a href="#" onclick='window.open("userProfile","프로필","width=500, height=600")'>나 의 프 로 필</a></div>
 			<div class="buttons_"><a href="#" onclick='window.open("blockList","차단목록","width=500, height=600")'>차 단 목 록</a></div>
 			<div class="buttons_"><a href="#">신 고 목 록</a></div>
 			</div>
 		</div>
 	</div><!--내정보틀 끝 -->
-	<div class="nbsp;">&nbsp;</div>
-	<div class="postListHeader">
+	<div class="postListHeader col-12 mt-3">
 		<span class="postListbutton px-3 py-2">맛집 리뷰</span>
 		<span class="replyListbutton px-3 py-2"><a href="#">댓글 리뷰</a></span>
 		<span class="communityListbutton px-3 py-2"><a href="#">동네글</a></span>

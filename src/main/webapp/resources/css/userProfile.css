@@ -1,9 +1,9 @@
 @charset "UTF-8";
-body{
-	
+.fullFrame{
+	padding: 10px;
+	box-sizing: border-box;
 }
 .profileHeaderFrame{
-	border: 1px dotted black;
 	text-align: center;
 	
 }
@@ -19,7 +19,6 @@ body{
 	
 }
 .profileFrame1{
-	border: 1px dotted black;
 	text-align: center;
 	display: flex;
 	align-items: center;
@@ -30,7 +29,7 @@ body{
 	text-align: center;
 }
 .profileCategoryFrame{
-	border: 1px dotted black;
+/* 	border: 1px dotted black; */
 	margin-left: 10px;
 	text-align: left;
 }
@@ -41,69 +40,38 @@ body{
 	width: 50%;
 	height: 50%;
 }
-.내위치{
-	border: 1px dotted black;
+.myLocation{
 }
-.내위치동네{
-	border: 1px dotted black;
-	border-radius: 5px 0 0 5px;
-	display: inline-flex;
+.myLocationTh{
+	background: #c0c0c0;
+	border: 1px solid #000000;
+	border-radius: 10px 0 0 10px;
+	display: inline-block;
 }
-.내위치구{
-	border: 1px dotted black;
-	border-radius: 0 5px 5px 0;
-	display: inline-flex;
+.myLocationTd{
+	border: 1px solid #000000;
+	border-radius: 0 10px 10px 0;
+	display: inline-block;
 }
-.가입일틀{
-	border: 1px dotted black;
+
+.buttonFrame{
+	text-align: center;
+	border-top: 1px solid #D5D5D5;
 	
-	
 }
-.가입일, .작성한리뷰총합, .받은추천총합{
-	font-weight: 600;
+.closeButton{
+	background-color: #dee2e6;
+	color: black;
+	width: 126px;
+	height: 51.47px;
+	font-weight: 500;
+	font-size: 25px;
 }
-.D+100, 500개, 1,000개{
-	font-weight: 600;
-	color: #7A7A80;
+.chatButton{
+	background-color: #F58500;
+	color: white;
+	width: 126px;
+	height: 51.47px;
+	font-weight: 500;
+	font-size: 25px;
 }
-.작성한리뷰총합틀{
-	border: 1px dotted black;
-}
-.받은추천총합틀{
-	border: 1px dotted black;
-}
-/* .blockListFrame{ */
-/* /* 	border: 1px solid black; */ */
-	
-/* } */
-/* .blockList{ */
-/* 	border: 5px solid #D5D5D5; */
-/* 	width: -webkit-fill-available; */
-/* 	border-radius: 10px; */
-/* 	display: inline-flex; */
-/* } */
-/* .blockId{ */
-/* 	text-align: left; */
-/* 	font-weight: 600; */
-/* 	font-size: 18px; */
-/* } */
-/* .UnblockId{ */
-/* 	text-align: right; */
-/* } */
-/* .UnblockIdButton{ */
-/* 	background-color: #F58500; */
-/* 	color: white; */
-/* 	font-weight: 600; */
-/* /* 	font-size: 20px; */ */
-/* } */
-/* .buttonFrame{ */
-/* 	text-align: center; */
-/* } */
-/* .closeButton{ */
-/* 	background-color: #F58500; */
-/* 	color: white; */
-/* 	width: 150px; */
-/* 	height: 60px; */
-/* 	font-weight: 600; */
-/* 	font-size: 20px; */
-/* } */

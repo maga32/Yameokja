@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Post {
 
 	private int postNo;
-	private int storetNo;
+	private int storeNo;
 	private String postTitle;
 	private String postContent;
 	private int postReadCount; 
@@ -30,7 +30,7 @@ public class Post {
 			String memberNickname) {
 		
 		this.postNo = postNo;
-		this.storetNo = storetNo;
+		this.storeNo = storeNo;
 		this.postTitle = postTitle;
 		this.postContent = postContent;
 		this.postReadCount = postReadCount;
@@ -57,11 +57,11 @@ public class Post {
 	}
 
 	public int getStoretNo() {
-		return storetNo;
+		return storeNo;
 	}
 
 	public void setStoretNo(int storetNo) {
-		this.storetNo = storetNo;
+		this.storeNo = storeNo;
 	}
 
 	public String getPostTitle() {
