@@ -6,7 +6,7 @@
 		<img class="LogoIMGSize" src="resources/IMG/LOGOtemporaryIMG.PNG" alt="LogoIMG"/>
 
 <!-- 		나중에 삭제 -->
-		<a href="loginForm">LoginForm</a>
+		<a href="#" onclick='window.open("loginForm","LoginForm","width=500, height=600")'>LoginForm</a>
 		<a href="myPagePost">myPage</a>
 		<a href="communityList">communityList</a>
 		<a href="storeList">storeList</a>

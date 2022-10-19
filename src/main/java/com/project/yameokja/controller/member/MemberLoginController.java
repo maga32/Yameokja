@@ -27,7 +27,7 @@ public class MemberLoginController {
 	@RequestMapping("/loginForm")
 	public String loginForm() {
 		
-		return "loginForm";
+		return "forward:WEB-INF/views/loginForm.jsp";
 	}
 	
 	//로그인
