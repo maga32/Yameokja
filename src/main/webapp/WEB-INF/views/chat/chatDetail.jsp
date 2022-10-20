@@ -51,7 +51,14 @@
 							<h1>${ target.memberNickname }</h1>
 						</div>
 						<div class="col-12 pt-5 text-end">
-							<a href="javascript:;" onclick="chatLeave('${ chatIds }')" class="text-large">채팅방나가기</a> | <span class="text-danger">차단</span>
+							<a href="javascript:;" onclick="chatLeave('${ chatIds }')" class="text-large">채팅방나가기</a>
+							|
+							<c:if test="${ isBlockedTarget }">
+								<a href="/yameokja/memberUnblock?targetId=${ target.memberId }"><span class="text-danger">차단해제</span></a>
+							</c:if>
+							<c:if test="${ not isBlockedTarget }">
+								<a href="/yameokja/memberBlock?targetId=${ target.memberId }"><span class="text-danger">차단</span></a>
+							</c:if>
 							&nbsp;
 						</div>
 					</div>

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -135,8 +136,48 @@ public class MemberController {
 		return "member/overlapNicknameCheck";
 	}
 	
-	
-	
+	// 멤버 차단
+	@RequestMapping("/memberBlock")
+	public void memberBlock(HttpSession session, HttpServletResponse response, String targetId) throws IOException {
+		String memberId = (String)session.getAttribute("memberId");
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 
+		out.println("<script>");
+		
+		if(memberService.isBlockedMe(targetId, memberId)) {
+			out.println("	alert('이미 차단한 사용자입니다.');");
+		} else {
+			memberService.memberBlock(memberId, targetId);
+			out.println("	alert('차단되었습니다.');");
+		}
+		
+		out.println("	history.back();");
+		out.println("</script>");
+		System.out.println("차단멤버 : " + memberService.getMember(memberId).getMemberBlockIds());
+	}
+
+	// 멤버 차단해제
+	@RequestMapping("/memberUnblock")
+	public void memberUnblock(HttpSession session, HttpServletResponse response, String targetId) throws IOException {
+		String memberId = (String)session.getAttribute("memberId");
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+
+		out.println("<script>");
+		
+		if(memberService.isBlockedMe(targetId, memberId)) {
+			memberService.memberUnblock(memberId, targetId);
+			out.println("	alert('차단해제 되었습니다');");
+		} else {
+			out.println("	alert('차단되어있지 않은 사용자입니다');");
+		}
+		
+		out.println("	history.back();");
+		out.println("</script>");
+		System.out.println("차단멤버 : " + memberService.getMember(memberId).getMemberBlockIds());
+	}
 
 }

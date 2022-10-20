@@ -77,6 +77,7 @@ public class ChatController {
 		model.addAttribute("chatIds", chatIds);
 		model.addAttribute("target", memberService.getMember(targetId));
 		model.addAttribute("isBlockedMe", memberService.isBlockedMe(memberId, targetId));
+		model.addAttribute("isBlockedTarget", memberService.isBlockedMe(targetId,memberId));
 		
 		return "forward:/WEB-INF/views/chat/chatDetail.jsp";
 	}

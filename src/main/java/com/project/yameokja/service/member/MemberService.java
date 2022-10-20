@@ -57,6 +57,31 @@ public class MemberService {
 		return isBlockedMe;
 	}
 	
+	// memberId 차단목록에 targetId를 추가
+	public void memberBlock(String memberId, String targetId) {
+		String memberBlockIds = memberDao.getMember(memberId).getMemberBlockIds();
+		if(memberBlockIds != null && !memberBlockIds.equals("")) targetId = memberBlockIds + "," + targetId;
+		
+		memberDao.memberBlock(memberId, targetId);
+	}
+
+	// memberId 차단목록에서 targetId를 차단해제
+	public void memberUnblock(String memberId, String targetId) {
+		String memberBlockIds = memberDao.getMember(memberId).getMemberBlockIds();
+		String[] blockIds = memberBlockIds.split(",");
+		
+		String newBlockIds = "";
+		for(int i=0; i < blockIds.length; i++) {
+			if(!blockIds[i].equals(targetId)) {
+				newBlockIds += blockIds[i] + ",";
+			}
+		}
+		
+		if(newBlockIds.length() != 0) newBlockIds = newBlockIds.substring(0, newBlockIds.length() -1);
+		
+		memberDao.memberBlock(memberId, newBlockIds);
+	}
+	
 	
 
 }
