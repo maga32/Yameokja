@@ -6,12 +6,14 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.project.yameokja.domain.Post;
 
+@Repository
 public class PostDaoImpl implements PostDao {
 
-	private final String NAME_SPACE = "com.project.mappers.StoreMapper";
+	private final String NAME_SPACE = "com.project.yameokja.mappers.StoreMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	

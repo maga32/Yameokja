@@ -44,10 +44,9 @@ public class StoreController {
 
 		return "store/storeDetail";
 	}
-
 	
 	 // 가게 정보 글쓰기
-	@RequestMapping(value="/storeWriteForm", method=RequestMethod.GET)
+	@RequestMapping(value="/storeWriteForm")
 	public String insertStore(String storeName, String storeLatitude, String storeLongitude, String storeFileMain,
 			String storeFileMenu, String storeAddress, String storeTime,
 			String storeDayOff, String storeParking, int categoryNo) { 

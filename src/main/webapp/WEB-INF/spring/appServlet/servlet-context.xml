@@ -23,5 +23,6 @@
 		p:suffix=".jsp"/>
 		
 	<view-controller path="/" view-name="redirect:main" />
+	<view-controller path="/storeWriteForm" view-name="storeWriteForm" />
 
 </beans:beans>

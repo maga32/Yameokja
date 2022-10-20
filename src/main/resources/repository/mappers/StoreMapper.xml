@@ -45,8 +45,7 @@
     			#{categoryNo})
 	</insert>
 	
-	
-	
+
 	<resultMap id="storeResultMap" type="Store">
 		<id property="storeNo" column="store_no" />
 		<result property="memberId" column="member_id" />
