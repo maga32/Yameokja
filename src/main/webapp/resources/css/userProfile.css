@@ -40,29 +40,25 @@
 	width: 50%;
 	height: 50%;
 }
-.myLocation{
-}
+
 .myLocationTh{
 	background: #c0c0c0;
 	border: 1px solid #000000;
 	border-radius: 10px 0 0 10px;
-	display: inline-block;
 }
 .myLocationTd{
 	border: 1px solid #000000;
 	border-radius: 0 10px 10px 0;
-	display: inline-block;
 }
 
 .buttonFrame{
-	text-align: center;
 	border-top: 1px solid #D5D5D5;
 	
 }
 .closeButton{
 	background-color: #dee2e6;
 	color: black;
-	width: 126px;
+	width: 127px;
 	height: 51.47px;
 	font-weight: 500;
 	font-size: 25px;
@@ -70,7 +66,7 @@
 .chatButton{
 	background-color: #F58500;
 	color: white;
-	width: 126px;
+	width: 127px;
 	height: 51.47px;
 	font-weight: 500;
 	font-size: 25px;

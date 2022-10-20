@@ -6,17 +6,11 @@ body{
 	background-color: white;
 	
 }
-.inlineBlock{
-	display: table-cell;
-}
+
 .fullFrame {
 	background-color: white;
 	
 
-}
-.nbsp; {
-	margin-top: 10px;
-	margin-bottom: 10px;
 }
 /* 내정보 */
 .myInformationsFrame{
@@ -24,25 +18,9 @@ body{
 	border-radius: 5px;
 	height: auto;
 	display: flex;
-    text-align: center;
     align-items: center;
 }
 
-.myInformation1, .myInformation2, .myInformation3{
-/* 	border: 1px dotted #7A7A80;	 */
-	font-size: 16px;
-}
-
-.myInformation1 {
-	width: 100%;
-	border-radius: 100%;
-	text-align: center;	
-}
-.myInformation2 {
-	width: 100%;	
-	text-align: left;
-	
-}
 .mbIdFont {
 	font-size: 20px;
 	font-weight: 900;
@@ -54,23 +32,10 @@ body{
 	margin-bottom: 10px;
 
 }
-.myInformation3 {
-	width: 100%;	
-	font-size: 10px;
-}
 
-.buttons_ {
-	text-align: center;
-    margin: 4px;
-    font-size: 16px;
-    font-weight: 900;
-    color: gray;
-    
-}
 /* 리스트 별로 이동하는 버튼 */
 
 .postListHeader {
-	
 }
 .postListbutton, .replyListbutton, 
 .communityListbutton, .likeListbutton{
@@ -82,7 +47,6 @@ body{
 	border-left: 1px solid #B8BBC0;
 	border-right: 1px solid #B8BBC0;
 	border-bottom: 1px solid #ffffff;
-	text-align: center;
     font-size: 16px;
     font-weight: 900;
     color: gray;
@@ -90,14 +54,12 @@ body{
 }
 .replyListbutton {
 	border: 1px solid #B8BBC0;
-	text-align: center;
     font-size: 16px;
     font-weight: 900;
     color: gray;
 }
 .communityListbutton {
 	border: 1px solid #B8BBC0;
-	text-align: center;
     font-size: 16px;
     font-weight: 900;
     color: gray;
@@ -122,16 +84,7 @@ body{
 	display: flex;
     align-items: center;
 }
-.mainImg, .postContent, .upAndDel{
-/* 	border: 1px dotted black; */
-	display: inline-block;
-}
-.mainImg {
-	border: 1px dotted black;
-	width: 25%;
-	height: 100px;
-	border-radius: 10px;
-}
+
 .postContent {
 	width: 60%;
 	text-align: left;
@@ -148,16 +101,15 @@ body{
 	width: 10%;
 	display: inline-block;
 }
-.pageGroup {
-/* 	border: 1px solid black; */
-	text-align: right;
+
+.previousPage {
+	color: gray;
 }
-.페이지그룹버튼 {
-	font-family: Inter;
-	text-align: center;
-	margin: 14px;
-	font-size: 16px;
-	display: inline-table;
+.pageNumber {
+	color: gray;
+}
+.nextPage {
+	color: gray;
 }
 /* a 태그 */
 a {text-decoration: none;}
@@ -191,3 +143,18 @@ a {text-decoration: none;}
 .postTitle a:visited {color: #6a6767;}
 .postTitle a:hover {color: #4aa5ff;}
 .postTitle a:active {color: 4aa5ff;}
+
+.previousPage a:link {color: gray;}
+.previousPage a:visited {color: gray;}
+.previousPage a:hover {color: #4aa5ff;}
+.previousPage a:active {color: 4aa5ff;}
+
+.pageNumber a:link {color: gray;}
+.pageNumber a:visited {color: gray;}
+.pageNumber a:hover {color: #4aa5ff;}
+.pageNumber a:active {color: 4aa5ff;}
+
+.nextPage a:link {color: gray;}
+.nextPage a:visited {color: gray;}
+.nextPage a:hover {color: #4aa5ff;}
+.nextPage a:active {color: 4aa5ff;}

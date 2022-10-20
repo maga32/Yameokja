@@ -93,9 +93,24 @@ a {text-decoration: none;}
 	color: #ffffff;
 	background-color: #FFB966;
 }
+/* a 태그 */
 
-/* communityTitle */
 .communityTitle a:link {color: gray;}
 .communityTitle a:visited {color: gray;}
 .communityTitle a:hover {color: #4aa5ff;}
 .communityTitle a:active {color: 4aa5ff;}
+
+.previousPage a:link {color: gray;}
+.previousPage a:visited {color: gray;}
+.previousPage a:hover {color: #4aa5ff;}
+.previousPage a:active {color: 4aa5ff;}
+
+.pageNumber a:link {color: gray;}
+.pageNumber a:visited {color: gray;}
+.pageNumber a:hover {color: #4aa5ff;}
+.pageNumber a:active {color: 4aa5ff;}
+
+.nextPage a:link {color: gray;}
+.nextPage a:visited {color: gray;}
+.nextPage a:hover {color: #4aa5ff;}
+.nextPage a:active {color: 4aa5ff;}

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css" 	href="resources/css/community.css" />
+<link rel="stylesheet" type="text/css" 	href="resources/css/communityList.css" />
 <script src="resources/js/community.js"></script>
 <article>
 	<div class="row">
@@ -22,7 +22,7 @@
 				<form id="communitySearchForm" name="communitySearchForm"
 					action="communityList?categoryNo=${ categoryNo }" method="post">
 					<div class="row">
-						<div class="col-2 d-flex flex-row">
+						<div class="col-2">
 							<select class="form-select-sm rounded-pill"
 								aria-label="form-select-sm" name="communitySearchType"
 								id="communitySearchType">
@@ -60,21 +60,21 @@
 		<div class="row">
 			<c:if test="${ categoryNo == 'all' }">
 				<c:forEach var="p" items="${coList}">
-					<div class=" border border-2 rounded col-12 p-2 m-1 col-md-12">
+					<div class=" border border-2 rounded col-12 p-2 m-1">
 						<div class="row">
 							<c:if test="${ empty p.communityFile }">
-								<div class="col-3 col-md-3 col-sm-3">
+								<div class="col-3">
 									<img src="resources/IMG/LOGOtemporaryIMG.PNG"
 										class="img-thumbnail rounded float-start" alt="...">
 								</div>
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
-								<div class="col-3 col-md-3 col-sm-3">
+								<div class="col-3">
 									<img src="upload/community/${ p.communityFile }"
 										class="img-thumbnail rounded float-start" alt="...">
 								</div>
 							</c:if>
-							<div class="col-6 col-md-7 col-sm-6">
+							<div class="col-6">
 								<div class="col-12 communityTitle">
 									<h4 class="text-muted font-weight-bold" tabindex="0">
 									<a href="communityDetail?communityNo=${ p.communityNo }">
@@ -86,7 +86,7 @@
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
 								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
-							<div class="col-3 col-md-2 col-sm-3">
+							<div class="col-3">
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
@@ -108,21 +108,21 @@
 			<!-- 동네글 시작지점 / 분류 수다글 -->
 			<c:if test="${ categoryNo == '101' }">
 				<c:forEach var="p" items="${coList}">
-					<div class=" border border-2 rounded col-12 p-2 m-1 col-md-12">
+					<div class=" border border-2 rounded col-12 p-2 m-1">
 						<div class="row">
 							<c:if test="${ empty p.communityFile }">
-								<div class="col-3 col-md-3 col-sm-3">
+								<div class="col-3">
 									<img src="resources/IMG/LOGOtemporaryIMG.PNG"
 										class="img-thumbnail rounded float-start" alt="...">
 								</div>
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
-								<div class="col-3 col-md-3 col-sm-3">
+								<div class="col-3">
 									<img src="upload/community/${ p.communityFile }"
 										class="img-thumbnail rounded float-start" alt="...">
 								</div>
 							</c:if>
-							<div class="col-6 col-md-7 col-sm-6">
+							<div class="col-6">
 								<div class="col-12 communityTitle">
 									<h4 class="text-muted font-weight-bold" tabindex="0">
 									<a href="communityDetail?communityNo=${ p.communityNo }">
@@ -134,7 +134,7 @@
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
 								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
-							<div class="col-3 col-md-2 col-sm-3">
+							<div class="col-3">
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
@@ -156,21 +156,21 @@
 			<!-- 동네글 시작지점 / 분류 모집글 -->
 			<c:if test="${ categoryNo == '102' }">
 				<c:forEach var="p" items="${coList}">
-					<div class=" border border-2 rounded col-12 p-2 m-1 col-md-12">
+					<div class=" border border-2 rounded col-12 p-2 m-1">
 						<div class="row">
 							<c:if test="${ empty p.communityFile }">
-								<div class="col-3 col-md-3 col-sm-3">
+								<div class="col-3">
 									<img src="resources/IMG/LOGOtemporaryIMG.PNG"
 										class="img-thumbnail rounded float-start" alt="...">
 								</div>
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
-								<div class="col-3 col-md-3 col-sm-3">
+								<div class="col-3">
 									<img src="upload/community/${ p.communityFile }"
 										class="img-thumbnail rounded float-start" alt="...">
 								</div>
 							</c:if>
-							<div class="col-6 col-md-7 col-sm-6">
+							<div class="col-6 ">
 								<div class="col-12 communityTitle">
 									<h4 class="text-muted font-weight-bold" tabindex="0">
 									<a href="communityDetail?communityNo=${ p.communityNo }">
@@ -182,7 +182,7 @@
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
 								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
-							<div class="col-3 col-md-2 col-sm-3">
+							<div class="col-3 col-2 col-3">
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
@@ -214,30 +214,31 @@
 			</div>
 
 			<!-- 페이징 시작지점 -->
-			<div>
+			<div class="row text-end">
+			<div class="col-12 pe-4">
 				<c:if test="${listCount > 0 }">
-					<div class="col-12">
 						<c:if test="${ startPage > '10' }">
-							<div class="col-1 col-sm-1 col-lg-1">
-								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage - pageGroup}&type=${type}&keyword=${keyword}">이전</a>
+							<div class="previousPage inlineBlock">
+								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage - pageGroup}&type=${type}&keyword=${keyword}"><</a>
 							</div>
 						</c:if>
+						<div class="pageNumber inlineBlock">
 						<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
 							<c:if test="${ i == currentPage }">
-								<div class="col-1 col-sm-1 col-lg-1">${ i }</div>
+								<div class=" inlineBlock" style="color: #F58500; font-weight: 600">&nbsp;${ i }&nbsp;</div>
 							</c:if>
 							<c:if test="${ i != currentPage }">
-								<div class="col-1 col-sm-1 col-lg-1">
-									<a href="communityList?categoryNo=${ categoryNo }&pageNum=${i}&type=${type}&keyword=${keyword}">${ i }</a>
+								<div class="inlineBlock">
+									<a href="communityList?categoryNo=${ categoryNo }&pageNum=${i}&type=${type}&keyword=${keyword}">&nbsp;${ i }&nbsp;</a>
 								</div>
 							</c:if>
 						</c:forEach>
+						</div>
 						<c:if test="${ endPage < pageCount }">
-							<div class="col-1 col-sm-1 col-lg-1">
-								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage + pageGroup}&type=${type}&keyword=${keyword}">다음</a>
+							<div class="nextPage inlineBlock">
+								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage + pageGroup}&type=${type}&keyword=${keyword}">></a>
 							</div>
 						</c:if>
-					</div>
 				</c:if>
 			</div>
 			<!-- 페이징 종료지점 -->
@@ -245,6 +246,7 @@
 
 
 			<div class="col-12 bg-primary">가게 리스트 들어갈 곳</div>
+		</div>
 		</div>
 	</div>
 </article>

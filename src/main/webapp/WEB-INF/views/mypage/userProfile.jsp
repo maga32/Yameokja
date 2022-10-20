@@ -49,35 +49,33 @@
 				</div>
 				</div>
 			</div>
-		</div><div class="myLocation col-12"><!-- 	profileFrame1 끝-->
-		<!-- 	profileFrame2 -->
+		</div><!-- 	profileFrame1 끝-->
 		
-			<div class="myLocationTh col-4 p-1">동네</div><div class="myLocationTd col-8 p-1">서울시 관악구</div>
-		</div>
-		<div class="profileFrame2 col-12 mt-3">
-		<table class="col-12">
-		<tbody class="col-12">			
-			<tr class="col-12">
-				<th class="내위치 col-6 p-1">가입일</th>
-				<td class="내위치 col-6 p-1">D+100</td>
-			</tr>
-			<tr class="col-12">
-				<th class="내위치 col-6 p-1">작성한리뷰총합</th>
-				<td class="내위치 col-6 p-1">500개</td>
-			</tr>
-			<tr class="col-12">
-				<th class="내위치 col-6 p-1">받은추천총합</th>
-				<td class="내위치 col-6 p-1">1,000개</td>
-			</tr>
-			<tr class="col-12">
-				<th class="내위치 col-6 p-1">활동내역구경가기 -></th>
-				<td class="내위치 col-6 p-1">종모양이미지</td>
-			</tr>
-		</tbody>
-		</table>
+		<!-- 	profileFrame2 시작-->
+			<div class="profileFrame2 col-12 mt-3">
+			<div class="row">
+				<div class="myLocationTh col-4 p-1">동네</div>
+				<div class="myLocationTd col-8 p-1">서울시 관악구</div>		
+			</div>
+			<div class="row">
+				<div class=" col-6 fw-semibold fs-6 p-1">가입일</div>
+				<div class=" col-6 p-1"> D+100</div>		
+			</div>
+			<div class="row">
+				<div class=" col-6 fw-semibold p-1">작성한리뷰총합</div>
+				<div class=" col-6 p-1">500개</div>		
+			</div>
+			<div class="row">
+				<div class=" col-6 fw-semibold p-1">받은추천총합</div>
+				<div class=" col-6 p-1">1,000개</div>		
+			</div>
+			<div class="row">
+				<div class=" col-6 fw-semibold p-1">활동내역구경가기 -></div>
+				<div class=" col-6 p-1"> 종모양이미지</div>		
+			</div>
 		</div>
 		<!-- 	profileFrame2 끝-->
-		<div class="buttonFrame col-12 mt-3 py-3">
+		<div class="buttonFrame text-center col-12 mt-3 py-3">
 			<button type="button" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="button" class="chatButton btn col-6 ">채팅신청</button>
 <!-- 			<button type="button" class="UnblockIdButton btn">차단 해제</button> -->
