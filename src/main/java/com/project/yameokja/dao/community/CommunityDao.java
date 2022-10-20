@@ -29,6 +29,9 @@ public interface CommunityDao {
 	// 커뮤니티 댓글 작성
 	public void addCommunityReply(Community co);
 	
+	// 커뮤니티 댓글 수정
+	public void updateCommunityReply(int coNo, String coContent);
+	
 	// 커뮤니티 댓글 출력
 	public List<Community> getCommunityReply(Community co);
 	

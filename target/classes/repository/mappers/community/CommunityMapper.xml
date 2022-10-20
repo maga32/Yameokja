@@ -91,6 +91,13 @@
 				  #{communityReplyTarget}, #{categoryNo}, #{memberId}, #{memberNickname})
 	</insert>
 	
+<!-- 커뮤니티 댓글 수정 -->
+	<update id="updateCommunityReply" parameterType="Community">
+		UPDATE community
+			SET community_content = #{communityContent} 
+		WHERE community_no = #{coNo}
+	</update>
+	
 <!-- 커뮤니티 댓글 출력 -->
 	<select id="getCommunityReply" parameterType="Community" resultMap="CommunityResultMap">
 		SELECT * FROM community

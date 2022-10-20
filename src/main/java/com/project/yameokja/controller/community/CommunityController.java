@@ -3,6 +3,7 @@ package com.project.yameokja.controller.community;
 import java.io.File; 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -72,7 +73,8 @@ public class CommunityController {
 			out.println("alert('로그인이 필요한 페이지입니다.')");
 			out.println("history.back();");
 			out.println("</script>");
-				
+			out.close();				
+			
 			return null;
 		}
 		
@@ -161,11 +163,14 @@ public class CommunityController {
 		return "community/communityDetail";
 	}
 	
+	
 	// 커뮤니티 댓글 작성
-	@RequestMapping(value="/replyWrite.ajax", method=RequestMethod.POST)
 	@ResponseBody
-	public List<Community> replyWriteAjax(Community community, HttpSession session) throws IOException {
-
+	@RequestMapping(value="/replyWrite.ajax", method=RequestMethod.POST)
+	public List<Community> replyWriteAjax(Community community, int communityReplyUpdateCheck, HttpSession session) throws IOException {
+		
+		System.out.println(communityReplyUpdateCheck);
+		
 		// 답글의 경우 session에 있는 작성자 정보를 못가져와서, if문으로 제어
 		if( community != null) {
 			if(community.getMemberId() == null) {
@@ -179,24 +184,21 @@ public class CommunityController {
 		return communityListService.getCommunityReply(community);
 	}
 	
+	
 	// 커뮤니티 댓글 삭제
 	@RequestMapping(value="/replyDelete.ajax", method=RequestMethod.POST)
 	@ResponseBody
-	public List<Community> replyDeleteAjax(HttpServletResponse response, HttpSession session,
+	public Object replyDeleteAjax(HttpServletResponse response, HttpSession session,
 			int replyCommunityNo, int replyCommunityParentNo) throws IOException {
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
 		
 		String memberId = communityListService.getCommunityReplyMemberId(replyCommunityNo);
 		
-		if( memberId == (session.getAttribute("memberId"))){
+		if( memberId.equals(session.getAttribute("memberId"))){
 			communityListService.delCommunityReply(replyCommunityNo);
+			
 		}else {
-			out.println("<script>");
-			out.println("alert('작성자 본인만 삭제할 수 있습니다.');");
-			out.println("history.back();");
-			out.println("</script>");
+			boolean communityReplyIdCheck = false;
+			return communityReplyIdCheck;
 		}
 		
 		Community co = new Community();
@@ -204,4 +206,19 @@ public class CommunityController {
 	
 		return communityListService.getCommunityReply(co);
 	} 
+	
+	// 커뮤니티 댓글 수정
+	@RequestMapping(value="/replyUpdate.ajax", method=RequestMethod.POST)
+	@ResponseBody
+	public List<Community> replyUpdateAjax(int communityReplyUpdateNo,
+				String communityContent, int communityParentNo){
+		
+		System.out.println(communityReplyUpdateNo + " - "  + communityContent);
+		communityListService.updateCommunityReply(communityReplyUpdateNo, communityContent);
+		
+		Community co = new Community();
+		co.setCommunityParentNo(communityParentNo);
+		
+		return communityListService.getCommunityReply(co);
+	}
 }

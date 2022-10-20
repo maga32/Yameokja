@@ -67,6 +67,16 @@ public class CommunityDaoImpl implements CommunityDao {
 	public void addCommunityReply(Community co) {
 		sqlSession.insert(NAME_SPACE + ".addCommunityReply", co);  
 	}
+	
+	//커뮤니티 댓글 수정
+	@Override
+	public void updateCommunityReply(int coNo, String coContent) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("coNo", coNo);
+		params.put("coContent", coContent);
+		
+		sqlSession.update(NAME_SPACE + ".updateCommunityReply", params);
+	}
 
 	// 커뮤니티 댓글 출력
 	@Override
@@ -95,6 +105,8 @@ public class CommunityDaoImpl implements CommunityDao {
 	public String getCommunityReplyMemberId(int no) {
 		return sqlSession.selectOne(NAME_SPACE + ".getCommunityReplyMemberId", no);
 	}
+
+	
 	
 }
 
