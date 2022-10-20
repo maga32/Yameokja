@@ -31,7 +31,7 @@
 	</div>
 	<c:forEach var="li" items="${ categoryList }">
 		<div class="col-6 py-2 col-md-3">
-			<a href="/storeList?category=${ li.categoryNo }"> ${ li.categoryName }
+			<a href="storeList?category=${ li.categoryNo }"> ${ li.categoryName }
 			</a>
 		</div>
 	</c:forEach>
@@ -39,6 +39,7 @@
 	<!--  샘플  -->
 	<div class="col-6 py-2 col-md-3">
 		<img class="col-12 rounded" src="https://picsum.photos/100">
+		(샘플)
 	</div>
 </div>
 </article>
