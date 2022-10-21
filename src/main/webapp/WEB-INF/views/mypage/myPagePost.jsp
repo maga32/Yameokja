@@ -7,9 +7,8 @@
 <script type="text/javascript" src="resources/js/mypage.js"></script>
 <article>
 	<form name="postListForm" id="postListForm">
-		<input type="hidden" name="memberId" value="${ sessionScope.memberId }" />
-		<input type="hidden" name="pageNum" value="${ pageNum }" />
 		<input type="hidden" name="userId" value="${ userId }" />
+		<input type="hidden" name="pageNum" value="${ pageNum }" />
 	</form>
 	<div class="row">
 		<div class="fullFrame col-12 p-2 px-2">
@@ -21,14 +20,13 @@
 				</div>
 				<div class="inlineBlock text-start col-6">
 					<div class="col-12 ">
-						<!-- 		sessionScope.memberId -->
-						<div class="mbIdFont">${ sessionScope.memberNickname }님</div>
-						<div class="myInformationFont">이메일 : ${ sessionScope.member.memberEmail }</div>
-						<div class="myInformationFont">가입일 : ${ sessionScope.member.memberJoinDate }</div>
+						<div class="mbIdFont">${ user.memberNickname }님</div>
+						<div class="myInformationFont">이메일 : ${ user.memberEmail }</div>
+						<div class="myInformationFont">가입일 : ${ user.memberJoinDate }</div>
 					</div>
 				</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
-				<c:if test="${ sessionScope.memberId == userId} ">
+				<c:if test="${ sessionScope.memberId == userId }">
 				<div class="col-3">
 					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
@@ -57,7 +55,7 @@
 					<div class="col-3">
 					<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
-							<a href="#">@</a>
+							<a href="#">userId = ${ userId }</a>
 						</div>
 					</div>
 				</div>
@@ -71,14 +69,14 @@
 					class="communityListbutton px-3 py-2"><a href="myPageCommunity">동네글</a></span> <span
 					class="likeListbutton px-3 py-2"><a href="#">찜 목록</a></span>
 			</div>
-			<!--postListHeader 끝 -->
-
-			<div class="postListFrame col-12 p-2">
+<!-- 			postListHeader 끝 -->
+<!-- 			postList 시작 -->
+			<div class="postListFrame rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 
 				<c:if test="${ not empty postList }">
 					<c:forEach var="p" items="${ postList }">
 
-						<div class="postFrame col-12 mb-2">
+						<div class="postFrame border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 mx-2">
 								<img src="resources/IMG/LOGOtemporaryIMG.PNG"
 										class="img-thumbnail rounded" alt="...">
@@ -112,7 +110,7 @@
 						</div>
 
 					</c:forEach>
-					<!--페이지그룹 시작 -->
+<!-- 					페이지그룹 시작 -->
 					<div class="row text-end">
 					<div class="col-12 pe-4">
 						<c:if test="${ startPage > pageGroup }">
@@ -139,10 +137,13 @@
 						</c:if>
 					</div>
 					</div>
-					<!--페이지그룹 끝 -->
+<!-- 					페이지그룹 끝 -->
+				</c:if>
+				<c:if test="${ empty postList }">
+					<div class="col-12 text-center"> 작성한 글이 없습니다.</div>
 				</c:if>
 			</div>
-			<!--postListFrame 끝 -->
+<!-- 			postList 끝 -->
 		</div>
 	</div>
 	<!--전체틀 끝 -->

@@ -26,3 +26,9 @@ footer {
 .alignIitems{
 	align-items: flex-end;
 }
+.headerBackgroundColor{
+	background-color: #FCD147;
+}
+.headerFontColor{
+	background-color: #F58500;
+}

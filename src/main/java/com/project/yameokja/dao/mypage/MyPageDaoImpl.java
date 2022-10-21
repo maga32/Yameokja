@@ -27,20 +27,25 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 
 	@Override
-	public Member getMember(String memberId) {
-		return sqlSession.selectOne(NAME_SPACE+".getMember", memberId);
+	public Member getMember(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+".getMember", userId);
 	}
 	
 	@Override
-	public List<Post> myPagePost(String memberId, int startRow, int num) {
+	public List<Post> myPagePost(String userId, int startRow, int num) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("memberId", memberId);
+		params.put("userId", userId);
 		params.put("startRow", startRow);
 		params.put("num", num);
 		
 		return sqlSession.selectList(NAME_SPACE+".myPostList", params);
 		
+	}
+
+	@Override
+	public List<Store> myPageStore(String memberId) {
+		return sqlSession.selectList(NAME_SPACE+".myPageStore", memberId);
 	}
 
 	@Override
@@ -53,11 +58,6 @@ public class MyPageDaoImpl implements MyPageDao {
 		params.put("status", status);
 		
 		return sqlSession.selectList(NAME_SPACE+".myPageCommunity", params);
-	}
-
-	@Override
-	public List<Store> myPageStore(String memberId) {
-		return sqlSession.selectList(NAME_SPACE+".myPageStore", memberId);
 	}
 
 	@Override

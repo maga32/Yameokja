@@ -37,13 +37,11 @@ body{
 	display: table-cell;
 }
 .postListbutton {
-	border-top: 1px solid #B8BBC0;
-	border-left: 1px solid #B8BBC0;
-	border-right: 1px solid #B8BBC0;
-	border-bottom: 1px solid #ffffff;
+	border: 1px solid #FCD147;
     font-size: 16px;
     font-weight: 900;
-    color: gray;
+    color: #F58500;
+    background: #FCD147;
 	
 }
 .replyListbutton {
@@ -67,14 +65,9 @@ body{
 }
 /* 리스트 */
 .postListFrame {
-	border: 1px solid #B8BBC0;
-	display: inline-block;
-	margin: -1px auto 10px;
-	text-align: center;
+/* 	background-color: #FCD147; */
 }
 .postFrame{
-	border: 1px solid #B8BBC0;
-	text-align: center;
 	display: flex;
     align-items: center;
 }
@@ -104,6 +97,9 @@ body{
 }
 .nextPage {
 	color: gray;
+}
+.fa-bell{
+/* 	color: #F58500; */
 }
 /* a 태그 */
 a {text-decoration: none;}

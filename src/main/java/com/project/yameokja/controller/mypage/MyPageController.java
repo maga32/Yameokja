@@ -47,24 +47,17 @@ public class MyPageController {
 	public String myPagePost(
 //			HttpSession session,
 			Model model, 
-			@RequestParam(value="memberId", required=false, defaultValue = "memberId01") String memberId, 
 			@RequestParam(value = "pageNum" ,required = false, defaultValue = "1")int pageNum,
-			@RequestParam(value = "userId" ,required = true, defaultValue = "null")String userId) 
+			@RequestParam(value = "userId", required = true, defaultValue = "memberId01")String userId) 
 	{
 		
-//		파라미터로 들어온 아이디가 없으면 자신의 정보를 불러오기
-//		현재 아이디와 파라미터에 있는 아이디의 값이 같으면 자신의 정보를 불러오기
-		
-//		파라미터로 들어온 아이디가 있으면 파라미터 아이디의 정보를 불러오기
-//		현재 아이디와 파라미터에 있는 아이디의 값이 다르면 파라미터 아이디의 정보를 불러오기
-		
 //		 회원정보 하나 
-//		Member member = myPageService.getMember(memberId);
+		Member user = myPageService.getMember(userId);
 		
-		// 회원이 쓴 글 리스트
-		Map<String, Object> modelMap = myPageService.myPagePost(memberId, pageNum, userId);
+//		 회원이 쓴 글 리스트
+		Map<String, Object> modelMap = myPageService.myPagePost(pageNum, userId);
 		model.addAllAttributes(modelMap);
-//		model.addAttribute("member", member);
+		model.addAttribute("user", user);
 		model.addAttribute("pageNum", pageNum);
 		
 		return "mypage/myPagePost";
@@ -97,10 +90,10 @@ public class MyPageController {
 	
 	@RequestMapping("/userProfile")
 	public String userProfile(Model model, 
-			@RequestParam(value = "memberId", required = false, 
-			defaultValue = "memberId01")String memberId) {
-		
-		model.addAttribute("memberId", memberId);
+//			@RequestParam(value = "userId", required = false, defaultValue = "memberId02")String userId,
+			@RequestParam(value = "userId", required = false, defaultValue = "null")String userId) {
+		Member user = myPageService.getMember(userId);
+		model.addAttribute("user", user);
 		return "forward:WEB-INF/views/mypage/userProfile.jsp";
 	}
 
