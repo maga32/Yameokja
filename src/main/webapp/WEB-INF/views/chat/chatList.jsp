@@ -42,7 +42,7 @@
 							</div>
 							
 							<div class="col-8">
-								<a href="chatDetail?chatIds=${ li.chatIds }">
+								<a href="chatDetail?targetId=${ members[ i-1 ].memberId }">
 									<div class="row">
 										<div class="d-flex justify-content-between">
 											<div class="fs-3">

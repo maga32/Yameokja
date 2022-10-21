@@ -41,32 +41,20 @@ public class ChatController {
 	
 	// 채팅방 뷰
 	@RequestMapping("chat/chatDetail")
-	public String chatDetail(Model model, HttpSession session, HttpServletResponse response, String chatIds) throws IOException {
+	public String chatDetail(Model model, HttpSession session, HttpServletResponse response, String targetId) throws IOException {
 		String memberId = (String)session.getAttribute("memberId");
-		String[] ids = chatIds.split(",");
-		String targetId = "";
+		Member target = memberService.getMember(targetId);
+		String chatIds = "";
 		
-		//아이디0이 아이디1보다 사전순으로 큰경우(수동입력 등)
-		if(ids[0].compareTo(ids[1]) >= 0) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("	alert('잘못된 접근입니다.');");
-			out.println("	history.back();");
-			out.println("</script>");
-			
-			return null;
-		}
-		
-		if(ids[0].equals(memberId)) {
-			targetId = ids[1];
-		} else if(ids[1].equals(memberId)) {
-			targetId = ids[0];
+		if(targetId.compareTo(memberId) < 0) {	// 타겟아이디가 내아이디보다 사전순으로 앞인 경우
+			chatIds = targetId + "," + memberId;
+		} else if(targetId.compareTo(memberId) > 0) { 	// 타겟아이디가 내아이디보다 사전순으로 뒤인 경우
+			chatIds = memberId + "," + targetId;
 		} else {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("	alert('본인의 채팅방만 접근할 수 있습니다.');");
+			out.println("	alert('본인과는 채팅할 수 없습니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
 			
@@ -75,7 +63,7 @@ public class ChatController {
 		
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("chatIds", chatIds);
-		model.addAttribute("target", memberService.getMember(targetId));
+		model.addAttribute("target", target);
 		model.addAttribute("isBlockedMe", memberService.isBlockedMe(memberId, targetId));
 		model.addAttribute("isBlockedTarget", memberService.isBlockedMe(targetId,memberId));
 		

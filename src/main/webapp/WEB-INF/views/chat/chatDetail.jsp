@@ -13,6 +13,7 @@
 	  	<script src="/yameokja/resources/js/jquery-3.2.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/yameokja/resources/css/chat.css" />
 		<script type="text/javascript" src="/yameokja/resources/js/chat.js"></script>
+		<script src="/yameokja/resources/js/common.js"></script>
 	</head>
 	<body>
 		<div class="fixed-top fs-1 d-flex justify-content-between">
@@ -54,10 +55,10 @@
 							<a href="javascript:;" onclick="chatLeave('${ chatIds }')" class="text-large">채팅방나가기</a>
 							|
 							<c:if test="${ isBlockedTarget }">
-								<a href="/yameokja/memberUnblock?targetId=${ target.memberId }"><span class="text-danger">차단해제</span></a>
+								<a href="javascript:;" id="block-${ target.memberId }" onclick="unblockTarget('${ target.memberId }')"><span class="text-danger">차단해제</span></a>
 							</c:if>
 							<c:if test="${ not isBlockedTarget }">
-								<a href="/yameokja/memberBlock?targetId=${ target.memberId }"><span class="text-danger">차단</span></a>
+								<a href="javascript:;" id="block-${ target.memberId }" onclick="blockTarget('${ target.memberId }')"><span class="text-danger">차단</span></a>
 							</c:if>
 							&nbsp;
 						</div>

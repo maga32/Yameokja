@@ -3,6 +3,8 @@ package com.project.yameokja.controller.member;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -136,48 +138,40 @@ public class MemberController {
 		return "member/overlapNicknameCheck";
 	}
 	
-	// 멤버 차단
-	@RequestMapping("/memberBlock")
-	public void memberBlock(HttpSession session, HttpServletResponse response, String targetId) throws IOException {
+	// 멤버 차단 ajax
+	@RequestMapping("/memberBlock.ajax")
+	@ResponseBody
+	public Map<String, Integer> memberBlock(HttpSession session, String targetId) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		String memberId = (String)session.getAttribute("memberId");
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-
-		out.println("<script>");
 		
 		if(memberService.isBlockedMe(targetId, memberId)) {
-			out.println("	alert('이미 차단한 사용자입니다.');");
+			map.put("result", 0);
 		} else {
 			memberService.memberBlock(memberId, targetId);
-			out.println("	alert('차단되었습니다.');");
+			map.put("result", 1);
 		}
 		
-		out.println("	history.back();");
-		out.println("</script>");
 		System.out.println("차단멤버 : " + memberService.getMember(memberId).getMemberBlockIds());
+		return map;
 	}
 
-	// 멤버 차단해제
-	@RequestMapping("/memberUnblock")
-	public void memberUnblock(HttpSession session, HttpServletResponse response, String targetId) throws IOException {
+	// 멤버 차단해제 ajax
+	@RequestMapping("/memberUnblock.ajax")
+	@ResponseBody
+	public Map<String, Integer> memberUnblock(HttpSession session, String targetId) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		String memberId = (String)session.getAttribute("memberId");
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-
-		out.println("<script>");
 		
 		if(memberService.isBlockedMe(targetId, memberId)) {
 			memberService.memberUnblock(memberId, targetId);
-			out.println("	alert('차단해제 되었습니다');");
+			map.put("result", 1);
 		} else {
-			out.println("	alert('차단되어있지 않은 사용자입니다');");
+			map.put("result", 0);
 		}
 		
-		out.println("	history.back();");
-		out.println("</script>");
 		System.out.println("차단멤버 : " + memberService.getMember(memberId).getMemberBlockIds());
+		return map;
 	}
 
 }

@@ -11,6 +11,7 @@
   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   	<link rel="stylesheet" type="text/css" href="/yameokja/resources/css/index.css" />
   	<script src="/yameokja/resources/js/jquery-3.2.1.min.js"></script>
+  	<script src="/yameokja/resources/js/common.js"></script>
 </head>
 <body>
 <div class="row">
