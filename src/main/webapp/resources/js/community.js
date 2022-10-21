@@ -26,6 +26,31 @@ $(function(){
 		}	
 	});
 	
+	// 커뮤니티 모집글 등록 유효성 검사
+	$("#community102WriteForm").on("submit", function() {	
+		var title = $("#co102Title").val();
+		var content = $("#co102Content").val();
+		var partyDDay = $("#co102PartyDDay").val();
+		var co102PartyPlace = $("#co102PartyPlace").val();
+		
+		if(title.length < 2){
+			alert("제목은 두 글자 이상 작성해주세요.");
+			return false;
+		}
+		else if(content.length < 2){
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+		else if(partyDDay.length == 0){
+			alert("모집일을 선택해주세요.");
+			return false;
+		}
+		else if(co102PartyPlace.length == 0){
+			alert("모집장소를 입력해주세요.");
+			return false;
+		}	
+	});
+	
 	
 // 커뮤니티 댓글 작성
 	$(document).on("submit", "#communityReplyWriteForm", function() {
@@ -142,7 +167,7 @@ $(function(){
 		if( status == "display : none"){
 			$("#communityReplyContentAt" +targetNo).val(content);
 			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : block");
-			$("#communityReplyUpdateCheckAt" + targetNo).val(1);
+			$("#communityNo" + targetNo).val(targetNo);
 		}
 		else if( status == "display : block"){
 			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : none");
@@ -208,7 +233,7 @@ function replyAjaxAction(u, d){
 								+ '<input type="hidden" name="communityReReply" id="communityReReplyAt' + value.communityNo + '" value=0>'
 								+ '<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt' + value.communityNo + '"	 value="">'
 								+ '<input type="hidden" name="communityReplyUpdateNo" value="' + value.communityNo + '">'
-								+ '<input type="hidden" name="communityReplyUpdateCheck" id="communityReplyUpdateCheckAt' + value.communityNo + '" value="0">'
+								+ '<input type="hidden" name="communityNo" id="communityNo' + value.communityNo + '" value="">'
 								+ '<div>'
 								+ '<textarea id="communityReplyContentAt' + value.communityNo + '" name="communityContent" placeholder="댓글을 입력해주세요">'
 								+ '</textarea>'

@@ -37,12 +37,16 @@ public class MemberService {
 	}
 	
 	// 닉네임 중복확인
-		public Boolean nicknameOverlapCheck(String mbNickname) {
-			
-			return memberDao.nicknameOverlapCheck(mbNickname);
-		}
-	
-	
+	public Boolean nicknameOverlapCheck(String mbNickname) {
+		
+		return memberDao.nicknameOverlapCheck(mbNickname);
+	}
+
+	// 회원정보 조회(아이디 > 닉네임, 프사)
+	public Member getMemberFor102(String memberId) {
+		return memberDao.getMemberFor102(memberId);
+	}
+
 	
 	
 

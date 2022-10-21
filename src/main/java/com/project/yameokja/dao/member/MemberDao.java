@@ -19,4 +19,6 @@ public interface MemberDao {
 	// 닉네임 중복확인
 	public boolean nicknameOverlapCheck(String memberNickname);
 	
+	// 회원정보 조회(아이디 > 닉네임, 프사)
+	Member getMemberFor102(String memberId);
 }

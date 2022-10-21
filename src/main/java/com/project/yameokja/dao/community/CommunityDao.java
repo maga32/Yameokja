@@ -17,8 +17,11 @@ public interface CommunityDao {
 	// 커뮤니티 글 개수
 	public int getCommunityCount(String type, String keyword, String categoryNo);
 	
-	// 커뮤니티 수다글 작성 프로세스
+	// 커뮤니티 수다글 작성
 	public void addCommunity101(Community co);
+	
+	// 커뮤니티 모집글 작성
+	public void addCommunity102(Community co);
 
 	// 커뮤니티 글 상세보기
 	public Community getCommunityOne(int coNo);
@@ -30,7 +33,7 @@ public interface CommunityDao {
 	public void addCommunityReply(Community co);
 	
 	// 커뮤니티 댓글 수정
-	public void updateCommunityReply(int coNo, String coContent);
+	public void updateCommunityReply(Community co);
 	
 	// 커뮤니티 댓글 출력
 	public List<Community> getCommunityReply(Community co);

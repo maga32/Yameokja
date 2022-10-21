@@ -85,4 +85,10 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return  overlap;
 	}
+
+	// 회원정보 조회(아이디 > 닉네임, 프사)
+	@Override
+	public Member getMemberFor102(String memberId) {
+		return sqlSession.selectOne(NAME_SPACE + ".getMemberFor102", memberId);
+	}
 }

@@ -63,9 +63,14 @@ public class CommunityService {
 		return null;
 	} 
 	
-	// 커뮤니티 수다글 등록 프로세스
+	// 커뮤니티 수다글 등록
 	public void addCommunity101(Community co) {
 		communityListDao.addCommunity101(co);
+	}
+	
+	// 커뮤니티 모집글 등록
+	public void addCommunity102(Community co) {
+		communityListDao.addCommunity102(co);
 	}
 	
 	// 커뮤니티 글 상세보기
@@ -84,8 +89,8 @@ public class CommunityService {
 	}
 	
 	// 커뮤니티 댓글 수정
-	public void updateCommunityReply(int coNo, String coContent) {
-		communityListDao.updateCommunityReply(coNo, coContent);
+	public void updateCommunityReply(Community co) {
+		communityListDao.updateCommunityReply(co);
 	}
 	
 	// 커뮤니티 댓글 출력
