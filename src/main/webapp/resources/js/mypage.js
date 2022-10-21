@@ -13,4 +13,9 @@ $(function() {
 			return false;
 		}		 */
 	 });
+	 $("#deleteButton").click(function(){
+	 	alert("삭제하시겠습니까?");
+	 	var postNo = $("#postNo").val();
+	 	
+	 });
 });

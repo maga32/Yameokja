@@ -14,7 +14,7 @@ public interface MyPageService {
 	
 	public List<Post> myPagePost();
 	
-	public Map<String, Object> myPagePost(String memberId, int pageNum);
+	public Map<String, Object> myPagePost(String memberId, int pageNum, String userId);
 	
 	public Map<String, Object> myPageCommunity(String memberId, int pageNum, String status);
 	

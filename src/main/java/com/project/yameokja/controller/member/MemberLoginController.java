@@ -12,8 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.service.member.MemberService;
 
@@ -37,11 +35,12 @@ public class MemberLoginController {
 			@RequestParam("memberPassword") String password,
 			HttpSession session, HttpServletResponse response) throws IOException {
 		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
 		int result = memberService.login(id, password);
 		
 		if(result == 2) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("	alert('존재하지 않는 아이디 입니다.');");
 			out.println("	history.back();");
@@ -50,8 +49,6 @@ public class MemberLoginController {
 			return null;
 			
 		}else if(result == 0) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("	alert('비밀번호가 다릅니다.');");
 			out.println("	location.href='loginForm'");
@@ -68,8 +65,12 @@ public class MemberLoginController {
 		System.out.println("memberLoginController - memberid : " + member.getMemberId());
 		System.out.println("memberLoginController - memberNickname : " + member.getMemberNickname());
 		
-		
-		return "redirect:/main";
+		out.println("<script>");
+		out.println("window.opener.location.href='main';");
+		out.println("window.close();");
+		out.println("</script>");
+				
+		return null;
 	}
 	
 	// 로그아웃

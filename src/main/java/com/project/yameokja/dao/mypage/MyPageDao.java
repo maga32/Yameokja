@@ -9,7 +9,7 @@ import com.project.yameokja.domain.Store;
 
 public interface MyPageDao {
 	//회원의 정보
-	public abstract Member getMember(String memberId);
+	public Member getMember(String userId);
 	//작성글 리스트
 	public List<Post> myPagePost(String memberId, int startRow, int num);
 	//작성글 갯수

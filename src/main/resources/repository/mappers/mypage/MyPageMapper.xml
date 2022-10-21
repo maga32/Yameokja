@@ -63,8 +63,11 @@
 	<select id="getCommunityListCount" resultType="int">
 		SELECT count(community_no) FROM community WHERE member_id = #{memberId}
 	</select>
-
-
+	
+	<delete id="deletePost">
+		DELETE FROM post WHERE post_no = #{ postNo }
+	</delete>
+	
 <resultMap id="CommunityResultMap" type="Community">
 		<id property="communityNo" column="community_no" />
 		<result property="memberId" column="member_id" />

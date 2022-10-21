@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
@@ -46,10 +47,10 @@ public class MyPageController {
 	public String myPagePost(
 //			HttpSession session,
 			Model model, 
-			@RequestParam(value="memberId", required=false, 
-			defaultValue = "memberId01") String memberId, 
-			@RequestParam(value = "pageNum" ,required = false, 
-			defaultValue = "1")int pageNum) {
+			@RequestParam(value="memberId", required=false, defaultValue = "memberId01") String memberId, 
+			@RequestParam(value = "pageNum" ,required = false, defaultValue = "1")int pageNum,
+			@RequestParam(value = "userId" ,required = true, defaultValue = "null")String userId) 
+	{
 		
 //		파라미터로 들어온 아이디가 없으면 자신의 정보를 불러오기
 //		현재 아이디와 파라미터에 있는 아이디의 값이 같으면 자신의 정보를 불러오기
@@ -58,12 +59,12 @@ public class MyPageController {
 //		현재 아이디와 파라미터에 있는 아이디의 값이 다르면 파라미터 아이디의 정보를 불러오기
 		
 //		 회원정보 하나 
-		Member member = myPageService.getMember(memberId);
+//		Member member = myPageService.getMember(memberId);
 		
 		// 회원이 쓴 글 리스트
-		Map<String, Object> modelMap = myPageService.myPagePost(memberId, pageNum);
+		Map<String, Object> modelMap = myPageService.myPagePost(memberId, pageNum, userId);
 		model.addAllAttributes(modelMap);
-		model.addAttribute("member", member);
+//		model.addAttribute("member", member);
 		model.addAttribute("pageNum", pageNum);
 		
 		return "mypage/myPagePost";
@@ -71,13 +72,10 @@ public class MyPageController {
 	
 	@RequestMapping(value="/myPageCommunity")
 	public String myPageCommunity(
-			@RequestParam(value="communityStatus", required=false, 
-			defaultValue="all") String status,
 			Model model, 
-			@RequestParam(value = "memberId", required = false, 
-			defaultValue = "memberId01")String memberId, 
-			@RequestParam(value = "pageNum", required = false, 
-			defaultValue = "1")int pageNum) {
+			@RequestParam(value="communityStatus", required=false, defaultValue="all") String status, 
+			@RequestParam(value = "memberId", required = false, defaultValue = "memberId01")String memberId, 
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 
 		Member member = myPageService.getMember(memberId);
 

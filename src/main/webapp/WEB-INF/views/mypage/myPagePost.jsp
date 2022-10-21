@@ -4,11 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/myPostList.css" />
-<!-- <script type="text/javascript" src="resources/js/chat.js"></script> -->
+<script type="text/javascript" src="resources/js/mypage.js"></script>
 <article>
 	<form name="postListForm" id="postListForm">
-		<input type="hidden" name="memberId" value="${ member.memberId }" /> <input
-			type="hidden" name="pageNum" value="${ pageNum }" />
+		<input type="hidden" name="memberId" value="${ sessionScope.memberId }" />
+		<input type="hidden" name="pageNum" value="${ pageNum }" />
+		<input type="hidden" name="userId" value="${ userId }" />
 	</form>
 	<div class="row">
 		<div class="fullFrame col-12 p-2 px-2">
@@ -21,13 +22,15 @@
 				<div class="inlineBlock text-start col-6">
 					<div class="col-12 ">
 						<!-- 		sessionScope.memberId -->
-						<div class="mbIdFont">${ member.memberId }님</div>
-						<div class="myInformationFont">이메일 : ${ member.memberEmail }</div>
-						<div class="myInformationFont">가입일 : ${ member.memberJoinDate }</div>
+						<div class="mbIdFont">${ sessionScope.memberNickname }님</div>
+						<div class="myInformationFont">이메일 : ${ sessionScope.member.memberEmail }</div>
+						<div class="myInformationFont">가입일 : ${ sessionScope.member.memberJoinDate }</div>
 					</div>
 				</div>
+<!-- 				로그인 일 때 보이는 버튼들 시작 -->
+				<c:if test="${ sessionScope.memberId == userId} ">
 				<div class="col-3">
-					<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
+					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
 							<a href="#">회원정보수정</a>
 						</div>
@@ -49,12 +52,23 @@
 						</div>
 					</div>
 				</div>
+				</c:if>
+				<c:if test="${ sessionScope.memberId != userId}">
+					<div class="col-3">
+					<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
+						<div class="buttons_">
+							<a href="#">@</a>
+						</div>
+					</div>
+				</div>
+				</c:if>
+<!-- 				로그인 일 때 보이는 버튼들 끝 -->
 			</div>
 			<!--내정보틀 끝 -->
 			<div class="postListHeader text-center col-12 mt-3">
 				<span class="postListbutton  px-3 py-2">맛집 리뷰</span> <span
 					class="replyListbutton px-3 py-2"><a href="#">댓글 리뷰</a></span> <span
-					class="communityListbutton px-3 py-2"><a href="#">동네글</a></span> <span
+					class="communityListbutton px-3 py-2"><a href="myPageCommunity">동네글</a></span> <span
 					class="likeListbutton px-3 py-2"><a href="#">찜 목록</a></span>
 			</div>
 			<!--postListHeader 끝 -->
@@ -73,6 +87,9 @@
 								<div class="postTitle">
 									<a href="#">${ p.postTitle }</a>
 								</div>
+								<div class="postNo" id="postNo">
+									<a href="#">postNo=${p.postNo}</a>
+								</div>
 								<div class="myInformationFont">
 									<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
 									${ p.postRegDate }
@@ -85,11 +102,11 @@
 								</div>
 							</div>
 							<div class="upAndDel col-3">
-								<div class="myInformationFont">
-									<i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+								<div class="updateButton">
+									<a href=""><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
 								</div>
-								<div class="myInformationFont">
-									<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+								<div class="deleteButton" id="deleteButton">
+									<a href="deletePost"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</div>
