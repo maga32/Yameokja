@@ -39,6 +39,13 @@
 		WHERE member_nickname = #{memberNickname}
 	</select>
 	
+	<!-- 차단회원 추가/해제 -->
+	<update id="memberBlock">
+		UPDATE member
+			SET member_block_ids = #{memberBlockIds} 
+			WHERE member_id = #{memberId}
+	</update>
+		
 	<resultMap type="Member" id="MemberResultMap">
 		<id property="memberId" column="member_id" />
 		<result property="memberPhoto" column="member_photo" />

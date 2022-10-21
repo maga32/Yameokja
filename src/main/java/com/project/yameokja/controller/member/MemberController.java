@@ -3,10 +3,13 @@ package com.project.yameokja.controller.member;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -135,8 +138,40 @@ public class MemberController {
 		return "member/overlapNicknameCheck";
 	}
 	
-	
-	
+	// 멤버 차단 ajax
+	@RequestMapping("/memberBlock.ajax")
+	@ResponseBody
+	public Map<String, Integer> memberBlock(HttpSession session, String targetId) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String memberId = (String)session.getAttribute("memberId");
+		
+		if(memberService.isBlockedMe(targetId, memberId)) {
+			map.put("result", 0);
+		} else {
+			memberService.memberBlock(memberId, targetId);
+			map.put("result", 1);
+		}
+		
+		System.out.println("차단멤버 : " + memberService.getMember(memberId).getMemberBlockIds());
+		return map;
+	}
 
+	// 멤버 차단해제 ajax
+	@RequestMapping("/memberUnblock.ajax")
+	@ResponseBody
+	public Map<String, Integer> memberUnblock(HttpSession session, String targetId) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String memberId = (String)session.getAttribute("memberId");
+		
+		if(memberService.isBlockedMe(targetId, memberId)) {
+			memberService.memberUnblock(memberId, targetId);
+			map.put("result", 1);
+		} else {
+			map.put("result", 0);
+		}
+		
+		System.out.println("차단멤버 : " + memberService.getMember(memberId).getMemberBlockIds());
+		return map;
+	}
 
 }

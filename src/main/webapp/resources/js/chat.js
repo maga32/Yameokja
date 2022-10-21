@@ -53,5 +53,10 @@ function chatDelete(chatNo){
 			}
 		});
 	}
+}
 
+function chatLeave(chatIds){
+	var result = confirm('채팅방에서 나가시겠습니까?');
+
+	if(result) location.replace("chatLeave?chatIds=" + chatIds);
 }

@@ -56,5 +56,7 @@
 		<img class="col-12 rounded" src="https://picsum.photos/100">
 		(샘플)
 	</div>
+	<a href="loginForm">로그인</a>
+	<a href="#" onclick='window.open("chat/chatList","채팅","width=500, height=800")'>채팅 리스트</a>
 </div>
 </article>

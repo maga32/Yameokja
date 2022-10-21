@@ -19,4 +19,7 @@ public interface MemberDao {
 	// 닉네임 중복확인
 	public boolean nicknameOverlapCheck(String memberNickname);
 	
+	// 차단회원 추가/해제
+	public void memberBlock(String memberId, String memberBlockIds);
+	
 }

@@ -1,5 +1,8 @@
 package com.project.yameokja.dao.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -85,4 +88,15 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return  overlap;
 	}
+
+	// 차단회원 추가/해제
+	@Override
+	public void memberBlock(String memberId, String memberBlockIds) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("memberBlockIds", memberBlockIds);
+		
+		sqlSession.selectList(NAME_SPACE + ".memberBlock", map);
+	}
+	
 }
