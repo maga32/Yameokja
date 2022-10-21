@@ -83,6 +83,11 @@ public class CommunityService {
 		communityListDao.addCommunityReply(co);
 	}
 	
+	// 커뮤니티 댓글 수정
+	public void updateCommunityReply(int coNo, String coContent) {
+		communityListDao.updateCommunityReply(coNo, coContent);
+	}
+	
 	// 커뮤니티 댓글 출력
 	public List<Community> getCommunityReply(Community co){
 		return communityListDao.getCommunityReply(co);
@@ -97,7 +102,9 @@ public class CommunityService {
 	public String getCommunityReplyMemberId(int no) {
 		return communityListDao.getCommunityReplyMemberId(no);
 	}
+
 	
+
 	
 
 }

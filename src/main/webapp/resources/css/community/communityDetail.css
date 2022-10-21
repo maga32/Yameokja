@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.border{
+	border: 1px solid black;
+}
+.btnCommunityReReplyWriteFormOpen{
+	border: none;
+	background-color: white;
+	color: #7A7A80;
+	font-size: 13px;
+}
+.btnCommunityReReplyUpdateFormOpen{
+	border: none;
+	background-color: white;
+	color: #7A7A80;
+	font-size: 13px;
+}
+.reportButton{
+	border: none;
+	background-color: white;
+	color: #7A7A80;
+	font-size: 13px;
+}

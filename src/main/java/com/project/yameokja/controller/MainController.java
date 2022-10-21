@@ -25,7 +25,7 @@ public class MainController {
 		
 		model.addAttribute("categoryList", categoryList);
 		
-		return "/main";
+		return "main";
 	}
 	
 }
