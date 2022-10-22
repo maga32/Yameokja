@@ -107,6 +107,11 @@ public class CommunityService {
 	public String getCommunityReplyMemberId(int no) {
 		return communityListDao.getCommunityReplyMemberId(no);
 	}
+	
+	// 모집글 참여 여부 수정
+	public void update102PartyMemberIds(String partyMemberIds, int communityNo) {
+		communityListDao.update102PartyMemberIds(partyMemberIds, communityNo);
+	}
 
 	
 

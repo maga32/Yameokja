@@ -44,4 +44,7 @@ public interface CommunityDao {
 	// 커뮤니티 댓글 작성자 출력
 	public String getCommunityReplyMemberId(int no);
 	
+	// 모집글 참여 여부 수정
+	public void update102PartyMemberIds(String partyMemberIds, int communityNo);
+	
 }

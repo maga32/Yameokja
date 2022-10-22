@@ -51,10 +51,10 @@
 			</c:if>
 			<br>
 			<c:forEach var="u" items="${memberPhotoList }">
-				<c:if test="${u.memberNickname == sessionScope.memberNickname }">
+				<c:if test="${u.memberNickname == co.memberNickname }">
 					<img class="rounded-circle" style="border:5px solid blue; height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"/>
 				</c:if>
-				<c:if test="${u.memberNickname != sessionScope.memberNickname }">
+				<c:if test="${u.memberNickname != co.memberNickname }">
 					<img class="rounded-circle" style="height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"/>
 				</c:if>
 			</c:forEach>

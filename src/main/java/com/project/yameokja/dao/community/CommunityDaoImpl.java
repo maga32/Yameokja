@@ -108,6 +108,16 @@ public class CommunityDaoImpl implements CommunityDao {
 		return sqlSession.selectOne(NAME_SPACE + ".getCommunityReplyMemberId", no);
 	}
 
+	// 모집글 참여 여부 수정
+	@Override
+	public void update102PartyMemberIds(String partyMemberIds, int communityNo) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("partyMemberIds", partyMemberIds);
+		params.put("communityNo", communityNo);
+		
+		sqlSession.update(NAME_SPACE + ".update102PartyMemberIds", params);
+	}
+
 	
 }
 

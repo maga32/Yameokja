@@ -174,29 +174,46 @@ public class CommunityController {
 	// 모집 참여 및 참여취소
 	@RequestMapping("/btn102PartyJoin")
 	public String partyJoin(int communityNo, HttpSession session) {
+		
+		// 해당 동네글 정보 조회
 		Community co = communityListService.getCommunityOne(communityNo);
 
 		if(co == null) {
 			System.out.println("co가 비었음");
+			return "redirect:communityDetail?communityNo="+communityNo;
 		}
+
+		String loginId = (String) session.getAttribute("memberId");
+		if(loginId == null) return "redirect:communityDetail?communityNo="+communityNo;
 		
 		boolean joinCheck = false;
-		String loginId = (String) session.getAttribute("memberId");
 		String allMembers = co.getpartyMemberIds();
 		String[] members = allMembers.split(",");
+		Timestamp dDay = co.getPartyDDay();
+		int countPartyMembers = 0;
+		
 		for(int i =0; i < members.length; i++) {
+			countPartyMembers += 1;		
 			if(loginId.equals(members[i])) {
 				joinCheck = true;
 			}
 		}
+		
+		if(countPartyMembers >= co.getPartyMembers()) {
+			System.out.println("참여인원 초과");
+			return null;
+		}
+			
 		System.out.println("joinCheck : " + joinCheck + "allMembers : " + allMembers);
 		
 		if( joinCheck ) {
-			allMembers.replace("," + loginId, "");
-			System.out.println("참여 실행");
-		}else {
-			allMembers += ","+ loginId;
+			allMembers = allMembers.replace("," + loginId, "");
+			communityListService.update102PartyMemberIds(allMembers, co.getCommunityNo());
 			System.out.println("참여 실행 취소");
+		}else {
+			allMembers += ","+ loginId;	
+			communityListService.update102PartyMemberIds(allMembers, co.getCommunityNo());
+			System.out.println("참여 실행");	
 		}
 		
 		return "redirect:communityDetail?communityNo="+communityNo;

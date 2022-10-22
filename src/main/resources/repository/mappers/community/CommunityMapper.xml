@@ -79,6 +79,13 @@
 				  #{partyMembers}, #{partyDDay}, #{partyPlace}, #{partyMemberIds})
 	</insert>
 	
+<!-- 커뮤니티 모집글 참여 등록 -->
+	<update id="update102PartyMemberIds" parameterType="hashmap">
+		UPDATE community
+			SET party_member_ids = #{partyMemberIds}
+		WHERE community_no = #{communityNo}
+	</update>
+	
 <!-- 커뮤니티 글 상세보기 -->
 	<select id="getCommunityOne" resultMap="CommunityResultMap" resultType="Community">
 		SELECT *
