@@ -4,6 +4,16 @@ h2{
 	font-weight: 900;
 	text-align: center;
 }
+.row{
+	justify-content: center;
+}
+.textAlignCenter{	
+	text-align: center;
+}
+#loginForm{
+	width: 400px;
+	height: 500px;
+}
 .legend{
 	color: #A4A4A4;
 	border-bottom: 2px solid #B8BBC0;
@@ -17,7 +27,6 @@ h2{
 }
 .inlineBlock{
 	display: inline-block;
-	align-items: center;
 	
 }
 
@@ -47,17 +56,15 @@ h2{
 	padding: 6px 12px 6px;
 	border: 2px solid #E3E5E9;
 	font-size: 30px;
+	margin-top: 60px;
 }
-#btn2{
-	text-align: center;
-}
-#btnJoin{
+#btnJoin, #btnSearch{
 	color: #7A7A80;
 	border: none;
 	background-color: white;
 }
-#btnSearch{
+.checkbox{
 	color: #7A7A80;
 	border: none;
-	background-color: white;
+	background-color: white
 }

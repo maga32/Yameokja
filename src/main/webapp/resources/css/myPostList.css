@@ -6,17 +6,11 @@ body{
 	background-color: white;
 	
 }
-.inlineBlock{
-	display: table-cell;
-}
+
 .fullFrame {
 	background-color: white;
 	
 
-}
-.nbsp; {
-	margin-top: 10px;
-	margin-bottom: 10px;
 }
 /* 내정보 */
 .myInformationsFrame{
@@ -24,53 +18,18 @@ body{
 	border-radius: 5px;
 	height: auto;
 	display: flex;
-    text-align: center;
     align-items: center;
 }
 
-.myInformation1, .myInformation2, .myInformation3{
-/* 	border: 1px dotted #7A7A80;	 */
-	font-size: 16px;
-}
-
-.myInformation1 {
-	width: 100%;
-	border-radius: 100%;
-	text-align: center;	
-}
-.myInformation2 {
-	width: 100%;	
-	text-align: left;
-	
-}
 .mbIdFont {
 	font-size: 20px;
 	font-weight: 900;
 
 }
-.myInformationFont {
-	font-size: 16px;
-	margin-top: 10px;
-	margin-bottom: 10px;
 
-}
-.myInformation3 {
-	width: 100%;	
-	font-size: 10px;
-}
-
-.buttons_ {
-	text-align: center;
-    margin: 4px;
-    font-size: 16px;
-    font-weight: 900;
-    color: gray;
-    
-}
 /* 리스트 별로 이동하는 버튼 */
 
 .postListHeader {
-	
 }
 .postListbutton, .replyListbutton, 
 .communityListbutton, .likeListbutton{
@@ -78,26 +37,21 @@ body{
 	display: table-cell;
 }
 .postListbutton {
-	border-top: 1px solid #B8BBC0;
-	border-left: 1px solid #B8BBC0;
-	border-right: 1px solid #B8BBC0;
-	border-bottom: 1px solid #ffffff;
-	text-align: center;
+	border: 1px solid #FCD147;
     font-size: 16px;
     font-weight: 900;
-    color: gray;
+    color: #F58500;
+    background: #FCD147;
 	
 }
 .replyListbutton {
 	border: 1px solid #B8BBC0;
-	text-align: center;
     font-size: 16px;
     font-weight: 900;
     color: gray;
 }
 .communityListbutton {
 	border: 1px solid #B8BBC0;
-	text-align: center;
     font-size: 16px;
     font-weight: 900;
     color: gray;
@@ -111,34 +65,20 @@ body{
 }
 /* 리스트 */
 .postListFrame {
-	border: 1px solid #B8BBC0;
-	display: inline-block;
-	margin: -1px auto 10px;
-	text-align: center;
+/* 	background-color: #FCD147; */
 }
 .postFrame{
-	border: 1px solid #B8BBC0;
-	text-align: center;
 	display: flex;
     align-items: center;
 }
-.mainImg, .postContent, .upAndDel{
-/* 	border: 1px dotted black; */
-	display: inline-block;
-}
-.mainImg {
-	border: 1px dotted black;
-	width: 25%;
-	height: 150px;
-	border-radius: 10px;
-}
+
 .postContent {
 	width: 60%;
 	text-align: left;
 }
 .myInformationFont img{
-	width: 25px;
-	height: 25px;
+	width: 15px;
+	height: 15px;
 }
 .postTitle {
 	font-size: 25px;
@@ -148,16 +88,18 @@ body{
 	width: 10%;
 	display: inline-block;
 }
-.pageGroup {
-/* 	border: 1px solid black; */
-	text-align: right;
+
+.previousPage {
+	color: gray;
 }
-.페이지그룹버튼 {
-	font-family: Inter;
-	text-align: center;
-	margin: 14px;
-	font-size: 16px;
-	display: inline-table;
+.pageNumber {
+	color: gray;
+}
+.nextPage {
+	color: gray;
+}
+.fa-bell{
+/* 	color: #F58500; */
 }
 /* a 태그 */
 a {text-decoration: none;}
@@ -175,14 +117,44 @@ a {text-decoration: none;}
 .replyListbutton a:link {color: gray;}
 .replyListbutton a:visited {color: gray;}
 .replyListbutton a:hover {color: #4aa5ff;}
-.replyListbutton a:active {color: 4aa5ff;}
+.replyListbutton a:active {color: #4aa5ff;}
 
 .communityListbutton a:link {color: gray;}
 .communityListbutton a:visited {color: gray;}
 .communityListbutton a:hover {color: #4aa5ff;}
-.communityListbutton a:active {color: 4aa5ff;}
+.communityListbutton a:active {color: #4aa5ff;}
 
 .likeListbutton a:link {color: gray;}
 .likeListbutton a:visited {color: gray;}
 .likeListbutton a:hover {color: #4aa5ff;}
-.likeListbutton a:active {color: 4aa5ff;}
+.likeListbutton a:active {color: #4aa5ff;}
+
+.postTitle a:link {color: #6a6767;}
+.postTitle a:visited {color: #6a6767;}
+.postTitle a:hover {color: #4aa5ff;}
+.postTitle a:active {color: 4aa5ff;}
+
+.previousPage a:link {color: gray;}
+.previousPage a:visited {color: gray;}
+.previousPage a:hover {color: #4aa5ff;}
+.previousPage a:active {color: 4aa5ff;}
+
+.pageNumber a:link {color: gray;}
+.pageNumber a:visited {color: gray;}
+.pageNumber a:hover {color: #4aa5ff;}
+.pageNumber a:active {color: 4aa5ff;}
+
+.nextPage a:link {color: gray;}
+.nextPage a:visited {color: gray;}
+.nextPage a:hover {color: #4aa5ff;}
+.nextPage a:active {color: 4aa5ff;}
+
+.updateButton a:link {color: black;}
+.updateButton a:visited {color: black;}
+.updateButton a:hover {color: #4aa5ff;}
+.updateButton a:active {color: 4aa5ff;}
+
+.deleteButton a:link {color: black;}
+.deleteButton a:visited {color: black;}
+.deleteButton a:hover {color: #4aa5ff;}
+.deleteButton a:active {color: 4aa5ff;}

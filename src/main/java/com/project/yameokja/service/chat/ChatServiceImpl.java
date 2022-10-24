@@ -18,7 +18,7 @@ import com.project.yameokja.domain.Member;
 public class ChatServiceImpl implements ChatService {
 	
 	ChatDao chatDao;
-	MemberDao memberLoginDao;
+	MemberDao memberDao;
 	
 	@Autowired
 	public void setChatDao(ChatDao chatDao) {
@@ -26,8 +26,8 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Autowired
-	public void setMemberLoginDao(MemberDao memberLoginDao) {
-		this.memberLoginDao = memberLoginDao;
+	public void setMemberLoginDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
 	}
 
 
@@ -52,7 +52,7 @@ public class ChatServiceImpl implements ChatService {
 			chats.add(chatDao.chatLists(chatIds.get(i)));
 			
 			tempId = chats.get(i).getChatSender().equals(memberId) ? chats.get(i).getChatReceiver() : chats.get(i).getChatSender(); 			
-			members.add(memberLoginDao.getMember(tempId));
+			members.add(memberDao.getMember(tempId));
 		}
 		
 		
@@ -86,6 +86,11 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public void chatLeave(int chatNo, String orderCheck) {
 		chatDao.chatLeave(chatNo, orderCheck);
+	}
+
+	@Override
+	public void chatLeave(String chatIds, String orderCheck) {
+		chatDao.chatLeave(chatIds, orderCheck);
 	}
 
 }

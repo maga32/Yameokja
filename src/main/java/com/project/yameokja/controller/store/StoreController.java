@@ -1,6 +1,7 @@
 package com.project.yameokja.controller.store;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class StoreController {
 
 	// 가게 리스트
 	@RequestMapping("/storeList")
-	public String StoreList(Model model,int categoryNo) {
+	public String StoreList(Model model, int categoryNo) {
 
 		List<Store> sList = StoreService.storeList(categoryNo);
 		model.addAttribute("sList", sList);
@@ -40,14 +41,14 @@ public class StoreController {
 	public String StoreDetail(Model model, int storeNo) {
 
 		Store store = StoreService.getStore(storeNo);
+		
 		model.addAttribute("store", store);
 
 		return "store/storeDetail";
 	}
-
 	
 	 // 가게 정보 글쓰기
-	@RequestMapping(value="/storeWriteForm", method=RequestMethod.GET)
+	@RequestMapping(value="/storeWriteForm")
 	public String insertStore(String storeName, String storeLatitude, String storeLongitude, String storeFileMain,
 			String storeFileMenu, String storeAddress, String storeTime,
 			String storeDayOff, String storeParking, int categoryNo) { 

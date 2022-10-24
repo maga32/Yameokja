@@ -68,6 +68,24 @@
 				  #{communityFile}, #{categoryNo}, #{memberId}, #{memberNickname})
 	</insert>
 	
+<!-- 커뮤니티 모집글 작성 -->
+	<insert id="addCommunity102" parameterType="Community">
+		INSERT INTO community
+			(community_title, community_reg_date, community_content, 
+					community_file, category_no, member_id, member_nickname,
+					party_members, party_d_day, party_place, party_member_ids)
+			 VALUES (#{communityTitle}, SYSDATE(), #{communityContent},
+				  #{communityFile}, #{categoryNo}, #{memberId}, #{memberNickname},
+				  #{partyMembers}, #{partyDDay}, #{partyPlace}, #{partyMemberIds})
+	</insert>
+	
+<!-- 커뮤니티 모집글 참여 등록 -->
+	<update id="update102PartyMemberIds" parameterType="hashmap">
+		UPDATE community
+			SET party_member_ids = #{partyMemberIds}
+		WHERE community_no = #{communityNo}
+	</update>
+	
 <!-- 커뮤니티 글 상세보기 -->
 	<select id="getCommunityOne" resultMap="CommunityResultMap" resultType="Community">
 		SELECT *
@@ -90,6 +108,13 @@
 			 VALUES (SYSDATE(), #{communityContent}, #{communityParentNo}, #{communityReReply},
 				  #{communityReplyTarget}, #{categoryNo}, #{memberId}, #{memberNickname})
 	</insert>
+	
+<!-- 커뮤니티 댓글 수정 -->
+	<update id="updateCommunityReply" parameterType="Community">
+		UPDATE community
+			SET community_content = #{communityContent} 
+		WHERE community_no = #{communityNo}
+	</update>
 	
 <!-- 커뮤니티 댓글 출력 -->
 	<select id="getCommunityReply" parameterType="Community" resultMap="CommunityResultMap">

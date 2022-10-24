@@ -6,12 +6,14 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.project.yameokja.domain.Post;
 
+@Repository
 public class PostDaoImpl implements PostDao {
 
-	private final String NAME_SPACE = "com.project.mappers.StoreMapper";
+	private final String NAME_SPACE = "com.project.yameokja.mappers.StoreMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	
@@ -22,36 +24,47 @@ public class PostDaoImpl implements PostDao {
 	
 	
 	@Override
-	public List<Post> postList(int categoryNo, int storeNo) {
-		
-		Map<String, Object> params = new HashMap<String,Object>();
-		params.put("categoryNo", categoryNo);
-		params.put("storeNo", storeNo);
-		
-		return sqlSession.selectList(NAME_SPACE + ".storeDetail", params); 
+	public List<Post> postList(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".storeDetail", storeNo); 
 	}
 
 	@Override
-	public Post getPost(int postNo) {
-		return sqlSession.selectOne(NAME_SPACE + ".storeDetail");
+	public Post getPost(int storeNo, int postNo) {
+		
+		Map<String, Object> param = new HashMap <String, Object>();
+		
+		param.put("storeNo", storeNo);
+		param.put("postNo", postNo);
+		
+		return sqlSession.selectOne(NAME_SPACE + ".storeDetail", param);
 	}
 
+	
 	@Override
 	public void insertPost(Post post) {
 		// TODO Auto-generated method stub
 
 	}
 
+	
 	@Override
 	public void updatePost(Post post) {
 		// TODO Auto-generated method stub
 
 	}
 
+	
 	@Override
 	public void deletePost(Post post) {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	@Override
+	public int getPostCount(String Type, String keyword, int postNo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

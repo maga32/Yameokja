@@ -26,8 +26,8 @@ public class MyPageServiceImpl implements MyPageService {
 		this.myPageDao = myPageDao;
 	}
 	@Override
-	public Member getMember(String memberId) {
-		return myPageDao.getMember(memberId);
+	public Member getMember(String userId) {
+		return myPageDao.getMember(userId);
 	}
 	
 	@Override
@@ -36,15 +36,14 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	@Override
-	public Map<String, Object> myPagePost(String memberId, int pageNum) {
+	public Map<String, Object> myPagePost(int pageNum, String userId) {
 	
-		int currentPage = pageNum;
-		
+		int currentPage = pageNum;		
 		int startRow = (currentPage -1) * PAGE_SIZE;
-		int listCount = myPageDao.getPostListCount(memberId);
+		int listCount = myPageDao.getPostListCount(userId);
 		
 		if(listCount > 0) {
-			List<Post> postList = myPageDao.myPagePost(memberId, startRow, PAGE_SIZE);
+			List<Post> postList = myPageDao.myPagePost(userId, startRow, PAGE_SIZE);
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
 			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP
 									- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0) + 1;
@@ -59,10 +58,15 @@ public class MyPageServiceImpl implements MyPageService {
 			postMap.put("startPage", startPage);
 			postMap.put("endPage", endPage);			
 			postMap.put("pageGroup", PAGE_GROUP);
+			postMap.put("userId", userId);
 			
 			return postMap;
 		}
-		return null;
+		
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("userId", userId);
+		
+		return postMap;
 	}
 	
 	@Override
@@ -99,6 +103,5 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<Store> myPageStore(String memberId) {
 		return myPageDao.myPageStore(memberId);
 	}
-
 
 }

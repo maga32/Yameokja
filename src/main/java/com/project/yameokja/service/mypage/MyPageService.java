@@ -10,11 +10,11 @@ import com.project.yameokja.domain.Store;
 
 public interface MyPageService {
 	
-	public Member getMember(String memberId);
+	public Member getMember(String userId);
 	
 	public List<Post> myPagePost();
 	
-	public Map<String, Object> myPagePost(String memberId, int pageNum);
+	public Map<String, Object> myPagePost(int pageNum, String userId);
 	
 	public Map<String, Object> myPageCommunity(String memberId, int pageNum, String status);
 	

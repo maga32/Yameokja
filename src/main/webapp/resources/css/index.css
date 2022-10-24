@@ -5,6 +5,7 @@
 
 header { 
 	text-align: center;
+	background-color: #FCD147;
 }
 
 
@@ -14,6 +15,20 @@ footer {
 	color: white;
 }
 .LogoIMGSize{
-	width: 120px;
 	height: 35px;
+}
+.textAlignCenter{	
+	text-align: center;
+}
+.inlineBlock{
+	display: inline-block;
+}
+.alignIitems{
+	align-items: flex-end;
+}
+.headerBackgroundColor{
+	background-color: #FCD147;
+}
+.headerFontColor{
+	background-color: #F58500;
 }
