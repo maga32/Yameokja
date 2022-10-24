@@ -40,16 +40,16 @@
 	        
 			<div class="row py-2">
 				<div class="col-3">
-					<button class="d-block col-12 btn btn-sm btn-outline-warning rounded-pill px-2">별점순</button>
+					<button class="d-block col-12 btn btn-sm btn-outline-warning rounded-pill px-2"><a href="#">별점순</a></button>
 				</div>
 				<div class="col-3">
-					<button class="col-12 btn btn-sm btn-outline-warning rounded-pill px-2">조회수순</button>
+					<button class="col-12 btn btn-sm btn-outline-warning rounded-pill px-2"><a href="#">조회수순</a></button>
 				</div>
 				<div class="col-3">
-					<button class="col-12 btn btn-sm btn-outline-warning rounded-pill px-2">리뷰순</button>
+					<button class="col-12 btn btn-sm btn-outline-warning rounded-pill px-2"><a href="#">리뷰순</a></button>
 				</div>
 				<div class="col-3">
-					<button class="d-block col-12 btn btn-sm btn-outline-warning rounded-pill px-2">즐겨찾기순</button>
+					<button class="d-block col-12 btn btn-sm btn-outline-warning rounded-pill px-2"><a href="#">즐겨찾기순</a></button>
 				</div>
 			</div>
 			

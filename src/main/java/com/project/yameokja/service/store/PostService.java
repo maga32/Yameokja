@@ -6,17 +6,18 @@ import com.project.yameokja.domain.Post;
 
 public interface PostService {
 
-	// 리뷰 리스트
-	public abstract List<Post> postList(int categoryNo, int storeNo);
+	// 포스트 리스트
+	public abstract List<Post> postList(int storeNo);
 		
-	// 리뷰 상세
+	// 포스트 상세
 	public abstract Post getPost(int storeNo, int postNo);
 	
-	// 리뷰 글쓰기
+	// 포스트 글쓰기
 	public abstract void insertPost(Post post);
 	
-	// 리뷰 수정
+	// 포스트 수정
+	public abstract void updatePost(Post post);
 	
-	// 리뷰 삭제
-	
+	// 포스트 삭제
+	public abstract void deletePost(Post post);
 }

@@ -18,4 +18,7 @@ public interface StoreDao {
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);
 	
+	// 가게 정보 삭제
+	public abstract void deleteStore(Store store);
+	
 }

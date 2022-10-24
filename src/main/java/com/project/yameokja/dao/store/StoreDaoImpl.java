@@ -50,4 +50,11 @@ public class StoreDaoImpl implements StoreDao {
 		
 	}
 	
+	// 가게 삭제
+	@Override
+	public void deleteStore(Store store) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

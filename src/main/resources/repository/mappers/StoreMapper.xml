@@ -18,31 +18,13 @@
 	<insert id="insertStore" parameterType="Store"
 	useGeneratedKeys="true" keyProperty="storeNo">
 	INSERT INTO 
-		store(store_name,	
-				store_phone, 
-				store_latitude, 
-				store_longitude, 
-				store_file_main, 
-				store_file_menu, 
-				store_address, 
-				store_time, 
-				store_bookmarks,
-				store_day_off, 
-				store_parking, 
-				category_no)
+		store(store_name,	store_phone, store_latitude, store_longitude, store_file_main, 
+				store_file_menu, store_address, store_time, store_bookmarks,store_day_off, 
+				store_parking, category_no)
 				
-    VALUES(#{storeName}, 
-    			#{storePhone}, 
-    			#{storeLatitude}, 
-    			#{storeLongitude},
-    			#{storeFileMain}, 
-    			#{storeFileMenu}, 
-    			#{storeAddress},
-    			#{storeTime}, 
-    			"null",
-    			#{storeDayOff}, 
-    			#{storeParking}, 
-    			#{categoryNo})
+    VALUES(#{storeName}, #{storePhone}, #{storeLatitude}, #{storeLongitude},
+    			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, "null",
+    			#{storeDayOff}, #{storeParking}, #{categoryNo})
 	</insert>
 	
 

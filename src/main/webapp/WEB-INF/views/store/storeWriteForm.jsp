@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<article>
 <div class="container-fluid">
 	
         <div class="row">
@@ -168,10 +167,10 @@
 	            				<div class="col-3"></div>
 	            				<div class="col-3"></div>
 	            				<div class="col-3 text-center fs-6">
-	            					<button class="col-12 p-2 fw-bold rounded">취소</button>
+	            					<button type="" class="col-12 p-2 fw-bold rounded">취소</button>
 	            				</div>
 	            				<div class="col-3 text-center fs-6">
-	            					<button class="col-12 p-2 fw-bold rounded">작성완료</button>
+	            					<button type="submit" class="col-12 p-2 fw-bold rounded">작성완료</button>
 	            				</div>
 							</div>
 	            			</div>
@@ -195,6 +194,6 @@
             
         </div>
         
-    </div> 
-</body>
+    </div>
+</article>
 </html>

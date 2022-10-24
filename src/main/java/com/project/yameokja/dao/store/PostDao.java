@@ -7,10 +7,13 @@ import com.project.yameokja.domain.Post;
 public interface PostDao {
 	
 	// 가게 정보 포스트 리스트
-	public abstract List<Post> postList(int categoryNo, int storeNo);
+	public abstract List<Post> postList(int storeNo);
 	
 	// 가게 정보 포스트 상세
-	public abstract Post getPost(int postNo);
+	public abstract Post getPost(int storeNo, int postNo);
+	
+	// 가게 포스트 글 갯수
+	public int getPostCount(String Type, String keyword, int postNo);
 	
 	// 가게 포스트 글쓰기
 	public abstract void insertPost(Post post);

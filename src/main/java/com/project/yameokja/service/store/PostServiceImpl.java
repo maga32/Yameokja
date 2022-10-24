@@ -19,20 +19,31 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> postList(int categoryNo, int storeNo) {
-		return postDao.postList(categoryNo, storeNo);
+	public List<Post> postList(int storeNo) {
+		return postDao.postList(storeNo);
 	}
 
 	@Override
 	public Post getPost(int storeNo, int postNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return postDao.getPost(storeNo, postNo);
 	}
 
 	@Override
 	public void insertPost(Post post) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void updatePost(Post post) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deletePost(Post post) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.project.yameokja.controller.community;
+	package com.project.yameokja.controller.community;
 
 import java.io.File;
 import java.io.IOException;
