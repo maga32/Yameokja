@@ -20,6 +20,8 @@ import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.service.mypage.MyPageService;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+
 //스프링 MVC의 컨트롤러임을 선언하고 있다.
 @Controller
 public class MyPageController {
@@ -95,6 +97,12 @@ public class MyPageController {
 		Member user = myPageService.getMember(userId);
 		model.addAttribute("user", user);
 		return "forward:WEB-INF/views/mypage/userProfile.jsp";
+	}
+	
+	@RequestMapping("/wing")
+	public String wing() {
+		
+		return "wing";
 	}
 
 }

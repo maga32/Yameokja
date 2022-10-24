@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header>
+<div class="row">
 <div class="col-12 py-2">
 	<div class="col-12">
 		<a href="main">
@@ -20,8 +21,10 @@
 		<a href="myPagePost">myPage</a>
 		<a href="communityList">communityList</a>
 		<a href="storeList">storeList</a>
+		<a href="wing">Wing</a>
 <!-- 		나중에 삭제 끝-->
 		
 	</div>
+</div>
 </div>
 </header>
