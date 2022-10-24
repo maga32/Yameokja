@@ -24,4 +24,25 @@ public class CategoryDaoImpl implements CategoryDao {
 		return sqlSession.selectList(NAME_SPACE + ".categoryList", type);
 	}
 
+	@Override
+	public int getLastNo(String type) {
+		return sqlSession.selectOne(NAME_SPACE + ".getLastNo", type);
+	}
+
+	@Override
+	public int getLastOrder(String type) {
+		return sqlSession.selectOne(NAME_SPACE + ".getLastOrder", type);
+	}
+
+	@Override
+	public void addCategory(Category newCategory) {
+		sqlSession.insert(NAME_SPACE + ".addCategory", newCategory);
+		
+	}
+
+	@Override
+	public void deleteCategory(int categoryNo) {
+		sqlSession.delete(NAME_SPACE + ".deleteCategory", categoryNo);
+	}
+
 }

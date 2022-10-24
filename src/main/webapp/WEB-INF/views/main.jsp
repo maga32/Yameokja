@@ -39,6 +39,9 @@
 	<!--  샘플  -->
 	<div class="col-6 py-2 col-md-3">
 		<img class="col-12 rounded" src="https://picsum.photos/100">
+		<a href="admin/adminMain">관리자페이지</a>
+		<a href="loginForm">로그인</a>
+		<a href="logout">로그아웃</a>
 	</div>
 </div>
 </article>

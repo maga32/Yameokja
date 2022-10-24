@@ -15,10 +15,42 @@
 		SELECT * FROM category
 			<where>
 				<if test="type == 'store'">
-					category_no &lt; 100
+					category_no BETWEEN 1 AND 100
 				</if>
 			</where>
 			ORDER BY category_order
 	</select>
+	
+	<select id="getLastNo" resultType="Integer">
+		SELECT category_no FROM category
+			<where>
+				<if test="type == 'store'">
+					category_no BETWEEN 1 AND 100
+				</if>
+			</where>
+			ORDER BY category_no DESC
+			LIMIT 0,1
+	</select>
 
+	<select id="getLastOrder" resultType="Integer">
+		SELECT category_order FROM category
+			<where>
+				<if test="type == 'store'">
+					category_no BETWEEN 1 AND 100
+				</if>
+			</where>
+			ORDER BY category_order DESC
+			LIMIT 0,1
+	</select>
+	
+	<insert id="addCategory" parameterType="Category">
+		INSERT INTO category (category_no, category_name, category_order)
+			VALUE(#{categoryNo}, #{categoryName}, #{categoryOrder})
+	</insert>
+	
+	<delete id="deleteCategory">
+		DELETE FROM category
+			WHERE category_no = #{categoryNo}
+	</delete>
+	
 </mapper>
