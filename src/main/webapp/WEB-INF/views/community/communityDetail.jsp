@@ -40,6 +40,28 @@
 		</div>
 	</div>
 	
+<!-- if 모집글 / 모집 정보 출력 -->
+	<c:if test="${ co.categoryNo == 102 }">
+		<div>
+			모집일 : ${ co.partyDDay }<br>
+			모집 장소 : ${ co.partyPlace }<br>
+			모집 인원 : ${countPartyMembers} / ${ co.partyMembers }
+			<c:if test="${sessionScope.memberId != co.memberId }">
+				<button type="button" onClick="location.href='btn102PartyJoin?communityNo=${co.communityNo}'">참가</button>
+			</c:if>
+			<br>
+			<c:forEach var="u" items="${memberPhotoList }">
+				<c:if test="${u.memberNickname == co.memberNickname }">
+					<img class="rounded-circle" style="border:5px solid blue; height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"/>
+				</c:if>
+				<c:if test="${u.memberNickname != co.memberNickname }">
+					<img class="rounded-circle" style="height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"/>
+				</c:if>
+			</c:forEach>
+		</div>
+	</c:if>	
+	
+	
 <!-- 댓글 입력 -->
 	<div class="row">
 	<div class="col-12">

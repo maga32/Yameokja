@@ -35,12 +35,7 @@ public class MemberService {
 		
 		return memberDao.idOverlapCheck(mbId);
 	}
-	
-	// 닉네임 중복확인
-		public Boolean nicknameOverlapCheck(String mbNickname) {
-			
-			return memberDao.nicknameOverlapCheck(mbNickname);
-		}
+
 	
 	// targetId 가 memberId를 차단했는지 확인
 	public boolean isBlockedMe(String memberId, String targetId) {
@@ -81,7 +76,15 @@ public class MemberService {
 		
 		memberDao.memberBlock(memberId, newBlockIds);
 	}
-	
-	
+	// 닉네임 중복확인
+	public Boolean nicknameOverlapCheck(String mbNickname) {
+		
+		return memberDao.nicknameOverlapCheck(mbNickname);
+	}
+
+	// 모집 글 회원정보 조회(아이디 > 닉네임, 프사)
+	public Member getMemberFor102(String memberId) {
+		return memberDao.getMemberFor102(memberId);
+	}
 
 }

@@ -79,7 +79,7 @@
 									<h4 class="text-muted font-weight-bold" tabindex="0">
 									<a href="communityDetail?communityNo=${ p.communityNo }">
 										<c:if test="${ p.categoryNo == 101 }">[수다]</c:if>
-										<c:if test="${ p.categoryNo == 202 }">[모집]</c:if> ${ p.communityTitle }(${ p.communityReplyCount })
+										<c:if test="${ p.categoryNo == 102 }">[모집]</c:if> ${ p.communityTitle }(${ p.communityReplyCount })
 									</a>
 									</h4>
 								</div>
@@ -127,7 +127,7 @@
 									<h4 class="text-muted font-weight-bold" tabindex="0">
 									<a href="communityDetail?communityNo=${ p.communityNo }">
 										<c:if test="${ p.categoryNo == 101 }">[수다]</c:if>
-										<c:if test="${ p.categoryNo == 202 }">[모집]</c:if> ${ p.communityTitle }(${ p.communityReplyCount })
+										<c:if test="${ p.categoryNo == 102 }">[모집]</c:if> ${ p.communityTitle }(${ p.communityReplyCount })
 									</a>
 									</h4>
 								</div>
@@ -175,7 +175,7 @@
 									<h4 class="text-muted font-weight-bold" tabindex="0">
 									<a href="communityDetail?communityNo=${ p.communityNo }">
 										<c:if test="${ p.categoryNo == 101 }">[수다]</c:if>
-										<c:if test="${ p.categoryNo == 202 }">[모집]</c:if> ${ p.communityTitle }(${ p.communityReplyCount })
+										<c:if test="${ p.categoryNo == 102 }">[모집]</c:if> ${ p.communityTitle }(${ p.communityReplyCount })
 									</a>
 									</h4>
 								</div>
