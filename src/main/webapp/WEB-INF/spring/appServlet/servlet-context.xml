@@ -23,6 +23,14 @@
 		p:suffix=".jsp"/>
 		
 	<view-controller path="/" view-name="redirect:main" />
-	<view-controller path="/storeWriteForm" view-name="storeWriteForm" />
+	
+	<beans:bean id="AdminCheckInterceptor" class="com.project.yameokja.interceptor.AdminCheckInterceptor" />
+	
+	<interceptors>
+	   <interceptor>
+	    <mapping path="/admin/**" />
+	    <beans:ref bean="AdminCheckInterceptor" />
+	   </interceptor>
+	</interceptors>
 
 </beans:beans>
