@@ -192,7 +192,7 @@ function replyAjaxAction(u, d){
 				
 				if(resultData== false) {
 					alert("작성자가 아닙니다.");
-					return;
+					return false;
 				}else{
 					$("#communityReplyList").empty();				
 					$.each(resultData, function(index, value) {					

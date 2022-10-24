@@ -26,10 +26,10 @@ INSERT INTO category (category_no, category_name, category_order) VALUES (8, '�
 INSERT INTO category (category_no, category_name, category_order) VALUES (9, '고기', 9);
 INSERT INTO category (category_no, category_name, category_order) VALUES (10, '채식', 10);
 INSERT INTO category (category_no, category_name, category_order) VALUES (11, '패스트푸드', 11);
-INSERT INTO category (category_no, category_name, category_order) VALUES (-1, '삭제된 댓글', 9998);
 INSERT INTO category (category_no, category_name, category_order) VALUES (101, '수다글', 101);
 INSERT INTO category (category_no, category_name, category_order) VALUES (102, '모집글', 102);
 INSERT INTO category (category_no, category_name, category_order) VALUES (0, '댓글', 0);
+INSERT INTO category (category_no, category_name, category_order) VALUES (-1, '삭제된 댓글', 9998);
 
 COMMIT;
 

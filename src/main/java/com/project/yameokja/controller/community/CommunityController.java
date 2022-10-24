@@ -171,6 +171,7 @@ public class CommunityController {
 		return "redirect:/communityList";
 	}
 	
+	
 	// 모집 참여 및 참여취소
 	@RequestMapping("/btn102PartyJoin")
 	public String partyJoin(int communityNo, HttpSession session) {
@@ -189,7 +190,22 @@ public class CommunityController {
 		boolean joinCheck = false;
 		String allMembers = co.getpartyMemberIds();
 		String[] members = allMembers.split(",");
+		
+		// 모집 참여 - timestamp 확인 및 비교
 		Timestamp dDay = co.getPartyDDay();
+		Timestamp today = new Timestamp(System.currentTimeMillis());
+		
+		
+		boolean timeCheck = dDay.before(today);
+		if(!timeCheck) {
+			
+			
+		}
+		
+		System.out.println("controller - timestampCheck : " + dDay + " today : " + today
+									+ "timeCheck : " + timeCheck);
+		
+		// 참여 인원 비교 및 참여 승인 여부 
 		int countPartyMembers = 0;
 		
 		for(int i =0; i < members.length; i++) {
@@ -201,7 +217,7 @@ public class CommunityController {
 		
 		if(countPartyMembers >= co.getPartyMembers()) {
 			System.out.println("참여인원 초과");
-			return null;
+			return "redirect:communityDetail?communityNo="+communityNo;
 		}
 			
 		System.out.println("joinCheck : " + joinCheck + "allMembers : " + allMembers);
@@ -320,6 +336,8 @@ public class CommunityController {
 		
 		if( memberId.equals(session.getAttribute("memberId"))){
 			communityListService.delCommunityReply(replyCommunityNo);
+			
+			System.out.println("controller - memberId : " + memberId + " / sessionId : " + session.getAttribute("memberId"));
 			
 		}else {
 			boolean communityReplyIdCheck = false;
