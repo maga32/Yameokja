@@ -46,7 +46,7 @@
 	</div>
 	<c:forEach var="li" items="${ categoryList }">
 		<div class="col-6 py-2 col-md-3">
-			<a href="storeList?category=${ li.categoryNo }"> ${ li.categoryName }
+			<a href="storeList?categoryNo=${ li.categoryNo }"> ${ li.categoryName }
 			</a>
 		</div>
 	</c:forEach>

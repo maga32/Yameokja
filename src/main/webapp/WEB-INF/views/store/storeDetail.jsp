@@ -3,23 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <article>
-<div class="row">
-	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${store.storeNo }">
+<form name="storeDetailForm" id="storeDetailForm">
+		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
+<div class="container-fluid">
 			<div class="row">
-				<div class="col-12 border border-4 p-2">
+				<div class="col-12 border border-4 my-1">
 				
 					<div class="row">
 						<div class="row">
-							<div class="col-12 border">
+							<div class="col-12">
 								<h4>${store.storeName }</h4>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-12 border">
 								<div class="row">
-									<div class="col-3 mt-5">
+									<div class="col-3">
 										<div class="row">
 											<div class="col-4 border"><i class="fa fa-eye" aria-hidden="true"></i></div>
 											<div class="col-8 border">${store.storeReadCount }</div>

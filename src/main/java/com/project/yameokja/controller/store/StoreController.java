@@ -21,6 +21,7 @@ public class StoreController {
 
 	@Autowired
 	private StoreService StoreService;
+	private PostService PostService;
 
 	public void setStoreService(StoreService StoreService) {
 		this.StoreService = StoreService;
@@ -36,14 +37,14 @@ public class StoreController {
 		return "store/storeList";
 	}
 
-	// 리스트에서 정보 불러오기
+	// 가게 상세 and 리스트에서 정보를 받아온다
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo) {
 
 		Store store = StoreService.getStore(storeNo);
 		
 		model.addAttribute("store", store);
-
+		
 		return "store/storeDetail";
 	}
 
