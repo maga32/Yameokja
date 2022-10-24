@@ -4,12 +4,11 @@
 
 <mapper namespace="com.project.yameokja.mappers.StoreMapper">
 
-	<!-- <select id="postList" resultType="Post" resultMap="postResultMap">
+	<select id="postList" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
 			WHERE store_no = #{store_no}
 		OREDER BY post_no DESC
 	</select>
- 	 -->
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />
