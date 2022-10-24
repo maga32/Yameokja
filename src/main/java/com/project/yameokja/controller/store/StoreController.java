@@ -46,6 +46,7 @@ public class StoreController {
 
 		return "store/storeDetail";
 	}
+
 	
 	 // 가게 정보 글쓰기
 	@RequestMapping(value="/storeWriteForm")

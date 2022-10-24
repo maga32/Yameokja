@@ -9,13 +9,8 @@
 	</form>
 	<div class="row">
     
-    <div class="d-none d-sm-block col-sm-1 col-lg-3">
-    </div>
-    
-    <div class="col-12 col-sm-10 col-lg-6">
+    <div class="col-12 col-sm-10 col-lg-12">
       <div class="row">
-      
-        <div class="col-12 bg-warning py-2">대충 헤더 들어갈곳</div>
         
         <div class="d-flex flex-row p-2 mt-4">
           <select class="form-select-sm rounded-pill mx-2 px-4" aria-label=".form-select-sm">
@@ -56,7 +51,7 @@
 			</div>
 			
 	        <c:forEach var="s" items="${ sList }">
-	        <div class=" border border-2 rounded col-12 p-2 col-md-12">
+	        <div class=" border border-2 rounded col-12 p-2 col-md-12 my-1">
 	        	<div class="row mb-2">
 	        	<div class="col-3 col-md-3 col-sm-3">
 	        		<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
@@ -87,7 +82,5 @@
 	        
 	       		</div>
 	        </div>
-
-    <div class="d-none d-sm-block col-sm-1 col-lg-3">
-    </div>
+	        
 </article>
