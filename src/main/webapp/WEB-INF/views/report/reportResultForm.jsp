@@ -16,31 +16,9 @@
   	<script src="resources/js/jquery-3.2.1.min.js"></script>
 </head>
 <BODY>
-	<h3>신고하기</h3>
+	<h3>신고 결과</h3>
 	<hr>
-	<form id="reportForm" name="reportForm" action="addReport" method="post" enctype="multipart/form-data">
-	<input type="hidden" id="reportType" name="reportType" value="${resportType }">
-		<select id="categoryNo" name="categoryNo">
-			<c:if test="${reportType == 'community'}">
-				<option value=301>불량 수다글 작성</option>
-				<option value=302>불량 모집글 작성</option>
-			</c:if>
-			
-		</select>
-		<br>
-		신고대상 :
-		<input type="text" id="reportTarget" name="reportTarget" value="${reportTarget}" readonly><br>
-		신고자 :
-		<input type="text" id="memberId" name="memberId" value="${sessionScope.memberId}" readonly>
-		<br>
-		<textarea id="reportContent" name="reportContent">
-		</textarea>
-		<br>
-		<input type="file" name="reportFile" size="70"
-					id="reportFile" maxlength="50" />
-		<br>
-		<button>취소</button>
-		<input type="submit" name="" value="작성완료">
-	</form>
+		<button onclick="window.opener.location.href='main'; window.close();">메인으로</button>
+		<button onclick="window.opener.location.href='mypage'; window.close();">나의 신고목록 보기</button>
 </BODY>
 </html>

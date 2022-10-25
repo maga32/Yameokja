@@ -30,6 +30,9 @@ INSERT INTO category (category_no, category_name, category_order) VALUES (101, '
 INSERT INTO category (category_no, category_name, category_order) VALUES (102, '모집글', 102);
 INSERT INTO category (category_no, category_name, category_order) VALUES (0, '댓글', 0);
 INSERT INTO category (category_no, category_name, category_order) VALUES (-1, '삭제된 댓글', 9998);
+INSERT INTO category (category_no, category_name, category_order) VALUES (-7, '신고 분류 기본값', -7);
+INSERT INTO category (category_no, category_name, category_order) VALUES (301, '신고 테스트1', 301);
+INSERT INTO category (category_no, category_name, category_order) VALUES (302, '신고 테스트2', 302);
 
 COMMIT;
 
