@@ -122,7 +122,9 @@
 										<div class="row">
 										
 											<div class="col-md-8">
-												<p class="fa fa-pencil-square-o" aria-hidden="true"> ${ p.postRegDate }</p><br>
+												<p class="fa fa-pencil-square-o" aria-hidden="true">
+													<fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd"/>
+												</p><br>
 												<p class="fa fa-eye" aria-hidden="true"> ${ p.postReadCount }</p><br>
 												<p class="fa fa-thumbs-up" aria-hidden="true"> ${ p.postUpCount }</p>
 											</div>

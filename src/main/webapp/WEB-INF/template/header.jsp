@@ -19,7 +19,7 @@
 
 		<a href="myPagePost">myPage</a>
 		<a href="communityList">communityList</a>
-		<a href="storeList">storeList</a>
+		<a href="storeListAll">storeList</a>
 <!-- 		나중에 삭제 끝-->
 		
 	</div>

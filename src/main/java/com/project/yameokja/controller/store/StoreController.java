@@ -30,6 +30,16 @@ public class StoreController {
 	public void setStoreService(StoreService StoreService) {
 		this.StoreService = StoreService;
 	}
+	
+	// 가게리스트를 전부 받는다
+	@RequestMapping("/storeListAll")
+	public String StoreListAll(Model model) {
+		
+		List<Store> sList = StoreService.storeListAll();
+		model.addAttribute("sList", sList);
+		
+		return "store/storeListAll";
+	}
 
 	// 가게 리스트
 	@RequestMapping("/storeList")

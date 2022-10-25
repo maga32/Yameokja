@@ -42,7 +42,7 @@
 	</div>
 
 	<div class="col-6 py-2 col-md-3">
-		<a href="storeList"> 전체 </a>
+		<a href="storeListAll"> 전체 </a>
 	</div>
 	<c:forEach var="li" items="${ categoryList }">
 		<div class="col-6 py-2 col-md-3">

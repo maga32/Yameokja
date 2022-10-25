@@ -9,6 +9,9 @@ public interface StoreService {
 	
 	// 가게 리스트
 	public abstract List<Store> storeList(int categoryNo);
+	
+	// 가게 리스트 전부
+	public abstract List<Store> storeListAll();
 
 	// 가게 정보
 	public abstract Store getStore(int storeNo);

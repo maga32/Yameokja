@@ -11,6 +11,11 @@
 		ORDER BY store_no DESC
 	</select>
 	
+	<!-- 가게 전부 -->
+	<select id="storeListAll" resultType="Store" resultMap="storeResultMap">
+		SELECT * FROM store ORDER BY store_no DESC
+	</select>
+	
 	<!-- 가게 상세 -->
 	<select id="getStore" resultType="Store" resultMap="storeResultMap">
 		SELECT * FROM store 
