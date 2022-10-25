@@ -11,7 +11,7 @@
 			<div class="row">
 				<div class="col-12 border border-4 my-1">
 				
-					<div class="row">
+					<div class="row justify-content-center">
 						<div class="row">
 							<div class="col-12">
 								<h4>${store.storeName }</h4>
@@ -97,7 +97,7 @@
 							
 						</div>
 						
-						<div class="row d-flex border border-primary mt-1">
+						<div class="row justify-content-center border border-primary mt-1">
 							<c:forEach var="p" items="${ pList }">
 									
 							

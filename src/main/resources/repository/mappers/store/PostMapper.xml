@@ -12,7 +12,7 @@
 	</select>
 	
 	<!-- 가게 댓글 리스트를 불러온다 -->
-	<select id="postReply" resultType="Post" resultMap="postResultMap">
+	<select id="postListReply" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post 
 			WHERE store_no = #{storeNo} AND post_is_post = 0
 		ORDER BY post_no DESC;
