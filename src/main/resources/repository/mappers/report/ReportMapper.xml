@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.project.yameokja.mappers.ReportMapper">
+
+	<resultMap type="Report" id="ReportResultMap">
+		<id property="reportNo" column="report_no" />
+		<result property="reportType" column="report_type" />
+		<result property="reportTarget" column="report_target" />
+		<result property="reportContent" column="report_content" />
+		<result property="reportDate" column="report_date" />
+		<result property="reportFile" column="report_file" />
+		<result property="reportPunishCheck" column="report_punish_check" />
+		<result property="reportPunishContent" column="report_punish_content" />
+		<result property="memberId" column="member_id" />
+		<result property="categoryNo" column="category_no" />
+	</resultMap>
+	
+	
+</mapper>

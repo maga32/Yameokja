@@ -19,6 +19,7 @@
 			<a href="memberJoinForm">횐갑</a>
 		</c:if>
 
+		<a href="#" onclick='window.open("reportForm","reportForm","width=500, height=600")'>report</a>
 		<a href="myPagePost">myPage</a>
 		<a href="communityList">communityList</a>
 		<a href="storeList">storeList</a>
