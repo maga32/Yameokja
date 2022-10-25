@@ -21,8 +21,8 @@
 				<div class="d-inline-block text-start col-6">
 					<div class="col-12 ">
 						<div class="mbIdFont">${ user.memberNickname }님</div>
-						<div class="myInformationFont">이메일 : ${ user.memberEmail }</div>
-						<div class="myInformationFont">가입일 : ${ user.memberJoinDate }</div>
+						<div class="">이메일 : ${ user.memberEmail }</div>
+						<div class="">가입일 : ${ user.memberJoinDate }</div>
 					</div>
 				</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
@@ -63,7 +63,7 @@
 <!-- 				로그인 일 때 보이는 버튼들 끝 -->
 			</div>
 			<!--내정보틀 끝 -->
-			<div class="postListHeader text-center col-12 mt-3">
+			<div class="text-center col-12 mt-3">
 				<span class="postListbutton  px-3 py-2">맛집 리뷰</span> <span
 					class="replyListbutton px-3 py-2"><a href="#">댓글 리뷰</a></span> <span
 					class="communityListbutton px-3 py-2"><a href="myPageCommunity">동네글</a></span> <span
@@ -71,7 +71,7 @@
 			</div>
 <!-- 			postListHeader 끝 -->
 <!-- 			postList 시작 -->
-			<div class="postListFrame rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
+			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 
 				<c:if test="${ not empty postList }">
 					<c:forEach var="p" items="${ postList }">
@@ -81,21 +81,21 @@
 								<img src="resources/IMG/LOGOtemporaryIMG.PNG"
 										class="img-thumbnail rounded" alt="...">
 							</div>
-							<div class="postContent col-6 mx-2">
+							<div class="postContent text-start col-6 mx-2">
 								<div class="postTitle">
 									<a href="#">${ p.postTitle }</a>
 								</div>
 								<div class="postNo" id="postNo">
 									<a href="#">postNo=${p.postNo}</a>
 								</div>
-								<div class="myInformationFont">
+								<div class="">
 									<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
 									${ p.postRegDate }
 								</div>
-								<div class="myInformationFont">
+								<div class="">
 									<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
 								</div>
-								<div class="myInformationFont">
+								<div class="">
 									<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
 								</div>
 							</div>

@@ -9,7 +9,6 @@ body{
 
 .fullFrame {
 	background-color: white;
-	
 
 }
 /* 내정보 */
@@ -29,8 +28,6 @@ body{
 
 /* 리스트 별로 이동하는 버튼 */
 
-.postListHeader {
-}
 .postListbutton, .replyListbutton, 
 .communityListbutton, .likeListbutton{
 	border-radius: 20px 0 0 0;
@@ -64,9 +61,6 @@ body{
     color: gray;
 }
 /* 리스트 */
-.postListFrame {
-/* 	background-color: #FCD147; */
-}
 .postFrame{
 	display: flex;
     align-items: center;
@@ -74,11 +68,6 @@ body{
 
 .postContent {
 	width: 60%;
-	text-align: left;
-}
-.myInformationFont img{
-	width: 15px;
-	height: 15px;
 }
 .postTitle {
 	font-size: 25px;

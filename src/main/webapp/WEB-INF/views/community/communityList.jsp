@@ -206,13 +206,6 @@
 			</c:if>
 			<!-- 동네글 검색결과 empty -->
 
-			<div class="row">
-			<div class="col-12 py-3">
-				<div class="inlineBlock whiteFormButton"><a href="community101WriteForm" class="py-1 px-3">수다글 쓰기</a></div>
-				<div class="inlineBlock whiteFormButton"><a href="community102WriteForm" class="py-1 px-3">모집글 쓰기</a></div>
-			</div>
-			</div>
-
 			<!-- 페이징 시작지점 -->
 			<div class="row text-end">
 			<div class="col-12 pe-4">
@@ -242,9 +235,12 @@
 				</c:if>
 			</div>
 			<!-- 페이징 종료지점 -->
-
-
-
+			<div class="row text-start">
+				<div class="col-12 py-3">
+					<div class="inlineBlock whiteFormButton"><a href="community101WriteForm" class="py-1 px-3">수다글 쓰기</a></div>
+					<div class="inlineBlock whiteFormButton"><a href="community102WriteForm" class="py-1 px-3">모집글 쓰기</a></div>
+				</div>
+			</div>
 			<div class="col-12 bg-primary">가게 리스트 들어갈 곳</div>
 		</div>
 		</div>
