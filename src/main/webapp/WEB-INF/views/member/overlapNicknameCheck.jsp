@@ -10,25 +10,40 @@
 	<div id="nicknameCheckForm">
 	<c:choose>
 		<c:when test="${ overlap }" >
-			<h3>사용할 수 없는 닉네임</h3>
-			<div class="memberInputText">
-				입력하신 ${ memberNickname }는 이미 사용 중인 닉네임 입니다.
-			</div>
-			<div class="memberInputText">다른 닉네임을 선택해 주세요</div>		
-			<form action="overlapNicknameCheck.mvc" name="NicknameCheckForm" 
-				method="post" id="NicknameCheckForm">
+			<c:if test="${memberNickname == sessionScope.memberNickname}">
+				<h3>닉네임 유지</h3>
 				<div class="memberInputText">
-					<span class="checkFormSpan">닉네임 : </span>
-					<input type="text" name="memberNickname" id="checkNickname" size="15"/>
-					<input type="submit" value="중복확인" />
+					입력하신 ${ memberNickname }는 변경 전 닉네임입니다.</div>
+				<div class="memberInputText">
+					<input type="hidden" name="updateCheck" id="updateCheck" value="${updateCheck}">
+					<input type="button" value="${ memberNickname }을(를) 닉네임으로 사용하기" 
+						id="btnNicknameCheckClose" data-id-value="${ memberNickname }"/>
 				</div>
-			</form>
+			</c:if>
+			<c:if test="${memberNickname != sessionScope.memberNickname}">
+				<h3>사용할 수 없는 닉네임</h3>
+				<div class="memberInputText">
+					입력하신 ${ memberNickname }는 이미 사용 중인 닉네임 입니다.
+				</div>
+				<div class="memberInputText">다른 닉네임을 선택해 주세요</div>		
+				<form action="overlapNicknameCheck.mvc?" name="NicknameCheckForm" 
+					method="post" id="NicknameCheckForm">
+					<div class="memberInputText">
+						<span class="checkFormSpan">닉네임 : </span>
+						<input type="text" name="memberNickname" id="checkNickname" size="15"/>
+						<input type="hidden" name="updateCheck" id="updateCheck" value="${updateCheck}">
+						<input type="submit" value="중복확인" />
+					</div>
+				</form>
+			</c:if>
+			
 		</c:when>
 		<c:otherwise>
 			<h3>사용할 수 있는 닉네임</h3>
 			<div class="memberInputText">
 				입력하신 ${ memberNickname }는 사용할 수 있는 닉네임 입니다.</div>
 			<div class="memberInputText">
+				<input type="hidden" name="updateCheck" id="updateCheck" value="${updateCheck}">
 				<input type="button" value="${ memberNickname }을(를) 닉네임으로 사용하기" 
 					id="btnNicknameCheckClose" data-id-value="${ memberNickname }"/>
 			</div>

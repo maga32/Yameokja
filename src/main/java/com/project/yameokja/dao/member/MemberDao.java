@@ -23,6 +23,11 @@ public interface MemberDao {
 	public void memberBlock(String memberId, String memberBlockIds);
 
 	// 회원정보 조회(아이디 > 닉네임, 프사)
-	Member getMemberFor102(String memberId);
+	public Member getMemberFor102(String memberId);
 
+	// 회원수정
+	public void updateMember(Member member);
+	
+	// 회원탈퇴
+	public void delMember(String memberId);
 }
