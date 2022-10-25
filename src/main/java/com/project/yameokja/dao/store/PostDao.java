@@ -13,7 +13,7 @@ public interface PostDao {
 	public abstract List<Post> postListReply(int storeNo);
 	
 	// 가게 정보 포스트 상세
-	public abstract Post getPost(int storeNo, int postNo);
+	public abstract Post getPost(int postNo);
 	
 	// 가게 포스트 글 갯수
 	public int getPostCount(String Type, String keyword, int postNo);

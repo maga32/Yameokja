@@ -6,15 +6,19 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <article>
 	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${store.storeNo }">
+		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
 	<div class="container-fluid">
 		
 			<div class="row">
 			
-			<div class="col-lg-12 col-md-8 col-sm-10 col-12">
+			<div class="bg-primary col-lg-3 col-md-2 col-sm-1 d-none d-sm-block">좌 여백
+	        </div>
 			
-			<div class="row justify-content-center">
+			<div class="col-lg-6 col-md-8 col-sm-10 col-12">
+			
+			<div class="row d-flex justify-content-center">
+				<div class="col-12 bg-warning py-2">헤더</div>
 				
 			<div class="row">
 				<div class="col-12 border border-4 p-2">
@@ -22,13 +26,13 @@
 					<div class="row">
 						<div class="row">
 							<div class="col-12 border">
-								<h4>${ store.storeName }</h4>
+								<h4>${store.storeName }</h4>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-12 border">
 								<div class="row">
-									<div class="col-3">
+									<div class="col-3 mt-5">
 										<div class="row">
 											<div class="col-4 border"><i class="fa fa-eye" aria-hidden="true"></i></div>
 											<div class="col-8 border">${store.storeReadCount }</div>
@@ -77,6 +81,7 @@
 									<div class="col-4">영업시간</div>
 									<div class="col-8">
 										<div class="row">${ store.storeTime }</div>
+										<div class="row">${ store.storeTime }</div>
 									</div>
 								</div>
 								<div class="row">
@@ -91,15 +96,15 @@
 							
 							
 						</div>
-						<div class="row justify-content-end border border-success mt-1">
+						<div class="row d-flex justify-content-end border border-success mt-1">
 							<div class="col-3">
 							상위리뷰
 							</div>
 							<div class="col-3">
-							<a href="storeDetail?storeNo=${ store.storeNo }">포스트</a>
+							맛집리뷰
 							</div>
 							<div class="col-3">
-							별점 리뷰
+							댓글리뷰
 							</div>
 							<div class="col-3">
 							
@@ -107,52 +112,41 @@
 							
 						</div>
 						
-						<div class="row border border-primary mt-1">
+						<c:forEach var="p" items="${ postList }">
+							<div class="row d-flex border border-primary mt-1">
+								${ p.postTitle }
+								${ p.postContent }
 						
-							
-							<div class="row">
-							
-								<div class="col-md-12 border">
-									<h5>별점리뷰 작성</h5>
-									<p>별 별 별 별 별</p>
-									<div class="row">
-									
-										<div class="col-md-12 border">
-										
-										</div>
-										
-									</div>
-									
-									<div class="row">
-									
-										<div class="col-md-10 border">
-											<input type="text">
-										</div>
-										
-										<div class="col-md-2 border d-block">
-											<button type="submit" class="btn btn-outline-secondary">입력</button>
-										</div>
-										
-									</div>
-									
-								</div>
-								
+						
 							</div>
-							
-							
-
-						</div>
+						</c:forEach>
 						
 						
-					</div>
-				
+						
+						
+						
+						
+						
+						
+						
+						
 				</div>
 				
+			</div>
 				
-				</div>
+				
+			</div>
 			
 			</div>
-    
+			
+			
+			 <div class="bg-primary col-lg-3 col-md-2 col-sm-1 d-none d-sm-block">우 여백
+	         </div>
+	         
+	         
+	         
+	         
+	         
 			</div>
 		</div>
 	

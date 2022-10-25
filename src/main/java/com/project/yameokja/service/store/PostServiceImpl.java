@@ -29,8 +29,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post getPost(int storeNo, int postNo) {
-		return postDao.getPost(storeNo, postNo);
+	public Post getPost(int postNo) {
+		return postDao.getPost(postNo);
 	}
 
 	@Override

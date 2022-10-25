@@ -72,6 +72,19 @@ public class StoreController {
 		return "store/storeDetailReply";
 	}
 	
+	// 가게 상세 and 포스트 글 상세
+	@RequestMapping("/storeDetailContent")
+	public String StoreDetailContent(Model model, int storeNo, int postNo)  {
+		
+		Store store = StoreService.getStore(storeNo);
+		model.addAttribute("store", store);
+		
+		Post post = PostService.getPost(postNo);
+		model.addAttribute("post", post);
+		
+		return "store/storeDetailContent";
+	}
+	
 	
 	// 가게 정보 글쓰기 폼
 	@RequestMapping(value="/storeWriteForm")

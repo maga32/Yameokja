@@ -55,7 +55,7 @@
 									<div class="col-8">${ store.storePhone }</div>
 								</div>
 								<div class="row">
-									<div class="col-4" name="foodType" id="foodType">음식종류</div>
+									<div class="col-4" id="foodType">음식종류</div>
 									<div class="col-8">${ store.categoryNo }</div>
 								</div>
 								<div class="row">
@@ -83,13 +83,13 @@
 						</div>
 						<div class="row d-flex justify-content-end border border-success mt-1">
 							<div class="col-3">
-							상위리뷰
+								상위리뷰
 							</div>
 							<div class="col-3">
-							포스트 리뷰
+								포스트 리뷰
 							</div>
 							<div class="col-3">
-							<a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a>
+								<a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a>
 							</div>
 							<div class="col-3">
 							
@@ -99,6 +99,7 @@
 						
 						<div class="row d-flex border border-primary mt-1">
 							<c:forEach var="p" items="${ pList }">
+									
 							
 								<div class="row">
 								
@@ -110,16 +111,20 @@
 									
 										<div class="row">
 											<div class="col-md-12 mb-3">
-											<h4 class="fw-bold">${ p.postTitle }</h4>
+											<h4 class="fw-bold">
+
+													<a href="storeDetailContent?storeNo=${ store.storeNo }?postNo= ${p.postNo}">
+													${ p.postTitle }</a></h4>
+
 											</div>
 										</div>
 										
 										<div class="row">
 										
 											<div class="col-md-8">
-												<p>${ p.postRegDate }</p>
-												<p>${ p.postReadCount }</p>
-												<p>${ p.postUpCount }</p>
+												<p class="fa fa-pencil-square-o" aria-hidden="true"> ${ p.postRegDate }</p><br>
+												<p class="fa fa-eye" aria-hidden="true"> ${ p.postReadCount }</p><br>
+												<p class="fa fa-thumbs-up" aria-hidden="true"> ${ p.postUpCount }</p>
 											</div>
 											
 											<div class="col-md-4">
@@ -132,18 +137,10 @@
 									</div>
 									
 								</div>
-									
 							</c:forEach>
 							
 						</div>
-						
-						
-						
-						
-						
-						
-						
-						
+							
 						
 				</div>
 				
