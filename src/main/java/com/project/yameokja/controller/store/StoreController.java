@@ -68,13 +68,11 @@ public class StoreController {
 	 // 가게 정보 글쓰기 프로세스
 	@RequestMapping(value="/storeWriteProcess", method=RequestMethod.POST)
 	public String insertStoreProcess(
-			@RequestParam(value="storeMain", required=false) MultipartFile multipartFile) 
+			@RequestParam(value="fileMain", required=false) MultipartFile multipartFile) 
 		throws IllegalStateException, IOException { 
 		
 		Store store =  new Store();
 	
-		
-		
 		StoreService.insertStore(store);
 	 
 		return "store/storeWriteFrom"; 

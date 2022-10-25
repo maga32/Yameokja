@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="resources/js/store.js"></script>
@@ -26,7 +27,7 @@
 	            		<div class="col-12 mt-5">
 	            		
 	            			<div class=" row d-flex justify-content-center">
-	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder fs-5"> * </span>가게 이름</h3></div>
+	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>가게 이름</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
 		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
@@ -34,7 +35,7 @@
 		            				</div>
 	            				</div>
 	            				
-	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder fs-5"> * </span>전화번호</h3></div>
+	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>전화번호</h3></div>
 	            				<div class="row mb-4">
 		            				<div class="col-3">
 			            				<select class="col-12 form-control-sm" name="phone1" id="phone1">
@@ -75,7 +76,7 @@
 			            			</div>
 	            				</div>
 	            				
-	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder fs-5"> * </span>주소</h3></div>
+	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>주소</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
 		            				<input class="col-12 form-control-sm mb-1" type="text" aria-label=".form-control-sm example"></div>
@@ -85,7 +86,7 @@
 		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
 	            				</div>
 	            				
-	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder fs-5"> * </span>맛집 종류</h3></div>
+	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>맛집 종류</h3></div>
 	            			<div class="row mb-4">
 		            			<div class="row mb-2">
 		            				<div class="col-3">
@@ -157,7 +158,7 @@
 									</div>
 	            				</div>
 	            				
-	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder fs-5"> * </span>영업 시간</h3></div>
+	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>영업 시간</h3></div>
 	            				<div class="row mb-4">
 	            					<div class="col-6 border border-2">
 	            						<div class="col-12 border border-1 my-2">여는 시간
@@ -189,10 +190,11 @@
 	            				<div class="col-3"></div>
 	            				<div class="col-3"></div>
 	            				<div class="col-3 text-center fs-6">
-	            					<button class="col-12 p-2 fw-bold rounded"><a href="">취소</a></button>
+	            					<button class="col-12 p-2 fw-bold btn btn-outline-secondary rounded">
+	            					<a class="text-decoration-none text-reset" href="">취소</a></button>
 	            				</div>
 	            				<div class="col-3 text-center fs-6">
-	            					<button type="submit" class="col-12 p-2 fw-bold rounded"
+	            					<button type="submit" class="col-12 p-2 fw-bold btn btn-outline-warning rounded"
 	            					onclick="">작성</button>
 	            				</div>
 							</div>

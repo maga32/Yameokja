@@ -27,8 +27,8 @@
 	        <div class="col-10 p-2">
           		<input class="col-12 rounded-pill" type="text" aria-label=".form-control-sm example">
         	</div>
-        	<div class="col-2 py-2">
-          		<button class="col-12 btn btn-primary rounded-pill">
+        	<div class="col-2 p-2">
+          		<button class="col-12 btn btn-sm btn-outline-warning rounded-pill">
               		<i class="fa fa-search" aria-hidden="true"></i>
           		</button>
        		 </div>  
@@ -57,7 +57,7 @@
 	        		<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
 	        	</div>
 	        		<div class="col-6 col-md-7 col-sm-6">
-		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }" class="text-muted font-weight-bold" role="button" tabindex="0">
+		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }" class="text-muted font-weight-bold text-decoration-none" role="button" tabindex="0">
 		        			${ s.storeName }</a></h4>
 	        			<p class="text-secondary">${ s.storeAddress }</p>
 	        			<p class="text-secondary">${ s.storeStar }</p>

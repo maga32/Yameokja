@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <article>
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
@@ -54,7 +55,7 @@
 									<div class="col-8">${ store.storePhone }</div>
 								</div>
 								<div class="row">
-									<div class="col-4">음식종류</div>
+									<div class="col-4" name="foodType" id="foodType">음식종류</div>
 									<div class="col-8">${ store.categoryNo }</div>
 								</div>
 								<div class="row">
