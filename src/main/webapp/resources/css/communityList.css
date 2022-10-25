@@ -1,22 +1,12 @@
 @charset "UTF-8";
 
-#communityRegDate{
-	font-size: 12px;
-	align-items: flex-end;
-}
 .height{
 	height: 78px;
 }
 i{
 	color: gray;
 }
-.communityReadCount{
-	font-size: 14px;
-	color: gray;
-}
-.whiteFormButton{
-	
-}
+
 /* a 태그 */
 a {text-decoration: none;}
 
@@ -93,7 +83,6 @@ a {text-decoration: none;}
 	color: #ffffff;
 	background-color: #FFB966;
 }
-/* a 태그 */
 
 .communityTitle a:link {color: gray;}
 .communityTitle a:visited {color: gray;}

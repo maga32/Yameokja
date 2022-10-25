@@ -14,11 +14,11 @@
 		<div class="fullFrame col-12 p-2 px-2">
 			<div class="myInformationsFrame form-check-inline col-12">
 
-				<div class="inlineBlock col-3 p-4">
+				<div class="d-inline-block col-3 p-4">
 					<img alt="프로필 사진" class=" rounded-circle text-center col-12"
 						src="resources/IMG/mypage/likeIMG.PNG">
 				</div>
-				<div class="inlineBlock text-start col-6">
+				<div class="d-inline-block text-start col-6">
 					<div class="col-12 ">
 						<div class="mbIdFont">${ user.memberNickname }님</div>
 						<div class="myInformationFont">이메일 : ${ user.memberEmail }</div>
@@ -114,24 +114,24 @@
 					<div class="row text-end">
 					<div class="col-12 pe-4">
 						<c:if test="${ startPage > pageGroup }">
-							<div class="previousPage inlineBlock">
+							<div class="previousPage d-inline-block">
 								<a href="myPagePost?pageNum=${ startPage - pageGroup }"><</a>
 							</div>
 						</c:if>
-						<div class="pageNumber inlineBlock">
+						<div class="pageNumber d-inline-block">
 							<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
 								<c:if test="${ i == currentPage }">
-									<div class=" inlineBlock" style="color: #F58500; font-weight: 600">&nbsp;${ i }&nbsp;</div>
+									<div class=" d-inline-block" style="color: #F58500; font-weight: 600">&nbsp;${ i }&nbsp;</div>
 								</c:if>
 								<c:if test="${ i != currentPage }">
-									<div class=" inlineBlock">
+									<div class=" d-inline-block">
 										<a href="myPagePost?pageNum=${ i }">&nbsp;${ i }&nbsp;</a>
 									</div>
 								</c:if>
 							</c:forEach>
 						</div>						
 						<c:if test="${ endPage < pageCount }">
-							<div class="nextPage inlineBlock">
+							<div class="nextPage d-inline-block">
 								<a href="myPagePost?pageNum=${ startPage + pageGroup }">></a>
 							</div>
 						</c:if>

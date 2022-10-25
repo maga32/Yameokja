@@ -17,14 +17,8 @@ footer {
 .LogoIMGSize{
 	height: 35px;
 }
-.textAlignCenter{	
-	text-align: center;
-}
 .inlineBlock{
 	display: inline-block;
-}
-.alignIitems{
-	align-items: flex-end;
 }
 .headerBackgroundColor{
 	background-color: #FCD147;

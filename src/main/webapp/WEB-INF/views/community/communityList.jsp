@@ -84,7 +84,7 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
 							<div class="col-3">
 								<div class="row  alignIitems height">
@@ -94,7 +94,7 @@
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
-										<div class="col-12 communityReadCount">${ p.communityReadCount }</div>
+										<div class="col-12 fs-6 text-secondary">${ p.communityReadCount }</div>
 									</div>
 								</div>
 							</div>
@@ -132,7 +132,7 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
 							<div class="col-3">
 								<div class="row  alignIitems height">
@@ -142,7 +142,7 @@
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
-										<div class="col-12 communityReadCount">${ p.communityReadCount }</div>
+										<div class="col-12 fs-6 text-secondary">${ p.communityReadCount }</div>
 									</div>
 								</div>
 							</div>
@@ -180,9 +180,9 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
-							<div class="col-3 col-2 col-3">
+							<div class="col-3">
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
@@ -190,7 +190,7 @@
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
-										<div class="col-12 communityReadCount">${ p.communityReadCount }</div>
+										<div class="col-12 fs-6 text-secondary">${ p.communityReadCount }</div>
 									</div>
 								</div>
 							</div>

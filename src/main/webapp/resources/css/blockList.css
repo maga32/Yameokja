@@ -1,53 +1,24 @@
 @charset "UTF-8";
-body{
-	
-}
-.row{
-	justify-content: center;
-}
+
 .fullFrame{
 	width: 400px;
 	height: 500px;
 }
 .header{
-	font-weight: 900;
-	color: #7A7A80;
 	border-bottom: 1px solid #D9D9D9;
 }
-.id{
-	font-weight: 600;
-	font-size: 20px;
-}
+
 .blockList{
 	border: 5px solid #D5D5D5;
 	width: -webkit-fill-available;
-	border-radius: 10px;
-	display: inline-flex;
-}
-.blockId{
-	text-align: left;
-	font-weight: 600;
-	font-size: 18px;
-}
-.UnblockId{
-	text-align: right;
 }
 .UnblockIdButton{
 	background-color: #F58500;
-	color: white;
-	font-weight: 600;
-/* 	font-size: 20px; */
-}
-.buttonFrame{
-	text-align: center;
 }
 .closeButton{
 	background-color: #F58500;
-	color: white;
 	width: 150px;
 	height: 60px;
-	font-weight: 600;
 	font-size: 20px;
 	line-height: 2;
-	
 }
