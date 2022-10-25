@@ -13,7 +13,7 @@ import com.project.yameokja.domain.Post;
 @Repository
 public class PostDaoImpl implements PostDao {
 
-	private final String NAME_SPACE = "com.project.yameokja.mappers.StoreMapper";
+	private final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	
@@ -25,7 +25,14 @@ public class PostDaoImpl implements PostDao {
 	
 	@Override
 	public List<Post> postList(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE + ".storeDetail", storeNo); 
+		return sqlSession.selectList(NAME_SPACE + ".postList", storeNo); 
+	}
+	
+	
+	@Override
+	public List<Post> postListReply(int storeNo) {
+		System.out.println("PostDaoImpl : storeNo " + storeNo);
+		return sqlSession.selectList(NAME_SPACE + ".postReply", storeNo); 
 	}
 
 	@Override

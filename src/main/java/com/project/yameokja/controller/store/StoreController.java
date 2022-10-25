@@ -23,6 +23,8 @@ public class StoreController {
 
 	@Autowired
 	private StoreService StoreService;
+	
+	@Autowired
 	private PostService PostService;
 
 	public void setStoreService(StoreService StoreService) {
@@ -38,24 +40,38 @@ public class StoreController {
 
 		return "store/storeList";
 	}
-
+	
+	
 	// 가게 상세 and 리뷰 리스트를 받아온다
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo) {
 
 		
-		 Store store = StoreService.getStore(storeNo);
-		 
-		 model.addAttribute("store", store);
-		 
-			/*
-			 * List<Post> pList = PostService.postList(storeNo);
-			 * 
-			 * model.addAttribute("pList", pList);
-			 */
+		Store store = StoreService.getStore(storeNo);
+		model.addAttribute("store", store);
+		 	
+		List<Post> pList = PostService.postList(storeNo); 
+		model.addAttribute("pList", pList);
 
 		return "store/storeDetail";
 	}
+	
+	
+	
+	
+	// 가게 상세 and 댓글 리스트를 받아온다
+	@RequestMapping("/storeDetailReply")
+	public String StoreDetailReply(Model model, int storeNo) {
+		
+		Store store = StoreService.getStore(storeNo);
+		model.addAttribute("store", store);
+		
+		List<Post> rList = PostService.postListReply(storeNo); 
+		model.addAttribute("rList", rList);
+		
+		return "store/storeDetailReply";
+	}
+	
 	
 	// 가게 정보 글쓰기 폼
 	@RequestMapping(value="/storeWriteForm")

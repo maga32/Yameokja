@@ -9,6 +9,9 @@ public interface PostDao {
 	// 가게 정보 포스트 리스트
 	public abstract List<Post> postList(int storeNo);
 	
+	// 가게 정보 별점리뷰 리스트
+	public abstract List<Post> postListReply(int storeNo);
+	
 	// 가게 정보 포스트 상세
 	public abstract Post getPost(int storeNo, int postNo);
 	

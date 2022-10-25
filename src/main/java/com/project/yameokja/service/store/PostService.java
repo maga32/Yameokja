@@ -8,6 +8,9 @@ public interface PostService {
 
 	// 포스트 리스트
 	public abstract List<Post> postList(int storeNo);
+	
+	// 별점 리스트
+	public abstract List<Post> postListReply(int storeNo);
 		
 	// 포스트 상세
 	public abstract Post getPost(int storeNo, int postNo);
