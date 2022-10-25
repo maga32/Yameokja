@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <article>
-<form name="storeDetailForm" id="storeDetailForm">
+	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
 <div class="container-fluid">
@@ -66,10 +66,7 @@
 							<div class="col-6 border border-danger">
 								<div class="row">
 									<div class="col-4">영업시간</div>
-									<div class="col-8">
-										<div class="row">${ store.storeTime }</div>
-										<div class="row">${ store.storeTime }</div>
-									</div>
+									<div class="col-8">${ store.storeTime }</div>
 								</div>
 								<div class="row">
 									<div class="col-4">휴무일</div>
@@ -100,9 +97,12 @@
 						</div>
 						
 						<div class="row d-flex border border-primary mt-1">
-						이제 여기에 리뷰목록/댓글목록을 불러올것임	
-						
-						
+							가게 리뷰
+<%-- 							<c:forEach var="p" items="${ pList }">
+								<p>${ p.postTitle }</p>
+
+							</c:forEach> --%>
+							
 						</div>
 						
 						

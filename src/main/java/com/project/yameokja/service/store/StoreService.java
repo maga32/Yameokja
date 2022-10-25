@@ -19,10 +19,5 @@ public interface StoreService {
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);
 
-	// 가게 정보에서 가게 댓글 리스트
-	
-	
-	// 가게 정보에서 가게 댓글 쓰기
-	
 	
 }

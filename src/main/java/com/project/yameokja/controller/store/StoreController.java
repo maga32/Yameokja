@@ -1,5 +1,6 @@
 package com.project.yameokja.controller.store;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
@@ -37,36 +39,41 @@ public class StoreController {
 		return "store/storeList";
 	}
 
-	// 가게 상세 and 리스트에서 정보를 받아온다
+	// 가게 상세 and 리뷰 리스트를 받아온다
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo) {
 
-		Store store = StoreService.getStore(storeNo);
 		
-		model.addAttribute("store", store);
-		
+		 Store store = StoreService.getStore(storeNo);
+		 
+		 model.addAttribute("store", store);
+		 
+			/*
+			 * List<Post> pList = PostService.postList(storeNo);
+			 * 
+			 * model.addAttribute("pList", pList);
+			 */
+
 		return "store/storeDetail";
+	}
+	
+	// 가게 정보 글쓰기 폼
+	@RequestMapping(value="/storeWriteForm")
+	public String insertStoreFrom() {
+		
+		return "store/storeWriteForm";
 	}
 
 	
-	 // 가게 정보 글쓰기
-	@RequestMapping(value="/storeWriteForm")
-	public String insertStore(String storeName, String storeLatitude, String storeLongitude, String storeFileMain,
-			String storeFileMenu, String storeAddress, String storeTime,
-			String storeDayOff, String storeParking, int categoryNo) { 
+	 // 가게 정보 글쓰기 프로세스
+	@RequestMapping(value="/storeWriteProcess", method=RequestMethod.POST)
+	public String insertStoreProcess(
+			@RequestParam(value="storeMain", required=false) MultipartFile multipartFile) 
+		throws IllegalStateException, IOException { 
 		
 		Store store =  new Store();
 	
-		store.setStoreName(storeName); 
-		store.setStoreLatitude(storeLatitude);
-		store.setStoreLongitude(storeLongitude);
-		store.setStoreFileMain(storeFileMain); 
-		store.setStoreFileMenu(storeFileMenu);
-		store.setStoreAddress(storeAddress); 
-		store.setStoreTime(storeTime);
-		store.setStoreDayOff(storeDayOff); 
-		store.setStoreParking(storeParking);
-		store.setCategoryNo(categoryNo);
+		
 		
 		StoreService.insertStore(store);
 	 
