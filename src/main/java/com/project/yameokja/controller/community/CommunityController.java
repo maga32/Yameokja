@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -174,36 +175,39 @@ public class CommunityController {
 	
 	// 모집 참여 및 참여취소
 	@RequestMapping("/btn102PartyJoin")
-	public String partyJoin(int communityNo, HttpSession session) {
+	public String partyJoin(int communityNo, HttpSession session, Model model,
+				HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
 		// 해당 동네글 정보 조회
 		Community co = communityListService.getCommunityOne(communityNo);
-
-		if(co == null) {
-			System.out.println("co가 비었음");
+		String loginId = (String) session.getAttribute("memberId");
+		
+		if(co == null || (loginId == null) ) {
+			System.out.println("co가 비었거나, 로그인 상태가 아닙니다.");
 			return "redirect:communityDetail?communityNo="+communityNo;
 		}
-
-		String loginId = (String) session.getAttribute("memberId");
-		if(loginId == null) return "redirect:communityDetail?communityNo="+communityNo;
 		
 		boolean joinCheck = false;
 		String allMembers = co.getpartyMemberIds();
 		String[] members = allMembers.split(",");
 		
-		// 모집 참여 - timestamp 확인 및 비교
-		Timestamp dDay = co.getPartyDDay();
-		Timestamp today = new Timestamp(System.currentTimeMillis());
 		
+		// 모집 참여 - timestamp 확인 및 비교 메서드(partyDDayCheck)사용
+		boolean result = partyDDayCheck(co);
+		model.addAttribute("result", result);
 		
-		boolean timeCheck = dDay.before(today);
-		if(!timeCheck) {
+		if(!result) {
+			out.println("<script>");
+			out.println("alert('모집기간이 초과되었습니다.');");
+			out.println("</script>");
 			
-			
+			return "redirect:communityDetail?communityNo="+communityNo;
 		}
+		// 모집참여 - timestamp 확인 및 비교 종료
 		
-		System.out.println("controller - timestampCheck : " + dDay + " today : " + today
-									+ "timeCheck : " + timeCheck);
 		
 		// 참여 인원 비교 및 참여 승인 여부 
 		int countPartyMembers = 0;
@@ -234,6 +238,8 @@ public class CommunityController {
 		
 		return "redirect:communityDetail?communityNo="+communityNo;
 	}
+	
+	
 	
 	
 	// 커뮤니티 글 상세보기
@@ -268,6 +274,12 @@ public class CommunityController {
 		Community co = communityListService.getCommunityOne(communityNo);
 		model.addAttribute("co", co);
 		
+		// 해당 동네글이 비어있을 경우
+		if(co == null) {
+			System.out.println("co가 비었거나, 로그인 상태가 아닙니다.");
+			return "redirect:communityDetail?communityNo="+communityNo;
+		}
+		
 		// 댓글 출력. 불러온 글의 coNo를 부모글 번호로 가지는 댓글들을 불러옴.
 		if( co != null) {
 			co.setCommunityParentNo(co.getCommunityNo());
@@ -276,26 +288,28 @@ public class CommunityController {
 		}
 		// 댓글 출력 end
 		
-		// 모집글.
-		// 해당 글 모집 참가인원 조회
-		int countPartyMembers = 0;
-		List<Member> memberPhotoList = new ArrayList<Member>();
-		if(co.getpartyMemberIds() == null) {
-			System.out.println("controller - getpmem이 비었음");
-			return null;
-		}
-		String[] members = co.getpartyMemberIds().split(",");
-		
-		System.out.println("con members : " + members[0]);
-		
-		for(int i = 0; i<members.length; i++) {
-			countPartyMembers += 1;
-			Member memberPhoto = memberService.getMemberFor102(members[i]);
-			memberPhotoList.add(memberPhoto);
-		}
-		model.addAttribute("memberPhotoList", memberPhotoList);
-		model.addAttribute("countPartyMembers", countPartyMembers);
-		// 모집글 end
+		// 해당 게시글이 모집글일 경우
+		if(co.getCategoryNo() == 102) {
+			
+			// 모집 참여 - timestamp 확인 및 비교 메서드(partyDDayCheck)사용
+			boolean result = partyDDayCheck(co);
+			model.addAttribute("result", result);
+			
+			// 해당 글 모집 참가인원 조회
+			int countPartyMembers = 0;
+			List<Member> memberPhotoList = new ArrayList<Member>();
+			String[] members = co.getpartyMemberIds().split(",");
+			
+			System.out.println("con members : " + members[0]);
+			
+			for(int i = 0; i<members.length; i++) {
+				countPartyMembers += 1;
+				Member memberPhoto = memberService.getMemberFor102(members[i]);
+				memberPhotoList.add(memberPhoto);
+			}
+			model.addAttribute("memberPhotoList", memberPhotoList);
+			model.addAttribute("countPartyMembers", countPartyMembers);
+		}// 모집글 end
 		
 		return "community/communityDetail";
 	}
@@ -350,4 +364,15 @@ public class CommunityController {
 		return communityListService.getCommunityReply(co);
 	} 
 	
+	// 모집글에 저장된 dday와 현재 시간을 비교해 boolean을 반환해주는 함수
+	public boolean partyDDayCheck(Community co) {
+		
+			Timestamp dDay = co.getPartyDDay();
+			Timestamp today = new Timestamp(System.currentTimeMillis());
+			
+			boolean result = today.before(dDay);
+			
+		System.out.println("controller - dDay: " + dDay + " today : " + today + " result : " + result);
+		return result;
+	}
 }

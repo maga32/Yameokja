@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS post(
   
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+desc post;
+
 ##########################################################################################################################################################################################################################################post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname
 INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title01', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
 INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title02', 'post_content02', null, 'mainImg', null, null, null, null, sysdate(), '1', '1', '1', 'post_upost_list', '2', 'memberId02', 'nickname02');

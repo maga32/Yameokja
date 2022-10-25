@@ -39,7 +39,7 @@ INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_
 INSERT INTO chat (chat_ids, chat_sender, chat_receiver, chat_content, chat_send_date, chat_read_check, chat_leave_check) VALUES ('memberId01,memberId02', 'memberId02', 'memberId01', '멤버2->멤버1 채팅15', '2017-12-01 05:44:32', '1', '1');
 
 COMMIT;
-
+desc chat;
 SELECT * FROM chat ORDER BY chat_no DESC;
 
 SELECT chat_ids FROM (SELECT chat_no, chat_ids FROM chat WHERE chat_sender = "memberId01" or chat_receiver = "memberId01" ORDER BY chat_no DESC)chat_ids;

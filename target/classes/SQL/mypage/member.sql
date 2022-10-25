@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS member(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ###############################################################################################################################################################################################member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids
 
-INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId01', 'name01', null, 'nickname01', '1234', 'email01@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
+INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId01', 'name01', null, 'nickname01', '1234', 'email01@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 10, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId02', 'name02', null, 'nickname02', '1234', 'email02@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId03', 'name03', null, 'nickname03', '1234', 'email03@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId04', 'name04', null, 'nickname04', '1234', 'email04@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
@@ -56,5 +56,6 @@ INSERT INTO member (member_id, member_name, member_photo, member_nickname, membe
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId20', 'name20', null, 'nickname20', '1234', 'email20@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
 
 COMMIT;
+
 
 SELECT * FROM member;

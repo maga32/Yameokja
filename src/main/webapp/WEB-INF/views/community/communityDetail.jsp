@@ -23,7 +23,7 @@
 				<div class="col-8 communityReadCountFont">조회수 : ${ co.communityReadCount }</div>
 			</div>	
 			<div class="col-2">
-				<input type="button" name="" value="링크복사">
+				<input type="button" name="" onclick="clip(); return false;" value="링크복사">
 				<input type="button" name="" value="신고">
 			</div>
 		</div>
@@ -46,16 +46,19 @@
 			모집일 : ${ co.partyDDay }<br>
 			모집 장소 : ${ co.partyPlace }<br>
 			모집 인원 : ${countPartyMembers} / ${ co.partyMembers }
-			<c:if test="${sessionScope.memberId != co.memberId }">
+			
+			<c:if test="${sessionScope.memberId != co.memberId || result} ">
 				<button type="button" onClick="location.href='btn102PartyJoin?communityNo=${co.communityNo}'">참가</button>
 			</c:if>
 			<br>
 			<c:forEach var="u" items="${memberPhotoList }">
 				<c:if test="${u.memberNickname == co.memberNickname }">
-					<img class="rounded-circle" style="border:5px solid blue; height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"/>
+					<img class="rounded-circle" style="border:5px solid blue; height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"
+						onclick='window.open("userProfile?userId=${u.memberId}","LoginForm","width=500, height=600")'/>
 				</c:if>
 				<c:if test="${u.memberNickname != co.memberNickname }">
-					<img class="rounded-circle" style="height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"/>
+					<img class="rounded-circle" style="height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"
+						onclick='window.open("userProfile?userId=${u.memberId}","LoginForm","width=500, height=600")'/>
 				</c:if>
 			</c:forEach>
 		</div>

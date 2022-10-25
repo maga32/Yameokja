@@ -48,7 +48,8 @@
 		
 	<!-- 회원정보 조회(아이디 > 닉네임, 프사) -->
 	<select id="getMemberFor102" resultType="Member">
-		SELECT member_nickname as memberNickname,
+		SELECT member_id as memberId,
+					member_nickname as memberNickname,
 					member_photo as memberPhoto
 		FROM member
 		WHERE member_id = #{memberId}
