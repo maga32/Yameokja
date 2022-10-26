@@ -1,6 +1,8 @@
 package com.project.yameokja.service.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,18 +14,64 @@ import com.project.yameokja.domain.Category;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-	private CategoryDao categoryDao;
-
 	@Autowired
-	public void setCategoryDao(CategoryDao categoryDao) {
-		this.categoryDao = categoryDao;
-	}
-
+	private CategoryDao categoryDao;
+	@Autowired
+	private MemberDao memberDao;
+	
 	@Override
 	public List<Category> categoryList(String type) {
 		return categoryDao.categoryList(type);
 	}
+	
+	static final int MAX_PAGES = 10;
+	static final int MAX_MEMBERS = 10;
+	
+	// 회원관련 시작 -----------------------------------------------	
+	@Override
+	public Map<String, Object> getMemberList(int page, String sort, String order) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(sort.equals("id")) {
+			sort = "member_id";
+		} else if (sort.equals("nickname")) {
+			sort = "member_nickname";
+		} else if (sort.equals("joindate")) {
+			sort = "member_join_date";
+		} else if (sort.equals("deldate")) {
+			sort = "member_del_date";
+		} else if (sort.equals("level")) {
+			sort = "member_level";
+		}
 
+		int memberCount = memberDao.getMemberCount();
+		int pageCount = memberCount / MAX_MEMBERS + (memberCount % MAX_MEMBERS == 0 ? 0 : 1);
+		int startMember = (page-1) * MAX_MEMBERS;
+		int limit = (page >= pageCount && memberCount % MAX_MEMBERS != 0) ? (memberCount % MAX_MEMBERS) : MAX_MEMBERS;
+		
+		int startPage = ((page-1) / MAX_PAGES) * MAX_PAGES + 1;
+		int endPage = (startPage + MAX_PAGES -1 > pageCount) ? pageCount : (startPage + MAX_PAGES -1);
+				
+		map.put("startMember", startMember);
+		map.put("limit", limit);
+		map.put("memberList", memberDao.getMemberList(startMember, limit, sort, order));
+		
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("pageCount", pageCount);
+		
+		return map;
+	}
+	
+
+	@Override
+	public void updateMemberLevel(String memberId, int memberLevel) {
+		memberDao.updateMemberLevel(memberId, memberLevel);
+	}
+	
+	// 회원관련 끝 -----------------------------------------------
+
+	// 카테고리 관련 시작 -----------------------------------------------
 	@Override
 	public void addCategory(String type, String categoryName) {
 		int lastNo = 0;
@@ -55,5 +103,6 @@ public class AdminServiceImpl implements AdminService {
 	public void updateCategory(Category category) {
 		categoryDao.updateCategory(category);
 	}
+	// 카테고리 관련 끝 -----------------------------------------------
 
 }

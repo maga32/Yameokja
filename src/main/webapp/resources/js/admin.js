@@ -40,3 +40,7 @@ function categoryUpdateCancel(categoryNo){
 function updateCategoryName(categoryNo, type){
 	location.href="updateCategory?categoryNo=" + categoryNo + "&categoryName=" + $("#updateCategoryName_"+categoryNo).val() + "&categoryOrder=" + $("#updateCategoryOrder_"+categoryNo).val() + "&type=" + type;
 }
+
+function changeLevel(memberId, page, sort, order){
+	location.href="updateMemberLevel?memberId=" + memberId + "&memberLevel=" + $("#" + memberId + "Level").val() + "&page=" + page + "&sort=" + sort + "&order=" + order;
+}

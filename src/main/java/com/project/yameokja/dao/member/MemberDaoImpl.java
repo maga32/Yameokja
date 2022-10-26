@@ -1,6 +1,7 @@
 package com.project.yameokja.dao.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -103,5 +104,33 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member getMemberFor102(String memberId) {
 		return sqlSession.selectOne(NAME_SPACE + ".getMemberFor102", memberId);
+	}
+
+	// 회원리스트 조회
+	@Override
+	public List<Member> getMemberList(int startMember, int limit, String sort, String order) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startMember", startMember);
+		map.put("sort", sort);
+		map.put("order", order);
+		map.put("limit", limit);
+		
+		return sqlSession.selectList(NAME_SPACE + ".getMemberList", map);
+	}
+	
+	// 총 회원수 조회
+	@Override
+	public int getMemberCount() {
+		return sqlSession.selectOne(NAME_SPACE + ".getMemberCount");
+	}
+	
+	// 회원 레벨 수정
+	@Override
+	public void updateMemberLevel(String memberId, int memberLevel) {
+		Member member = new Member();
+		member.setMemberId(memberId);
+		member.setMemberLevel(memberLevel);
+		
+		sqlSession.update(NAME_SPACE + ".updateMemberLevel", member);
 	}
 }
