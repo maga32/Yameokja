@@ -5,12 +5,13 @@
 <div class="col-12 py-2">
 	<div class="col-12">
 		<a href="main">
-			<img class="LogoIMGSize" src="resources/IMG/logoIMG.png" alt="LogoIMG"/>
+			<img class="LogoIMGSize" src="/yameokja/resources/IMG/logoIMG.png" alt="LogoIMG"/>
 		</a>
 
 <!-- 		나중에 삭제 -->
 		<c:if test="${not empty sessionScope.memberId }">
-			session : ${sessionScope.memberId }
+			sessionId : ${sessionScope.memberId }
+			/ Lv : ${sessionScope.member.memberLevel }
 			<a href="logout">Logout</a>
 		</c:if>
 		<c:if test="${empty sessionScope.memberId }">
@@ -20,6 +21,7 @@
 		<a href="myPagePost">myPage</a>
 		<a href="communityList">communityList</a>
 		<a href="storeList">storeList</a>
+		<a href="/yameokja/admin/adminMain">adminMain</a>
 <!-- 		나중에 삭제 끝-->
 		
 	</div>

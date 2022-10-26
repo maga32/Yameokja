@@ -5,56 +5,72 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <article>
 	<%@ include file="adminWing.jsp" %>
-	<div>
-		
+	<div class="btn-group btn-group-sm py-2">
+		<a href="adminCategory?type=store" class="btn btn${ type eq 'store' ? '' : '-outline'}-secondary" aria-current="page">스토어</a>
+		<a href="adminCategory?type=community" class="btn btn${ type eq 'community' ? '' : '-outline'}-secondary">커뮤니티</a>
+		<a href="adminCategory?type=report" class="btn btn${ type eq 'report' ? '' : '-outline'}-secondary">신고</a>
 	</div>
-	<div class="p-2">
 	
+	<div class="px-2 pb-2">
 		<div class="row bg-light">
 			<div class="col-4 py-2">
 				카테고리명
 			</div>
-			<div class="col-4 py-2">
+			<div class="col-2 py-2 text-center">
 				출력순서
 			</div>
-			<div class="col-2 py-2">
+			<div class="col-4 py-2 text-center">
 				수정
 			</div>
-			<div class="col-2 py-2">
+			<div class="col-2 py-2 text-center">
 				삭제
 			</div>
 		</div>
 		
 		<div class="row">
 			<c:forEach var="li" items="${ categoryList }">
+				<!-- 카테고리명 -->
 				<div class="col-4 py-2">
-					<a href="/yameokja/storeList?category=${ li.categoryNo }"> ${ li.categoryName }</a>
+					<a href="/yameokja/${ type }List?categoryNo=${ li.categoryNo }" id="categoryName_${ li.categoryNo }"> ${ li.categoryName }</a>
+					<div id="updateName_${ li.categoryNo }" style="display:none;">
+						<input class="form-control" type="text" value="${ li.categoryName }" id="updateCategoryName_${ li.categoryNo }">
+					</div>
 				</div>
-				<div class="col-2 py-2">
-					${ li.categoryOrder } &nbsp;
+				<!-- 출력순서 -->
+				<div class="col-2 py-2 text-center">
+					<div id="categoryOrder_${ li.categoryNo }">${ li.categoryOrder }</div>
+					<div id="updateOrder_${ li.categoryNo }" style="display:none;">
+						<input class="form-control" type="text" value="${ li.categoryOrder }" id="updateCategoryOrder_${ li.categoryNo }">
+					</div>
 				</div>
-				<div class="col-2 py-2">
-					<c:if test="${ li.categoryNo != 1 }">
-						<a href=""><i class="fa fa-angle-up" aria-hidden="true"></i></a>
-					</c:if>
-					<c:if test="${ li.categoryNo == 1 }">&nbsp;&nbsp;&nbsp;</c:if>
-					
-					<c:if test="${ li.categoryNo != fn:length(categoryList) }">
-						<a href=""><i class="fa fa-angle-down" aria-hidden="true"></i></a>
-					</c:if>
+				<!-- 카테고리 수정 -->
+				<div class="col-4 py-2 text-center">
+					<!-- 수정버튼 -->
+					<div id="categoryUpdatePrepare_${ li.categoryNo }">
+						<a href="javascript:;" class="btn" onclick="categoryUpdatePrepare('${ li.categoryNo }')">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</a>
+					</div>
+					<!-- 완료/취소 -->
+					<div id="categoryUpdateCancel_${ li.categoryNo }" style="display:none;">
+						<div class="btn-group">
+							<a href="javascript:;" class="btn btn-outline-secondary" onclick="updateCategoryName('${ li.categoryNo }','${ type }')">완료</a>
+							<a href="javascript:;" class="btn btn-secondary" onclick="categoryUpdateCancel('${ li.categoryNo }')">
+								취소
+							</a>
+						</div>
+					</div>
 				</div>
-				<div class="col-2 py-2">
-					<a href="" class="btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-				</div>
-				<div class="col-2 py-2">
-					<a href="javascript:;" onclick="categoryDelete('${ li.categoryNo }', 'store')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				<!-- 카테고리 삭제 -->
+				<div class="col-2 py-2 text-center">
+					<a href="javascript:;" onclick="categoryDelete('${ li.categoryNo }', '${ type }')"><i class="fa fa-trash" aria-hidden="true"></i></a>
 				</div>
 			</c:forEach>
 		</div>
 		
 		
 		<form action="addCategory" method="post">
-			<div class="row">
+			<div class="row py-4">
 				<div class="col-3">
 					새 카테고리 :
 				</div>

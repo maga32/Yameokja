@@ -18,3 +18,25 @@ function categoryDelete(categoryNo, type){
 		location.href="deleteCategory?categoryNo=" + categoryNo + "&type=" + type;
 	}
 }
+
+function categoryUpdatePrepare(categoryNo){
+	$("#updateName_" + categoryNo).css("display","block");
+	$("#categoryName_" + categoryNo).css("display","none");
+	$("#updateOrder_" + categoryNo).css("display","block");
+	$("#categoryOrder_" + categoryNo).css("display","none");
+	$("#categoryUpdateCancel_" + categoryNo).css("display","block");
+	$("#categoryUpdatePrepare_" + categoryNo).css("display","none");
+}
+
+function categoryUpdateCancel(categoryNo){
+	$("#updateName_" + categoryNo).css("display","none");
+	$("#categoryName_" + categoryNo).css("display","block");
+	$("#updateOrder_" + categoryNo).css("display","none");
+	$("#categoryOrder_" + categoryNo).css("display","block");
+	$("#categoryUpdateCancel_" + categoryNo).css("display","none");
+	$("#categoryUpdatePrepare_" + categoryNo).css("display","block");
+}
+
+function updateCategoryName(categoryNo, type){
+	location.href="updateCategory?categoryNo=" + categoryNo + "&categoryName=" + $("#updateCategoryName_"+categoryNo).val() + "&categoryOrder=" + $("#updateCategoryOrder_"+categoryNo).val() + "&type=" + type;
+}

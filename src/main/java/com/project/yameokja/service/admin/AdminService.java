@@ -12,4 +12,6 @@ public interface AdminService {
 
 	void deleteCategory(int categoryNo);
 
+	void updateCategory(Category category);
+
 }

@@ -18,11 +18,12 @@ public class AdminController {
 	AdminService adminService;
 	
 	@RequestMapping("/admin/adminMain")
-	String adminMain() {
+	public String adminMain() {
 		return "/admin/adminMain";
 	}
 	
-	@RequestMapping({"/admin/adminCategory"})
+	// 카테고리 관련
+	@RequestMapping("/admin/adminCategory")
 	public String adminCategory(Model model, 
 			@RequestParam(value="type", required=false, defaultValue="store") String type) {
 		List<Category> categoryList = adminService.categoryList(type);
@@ -32,16 +33,24 @@ public class AdminController {
 		return "/admin/adminCategory";
 	}
 	
-	@RequestMapping({"/admin/addCategory"})
+	@RequestMapping("/admin/addCategory")
 	public String addCategory(String type, String categoryName) {
 		adminService.addCategory(type, categoryName);
 		
-		return "redirect:/admin/adminCategory";
+		return "redirect:/admin/adminCategory?type=" + type;
 	}
 	
-	@RequestMapping({"/admin/deleteCategory"})
+	@RequestMapping("/admin/deleteCategory")
 	public String deleteCategory(int categoryNo, String type) {
 		adminService.deleteCategory(categoryNo);
 		return "redirect:/admin/adminCategory?type=" + type;
 	}
+	
+	@RequestMapping("/admin/updateCategory")
+	public String updateCategoryName(Category category, String type) {
+		adminService.updateCategory(category);
+		return "redirect:/admin/adminCategory?type=" + type;
+	}
+	
+	
 }

@@ -26,7 +26,7 @@
 		<div class="col-8 col-md-6 col-lg-4 bg-light adminMenu defaultClosed" style="height:100vh; display:none;">
 			<div class="container-fluid">
 			    <a class="navbar-brand" href="#">관리자모드</a>
-			    <a class="nav-link p-3 sidebar-link" href="">회원관리</a>
+			    <a class="nav-link p-3 sidebar-link" href="adminMember">회원관리</a>
 			    <a class="nav-link p-3 sidebar-link" href="adminCategory">카테고리 관리</a>
 		    </div>
     	</div>
