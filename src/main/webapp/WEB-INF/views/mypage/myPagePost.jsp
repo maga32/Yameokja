@@ -64,10 +64,10 @@
 			</div>
 			<!--내정보틀 끝 -->
 			<div class="text-center col-12 mt-3">
-				<span class="postListbutton  px-3 py-2">맛집 리뷰</span> <span
-					class="replyListbutton px-3 py-2"><a href="#">댓글 리뷰</a></span> <span
-					class="communityListbutton px-3 py-2"><a href="myPageCommunity">동네글</a></span> <span
-					class="likeListbutton px-3 py-2"><a href="#">찜 목록</a></span>
+				<span class="postListbutton  px-3 py-2">맛집 리뷰</span>
+				<span class="replyListbutton px-3 py-2"><a href="#">댓글 리뷰</a></span>
+				<span class="communityListbutton px-3 py-2"><a href="myPageCommunity">동네글</a></span>
+				<span class="likeListbutton px-3 py-2"><a href="#">찜 목록</a></span>
 			</div>
 <!-- 			postListHeader 끝 -->
 <!-- 			postList 시작 -->

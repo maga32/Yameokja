@@ -6,22 +6,22 @@
 <article>
 <div class="row p-3">
 	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${store.storeNo }">
+		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
 <!-- 	store info start -->
-	<div class="row border border-secondary rounded-3 p-1 text-center d-flex justify-content-center m-0">
-		<div class="row border-bottom border-secondary pb-2 mb-2">
-			<div class="col-4 text-start">
-				<div class="col-12 fs-7 fw-semibold text-secondary">${store.storeName }</div>
+	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
+		<div class="row border-bottom pb-2 mb-2">
+			<div class="col-4 text-start p-0">
+				<div class="col-12 fs-3 fw-semibold text-secondary">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
-					(4.0)
+					(5.0)
 				</div>
 				<div class="col-12"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${store.storeReadCount }</div>
 				<div class="col-12"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;${store.storeReviewCount }</div>	
@@ -29,50 +29,49 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border border-primary rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border border-primary rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border border-primary rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
+				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
 			</div>
 			</div>
 		</div>
 		<div class="row text-start">
 			<div class="col-6">
 				<div class="row">
-					<div class="col-4 text-secondary fs-7">주소</div>
+					<div class="col-4 text-secondary fs-7 fw-bold">주소</div>
 					<div class="col-8 text-secondary fs-7">${ store.storeAddress }</div>
 				</div>
 				<div class="row">
-					<div class="col-4 text-secondary fs-7">전화번호</div>
+					<div class="col-4 text-secondary fs-7 fw-bold">전화번호</div>
 					<div class="col-8 text-secondary fs-7">${ store.storePhone }</div>
 				</div>
 				<div class="row">
-					<div class="col-4 text-secondary fs-7">음식종류</div>
+					<div class="col-4 text-secondary fs-7 fw-bold">음식종류</div>
 					<div class="col-8 text-secondary fs-7">${ store.categoryNo }</div>
 				</div>
 				<div class="row">
-					<div class="col-4 text-secondary fs-7">주차</div>
+					<div class="col-4 text-secondary fs-7 fw-bold">주차</div>
 					<div class="col-8 text-secondary fs-7">${ store.storeParking }</div>
 				</div>
 			</div>
-			<div class="col-6 border-start border-secondary ps-4">
+			<div class="col-6 border-start ps-4">
 				<div class="row">
-					<div class="col-4 text-secondary fs-7">영업시간</div>
+					<div class="col-4 text-secondary fs-7 fw-bold">영업시간</div>
 					<div class="col-8 text-secondary fs-7">
-						<div class="row">${ store.storeTime }</div>
-						<div class="row">${ store.storeTime }</div>
+						<div class="col">${ store.storeTime }</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-4 text-secondary fs-7">휴무일</div>
+					<div class="col-4 text-secondary fs-7 fw-bold">휴무일</div>
 					<div class="col-8 text-secondary fs-7">${ store.storeDayOff }</div>
 				</div>
 				<div class="row">
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
-				</div>
-				<div class="row text-end d-inline-block">
-					<i class="fa fa-heart-o text-end d-inline" aria-hidden="true"></i>
-					<i class="fa fa-link text-end d-inline" aria-hidden="true"></i>
-					<i class="fa fa-bell text-end d-inline" aria-hidden="true"></i>
+					<div class="col-12 text-end m-0 p-0 d-inline">
+						<i class="fa fa-heart-o" aria-hidden="true"></i>
+						<i class="fa fa-link" aria-hidden="true"></i>
+						<i class="fa fa-bell" aria-hidden="true"></i>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -82,15 +81,28 @@
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2">맛집 리뷰</span>
 		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="#">별점 리뷰</a></span> 
 	</div>
+<!-- 	review start -->
 	<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 		<div class="border text-start p-2 rounded col-12 mb-2">
 			<div class="col-12 fw-bold fs-5 text-secondary">가게 이름</div>
-			<div class="col-12 fw-bold fs-3 text-secondary">리뷰제목은 한 줄로 보여주게 됩니다.</div>
-			<div class="row">
-				<div class="col-6">김핑구 짱짱맨</div>
-				<div class="col-6">12,456,78</div>
+			<div class="col-12 fw-bold fs-3 text-secondary">[BEST]리뷰제목은 한 줄로 보여주게 됩니다.</div>
+			<div class="row m-0 justify-content-center">
+				<div class="row col-6 p-0 m-0">
+					<div class="col-4 p-2 m-0">
+						<img src="https://picsum.photos/200" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
+					</div>
+					<div class="col-8 p-0 m-0">
+						<div class="col">김핑구 짱짱맨</div>
+						<div class="col">2022-09-20</div>
+					</div>
+				</div>
+				<div class="col-6 p-0 m-0">
+					<div class="col">12,456,78</div>
+					<div class="col">12,345</div>
+					<div class="col text-end"><i class="fa fa-bell" aria-hidden="true"></i></div>
+				</div>
 			</div>
-			<div class="row border-top border-secondary m-1">
+			<div class="row border-top py-4 m-1">
 				<div class="col-5">
 					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded float-start" alt="...">
 					리뷰 관련 사진
@@ -160,20 +172,9 @@
 <%-- 				</c:if> --%>
 			</div>
 	</div>
+<!-- 	review end -->
 
-
-
-
-
-
-
-
-
-				
-
-<!-- 				<div class="row d-flex border border-primary mt-1">이제 여기에 -->
-<!-- 					리뷰목록/댓글목록을 불러올것임</div> -->
-<!-- 	</div> -->
 <!-- 	fullFrame end-->			
 	</div>
+</div>
 </article>

@@ -5,7 +5,7 @@
 }
 
 .fs-7{
-	font-size: 10px;
+	font-size: 13px;
 }
 .postListbutton {
 	border-radius: 20px 0 0 0;
@@ -15,7 +15,7 @@
 }
 .starListbutton {
 	border-radius: 20px 0 0 0;
-    border: 1px solid #B8BBC0;
+    border: 1px solid #dee2e6;
     color: gray;
 }
 .postContent {
@@ -39,7 +39,10 @@
 .deleteButton{
 	border: none;
 }
-
+.profileIMG{
+	height: 65px;
+	width: 65px;
+}
 /* a 태그 */
 a {text-decoration: none;}
 .postListbutton a:link {color: gray;}
@@ -133,3 +136,7 @@ a {text-decoration: none;}
 	color: #ffffff;
 	background-color: #FFB966;
 }
+.starListbutton a:link {color: gray;}
+.starListbutton a:visited {color: gray;}
+.starListbutton a:hover {color: #4aa5ff;}
+.starListbutton a:active {color: #4aa5ff;}
