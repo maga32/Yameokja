@@ -6,29 +6,87 @@
 <article>
 	<%@ include file="adminWing.jsp" %>
 	<div class="px-2 p-sm-3 p-2">
-		<div class="row bg-light text-center">
-			<div class="col-2 py-2">아이디</div>
-			<div class="col-2 py-2">닉네임</div>
-			<div class="col-2 py-2">가입일</div>
-			<div class="col-2 py-2">탈퇴일</div>
-			<div class="col-4 py-2">멤버권한</div>
+		
+		<!-- 검색 -->
+		<div class="d-flex">
+			<div class="py-3">
+				<select class="form-select-sm rounded-pill" id="searchBy">
+					<option value="id" ${ searchBy eq id ? 'selected' : ''}>아이디</option>
+					<option value="nickname" ${ searchBy eq 'nickname' ? 'selected' : ''}>닉네임</option>
+					<option value="level" ${ searchBy eq 'level' ? 'selected' : ''}>등급</option>
+				</select>
+			</div>
+			<div class="flex-fill p-3">
+				<input class="col-12 rounded-pill px-2" type="text" id="keyword" value="${ keyword }">
+			</div>
+			<div class="py-3">
+				<a class="px-4 btn btn-sm btn-outline-secondary rounded-pill" href="javascript:;" onclick="searchMember()">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</a>
+			</div>
 		</div>
-		<div class="row">
+		
+		<!-- 회원 리스트 -->
+		<div class="row bg-light">
+			<div class="col-5 py-2">
+				<span>
+					<c:if test="${ sort eq 'nickname' && order eq 'desc'}"><a class="text-warning" href="adminMember?sort=nickname&order=asc&searchBy=${ searchBy }&keyword=${ keyword }">닉네임▼</a></c:if>
+					<c:if test="${ sort eq 'nickname' && order eq 'asc'}"><a class="text-warning" href="adminMember?sort=nickname&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">닉네임▲</a></c:if>
+					<c:if test="${ sort ne 'nickname'}"><a href="adminMember?sort=nickname&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">닉네임</a></c:if>
+				</span>
+				<span>
+					<c:if test="${ sort eq 'id' && order eq 'desc'}"><a class="text-warning" href="adminMember?sort=id&order=asc&searchBy=${ searchBy }&keyword=${ keyword }">( 아이디▼ )</a></c:if>
+					<c:if test="${ sort eq 'id' && order eq 'asc'}"><a class="text-warning" href="adminMember?sort=id&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">( 아이디▲ )</a></c:if>
+					<c:if test="${ sort ne 'id'}"><a href="adminMember?sort=id&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">( 아이디 )</a></c:if>
+				</span>	
+			</div>
+			<div class="col-3 py-2 text-center">
+				<span>
+					<c:if test="${ sort eq 'joindate' && order eq 'desc'}"><a class="text-warning" href="adminMember?sort=joindate&order=asc&searchBy=${ searchBy }&keyword=${ keyword }">가입일▼</a></c:if>
+					<c:if test="${ sort eq 'joindate' && order eq 'asc'}"><a class="text-warning" href="adminMember?sort=joindate&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">가입일▲</a></c:if>
+					<c:if test="${ sort ne 'joindate'}"><a href="adminMember?sort=joindate&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">가입일</a></c:if>	
+				</span>
+				<span>
+					<c:if test="${ sort eq 'deldate' && order eq 'desc'}"><a class="text-warning" href="adminMember?sort=deldate&order=asc&searchBy=${ searchBy }&keyword=${ keyword }">( 탈퇴일▼ )</a></c:if>
+					<c:if test="${ sort eq 'deldate' && order eq 'asc'}"><a class="text-warning" href="adminMember?sort=deldate&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">( 탈퇴일▲ )</a></c:if>
+					<c:if test="${ sort ne 'deldate'}"><a href="adminMember?sort=deldate&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">( 탈퇴일 )</a></c:if>
+				</span>	
+			</div>
+			<div class="col-4 py-2 text-center">
+				<c:if test="${ sort eq 'level' && order eq 'desc'}"><a class="text-warning" href="adminMember?sort=level&order=asc&searchBy=${ searchBy }&keyword=${ keyword }">멤버권한▼</a></c:if>
+				<c:if test="${ sort eq 'level' && order eq 'asc'}"><a class="text-warning" href="adminMember?sort=level&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">멤버권한▲</a></c:if>
+				<c:if test="${ sort ne 'level'}"><a href="adminMember?sort=level&order=desc&searchBy=${ searchBy }&keyword=${ keyword }">멤버권한</a></c:if>
+			</div>
+		</div>
+		
+		<div class="row text-break">
 			<c:forEach var="li" items="${ memberList }">
-				<div class="col-2 py-2">${ li.memberId }</div>
-				<div class="col-2 py-2 text-center">${ li.memberNickname }</div>
-				<div class="col-2 py-2 text-center">
-					<fmt:formatDate value="${ li.memberJoinDate }" pattern="YY/MM/dd"/>
+				<div class="col-5 py-2 d-flex">
+					<div class="align-self-center">
+						<!-- 멤버 사진으로 대체 -->
+						<img class="rounded-circle mr-2" src="https://picsum.photos/40">
+					</div>
+					<div class="px-2">
+						<span>${ li.memberNickname }</span><br>
+						<span class="text-small">( ${ li.memberId } )</span>
+					</div>
 				</div>
-				<div class="col-2 py-2 text-center">
-					<fmt:formatDate value="${ li.memberDelDate }" pattern="YY/MM/dd"/>
+				<div class="col-3 py-2 text-center align-self-center">
+					<span>
+						<fmt:formatDate value="${ li.memberJoinDate }" pattern="YY/MM/dd"/>
+					</span><br>
+					<span class="text-small">
+						<fmt:formatDate value="${ li.memberDelDate }" pattern="( YY/MM/dd )"/>
+					</span>
 				</div>
-				<div class="col-4 py-2 text-center">
+				<div class="col-4 py-2 text-center align-self-center">
 					<c:if test="${ li.memberLevel == 10 }">
-						<i class="fa fa-graduation-cap" aria-hidden="true"></i> 최고관리자
+						<div class="text-success">
+							<i class="fa fa-graduation-cap" aria-hidden="true"></i> 최고관리자
+						</div>
 					</c:if>
 					<c:if test="${ li.memberLevel != 10 }">
-						<select class="form-select-sm" id="${ li.memberId }Level">
+						<select class="form-select-sm my-1" id="${ li.memberId }Level">
 							<option ${ li.memberLevel == 1 ? 'selected' : ''}>1</option>
 							<option ${ li.memberLevel == 2 ? 'selected' : ''}>2</option>
 							<option ${ li.memberLevel == 3 ? 'selected' : ''}>3</option>
@@ -40,28 +98,28 @@
 							<option ${ li.memberLevel == 9 ? 'selected' : ''} value="9">lv9 관리자</option>
 							<option ${ li.memberLevel == 0 ? 'selected' : ''} value="0">정지</option>
 						</select>
-						<a href="javascript:;" class="btn btn-sm btn-secondary" onclick="changeLevel('${ li.memberId }','${ page }','${ sort }','${ order }')">변경</a>
+						<a href="javascript:;" class="btn btn-sm btn-secondary" onclick="changeLevel('${ li.memberId }','${ page }','${ sort }','${ order }','${ searchBy }','${ keyword }')">변경</a>
 					</c:if>
 				</div>
 			</c:forEach>
-			
-			<!-- 페이징 -->
-			<div>
-				<div class="text-center">
-					<div class="btn-group">
-						<a class="btn btn-secondary ${ startPage == 1 ? 'disabled' : '' }" href="/yameokja/admin/adminMember?page=${ startPage -1 }&sort=${ sort }&order=${ sort }">
-				  			<i class="fa fa-angle-left" aria-hidden="true"></i>
-			  			</a>
-						<c:forEach var="li" begin="${ startPage }" end="${ endPage }">
-							<a class="btn btn${ li == page ? '-outline' : '' }-secondary" href="/yameokja/admin/adminMember?page=${ li }&sort=${ sort }&order=${ order }">${ li }</a>
-						</c:forEach>
-						<a class="btn btn-secondary ${ endPage == pageCount ? 'disabled' : '' }" href="/yameokja/admin/adminMember?page=${ endPage + 1 }&sort=${ sort }&order=${ order }">
-				  			<i class="fa fa-angle-right" aria-hidden="true"></i>
-			  			</a>
-					</div>
+		</div>
+		
+		<!-- 페이징 -->
+		<div class="row">
+			<div class="text-center">
+				<div class="btn-group">
+					<a class="btn btn-secondary ${ startPage == 1 ? 'disabled' : '' }" href="/yameokja/admin/adminMember?page=${ startPage -1 }&sort=${ sort }&order=${ sort }&searchBy=${ searchBy }&keyword=${ keyword }">
+			  			<i class="fa fa-angle-left" aria-hidden="true"></i>
+		  			</a>
+					<c:forEach var="li" begin="${ startPage }" end="${ endPage }">
+						<a class="btn btn${ li == page ? '-outline' : '' }-secondary" href="/yameokja/admin/adminMember?page=${ li }&sort=${ sort }&order=${ order }&searchBy=${ searchBy }&keyword=${ keyword }">${ li }</a>
+					</c:forEach>
+					<a class="btn btn-secondary ${ endPage == pageCount ? 'disabled' : '' }" href="/yameokja/admin/adminMember?page=${ endPage + 1 }&sort=${ sort }&order=${ order }&searchBy=${ searchBy }&keyword=${ keyword }">
+			  			<i class="fa fa-angle-right" aria-hidden="true"></i>
+		  			</a>
 				</div>
 			</div>
-			
 		</div>
+		
 	</div>
 </article>

@@ -28,10 +28,10 @@ public interface MemberDao {
 	Member getMemberFor102(String memberId);
 	
 	// 회원 리스트 조회
-	public List<Member> getMemberList(int startMember, int limit, String sort, String order);
+	public List<Member> getMemberList(int startMember, int limit, String sort, String order, String searchBy, String keyword);
 
 	// 총 회원수 조회
-	public int getMemberCount();
+	public int getMemberCount(String searchBy, String keyword);
 	
 	// 회원 레벨 수정
 	public void updateMemberLevel(String memberId, int memberLevel);

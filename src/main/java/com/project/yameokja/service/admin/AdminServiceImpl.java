@@ -29,22 +29,24 @@ public class AdminServiceImpl implements AdminService {
 	
 	// 회원관련 시작 -----------------------------------------------	
 	@Override
-	public Map<String, Object> getMemberList(int page, String sort, String order) {
+	public Map<String, Object> getMemberList(int page, String sort, String order, String searchBy, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		if(sort.equals("id")) {
-			sort = "member_id";
-		} else if (sort.equals("nickname")) {
-			sort = "member_nickname";
-		} else if (sort.equals("joindate")) {
-			sort = "member_join_date";
-		} else if (sort.equals("deldate")) {
-			sort = "member_del_date";
-		} else if (sort.equals("level")) {
-			sort = "member_level";
+		if(sort.equals("id")) { sort = "member_id";
+		} else if (sort.equals("nickname")) { sort = "member_nickname";
+		} else if (sort.equals("deldate")) { sort = "member_del_date";
+		} else if (sort.equals("level")) { sort = "member_level";
+		} else { sort = "member_join_date";
 		}
-
-		int memberCount = memberDao.getMemberCount();
+		
+		if(searchBy != null) {
+			if(searchBy.equals("id")) { searchBy = "member_id";
+			} else if (searchBy.equals("nickname")) { searchBy = "member_nickname";
+			} else if (searchBy.equals("level")) { searchBy = "member_level";
+			}
+		}
+		
+		int memberCount = memberDao.getMemberCount(searchBy, keyword);
 		int pageCount = memberCount / MAX_MEMBERS + (memberCount % MAX_MEMBERS == 0 ? 0 : 1);
 		int startMember = (page-1) * MAX_MEMBERS;
 		int limit = (page >= pageCount && memberCount % MAX_MEMBERS != 0) ? (memberCount % MAX_MEMBERS) : MAX_MEMBERS;
@@ -54,7 +56,7 @@ public class AdminServiceImpl implements AdminService {
 				
 		map.put("startMember", startMember);
 		map.put("limit", limit);
-		map.put("memberList", memberDao.getMemberList(startMember, limit, sort, order));
+		map.put("memberList", memberDao.getMemberList(startMember, limit, sort, order, searchBy, keyword));
 		
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);

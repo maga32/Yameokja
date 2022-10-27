@@ -108,20 +108,26 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 회원리스트 조회
 	@Override
-	public List<Member> getMemberList(int startMember, int limit, String sort, String order) {
+	public List<Member> getMemberList(int startMember, int limit, String sort, String order, String searchBy, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startMember", startMember);
 		map.put("sort", sort);
 		map.put("order", order);
 		map.put("limit", limit);
-		
+		map.put("searchBy", searchBy);
+		map.put("keyword", keyword);
+
 		return sqlSession.selectList(NAME_SPACE + ".getMemberList", map);
 	}
 	
 	// 총 회원수 조회
 	@Override
-	public int getMemberCount() {
-		return sqlSession.selectOne(NAME_SPACE + ".getMemberCount");
+	public int getMemberCount(String searchBy, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchBy", searchBy);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne(NAME_SPACE + ".getMemberCount", map);
 	}
 	
 	// 회원 레벨 수정

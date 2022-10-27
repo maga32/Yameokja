@@ -54,16 +54,26 @@
 		WHERE member_id = #{memberId}
 	</select>
 	
-	<!-- 회원리스트 조회 -->
-	<select id="getMemberList" resultMap="MemberResultMap">
-		SELECT * FROM member
-			ORDER BY ${sort} ${order}
-			LIMIT ${startMember},${limit}
-	</select>
-	
 	<!-- 총 회원수 조회 -->
 	<select id="getMemberCount" resultType="Integer">
 		SELECT COUNT(*) FROM member
+			<where>
+				<if test="keyword != null">
+					${searchBy} LIKE CONCAT('%',#{keyword},'%')
+				</if>
+			</where>
+	</select>
+	
+	<!-- 회원리스트 조회 -->
+	<select id="getMemberList" resultMap="MemberResultMap">
+		SELECT * FROM member
+			<where>
+				<if test="keyword != null">
+					${searchBy} LIKE CONCAT('%',#{keyword},'%')
+				</if>
+			</where>
+			ORDER BY ${sort} ${order}
+			LIMIT ${startMember},${limit}
 	</select>
 	
 	<!-- 멤버 레벨변경 -->

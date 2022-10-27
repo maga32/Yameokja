@@ -9,7 +9,7 @@ import com.project.yameokja.domain.Member;
 public interface AdminService {
 	
 	// 회원관련 시작 -----------------------------------------------
-	Map<String, Object> getMemberList(int page, String sort, String order);
+	Map<String, Object> getMemberList(int page, String sort, String order, String searchBy, String keyword);
 
 	void updateMemberLevel(String memberId, int memberLevel);
 	// 회원관련 끝 -----------------------------------------------
