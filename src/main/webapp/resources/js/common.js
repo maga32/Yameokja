@@ -34,7 +34,7 @@ $(document).ready(function() {
 				var info = "<div class='memberInfoView' style='position: absolute;'>"
 					+ "<div class='btn-group-vertical'>"
 						+ "<button class='btn btn-secondary viewProfile' data-userId='" + memberId + "'>프로필보기</button>"
-						+ "<a class='btn btn-secondary' href='/yameokja/myPagePost?userId=" + memberId + "'>활동내역</a>"
+						+ "<button class='btn btn-secondary viewMyPage' data-userId='" + memberId + "'>활동내역</button>"
 						+ "<button class='btn btn-secondary chatStart' data-targetId='" + memberId + "'>채팅하기</button>"
 						+ tmp
 					+ "</div>"
@@ -60,6 +60,19 @@ $(document).ready(function() {
 $(document).on("click", ".viewProfile", function() {
 	var userId = $(this).attr("data-userId");
 	window.open("/yameokja/userProfile?userid="+ userId, "프로필", "width=500, height=800");
+});
+
+// 마이페이지 보기 => <button class="btn viewMyPage" data-userId=${ 대상아이디 }">활동내역</button>
+$(document).on("click", ".viewMyPage", function() {
+	var memberId = $(this).attr("data-userId");
+	
+	if(opener) {
+		opener.location.href = "/yameokja/myPagePost?userId=" + memberId;
+		window.close();
+	} else {
+		location.href = "/yameokja/myPagePost?userId=" + memberId;
+	}
+	
 });
 
 // 차단하기 => <button class="btn blockTarget" data-targetId="${ 상대방아이디 }"> 내부내용은 마음대로지만 '차단' 이 들어가야함 </button>
