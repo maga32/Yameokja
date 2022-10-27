@@ -107,12 +107,12 @@
 							
 						</div>
 						
-						<div class="row border border-primary mt-1">
+						<div class="row justify-content-center border border-primary mt-1">
 						
 							
-							<div class="row">
+							<div class="row justify-content-center">
 							
-								<div class="col-md-12 border">
+								<div class="col-md-12 border ">
 									<h5>별점리뷰 작성</h5>
 									<p>별 별 별 별 별</p>
 									<div class="row">
@@ -123,7 +123,7 @@
 										
 									</div>
 									
-									<div class="row">
+									<div class="row justify-content-center">
 									
 										<div class="col-md-10 border">
 											<input type="text">
@@ -136,7 +136,30 @@
 									</div>
 									
 								</div>
+								<c:forEach var="r" items="${ rList }">
+								<div class="row border border-1 rounded m-1">
 								
+									<div class="col-3">
+										<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
+									</div>
+									
+									<div class="col-9">
+										<div class="row">
+										<div class="col-2">
+											<p><img src="https://picsum.photos/50" class="img-thumbnail rounded-circle" alt="...">
+										</div>
+										<div class="col-10">
+												${ r.memberNickname }<br>
+												<fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/>
+										</div>
+										</div>
+										<div class="row">
+											<p> ${ r.postContent }</p>
+										</div>
+									</div>
+								
+								</div>
+								</c:forEach>
 							</div>
 							
 							

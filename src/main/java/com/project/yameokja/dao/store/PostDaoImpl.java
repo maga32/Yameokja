@@ -31,7 +31,7 @@ public class PostDaoImpl implements PostDao {
 	
 	@Override
 	public List<Post> postListReply(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE + ".postReply", storeNo); 
+		return sqlSession.selectList(NAME_SPACE + ".postListReply", storeNo); 
 	}
 
 	@Override
