@@ -12,16 +12,17 @@
 		<c:if test="${not empty sessionScope.memberId }">
 			sessionId : ${sessionScope.memberId }
 			/ Lv : ${sessionScope.member.memberLevel }
-			<a href="logout">Logout</a>
+			<a href="/yameokja/logout">Logout</a>
 		</c:if>
 		<c:if test="${empty sessionScope.memberId }">
 			<a href="#" onclick='window.open("loginForm","LoginForm","width=500, height=600")'>LoginForm</a>	
 		</c:if>
 
-		<a href="myPagePost">myPage</a>
-		<a href="communityList">communityList</a>
-		<a href="storeList">storeList</a>
+		<a href="/yameokja/myPagePost">myPage</a>
+		<a href="/yameokja/communityList">communityList</a>
+		<a href="/yameokja/storeList">storeList</a>
 		<a href="/yameokja/admin/adminMain">adminMain</a>
+		<a href="" class="chatStart" data-targetid="memberId03">채팅하기</a>
 <!-- 		나중에 삭제 끝-->
 		
 	</div>

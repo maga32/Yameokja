@@ -1,23 +1,77 @@
 $(document).ready(function() {
 
-	// 채팅시작 => <a href="" class="chatStart" data-targetId="상대방id">채팅하기</a>
-	$(".chatStart").click(function() {
-		var targetId = $(this).attr("data-targetId");
-		window.open("/yameokja/chat/chatDetail?targetId="+targetId,"채팅","width=500, height=800");
+	// 회원정보 클릭 => <button class="btn memberInfo" data-memberId="${ 상대방아이디 }"> 상대방 닉네임 등 </button>
+	$(".memberInfo").click(function() {
+		$(".memberInfoView").remove();
+
+		var memberId = $(this).attr("data-memberId");;
+		var tmp = "";
+
+		$.ajax({
+			url: "/yameokja/memberInfo.ajax",
+			type: "post",
+			data: "targetId=" + memberId,
+			context: this,
+			success: function(resData) {
+				tmp += "<button data-targetId='" + memberId + "' class='btn btn-secondary";
+
+				// 차단여부 판별				
+				if(resData.block) {
+					tmp += " unblockTarget'>차단해제</button>";
+				} else {
+					tmp += " blockTarget'>차단</button>";
+				}
+				
+				// 관리자권한 판별
+				if(resData.memberLevel >= 7) {
+					tmp += "<a href='/yameokja/admin/adminMember?searchBy=id&keyword=" + memberId + "' class='btn btn-warning'>회원정보변경</a>";
+				}
+			},
+			error: function(){
+				console.log("not logined");
+			},
+			complete: function(){
+				var info = "<div class='memberInfoView' style='position: absolute;'>"
+					+ "<div class='btn-group-vertical'>"
+						+ "<button class='btn btn-secondary viewProfile' data-userId='" + memberId + "'>프로필보기</button>"
+						+ "<a class='btn btn-secondary' href='/yameokja/myPagePost?userId=" + memberId + "'>활동내역</a>"
+						+ "<button class='btn btn-secondary chatStart' data-targetId='" + memberId + "'>채팅하기</button>"
+						+ tmp
+					+ "</div>"
+				+ "</div>";
+
+				$(this).append(info);
+			}
+		});
+
+	});
+
+	// 회원정보 닫기
+	$("html").click(function(e) {
+		if(!$(e.target).hasClass("memberInfo")) $(".memberInfoView").remove();
 	});
 
 });
 
-// 차단하기 => <a href="javascript:;" id="block-${ 상대방아이디 }" onclick="blockTarget('${ 상대방아이디 }')"> 내부내용은 마음대로지만 '차단' 이 들어가야함 </a>
-function blockTarget(targetId){
-	var params = "targetId=" + targetId;
-	$("#block-" + targetId).attr("onclick", "unblockTarget('"+ targetId + "')");
-	$("#block-" + targetId).html($("#block-" + targetId).html().replace("차단", "차단해제"));
+
+// 회원 드롭메뉴 관련 시작 ----------------------------------------------------------------------------------------------------------------
+
+// 프로필 보기 => <button class="btn viewProfile" data-userId=${ 대상아이디 }">프로필보기</button>
+$(document).on("click", ".viewProfile", function() {
+	var userId = $(this).attr("data-userId");
+	window.open("/yameokja/userProfile?userid="+ userId, "프로필", "width=500, height=800");
+});
+
+// 차단하기 => <button class="btn blockTarget" data-targetId="${ 상대방아이디 }"> 내부내용은 마음대로지만 '차단' 이 들어가야함 </button>
+$(document).on("click", ".blockTarget", function() {
+	var targetId = $(this).attr("data-targetId");
+	$(this).addClass("unblockTarget").removeClass("blockTarget");
+	$(this).html($(this).html().replace("차단", "차단해제"));
 
 	$.ajax({
 		url: "/yameokja/memberBlock.ajax",
 		type: "post",
-		data: params,
+		data: "targetId=" + targetId,
 		context: this,
 		success: function(resData) {
 			if(resData.result == 0) {
@@ -31,19 +85,18 @@ function blockTarget(targetId){
 		}
 	});
 	
-	return false;
-}
+});
 
-// 차단해제 => <a href="javascript:;" id="block-${ 상대방아이디 }" onclick="unblockTarget('${ 상대방아이디 }')"> 내부내용은 마음대로지만 '차단해제' 가 들어가야함 </a>
-function unblockTarget(targetId){
-	var params = "targetId=" + targetId;
-	$("#block-" + targetId).attr("onclick", "blockTarget('"+ targetId + "')");
-	$("#block-" + targetId).html($("#block-" + targetId).html().replace("차단해제", "차단"));
+// 차단해제 => <button class="btn unblockTarget" data-targetId="${ 상대방아이디 }"> 내부내용은 마음대로지만 '차단해제' 가 들어가야함 </button>
+$(document).on("click", ".unblockTarget", function() {
+	var targetId = $(this).attr("data-targetId");
+	$(this).addClass("blockTarget").removeClass("unblockTarget");
+	$(this).html($(this).html().replace("차단해제", "차단"));
 
 	$.ajax({
 		url: "/yameokja/memberUnblock.ajax",
 		type: "post",
-		data: params,
+		data: "targetId=" + targetId,
 		context: this,
 		success: function(resData) {
 			if(resData.result == 0) {
@@ -56,6 +109,12 @@ function unblockTarget(targetId){
 			console.log("error");
 		}
 	});
-	
-	return false;
-}
+});
+
+// 채팅시작 => <a href="" class="chatStart" data-targetId="${ 상대방id }">채팅하기</a>
+$(document).on("click", ".chatStart", function() {
+	var targetId = $(this).attr("data-targetId");
+	window.open("/yameokja/chat/chatDetail?targetId="+targetId,"채팅","width=500, height=800");
+});
+
+// 회원 드롭메뉴 관련 끝 ----------------------------------------------------------------------------------------------------------------

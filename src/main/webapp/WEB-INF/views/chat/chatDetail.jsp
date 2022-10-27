@@ -52,13 +52,13 @@
 							<h1>${ target.memberNickname }</h1>
 						</div>
 						<div class="col-12 pt-5 text-end">
-							<a href="javascript:;" onclick="chatLeave('${ chatIds }')" class="text-large">채팅방나가기</a>
+							<button onclick="chatLeave('${ chatIds }')" class="btn text-large">채팅방나가기</button>
 							|
 							<c:if test="${ isBlockedTarget }">
-								<a href="javascript:;" id="block-${ target.memberId }" onclick="unblockTarget('${ target.memberId }')"><span class="text-danger">차단해제</span></a>
+								<button class="btn unblockTarget" data-targetId="${ target.memberId }"><span class="text-danger">차단해제</span></button>
 							</c:if>
 							<c:if test="${ not isBlockedTarget }">
-								<a href="javascript:;" id="block-${ target.memberId }" onclick="blockTarget('${ target.memberId }')"><span class="text-danger">차단</span></a>
+								<button class="btn blockTarget" data-targetId="${ target.memberId }"><span class="text-danger">차단</span></button>
 							</c:if>
 							&nbsp;
 						</div>

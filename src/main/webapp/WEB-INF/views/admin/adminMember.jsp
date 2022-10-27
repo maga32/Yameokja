@@ -16,6 +16,7 @@
 					<option value="level" ${ searchBy eq 'level' ? 'selected' : ''}>등급</option>
 				</select>
 			</div>
+			
 			<div class="flex-fill p-3">
 				<input class="col-12 rounded-pill px-2" type="text" id="keyword" value="${ keyword }">
 			</div>
@@ -67,7 +68,9 @@
 						<img class="rounded-circle mr-2" src="https://picsum.photos/40">
 					</div>
 					<div class="px-2">
-						<span>${ li.memberNickname }</span><br>
+						<a class="memberInfo" data-memberId="${ li.memberId }">
+							${ li.memberNickname }
+						</a><br>						
 						<span class="text-small">( ${ li.memberId } )</span>
 					</div>
 				</div>
