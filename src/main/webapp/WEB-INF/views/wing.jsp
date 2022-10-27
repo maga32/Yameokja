@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <link rel="stylesheet" type="text/css" href="resources/css/wing.css" />
+<script type="text/javascript" src="resources/js/wing.js"></script>
 <article>
 <div class="row">
 <div class="col-12">
@@ -40,8 +41,8 @@
 			<div class="col"></div>
 		</div>
 	</c:if>
-	<div class="col-12 fs-3 fw-semibold text-start"><a href="#">메인 페이지</a></div>
-	<div class="col-12 fs-3 fw-semibold text-start"><a href="#">커뮤니티</a></div>
+	<div class="col-12 fs-3 fw-semibold text-start"><a href="main">메인 페이지</a></div>
+	<div class="col-12 fs-3 fw-semibold text-start"><a href="communityList">커뮤니티</a></div>
 	<div class="col-12 fs-3 fw-semibold text-start"><a href="#">채팅 목록</a></div>
 	<div class="col-12 fs-3 fw-semibold text-start mb-4"><a href="#">내가 찜한 가게</a></div>
 	<div class="col-12 fs-6 text-white fw-semibold text-start mb-1">나의 위치</div>

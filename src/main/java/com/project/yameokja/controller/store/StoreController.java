@@ -21,9 +21,14 @@ public class StoreController {
 
 	@Autowired
 	private StoreService StoreService;
+	@Autowired
+	private PostService postService;
 
 	public void setStoreService(StoreService StoreService) {
 		this.StoreService = StoreService;
+	}
+	public void setPostService(PostService postService) {
+		this.postService = postService;
 	}
 
 	// 가게 리스트
@@ -41,8 +46,10 @@ public class StoreController {
 	public String StoreDetail(Model model, int storeNo) {
 
 		Store store = StoreService.getStore(storeNo);
+		List<Post> bestPostList = postService.bestPostList(storeNo);
 		
 		model.addAttribute("store", store);
+		model.addAttribute("bestPostList", bestPostList);
 
 		return "store/storeDetail";
 	}

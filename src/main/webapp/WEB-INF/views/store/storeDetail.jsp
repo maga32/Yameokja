@@ -81,24 +81,25 @@
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2">맛집 리뷰</span>
 		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="#">별점 리뷰</a></span> 
 	</div>
-<!-- 	review start -->
+
+<!-- 	review start -->	
+	<c:if test="${ not empty bestPostList }">
+	<c:forEach var="p" items="${ bestPostList }">
 	<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 		<div class="border text-start p-2 rounded col-12 mb-2">
-			<div class="col-12 fw-bold fs-5 text-secondary">가게 이름</div>
-			<div class="col-12 fw-bold fs-3 text-secondary">[BEST]리뷰제목은 한 줄로 보여주게 됩니다.</div>
-			<div class="row m-0 justify-content-center">
-				<div class="row col-6 p-0 m-0">
-					<div class="col-4 p-2 m-0">
-						<img src="https://picsum.photos/200" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
-					</div>
-					<div class="col-8 p-0 m-0">
-						<div class="col">김핑구 짱짱맨</div>
-						<div class="col">2022-09-20</div>
-					</div>
+			<div class="col-12 fw-bold fs-5 text-secondary">${ store.storeName }</div>
+			<div class="col-12 fw-bold fs-3 text-secondary">[BEST]${ p.postTitle }</div>
+			<div class="row my-2 mx-0 justify-content-center">
+				<div class="col-2 p-0 m-0">
+					<img src="https://picsum.photos/200" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
 				</div>
-				<div class="col-6 p-0 m-0">
-					<div class="col">12,456,78</div>
-					<div class="col">12,345</div>
+				<div class="col-5 p-2 m-0">
+					<div class="col">${ p.memberNickname }</div>
+					<div class="col">${ p.postRegDate }</div>
+				</div>
+				<div class="col-5 p-0 m-0">
+					<div class="col">${ p.postReadCount }postReadCount?</div>
+					<div class="col">${ p.postUpCount }postUpCount?</div>
 					<div class="col text-end"><i class="fa fa-bell" aria-hidden="true"></i></div>
 				</div>
 			</div>
@@ -107,7 +108,7 @@
 					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded float-start" alt="...">
 					리뷰 관련 사진
 				</div>
-				<div class="col-7">장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
+				<div class="col-7">${ p.postContent }짧아서 추가함. 장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
 				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
 				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
 				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
@@ -119,11 +120,9 @@
 			</div>
 		</div>
 		
-		
+<!-- 		best2 -->
 		<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 
-<%-- 				<c:if test="${ not empty postList }"> --%>
-<%-- 					<c:forEach var="p" items="${ postList }"> --%>
 
 						<div class="postFrame border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 mx-2">
@@ -132,7 +131,7 @@
 							</div>
 							<div class="col-6 postContent text-start mx-2">
 								<div class="postTitle">
-									<a href="#">${ p.postTitle }postTitle</a>
+									<a href="#">${ p.postTitle }</a>
 								</div>
 								<div class="" id="postNo">
 									<a href="#">postNo=${ p.postNo }</a>
@@ -153,25 +152,26 @@
 									프사
 								</div>
 								<div class="deleteButton" id="deleteButton">
-									김짱구짱짱맨
+									${ p.memberNickname }
 								</div>
 							</div>
 						</div>
 						<div class="row text-end">
 							<div class="col-12 py-3">
-								<div class="d-inline-block storeWhiteFormButton text-start"><a href="community101WriteForm" class="py-1 px-3">글 쓰기</a></div>
-								<div class="d-inline-block storeDetailPostButton text-end"><a href="community102WriteForm" class="py-1 px-3">리뷰 전체보기</a></div>
-								<div class="d-inline-block storeListButton text-end"><a href="community102WriteForm" class="py-1 px-3">가게 목록으로</a></div>
+								<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
+								<div class="d-inline-block storeDetailPostButton text-end"><a href="#" class="py-1 px-3">리뷰 전체보기</a></div>
+								<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
 							</div>
 						</div>
 
-<%-- 					</c:forEach> --%>
-<%-- 				</c:if> --%>
+					
 <%-- 				<c:if test="${ empty postList }"> --%>
 <!-- 					<div class="col-12 text-center"> 작성한 글이 없습니다.</div> -->
 <%-- 				</c:if> --%>
 			</div>
 	</div>
+	</c:forEach>
+	</c:if>
 <!-- 	review end -->
 
 <!-- 	fullFrame end-->			

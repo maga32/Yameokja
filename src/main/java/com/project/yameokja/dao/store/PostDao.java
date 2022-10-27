@@ -24,4 +24,7 @@ public interface PostDao {
 	// 가게 포스트 삭제
 	public abstract void deletePost(Post post);
 	
+	//베스트 포스트 리스트
+	public abstract List<Post> bestPostList(int storeNo);
+	
 }
