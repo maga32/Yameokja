@@ -4,7 +4,7 @@
 <header>
 <div class="col-12 py-2">
 	<div class="col-12">
-		<a href="main">
+		<a href="/yameokja/main">
 			<img class="LogoIMGSize" src="/yameokja/resources/IMG/logoIMG.png" alt="LogoIMG"/>
 		</a>
 
@@ -21,7 +21,7 @@
 		<a href="/yameokja/myPagePost">myPage</a>
 		<a href="/yameokja/communityList">communityList</a>
 		<a href="/yameokja/storeList">storeList</a>
-		<a href="/yameokja/admin/adminMain">adminMain</a>
+		<a href="/yameokja/admin">admin</a>
 		<a href="" class="chatStart" data-targetid="memberId03">채팅하기</a>
 <!-- 		나중에 삭제 끝-->
 		

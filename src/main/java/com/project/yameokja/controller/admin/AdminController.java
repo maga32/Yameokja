@@ -17,9 +17,9 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
-	@RequestMapping("/admin/adminMain")
+	@RequestMapping({"/admin/", "/admin"})
 	public String adminMain() {
-		return "/admin/adminMain";
+		return "redirect:/admin/adminMember";
 	}
 	
 	// 회원관련
