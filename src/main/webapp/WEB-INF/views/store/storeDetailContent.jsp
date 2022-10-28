@@ -5,23 +5,22 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <article>
-	<form name="storeDetailForm" id="storeDetailForm">
+	<form name="storeDetailContentForm" id="storeDetailContentForm">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
+		<input type="hidden" name="postNo" value="${post.postNo }">
 	</form>
 	<div class="container-fluid">
 		
 			<div class="row">
 			
-			<div class="bg-primary col-lg-3 col-md-2 col-sm-1 d-none d-sm-block">좌 여백
-	        </div>
 			
-			<div class="col-lg-6 col-md-8 col-sm-10 col-12">
+			<div class="col-lg-12 col-md-8 col-sm-10 col-12">
 			
 			<div class="row d-flex justify-content-center">
 				<div class="col-12 bg-warning py-2">헤더</div>
 				
 			<div class="row">
-				<div class="col-12 border border-4 p-2">
+				<div class="col-12 border border-4">
 				
 					<div class="row">
 						<div class="row">
@@ -81,7 +80,6 @@
 									<div class="col-4">영업시간</div>
 									<div class="col-8">
 										<div class="row">${ store.storeTime }</div>
-										<div class="row">${ store.storeTime }</div>
 									</div>
 								</div>
 								<div class="row">
@@ -96,40 +94,76 @@
 							
 							
 						</div>
-						<div class="row d-flex justify-content-end border border-success mt-1">
+						<div class="row d-flexjustify-content-center border border-success mt-1">
 							<div class="col-3">
-							상위리뷰
-							</div>
-							<div class="col-3">
-							맛집리뷰
-							</div>
-							<div class="col-3">
-							댓글리뷰
-							</div>
-							<div class="col-3">
+									상위리뷰
+								</div>
+								<div class="col-3">
+									포스트 리뷰
+								</div>
+								<div class="col-3">
+									<a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a>
+								</div>
+								<div class="col-3">
 							
 							</div>
 							
 						</div>
-						
-						<c:forEach var="p" items="${ postList }">
-							<div class="row d-flex border border-primary mt-1">
-								${ p.postTitle }
-								${ p.postContent }
-						
-						
+				
+							<div class="row justify-content-center border border-primary mt-1">
+								<div class="row">
+									<h6>${ store.storeName }</h6>
+									<h4>${ post.postTitle }</h4>
+								</div>
+								<div class="row justify-content-center">
+									<div class="col-6 border-end my-1">
+										<div class="col-3">
+											<img src="https://picsum.photos/50" class="img-fluid rounded-circle float-start" alt="...">
+										</div>
+										<div class="col-9">
+											<p>${ post.memberNickname }</p>
+											<p><fmt:formatDate value="${ post.postRegDate }" pattern="yyyy-MM-dd"/></p>
+										</div>
+									</div>
+									
+									<div class="col-6">
+											<p>${ post.postUpCount }</p>
+											<p>${ post.postReadCount }</p>
+									</div>
+									
+									<div class="row border-top">
+										<p>
+											${post.postContent }
+										</p>
+									
+									</div>
+								
+								</div>
+								
 							</div>
-						</c:forEach>
+	
+						<div class="row justify-content-center">
 						
+							<div class="col-2">
+								수정하기
+							</div>
+							<div class="col-2">
+								<a href="storeDetail?storeNo=${ store.storeNo }">목록으로</a>
+							</div>
+							<div class="col-2">
+							
+							</div>
+							<div class="col-2">
+								
+							</div>
+							<div class="col-2">
+								
+							</div>
+							<div class="col-2">
+								삭제
+							</div>
 						
-						
-						
-						
-						
-						
-						
-						
-						
+						</div>
 				</div>
 				
 			</div>
@@ -138,14 +172,7 @@
 			</div>
 			
 			</div>
-			
-			
-			 <div class="bg-primary col-lg-3 col-md-2 col-sm-1 d-none d-sm-block">우 여백
-	         </div>
-	         
-	         
-	         
-	         
+ 
 	         
 			</div>
 		</div>

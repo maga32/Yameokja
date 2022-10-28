@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.yameokja.dao.store.StoreDao;
-import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
 
 @Service
@@ -15,8 +14,8 @@ public class StoreServiceImpl implements StoreService {
 	@Autowired
 	private StoreDao StoreDao;
 
-	public void setStoreDao(StoreDao StoreDao) {
-		this.StoreDao = StoreDao;
+	public void setStoreDao(StoreDao storeDao) {
+		this.StoreDao = storeDao;
 	}
 
 	@Override
@@ -32,6 +31,7 @@ public class StoreServiceImpl implements StoreService {
 	public Store getStore(int storeNo) {
 		return StoreDao.getStore(storeNo);
 	}
+	
 
 	@Override
 	public void insertStore(Store store) {
@@ -40,7 +40,9 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public void updateStore(Store store) {
-		StoreDao.insertStore(store);
+		StoreDao.updateStore(store);
 		
 	}
+
+	
 }
