@@ -2,18 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.yameokja.mappers.StoreMapper">
+<mapper namespace="com.project.yameokja.mappers.PostMapper">
 
 	<select id="postList" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
 			WHERE store_no = #{store_no}
 		OREDER BY post_no DESC
 	</select>
+	
+	<select id="bestOnePost" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post
+		WHERE store_no = #{storeNo}
+		ORDER BY post_up_count DESC
+		LIMIT 0, 1
+	</select>
+	
+	<select id="bestTwoPost" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post
+		WHERE store_no = #{storeNo}
+		ORDER BY post_up_count DESC
+		LIMIT 1, 1
+	</select>
+	
+	<select id="bestThreePost" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post
+		WHERE store_no = #{storeNo}
+		ORDER BY post_up_count DESC
+		LIMIT 2, 1
+	</select>
+	
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />
 		<result property="postTitle" column="post_title"/>
 		<result property="postContent" column="post_content" />
+		<result property="postReadCount" column="post_read_count" />
 		<result property="postFile1" column="post_file1" />
 		<result property="postFile2" column="post_file2" />
 		<result property="postFile3" column="post_file3" />
@@ -26,7 +49,7 @@
 		<result property="postUpList" column="post_up_list" />
 		<result property="storeNo" column="store_no" />
 		<result property="memberId" column="member_id" />
-		<result property="memberNickname" column="member_Nickname" />
+		<result property="memberNickname" column="member_nickname" />
 	</resultMap>
 	
 </mapper>

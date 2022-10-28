@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+.sdfsdf{
+	display: flex;
+}
+
+.fs-7{
+	font-size: 13px;
+}
+.postListbutton {
+	border-radius: 20px 0 0 0;
+	border: 1px solid #FCD147;
+    color: #F58500;
+    background: #FCD147;
+}
+.starListbutton {
+	border-radius: 20px 0 0 0;
+    border: 1px solid #dee2e6;
+    color: gray;
+}
+.postContent {
+	width: 60%;
+}
+.postTitle {
+	font-size: 25px;
+	font-weight: 900;
+}
+.postFrame{
+	display: flex;
+    align-items: center;
+}
+.upAndDel {
+	width: 10%;
+	display: inline-block;
+}
+.updateButton{
+	border: none;
+}
+.deleteButton{
+	border: none;
+}
+.profileIMG{
+	height: 65px;
+	width: 65px;
+}
+/* a 태그 */
+a {text-decoration: none;}
+.postListbutton a:link {color: gray;}
+.postListbutton a:visited {color: gray;}
+.postListbutton a:hover {color: #4aa5ff;}
+.postListbutton a:active {color: 4aa5ff;}
+
+.updateButton a:link {color: black;}
+.updateButton a:visited {color: black;}
+.updateButton a:hover {color: #4aa5ff;}
+.updateButton a:active {color: 4aa5ff;}
+
+.deleteButton a:link {color: black;}
+.deleteButton a:visited {color: black;}
+.deleteButton a:hover {color: #4aa5ff;}
+.deleteButton a:active {color: 4aa5ff;}
+
+a:link {color: #6a6767;}
+a:visited {color: #6a6767;}
+a:hover {color: #4aa5ff;}
+a:active {color: 4aa5ff;}
+
+/* storeWhiteFormButton */
+.storeWhiteFormButton a:link {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeWhiteFormButton a:visited {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeWhiteFormButton a:hover {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+.storeWhiteFormButton a:active {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+
+/* storeDetailPostButton */
+.storeDetailPostButton a:link {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeDetailPostButton a:visited {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeDetailPostButton a:hover {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+.storeDetailPostButton a:active {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+
+/* storeListButton */
+.storeListButton a:link {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeListButton a:visited {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeListButton a:hover {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+.storeListButton a:active {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+.starListbutton a:link {color: gray;}
+.starListbutton a:visited {color: gray;}
+.starListbutton a:hover {color: #4aa5ff;}
+.starListbutton a:active {color: #4aa5ff;}

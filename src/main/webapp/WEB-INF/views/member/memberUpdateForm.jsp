@@ -1,158 +1,117 @@
-<%-- 회원정보 수정 폼 요청 처리 대한 결과를 출력할 View 페이지 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!-- 
-	새로운 5자리 우편번호로 회원 주소를 입력 받기 위해 daum.net에서
-	제공하는 우편번호 찾기 API를 사용하였다.
-	참고 사이트 : http://postcode.map.daum.net/guide
--->    
-<script src=
-"https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<script src="resources/js/formcheck.js"></script>
+<script src="resources/js/member.js"></script>
 <article>
-	<div id="memberJoinForm">
-	<h3 id="joinFormTitle">회원 정보 수정</h3>	
-	<form action="memberUpdateResult" name="memberUpdateForm" 
-		id="memberUpdateForm" method="post" >
+	<h1>회원 수정</h1>
+	* 표시는 필수입력사항
+	<hr>
+
+	<form action="memberUpdateProcess" method="POST" id="memberUpdateForm"
+		 name="memberUpdateForm" encType="multipart/form-data">
+		<div>
+			* 이름 <br> <input type="text" name="memberName" id="memberName"
+				value="${member.memberName }" readonly><br>
+		</div>
+		<div>
+			* 아이디 <br> <input type="text" name="memberId" id="memberId"
+				value="${member.memberId }" readonly> 
+				<br>
+		</div>
 		
-		<%-- 
-			회원 아이디 중복 검사를 했는지의 정보를 hidden 필드로 저장
-			기존 아이디를 저장해 비밀번호 확인 버튼이 클릭되면 ajax 통신으로
-			회원의 비밀번호가 맞는지를 체크하기 위해 hidden 필드로 저장
-		--%>
-		<input type="hidden" name="isIdCheck" value="true"/>		
-		<div id="memberInputDefault">			
-			<div class="memberInputText">
-				<span class="memberSpan">* 이&nbsp;&nbsp;름 : </span>
-				<input type="text" name="name" size="15" id="name"					
-					value="${ sessionScope.member.name }" />
-			</div>			
-			<div class="memberInputText">
-				<span class="memberSpan">* 아이디 : </span>
-				<input type="text" name="id" size="15"  id="userId" readonly					
-					value="${ sessionScope.member.id }"/>
-			</div>								
-			<div class="memberInputText">
-				<span class="memberSpan">* 기존 비밀번호 : </span>
-				<input type="password" name="oldPass" id="oldPass" size="15"/>
-				<input type="button" value="비밀번호 확인" id="btnPassCheck"/>
-			</div>
-			<div class="memberInputText">
-				<span class="memberSpan">* 새 비밀번호 : </span>
-				<input type="password" name="pass1" id="pass1" size="15"/>
-			</div>					
-			<div class="memberInputText">
-				<span class="memberSpan">* 새 비밀번호 확인 : </span>
-				<input type="password" name="pass2" id="pass2" size="15"/>
-			</div>
-			<div class="memberInputText">
-				<span class="memberSpan">* 우편번호 : </span>
-				<input type="text" name="zipcode" size="6" 
-					maxlength="5" readonly id="zipcode"
-					value="${ sessionScope.member.zipcode }"/>&nbsp;
-				<input type="button" value="우편번호 검색" id="btnZipcode"/>
-			</div>
-			<div class="memberInputText">
-				<span class="memberSpan">* 자택주소 : </span>
-				<input type="text" name="address1" size="50" readonly id="address1" 
-					value="${ sessionScope.member.address1 }"/>
-			</div>
-			<div class="memberInputText">
-				<span class="memberSpan">상세주소 : </span>
-				<input type="text" name="address2" size="50" id="address2" 
-					value="${ sessionScope.member.address2 }"/>
-			</div>
-			<div class="memberInputText">
-				<span class="memberSpan">* 이 메 일 : </span>
-				<input type="text" name="emailId" size="10" id="emailId"
-					value="${ sessionScope.member.email.split('@')[0] }"/> @
-				<input type="text" name="emailDomain" size="10" id="emailDomain" 					
-					value="${ sessionScope.member.email.split('@')[1] }"/>
-				<select name="selectDomain" id="selectDomain">
-					<option>직접입력</option>
-					<option>네이버</option>
-					<option>다음</option>
-					<option>한메일</option>
-					<option>구글</option>																
-				</select>
-			</div>
-			<div class="memberInputText">
-				<span class="memberSpan">* 휴 대 폰 : </span>
-				<select name="mobile1" id="mobile1">
-					<option ${ member.mobile.split('-')[0] == 010 ? "selected" : "" }>
-						010</option>
-					<option ${ member.mobile.split('-')[0] == 011 ? "selected" : "" }>
-						011</option>
-					<option ${ member.mobile.split('-')[0] == 016 ? "selected" : "" }>
-						016</option>
-					<option ${ member.mobile.split('-')[0] == 017 ? "selected" : "" }>
-						017</option>
-					<option ${ member.mobile.split('-')[0] == 018 ? "selected" : "" }>
-						018</option>
-					<option ${ member.mobile.split('-')[0] == 019 ? "selected" : "" }>
-						019</option>
-				</select>-					
-				<input type="text" name="mobile2" size="3" maxlength="4" id="mobile2"
-					value="${ sessionScope.member.mobile.split('-')[1] }"/>-
-				<input type="text" name="mobile3" size="3" maxlength="4" id="mobile3"
-					value="${ sessionScope.member.mobile.split('-')[2] }"/>
-			</div>
+		<div>
+			* 닉네임 <br> <input type="text" name="memberNickname" id="memberNickname"
+				placeholder="변경하실 닉네임을 입력해주세요" value="${member.memberNickname }"> <input type="button"
+				name="memberNicknameCheck" id="memberNicknameCheck" value="닉네임 중복확인">
+				<input type="hidden" name="isNicknameCheck" id="isNicknameCheck" value="false">
+				<input type="hidden" name="updateCheck" id="updateCheck" value=True><br>
 		</div>
-		<div id="memberInputOption">
-			<div class="memberInputText">
-				<span class="memberSpan">메일 수신여부 : </span>
-				<input type="radio" name="emailGet" value="true"
-					${ member.emailGet ? "checked" : "" }/>수신함
-				<input type="radio" name="emailGet" value="false"
-					${ member.emailGet ? "" : "checked" }/>수신않함
-			</div>
-			<div class="memberInputText">
-				<span class="memberSpan"> 자택전화 : </span>
-				<select name="phone1">
-					<option ${ member.phone.split('-')[0] == 02 ? "selected" : "" }>
-						02</option>
-					<option ${ member.phone.split('-')[0] == 031 ? "selected" : "" }>
-						031</option>
-					<option ${ member.phone.split('-')[0] == 032 ? "selected" : "" }>
-						032</option>
-					<option ${ member.phone.split('-')[0] == 033 ? "selected" : "" }>
-						033</option>
-					<option ${ member.phone.split('-')[0] == 041 ? "selected" : "" }>
-						041</option>
-					<option ${ member.phone.split('-')[0] == 042 ? "selected" : "" }>
-						042</option>
-					<option ${ member.phone.split('-')[0] == 043 ? "selected" : "" }>
-						043</option>
-					<option ${ member.phone.split('-')[0] == 044 ? "selected" : "" }>
-						044</option>
-					<option ${ member.phone.split('-')[0] == 051 ? "selected" : "" }>
-						051</option>
-					<option ${ member.phone.split('-')[0] == 052 ? "selected" : "" }>
-						052</option>
-					<option ${ member.phone.split('-')[0] == 053 ? "selected" : "" }>
-						053</option>
-					<option ${ member.phone.split('-')[0] == 054 ? "selected" : "" }>
-						054</option>
-					<option ${ member.phone.split('-')[0] == 055 ? "selected" : "" }>
-						055</option>
-					<option ${ member.phone.split('-')[0] == 061 ? "selected" : "" }>
-						061</option>
-					<option ${ member.phone.split('-')[0] == 062 ? "selected" : "" }>
-						062</option>
-					<option ${ member.phone.split('-')[0] == 063 ? "selected" : "" }>
-						063</option>
-					<option ${ member.phone.split('-')[0] == 064 ? "selected" : "" }>
-						064</option>
-				</select>-					
-				<input type="text" name="phone2" size="3" maxlength="4" 
-					value="${ member.phone.split('-')[1] }"/>-
-				<input type="text" name="phone3" size="3" maxlength="4"
-					value="${ member.phone.split('-')[2] }"/>
-			</div>
+		<div> 
+			* 이메일<br> <input type="text" name="email" id="email"
+				placeholder="이메일 주소를 입력해주세요" value="${email}">@ <input type="text"
+				name="domain" id="domain" value="${domain}"> <select id="domainList">
+				<option>직접 입력</option>
+				<option>naver.com</option>
+				<option>nate.com</option>
+				<option>google.co.kr</option>
+				<option>daum.net</option>
+			</select>
 		</div>
-		<div class="formButton">
-			<input type="reset" value="다시쓰기"/>
-			<input type="submit" value="수정하기" />
-		</div>			
-	</form>	
-	</div>
+		<div>
+			* 휴대폰 번호<br>
+				<select id="phone1" name="phone1" id="phone1">
+				<c:if test='${phone1 == "010" }'>
+					<option selected="selected">010</option>
+					<option>011</option>
+					<option>016</option>
+				</c:if>
+				<c:if test='${phone1 == "011" }'>
+					<option >010</option>
+					<option selected="selected">011</option>
+					<option>016</option>
+				</c:if>
+				<c:if test='${phone1 == "016" }'>
+					<option>010</option>
+					<option>011</option>
+					<option selected="selected">016</option>
+				</c:if>
+			</select> - <input type="text" name="phone2" id="phone2" value="${phone2 }"> - <input
+				type="text" name="phone3" id="phone3" value="${phone3 }">
+		</div>
+
+		<div>
+			* 프로필 사진<br> <input type="file" name="memberPhoto" size="70"
+				id="memberPhoto" maxlength="50" />
+		</div>
+		<div>
+			* 우리동네 위치<br>
+			<select name="address1" id="address1"
+				onchange="addressChange(this)">
+				<option>선택</option>
+				<option value="seoul">서울</option>
+				<option value="kyeonggi">경기</option>
+				<option value="incheon">인천</option>
+				<option value="daejeon">대전</option>
+				<option value="daegu">대구</option>
+				<option value="busan">부산</option>
+				<option value="ulsan">울산</option>
+				<option value="gwangju">광주</option>
+				<option value="gangwon">강원</option>
+				<option value="sejong">세종</option>
+				<option value="chungbuk">충북</option>
+				<option value="chungnam">충남</option>
+				<option value="gyeongbuk">경북</option>
+				<option value="gyeongnam">경남</option>
+				<option value="jeonbuk">전북</option>
+				<option value="jeonnam">전남</option>
+				<option value="jeju">제주</option>
+				
+			</select> <select name="address2" id="address2">
+				<option>선택</option>
+			</select>
+
+		</div>
+
+		<div>
+			* 선호음식 선택<br> 
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="1">한식
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="2">양식
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="3">중식
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="4">일식<br>
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="5">아시안
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="6">술집
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="7">카페,디저트
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="8">분식<br>
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="9">고기
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="10">채식
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="11">패스트푸드
+			<input type="checkBox" name="foodCategory" id="foodCategory" value="12">기타<br>
+			<input type="hidden" name="memberFavoriteCategory" id="memberFavoriteCategory" value="">
+			<input type="hidden" name="memberFavoriteCategoryCount" id="memberFavoriteCategoryCount" value="">
+		</div>
+		<input type="reset" value="다시쓰기"> <input type="submit" id="memberJoinUpdateFormSubmit"
+			value="회원수정">
+
+	</form>
 </article>

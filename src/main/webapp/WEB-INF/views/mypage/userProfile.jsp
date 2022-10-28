@@ -34,7 +34,7 @@
 <!-- 			profileFrame1 start -->
 		<div class="profileFrame1 col-12">
 			<div class=" inlineBlock col-4 p-3">
-				<img alt="프로필 사진" class="profileIMG col-12" src="resources/IMG/mypage/likeIMG.PNG">
+				<img alt="프로필 사진" class="profileIMG text-center rounded-circle col-12" src="resources/IMG/mypage/likeIMG.PNG">
 			</div><div class="profileCategoryFrame inlineBlock col-8">
 				<div class="col-12">
 					<div class="profileheader col-12">좋아하는 음식 종류</div>

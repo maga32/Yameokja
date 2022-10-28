@@ -193,14 +193,8 @@ public class CommunityController {
 		
 		// 모집 참여 - timestamp 확인 및 비교
 		Timestamp dDay = co.getPartyDDay();
-		Timestamp today = new Timestamp(System.currentTimeMillis());
-		
-		
+		Timestamp today = new Timestamp(System.currentTimeMillis());		
 		boolean timeCheck = dDay.before(today);
-		if(!timeCheck) {
-			
-			
-		}
 		
 		System.out.println("controller - timestampCheck : " + dDay + " today : " + today
 									+ "timeCheck : " + timeCheck);
@@ -214,12 +208,7 @@ public class CommunityController {
 				joinCheck = true;
 			}
 		}
-		
-		if(countPartyMembers >= co.getPartyMembers()) {
-			System.out.println("참여인원 초과");
-			return "redirect:communityDetail?communityNo="+communityNo;
-		}
-			
+
 		System.out.println("joinCheck : " + joinCheck + "allMembers : " + allMembers);
 		
 		if( joinCheck ) {
@@ -227,6 +216,10 @@ public class CommunityController {
 			communityListService.update102PartyMemberIds(allMembers, co.getCommunityNo());
 			System.out.println("참여 실행 취소");
 		}else {
+			if(countPartyMembers >= co.getPartyMembers()) {
+				System.out.println("참여인원 초과");
+				return "redirect:communityDetail?communityNo="+communityNo;
+			}
 			allMembers += ","+ loginId;	
 			communityListService.update102PartyMemberIds(allMembers, co.getCommunityNo());
 			System.out.println("참여 실행");	

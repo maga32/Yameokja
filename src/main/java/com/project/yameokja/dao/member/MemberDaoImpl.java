@@ -138,5 +138,17 @@ public class MemberDaoImpl implements MemberDao {
 		member.setMemberLevel(memberLevel);
 		
 		sqlSession.update(NAME_SPACE + ".updateMemberLevel", member);
+
+	// 회원수정
+	@Override
+	public void updateMember(Member member) {
+		sqlSession.update(NAME_SPACE + ".updateMember", member);
+	}
+
+	// 회원탈퇴
+	@Override
+	public void delMember(String memberId) {
+		sqlSession.delete(NAME_SPACE + ".delMember", memberId);
+
 	}
 }

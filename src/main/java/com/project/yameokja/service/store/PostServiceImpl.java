@@ -45,5 +45,19 @@ public class PostServiceImpl implements PostService {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public List<Post> bestOnePost(int storeNo) {
+		return postDao.bestOnePost(storeNo);
+	}
+
+	@Override
+	public List<Post> bestTwoPost(int storeNo) {
+		return postDao.bestTwoPost(storeNo);
+	}
+
+	@Override
+	public List<Post> bestThreePost(int storeNo) {
+		return postDao.bestThreePost(storeNo);
+	}
 
 }
