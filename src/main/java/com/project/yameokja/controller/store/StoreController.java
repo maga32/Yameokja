@@ -2,7 +2,6 @@ package com.project.yameokja.controller.store;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.yameokja.domain.Post;
@@ -22,12 +20,8 @@ import com.project.yameokja.service.store.StoreService;
 public class StoreController {
 
 	@Autowired
-<<<<<<< HEAD
-	private StoreService StoreService;
-=======
 	private StoreService storeService;
 	
->>>>>>> store02
 	@Autowired
 	private PostService postService;
 
@@ -63,7 +57,7 @@ public class StoreController {
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo) {
 
-		Store store = StoreService.getStore(storeNo);
+		Store store = storeService.getStore(storeNo);
 		List<Post> bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
