@@ -10,11 +10,25 @@
 		OREDER BY post_no DESC
 	</select>
 	
-	<select id="bestPostList" resultType="Post" resultMap="postResultMap">
+	<select id="bestOnePost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
 		WHERE store_no = #{storeNo}
 		ORDER BY post_up_count DESC
-		LIMIT 0, 3
+		LIMIT 0, 1
+	</select>
+	
+	<select id="bestTwoPost" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post
+		WHERE store_no = #{storeNo}
+		ORDER BY post_up_count DESC
+		LIMIT 1, 1
+	</select>
+	
+	<select id="bestThreePost" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post
+		WHERE store_no = #{storeNo}
+		ORDER BY post_up_count DESC
+		LIMIT 2, 1
 	</select>
 	
 

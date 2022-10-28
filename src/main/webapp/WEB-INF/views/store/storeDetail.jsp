@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
-<div class="row p-3">
+<div class="row py-3">
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
@@ -83,12 +83,12 @@
 	</div>
 
 <!-- 	review start -->	
-	<c:if test="${ not empty bestPostList }">
-	<c:forEach var="p" items="${ bestPostList }">
 	<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
+	<c:if test="${ not empty bestOnePost }">
+	<c:forEach var="p" items="${ bestOnePost }">	
 		<div class="border text-start p-2 rounded col-12 mb-2">
 			<div class="col-12 fw-bold fs-5 text-secondary">${ store.storeName }</div>
-			<div class="col-12 fw-bold fs-3 text-secondary">[BEST]${ p.postTitle }</div>
+			<div class="col-12 fw-bold fs-3 text-secondary"><a href="#">[BEST]${ p.postTitle }</a></div>
 			<div class="row my-2 mx-0 justify-content-center">
 				<div class="col-2 p-0 m-0">
 					<img src="https://picsum.photos/200" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
@@ -98,8 +98,8 @@
 					<div class="col">${ p.postRegDate }</div>
 				</div>
 				<div class="col-5 p-0 m-0">
-					<div class="col">${ p.postReadCount }postReadCount?</div>
-					<div class="col">${ p.postUpCount }postUpCount?</div>
+					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }postReadCount?</div>
+					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }postUpCount?</div>
 					<div class="col text-end"><i class="fa fa-bell" aria-hidden="true"></i></div>
 				</div>
 			</div>
@@ -119,59 +119,96 @@
 				<input type="button" class="deleteButton text-secondary border-start border-3 bg-white" value="삭제">
 			</div>
 		</div>
+		</c:forEach>
+	</c:if>
+	<c:if test="${ empty bestOnePost }">
+		<div class="col-12 text-center">아직 작성된 글이 없습니다.</div>
+	</c:if>
+	<c:if test="${ empty bestTwoPost or empty bestThreePost }">
+		<div class="col-12 text-center"></div>
+	</c:if>
 		
-<!-- 		best2 -->
-		<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
-
-
-						<div class="postFrame border text-center py-2 rounded col-12 mb-2">
-							<div class="col-3 mx-2">
-								<img src="resources/IMG/LOGOtemporaryIMG.PNG"
-										class="img-thumbnail rounded" alt="...">
-							</div>
-							<div class="col-6 postContent text-start mx-2">
-								<div class="postTitle">
-									<a href="#">${ p.postTitle }</a>
-								</div>
-								<div class="" id="postNo">
-									<a href="#">postNo=${ p.postNo }</a>
-								</div>
-								<div class="">
-									<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
-									${ p.postRegDate }postRegDate
-								</div>
-								<div class="">
-									<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }postUpCount
-								</div>
-								<div class="">
-									<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }postUpList
-								</div>
-							</div>
-							<div class="upAndDel col-3">
-								<div class="updateButton">
-									프사
-								</div>
-								<div class="deleteButton" id="deleteButton">
-									${ p.memberNickname }
-								</div>
-							</div>
-						</div>
-						<div class="row text-end">
-							<div class="col-12 py-3">
-								<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
-								<div class="d-inline-block storeDetailPostButton text-end"><a href="#" class="py-1 px-3">리뷰 전체보기</a></div>
-								<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
-							</div>
-						</div>
-
-					
-<%-- 				<c:if test="${ empty postList }"> --%>
-<!-- 					<div class="col-12 text-center"> 작성한 글이 없습니다.</div> -->
-<%-- 				</c:if> --%>
+<!-- 	best2 -->
+	<c:if test="${ not empty bestOnePost and not empty bestTwoPost }">
+	<c:forEach var="p" items="${ bestTwoPost }">
+			<div class="postFrame border text-center py-2 rounded col-12 mb-2">
+				<div class="col-3 mx-2">
+					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+				</div>
+				<div class="col-6 postContent text-start mx-2">
+					<div class="fs-3 fw-bold">
+						<a href="#">${ p.postTitle }</a>
+					</div>
+					<div class="" id="postNo">
+						<a href="#">postNo=${ p.postNo }</a>
+					</div>
+					<div class="">
+						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+						${ p.postRegDate }
+					</div>
+					<div class="">
+						<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
+					</div>
+					<div class="">
+						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
+					</div>
+				</div>
+				<div class="upAndDel col-3">
+					<div class="updateButton">
+						프사
+					</div>
+					<div class="deleteButton" id="deleteButton">
+						${ p.memberNickname }
+					</div>
+				</div>
 			</div>
-	</div>
 	</c:forEach>
 	</c:if>
+
+	<c:if test="${ not empty bestOnePost and not empty bestTwoPost and not empty bestThreePost}">
+	<c:forEach var="p" items="${ bestThreePost }">
+			<div class="postFrame border text-center py-2 rounded col-12 mb-2">
+				<div class="col-3 mx-2">
+					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+				</div>
+				<div class="col-6 postContent text-start mx-2">
+					<div class="fs-3 fw-bold">
+						<a href="#">${ p.postTitle }</a>
+					</div>
+					<div class="" id="postNo">
+						<a href="#">postNo=${ p.postNo }</a>
+					</div>
+					<div class="">
+						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+						${ p.postRegDate }
+					</div>
+					<div class="">
+						<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
+					</div>
+					<div class="">
+						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
+					</div>
+				</div>
+				<div class="upAndDel col-3">
+					<div class="updateButton">
+						프사
+					</div>
+					<div class="deleteButton" id="deleteButton">
+						${ p.memberNickname }
+					</div>
+				</div>
+			</div>
+	</c:forEach>
+	</c:if>					
+	
+	</div>
+	<div class="row text-end">
+		<div class="col-12 py-3">
+			<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
+			<div class="d-inline-block storeDetailPostButton text-end"><a href="#" class="py-1 px-3">리뷰 전체보기</a></div>
+			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
+		</div>
+	</div>
 <!-- 	review end -->
 
 <!-- 	fullFrame end-->			

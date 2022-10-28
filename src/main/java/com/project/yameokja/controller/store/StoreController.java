@@ -46,10 +46,15 @@ public class StoreController {
 	public String StoreDetail(Model model, int storeNo) {
 
 		Store store = StoreService.getStore(storeNo);
-		List<Post> bestPostList = postService.bestPostList(storeNo);
+		List<Post> bestOnePost = postService.bestOnePost(storeNo);
+		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
+		List<Post> bestThreePost = postService.bestThreePost(storeNo);
 		
+		System.out.println("bestOnePost"+bestOnePost);
 		model.addAttribute("store", store);
-		model.addAttribute("bestPostList", bestPostList);
+		model.addAttribute("bestOnePost", bestOnePost);
+		model.addAttribute("bestTwoPost", bestTwoPost);
+		model.addAttribute("bestThreePost", bestThreePost);
 
 		return "store/storeDetail";
 	}

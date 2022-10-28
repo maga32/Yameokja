@@ -69,8 +69,21 @@ public class PostDaoImpl implements PostDao {
 
 
 	@Override
-	public List<Post> bestPostList(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE+".bestPostList", storeNo);
+	public List<Post> bestOnePost(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".bestOnePost", storeNo);
 	}
+
+
+	@Override
+	public List<Post> bestTwoPost(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".bestTwoPost", storeNo);
+	}
+
+
+	@Override
+	public List<Post> bestThreePost(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".bestThreePost", storeNo);
+	}
+
 
 }

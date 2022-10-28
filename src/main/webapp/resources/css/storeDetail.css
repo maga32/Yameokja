@@ -60,10 +60,10 @@ a {text-decoration: none;}
 .deleteButton a:hover {color: #4aa5ff;}
 .deleteButton a:active {color: 4aa5ff;}
 
-.postTitle a:link {color: #6a6767;}
-.postTitle a:visited {color: #6a6767;}
-.postTitle a:hover {color: #4aa5ff;}
-.postTitle a:active {color: 4aa5ff;}
+a:link {color: #6a6767;}
+a:visited {color: #6a6767;}
+a:hover {color: #4aa5ff;}
+a:active {color: 4aa5ff;}
 
 /* storeWhiteFormButton */
 .storeWhiteFormButton a:link {

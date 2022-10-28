@@ -25,6 +25,10 @@ public interface PostDao {
 	public abstract void deletePost(Post post);
 	
 	//베스트 포스트 리스트
-	public abstract List<Post> bestPostList(int storeNo);
+	public List<Post> bestOnePost(int storeNo);
+	
+	public List<Post> bestTwoPost(int storeNo);
+	
+	public List<Post> bestThreePost(int storeNo);
 	
 }
