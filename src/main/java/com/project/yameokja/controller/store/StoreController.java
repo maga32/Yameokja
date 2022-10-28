@@ -22,17 +22,13 @@ import com.project.yameokja.service.store.StoreService;
 public class StoreController {
 
 	@Autowired
-<<<<<<< HEAD
-	private StoreService StoreService;
-=======
 	private StoreService storeService;
 	
->>>>>>> store02
 	@Autowired
 	private PostService postService;
 
-	public void setStoreService(StoreService StoreService) {
-		this.storeService = StoreService;
+	public void setStoreService(StoreService storeService) {
+		this.storeService = storeService;
 	}
 	public void setPostService(PostService postService) {
 		this.postService = postService;
@@ -63,7 +59,7 @@ public class StoreController {
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo) {
 
-		Store store = StoreService.getStore(storeNo);
+		Store store = storeService.getStore(storeNo);
 		List<Post> bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);

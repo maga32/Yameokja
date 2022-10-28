@@ -63,13 +63,6 @@ public class PostDaoImpl implements PostDao {
 
 
 	@Override
-	public int getPostCount(String Type, String keyword, int postNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
 	public List<Post> bestOnePost(int storeNo) {
 		return sqlSession.selectList(NAME_SPACE + ".bestOnePost", storeNo);
 	}
