@@ -31,6 +31,7 @@ public class StoreController {
 	}
 	public void setPostService(PostService postService) {
 		this.postService = postService;
+	}
 	
 	// 가게리스트를 전부 받는다
 	@RequestMapping("/storeListAll")
@@ -61,7 +62,7 @@ public class StoreController {
 		List<Post> bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
-		List<Post> pList = PostService.postList(storeNo); 
+		List<Post> pList = postService.postList(storeNo); 
 
 		System.out.println("bestOnePost"+bestOnePost);
 		model.addAttribute("store", store);
@@ -84,7 +85,7 @@ public class StoreController {
 		Store store = StoreService.getStore(storeNo);
 		model.addAttribute("store", store);
 		
-		List<Post> rList = PostService.postListReply(storeNo); 
+		List<Post> rList = postService.postListReply(storeNo); 
 		model.addAttribute("rList", rList);
 		
 		return "store/storeDetailReply";
@@ -97,7 +98,7 @@ public class StoreController {
 		Store store = StoreService.getStore(storeNo);
 		model.addAttribute("store", store);
 		
-		Post post = PostService.getPost(postNo);
+		Post post = postService.getPost(postNo);
 		model.addAttribute("post", post);
 		
 		return "store/storeDetailContent";

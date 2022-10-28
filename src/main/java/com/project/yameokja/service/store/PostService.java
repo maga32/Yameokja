@@ -30,4 +30,5 @@ public interface PostService {
 	public List<Post> bestTwoPost(int storeNo);
 	
 	public List<Post> bestThreePost(int storeNo);
+
 }
