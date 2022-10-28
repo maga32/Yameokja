@@ -31,20 +31,44 @@ public class MemberController {
 
 	private static final String DEFAULT_PATH = "/resources/upload/userProfile";
 
-	// 회원가입 뷰
+	// 회원가입 폼
 	@RequestMapping("/memberJoinForm")
-	public String MemberJoinForm() {
+	public String memberJoinForm() {
 		
 		return "member/memberJoinForm";
+	}
+	
+	// 회원수정 폼
+	@RequestMapping("/memberUpdateForm")
+	public String memberUpdateForm(String memberId, Model model) {
+		
+		Member member = memberService.getMember(memberId);
+		
+		String[] memberEmail = (member.getMemberEmail()).split("@");
+		String email = memberEmail[0];
+		String domain = memberEmail[1];
+		
+		String[] memberMobile = (member.getMemberMobile()).split("-");
+		String phone1 = memberMobile[0];
+		String phone2 = memberMobile[1];
+		String phone3 = memberMobile[2];
+		
+		model.addAttribute("email", email);
+		model.addAttribute("domain", domain);
+		model.addAttribute("phone1", phone1);
+		model.addAttribute("phone2", phone2);
+		model.addAttribute("phone3", phone3);
+		model.addAttribute("member", member);
+		
+		return "member/memberUpdateForm";
 	}
 	
 	// 회원가입 프로세스
 	@RequestMapping(value="/memberJoinProcess", method=RequestMethod.POST)
 	public String addMember(String memberName, String memberId, String memberNickname,
-			String pass1, String pass2, String email, String domain, String agency,
+			String pass1, String pass2, String email, String domain,
 			String phone1, String phone2, String phone3,	String address1, String address2,
 			@RequestParam(value="memberPhoto", required=false) MultipartFile mfMemberPhoto,
-			@RequestParam(value="memberFavoriteCategory", required=false, defaultValue = "null")
 			String memberFavoriteCategory, HttpServletResponse response,
 			HttpServletRequest request) throws IOException {
 
@@ -59,7 +83,7 @@ public class MemberController {
 		m.setMemberNickname(memberNickname);
 		m.setMemberPassword(pass1);
 		m.setMemberEmail(email + "@" + domain);
-		m.setMemberMobile(agency + " " + phone1 + "-" + phone2 + "-" +phone3);
+		m.setMemberMobile(phone1 + "-" + phone2 + "-" +phone3);
 		m.setMemberAddress(address1 + " " + address2);
 		m.setMemberFavoriteCategory(memberFavoriteCategory);
 		
@@ -67,7 +91,6 @@ public class MemberController {
 		System.out.println("MemberJoinController - originName : " + mfMemberPhoto.getOriginalFilename());
 		System.out.println("MemberJoinController - name : " + mfMemberPhoto.getName());
 		
-		/*
 		if(!mfMemberPhoto.isEmpty()) {
 		
 			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
@@ -75,7 +98,6 @@ public class MemberController {
 			String saveName = uid.toString() + "_" ; 
 
 		}
-		*/
 		
 		out.println("<script>");
 		out.println("alert('회원가입이 완료되었습니다.');");
@@ -85,7 +107,53 @@ public class MemberController {
 		
 		return "redirect:/main";
 	};
+	
+	// 회원 수정 프로세스
+	@RequestMapping(value="/memberUpdateProcess", method=RequestMethod.POST)
+	public String memberUpdateProcess(String memberId, String memberNickname,
+			String email, String domain, String phone1, String phone2, String phone3,
+			String address1, String address2, String memberFavoriteCategory, HttpServletResponse response,
+			@RequestParam(value="memberPhoto", required=false) MultipartFile mfMemberPhoto,
+			HttpServletRequest request) throws IOException{
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		Member member = new Member();
+		
+		member.setMemberId(memberId);
+		member.setMemberNickname(memberNickname);
+		member.setMemberEmail(email + "@" + domain);
+		member.setMemberMobile(phone1 + "-" + phone2 + "-" +phone3);
+		member.setMemberAddress(address1 + " " + address2);
+		member.setMemberFavoriteCategory(memberFavoriteCategory);
+		
+		if(!mfMemberPhoto.isEmpty()) {
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+			UUID uid = UUID.randomUUID();
+			String saveName = uid.toString() + "_" ; 
+		}
+		
+		memberService.updateMember(member);
+		
+		
+		out.println("<script>");
+		out.println("alert('회원수정이 완료되었습니다.');");
+		out.println("</script>");
+		
+		return "redirect:/main";
+	}
 
+	// 회원 탈퇴
+	@RequestMapping("/memberDelete")
+	public String memberDelete(HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		session.invalidate();
+		memberService.delMember(memberId);
+		
+		return "redirect:/main";
+	}
+	
 	// 아이디 중복확인
 	@RequestMapping("/overlapIdCheck")
 	public String memberidCheck(Model model, String memberId,
@@ -116,7 +184,7 @@ public class MemberController {
 	// 닉네임 중복확인
 	@RequestMapping("/overlapNicknameCheck")
 	public String memberNicknameCheck(Model model, String memberNickname,
-			HttpServletResponse response) throws IOException {
+			boolean updateCheck,HttpServletResponse response) throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -132,6 +200,8 @@ public class MemberController {
 		
 		boolean overlap = memberService.nicknameOverlapCheck(memberNickname);
 		
+		System.out.println("updateCheck" + updateCheck);
+		model.addAttribute("updateCheck", updateCheck);
 		model.addAttribute("overlap", overlap);
 		model.addAttribute("memberNickname", memberNickname);
 		

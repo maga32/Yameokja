@@ -35,6 +35,7 @@
 				placeholder="사용하실 닉네임을 입력해주세요"> <input type="button"
 				name="memberNicknameCheck" id="memberNicknameCheck" value="닉네임 중복확인">
 				<input type="hidden" name="isNicknameCheck" id="isNicknameCheck" value="false"><br>
+				<input type="hidden" name="updateCheck" id="updateCheck" value=False>
 		</div>
 		<div>
 			* 비밀번호 <br> <input type="password" name="pass1" id="pass1"
@@ -57,15 +58,12 @@
 			</select>
 		</div>
 		<div>
-			* 휴대폰 번호<br> <select id="agency" name="agency" id="agency">
-				<option>SKT</option>
-				<option>KT</option>
-				<option>LG</option>
+			* 휴대폰 번호<br>
 			</select> <select id="phone1" name="phone1" id="phone1">
 				<option>010</option>
 				<option>011</option>
 				<option>016</option>
-			</select> - <input type="text" name="phone2" id="phone2]"> - <input
+			</select> - <input type="text" name="phone2" id="phone2"> - <input
 				type="text" name="phone3" id="phone3">
 		</div>
 
@@ -119,7 +117,7 @@
 			<input type="hidden" name="memberFavoriteCategory" id="memberFavoriteCategory" value="">
 			<input type="hidden" name="memberFavoriteCategoryCount" id="memberFavoriteCategoryCount" value="">
 		</div>
-		<input type="reset" value="다시쓰기"> <input type="submit" id="memberJoinFormSubmit"
+		<input type="reset" value="다시쓰기"> <input type="submit" id="memberJoinUpdateFormSubmit"
 			value="회원가입">
 
 	</form>

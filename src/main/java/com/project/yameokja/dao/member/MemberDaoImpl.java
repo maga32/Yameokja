@@ -104,4 +104,16 @@ public class MemberDaoImpl implements MemberDao {
 	public Member getMemberFor102(String memberId) {
 		return sqlSession.selectOne(NAME_SPACE + ".getMemberFor102", memberId);
 	}
+
+	// 회원수정
+	@Override
+	public void updateMember(Member member) {
+		sqlSession.update(NAME_SPACE + ".updateMember", member);
+	}
+
+	// 회원탈퇴
+	@Override
+	public void delMember(String memberId) {
+		sqlSession.delete(NAME_SPACE + ".delMember", memberId);
+	}
 }

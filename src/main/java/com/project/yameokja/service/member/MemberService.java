@@ -86,5 +86,15 @@ public class MemberService {
 	public Member getMemberFor102(String memberId) {
 		return memberDao.getMemberFor102(memberId);
 	}
+	
+	// 회원정보 수정
+	public void updateMember(Member member) {
+		memberDao.updateMember(member);
+	}
+	
+	// 회원탈퇴
+	public void delMember(String memberId) {
+		memberDao.delMember(memberId);
+	}
 
 }

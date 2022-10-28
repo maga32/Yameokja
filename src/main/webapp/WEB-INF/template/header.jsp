@@ -13,11 +13,14 @@
 		<c:if test="${not empty sessionScope.memberId }">
 			session : ${sessionScope.memberId }
 			<a href="logout">Logout</a>
+			<a href="memberUpdateForm?memberId=${sessionScope.memberId}">횐숮</a>
 		</c:if>
 		<c:if test="${empty sessionScope.memberId }">
-			<a href="#" onclick='window.open("loginForm","LoginForm","width=500, height=600")'>LoginForm</a>	
+			<a href="#" onclick='window.open("loginForm","LoginForm","width=500, height=600")'>LoginForm</a>
+			<a href="memberJoinForm">횐갑</a>
 		</c:if>
 
+		<a href="#" onclick='window.open("reportForm","reportForm","width=500, height=600")'>report</a>
 		<a href="myPagePost">myPage</a>
 		<a href="communityList">communityList</a>
 		<a href="storeList">storeList</a>

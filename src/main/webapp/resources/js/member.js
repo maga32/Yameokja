@@ -2,9 +2,38 @@ $(function(){
 
 	// 회원가입 필수 입력값 검사
 	$("#memberJoinForm").on("submit", function(){
+		
+		var isIdCheck = $("#isIdCheck").val();
+		var pass1 = $("#pass1").val();
+		var pass2 = $("#pass2").val();
+	
+		if(isIdCheck == "false"){
+			alert("아이디 중복확인을 해주세요");
+			return false;
+		}
+		if(pass1.length == 0 || pass2.length == 0){
+			alert("비밀번호를 입력해주세요");
+			return false;
+		}
+
 		return joinFormCheck();
 	});
 	
+	// 회원수정 필수 입력값 검사
+	$("#memberUpdateForm").on("submit", function(){
+	
+		return joinFormCheck();
+	});
+	
+	// 아이디 조건 확인
+	$("#memberId").on("keyup", function() {		
+		// 아래와 같이 정규표현식을 이용해 영문 대소문자, 숫자만 입력되었는지 체크할 수 있다. 
+		var regExp = /[^A-Za-z0-9]/gi;	
+		if(regExp.test($(this).val())) {
+			alert("영문 대소문자, 숫자만 입력할 수 있습니다.");
+			$(this).val($(this).val().replace(regExp, ""));
+		}
+	});
 	
 	// 아이디 중복확인
 	$("#memberIdCheck").on("click", function() {
@@ -39,13 +68,13 @@ $(function(){
 	$("#memberNicknameCheck").on("click", function() {
 		
 		var nickname = $("#memberNickname").val()
-		url = "overlapNicknameCheck.mvc?memberNickname=" + nickname;
+		var updateCheck = $("#updateCheck").val()
+		url = "overlapNicknameCheck.mvc?memberNickname=" + nickname + "&updateCheck=" + updateCheck;
 		
 		if(nickname.length == 0) {
 			alert("닉네임을 입력해주세요");
 			return false;
 		}
-		
 		if(nickname.length < 2) {
 			alert("닉네임은 2자 이상 입력해주세요.");
 			return false;
@@ -59,9 +88,15 @@ $(function(){
 	$("#btnNicknameCheckClose").on("click", function(){
 		
 		var nickname = $(this).attr("data-id-value");
+		var updateCheck = $("#updateCheck").val();
 		
-		opener.document.memberJoinForm.memberNickname.value = nickname;
-		opener.document.memberJoinForm.isNicknameCheck.value = true;
+		if(updateCheck=="true"){
+			opener.document.memberUpdateForm.memberNickname.value = nickname;
+			opener.document.memberUpdateForm.isNicknameCheck.value = true;
+		}else{
+			opener.document.memberJoinForm.memberNickname.value = nickname;
+			opener.document.memberJoinForm.isNicknameCheck.value = true;
+		}
 		window.close();
 	});
 
@@ -129,7 +164,7 @@ $(function(){
 	});
 	
 	//선호음식 선택 규칙
-	$("#memberJoinFormSubmit").on("click", function(){
+	$("#memberJoinUpdateFormSubmit").on("click", function(){
 		
 		var foodCategories = "";
 		var count = 0;
@@ -148,7 +183,6 @@ $(function(){
 		$('#memberFavoriteCategoryCount').val(count);
 		
 	});
-
 });
 
 	//셀렉트문 중첩 처리
@@ -216,14 +250,10 @@ function inputEmailDomainReplace() {
 function joinFormCheck(){
 	var name = $("#memberName").val();
 	var id = $("#memberId").val();
-	var isIdCheck = $("#isIdCheck").val();
 	var nickname = $("#memberNickname").val();
 	var isNicknameCheck = $("#isNicknameCheck").val();	
-	var pass1 = $("#pass1").val();
-	var pass2 = $("#pass2").val();
 	var email = $("#email").val();
 	var domain = $("#domain").val();
-	var agency = $("#agency").val();
 	var phone1 = $("#phone1").val();
 	var phone2 = $("#phone2").val();
 	var phone3 = $("#phone3").val();
@@ -231,24 +261,14 @@ function joinFormCheck(){
 	var address2 = $("#address2").val();
 	var memberFavoriteCategoryCount = $("#memberFavoriteCategoryCount").val();
 	
+	var oldPass = $("#oldPass").val();
 	
-	if(address1 == "선택"){
-		alert("세부 주소를 선택해주세요");
-		return false;
-	}if(memberFavoriteCategoryCount < 3){
-		alert("선호 음식 종류를 3가지 이상 입력해주세요.");
-		return false;
-	}
 	if(name.length == 0){
 		alert("이름을 입력해주세요");
 		return false;
 	}
 	if(id.length == 0){
 		alert("아이디를 입력해주세요");
-		return false;
-	}
-	if(isIdCheck == "false"){
-		alert("아이디 중복확인을 해주세요");
 		return false;
 	}
 	if(nickname.length == 0){
@@ -259,24 +279,26 @@ function joinFormCheck(){
 		alert("닉네임 중복확인을 해주세요");
 		return false;
 	}
-	if(pass1.length == 0 || pass2.length == 0){
-		alert("비밀번호를 입력해주세요");
-		return false;
-	}
 	if(email.length == 0 || domain.length == 0){
 		alert("이메일을 입력해주세요");
 		return false;
 	}
-	if(phone1.length == 0 || phone2.length == 0 || phone3.length == 0){
+	if(phone2.length == 0 || phone3.length == 0){
 		alert("전화번호를 입력해주세요");
 		return false;
 	}
-	if(address1.length == 0 || address2.length == 0){
-		alert("주소를 입력해주세요");
+	if(phone2.length == 0 || phone3.length == 0){
+		alert("전화번호를 입력해주세요");
 		return false;
 	}
-	
-	
+	if(address1 == "선택"){
+		alert("세부 주소를 선택해주세요");
+		return false;
+	}
+	if(memberFavoriteCategoryCount < 3){
+		alert("선호 음식 종류를 3가지 이상 입력해주세요.");
+		return false;
+	}
 	
 }
 
