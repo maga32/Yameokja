@@ -15,7 +15,7 @@
 			<a href="/yameokja/logout">Logout</a>
 		</c:if>
 		<c:if test="${empty sessionScope.memberId }">
-			<a href="#" onclick='window.open("loginForm","LoginForm","width=500, height=600")'>LoginForm</a>	
+			<a href="#" onclick='window.open("/yameokja/loginForm","LoginForm","width=500, height=600")'>LoginForm</a>	
 		</c:if>
 
 		<a href="/yameokja/myPagePost">myPage</a>

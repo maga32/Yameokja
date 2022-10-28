@@ -16,7 +16,7 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		/*
+		
 		Member member = (Member) request.getSession().getAttribute("member");
 		
 		if(member == null) {
@@ -41,7 +41,7 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 			
 			return false;
 		}
-		*/
+		
 		return true;
 	}
 

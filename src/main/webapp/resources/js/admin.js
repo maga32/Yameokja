@@ -9,6 +9,20 @@ $(document).ready(function() {
 		$(".defaultClosed").css("display","none");
 		$(".defaultOpened").css("display","block");
 	});
+
+	// 우측 윙 관련 시작 ------------------------
+	$("#rWingButton").click(function(){
+		$("#rWing").addClass("open");
+		$("#rWingMask").fadeIn(250);
+		$(this).css("display", "none");
+	});
+
+	$("#rWingMask").click(function(){
+		$("#rWing").removeClass("open");
+		$(this).fadeOut(250);
+		$("#rWingButton").css("display", "block");
+	});
+	// 우측 윙 관련 끝 ------------------------
 });
 
 function categoryDelete(categoryNo, type) {
