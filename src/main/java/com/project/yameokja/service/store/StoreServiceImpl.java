@@ -14,8 +14,7 @@ public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
 	private StoreDao StoreDao;
-	
-	
+
 	public void setStoreDao(StoreDao StoreDao) {
 		this.StoreDao = StoreDao;
 	}
@@ -24,14 +23,16 @@ public class StoreServiceImpl implements StoreService {
 	public List<Store> storeList(int categoryNo) {
 		return StoreDao.StoreList(categoryNo);
 	}
-
 	
+	public List<Store> storeListAll() {
+		return StoreDao.StoreListAll();
+	}
+
 	@Override
 	public Store getStore(int storeNo) {
 		return StoreDao.getStore(storeNo);
 	}
 
-	
 	@Override
 	public void insertStore(Store store) {
 		StoreDao.insertStore(store);

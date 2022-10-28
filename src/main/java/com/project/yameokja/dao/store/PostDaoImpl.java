@@ -25,18 +25,19 @@ public class PostDaoImpl implements PostDao {
 	
 	@Override
 	public List<Post> postList(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE + ".storeDetail", storeNo); 
+		return sqlSession.selectList(NAME_SPACE + ".postList", storeNo); 
+	}
+	
+	
+	@Override
+	public List<Post> postListReply(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".postListReply", storeNo); 
 	}
 
 	@Override
-	public Post getPost(int storeNo, int postNo) {
-		
-		Map<String, Object> param = new HashMap <String, Object>();
-		
-		param.put("storeNo", storeNo);
-		param.put("postNo", postNo);
-		
-		return sqlSession.selectOne(NAME_SPACE + ".storeDetail", param);
+	public Post getPost(int postNo) {
+
+		return sqlSession.selectOne(NAME_SPACE + ".getPost", postNo);
 	}
 
 	

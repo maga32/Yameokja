@@ -49,12 +49,12 @@
 <!-- category IMG start -->
 	<div class="row my-3 p-0">
 	<div class="col-6 py-2 col-md-3 border">
-		<a href="storeList"><img width="100%" alt="카테고리IMG" src="resources/IMG/LOGOtemporaryIMG.PNG"></a>
+		<a href="storeListAll"><img width="100%" alt="카테고리IMG" src="resources/IMG/LOGOtemporaryIMG.PNG"></a>
 	</div>
 	<c:forEach var="li" items="${ categoryList }">
 		<div class="col-6 py-2 col-md-3 border">
 			<a href="storeList?categoryNo=${ li.categoryNo }">
-				<img width="100%" alt="전체" src="resources/IMG/category/categoryIMG${ li.categoryNo }.PNG">${ li.categoryName }
+				<img width="100%" alt="" src="resources/IMG/category/categoryIMG${ li.categoryNo }.PNG">${ li.categoryName }
 			</a>
 		</div>
 	</c:forEach>

@@ -23,7 +23,7 @@
 
 		<a href="/yameokja/myPagePost">myPage</a>
 		<a href="/yameokja/communityList">communityList</a>
-		<a href="/yameokja/storeList">storeList</a>
+		<a href="/yameokja/storeListAll">storeList</a>
 		<a href="/yameokja/admin">admin</a>
 		<a href="" class="chatStart" data-targetid="memberId03">채팅하기</a>
 				<a href="wing">Wing</a>

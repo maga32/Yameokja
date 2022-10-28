@@ -3,18 +3,26 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.yameokja.mappers.StoreMapper">
-
+	
+	<!-- 가게 특정 카테고리 -->
  	<select id="storeList" resultType="Store" resultMap="storeResultMap">
 		SELECT * FROM store
 			WHERE category_no = #{category_no}
 		ORDER BY store_no DESC
 	</select>
 	
+	<!-- 가게 전부 -->
+	<select id="storeListAll" resultType="Store" resultMap="storeResultMap">
+		SELECT * FROM store ORDER BY store_no DESC
+	</select>
+	
+	<!-- 가게 상세 -->
 	<select id="getStore" resultType="Store" resultMap="storeResultMap">
 		SELECT * FROM store 
 			WHERE store_no = #{store_no}
 	</select>
 	
+	<!-- 가게 정보 입력 -->
 	<insert id="insertStore" parameterType="Store"
 	useGeneratedKeys="true" keyProperty="storeNo">
 	INSERT INTO 

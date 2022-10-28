@@ -9,6 +9,10 @@ public interface StoreDao {
 	// 음식종류에 해당하는 가게 리스트
 	public abstract List<Store> StoreList(int categoryNo);
 	
+	// 가게 리스트 전부
+	public abstract List<Store> StoreListAll();
+	
+	
 	// 가게 정보 상세
 	public abstract Store getStore(int storeNo);
 	
