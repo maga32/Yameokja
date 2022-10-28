@@ -62,6 +62,30 @@
 </HEAD>
 <BODY>
 	<h1>신고 목록</h1>
+	<div>
+		<button onClick="location.href='reportList?reportType=all'">전체</button>
+		<button onClick="location.href='reportList?reportType=store'">가게</button>
+		<button>리뷰</button>
+		<button>동네게시판</button>
+		<button>회원</button>
+		<select id="reportPunishCheck">
+			<option value=0>전체</option>
+			<option value=1>처리 중</option>
+			<option value=2>처리 보류</option>
+			<option value=3>처리 완료</option>
+		</select>
+		<br>
+		<select id="type" name="type">
+			<option value="all">전체</option>
+			<option value="title">제목</option>
+			<option value="memberId">아이디</option>
+		</select>
+		<form name="reportSearchForm" id="reportSearchForm" action="reportList?">
+		<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력해주세요">
+		<input type="submit" id="reportSearchSubmit" name="reportSearchSubmit" value="검색">
+		</form>
+	</div>
+	
 	<div class="divTable">
 		<div class="divTableRow">
 				<div class="divTableHead hdNo">분류</div>
@@ -75,6 +99,7 @@
 				<div class="divTableCell">${re.reportType }</div>
 				<div class="divTableCell"><a href="#" >${re.reportTitle }</a></div>
 				<div class="divTableCell">${re.reportPunishCheck}</div>
+				<div class="divTableCell">${re.memberId}</div>
 				<div class="divTableCell">${re.reportDate }</div>
 		</div>
 		</c:forEach>
@@ -83,4 +108,3 @@
 	</div>
 			<a href="writeForm.jsp">상품 등록 하기</a>
 </BODY>
-</HTML>

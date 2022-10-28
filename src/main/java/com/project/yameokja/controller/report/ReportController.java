@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +50,7 @@ public class ReportController {
 		}
 		
 		model.addAttribute("reportType", reportType);
-		model.addAttribute("reportTarget", reportTarget);
-		
+		model.addAttribute("reportTarget", reportTarget);	
 		
 		String memberId = (String) session.getAttribute("memberId");
 		
@@ -110,15 +110,18 @@ public class ReportController {
 	
 	// 신고 리스트 조회
 	@RequestMapping("/reportList")
-	public String reportList(Model model, HttpServletResponse response,
-			HttpServletRequest request, String type,
-			@RequestParam(value="keyword", required=false, defaultValue="null")String keyword,
-			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum) {
+	public String reportList(Model model, HttpServletResponse response, HttpServletRequest request,
+			@RequestParam(value="reportType", required=false, defaultValue="all")String reportType,
+			@RequestParam(value="reportPusichCheck", required=false, defaultValue="0")int reportPunishCheck,
+			@RequestParam(value="type", required=false)String type,
+			@RequestParam(value="keyword", required=false)String keyword
+			//@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
+			) {
 		
-		List<Report> reportList = reportService.getReportList();
+		List<Report> reportList = reportService.getReportList(reportType, reportPunishCheck, type, keyword);
 		model.addAttribute("reportList", reportList);
 		
 		return "report/reportList";
 	}
-	
 }
+
