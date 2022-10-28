@@ -75,12 +75,12 @@
 			<option value=3>처리 완료</option>
 		</select>
 		<br>
+		<form name="reportSearchForm" id="reportSearchForm" action="reportList?">
 		<select id="type" name="type">
 			<option value="all">전체</option>
 			<option value="title">제목</option>
 			<option value="memberId">아이디</option>
 		</select>
-		<form name="reportSearchForm" id="reportSearchForm" action="reportList?">
 		<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력해주세요">
 		<input type="submit" id="reportSearchSubmit" name="reportSearchSubmit" value="검색">
 		</form>
