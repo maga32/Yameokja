@@ -36,7 +36,7 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public Post getPost(int postNo) {
-
+		
 		return sqlSession.selectOne(NAME_SPACE + ".getPost", postNo);
 	}
 
@@ -60,12 +60,5 @@ public class PostDaoImpl implements PostDao {
 		// TODO Auto-generated method stub
 
 	}
-
-
-	@Override
-	public int getPostCount(String Type, String keyword, int postNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 }

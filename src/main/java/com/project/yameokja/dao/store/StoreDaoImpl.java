@@ -48,6 +48,14 @@ public class StoreDaoImpl implements StoreDao {
 		sqlSession.insert(NAME_SPACE + ".insertStore", store);
 	}
 	
+	// 가게 정보 조회수 증가
+	@Override
+	public void addStoreReadCount(int storeNo) {
+		sqlSession.update(NAME_SPACE + ".addStoreReadCount", storeNo);
+		
+	}
+	
+	
 	//가게 수정
 	@Override
 	public void updateStore(Store store) {
@@ -61,5 +69,7 @@ public class StoreDaoImpl implements StoreDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 	
 }

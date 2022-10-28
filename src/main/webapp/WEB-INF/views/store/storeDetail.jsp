@@ -8,6 +8,7 @@
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
 <div class="container-fluid">
+
 			<div class="row">
 				<div class="col-12 border border-4 my-1">
 				
@@ -82,17 +83,16 @@
 							
 						</div>
 						<div class="row d-flex justify-content-end border border-success mt-1">
-							<div class="col-3">
-								상위리뷰
-							</div>
-							<div class="col-3">
-								포스트 리뷰
-							</div>
-							<div class="col-3">
-								<a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a>
-							</div>
-							<div class="col-3">
-							
+								<div class="col-3">
+									상위리뷰
+								</div>
+								<div class="col-3">
+									포스트 리뷰
+								</div>
+								<div class="col-3">
+									<a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a>
+								</div>
+								<div class="col-3">
 							</div>
 							
 						</div>
@@ -113,7 +113,7 @@
 											<div class="col-md-12 mb-3">
 											<h4 class="fw-bold">
 
-													<a href="storeDetailContent?storeNo=${ store.storeNo }?postNo= ${p.postNo}">
+													<a href="storeDetailContent?storeNo=${store.storeNo }&postNo=${ p.postNo }">
 													${ p.postTitle }</a></h4>
 
 											</div>
@@ -130,8 +130,7 @@
 											</div>
 											
 											<div class="col-md-4">
-												<img src="https://picsum.photos/50" class="img-thumbnail rounded-circle" alt="...">
-												${ p.memberNickname }
+												<img src="https://picsum.photos/40" class="img-thumbnail rounded-circle" alt="...">${ p.memberNickname }
 											</div>
 											
 										</div>

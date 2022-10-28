@@ -22,20 +22,20 @@ import com.project.yameokja.service.store.StoreService;
 public class StoreController {
 
 	@Autowired
-	private StoreService StoreService;
+	private StoreService storeService;
 	
 	@Autowired
-	private PostService PostService;
+	private PostService postService;
 
 	public void setStoreService(StoreService StoreService) {
-		this.StoreService = StoreService;
+		this.storeService = StoreService;
 	}
 	
 	// 가게리스트를 전부 받는다
 	@RequestMapping("/storeListAll")
 	public String StoreListAll(Model model) {
 		
-		List<Store> sList = StoreService.storeListAll();
+		List<Store> sList = storeService.storeListAll();
 		model.addAttribute("sList", sList);
 		
 		return "store/storeListAll";
@@ -45,22 +45,22 @@ public class StoreController {
 	@RequestMapping("/storeList")
 	public String StoreList(Model model, int categoryNo) {
 
-		List<Store> sList = StoreService.storeList(categoryNo);
+		List<Store> sList = storeService.storeList(categoryNo);
 		model.addAttribute("sList", sList);
 
 		return "store/storeList";
 	}
 	
 	
-	// 가게 상세 and 리뷰 리스트를 받아온다
+	// 가게 상세 and 리뷰 리스트
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo) {
 
 		
-		Store store = StoreService.getStore(storeNo);
+		Store store = storeService.getStore(storeNo);
 		model.addAttribute("store", store);
 		 	
-		List<Post> pList = PostService.postList(storeNo); 
+		List<Post> pList = postService.postList(storeNo); 
 		model.addAttribute("pList", pList);
 
 		return "store/storeDetail";
@@ -69,14 +69,14 @@ public class StoreController {
 	
 	
 	
-	// 가게 상세 and 댓글 리스트를 받아온다
+	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
 	public String StoreDetailReply(Model model, int storeNo) {
 		
-		Store store = StoreService.getStore(storeNo);
+		Store store = storeService.getStore(storeNo);
 		model.addAttribute("store", store);
 		
-		List<Post> rList = PostService.postListReply(storeNo); 
+		List<Post> rList = postService.postListReply(storeNo); 
 		model.addAttribute("rList", rList);
 		
 		return "store/storeDetailReply";
@@ -86,10 +86,10 @@ public class StoreController {
 	@RequestMapping("/storeDetailContent")
 	public String StoreDetailContent(Model model, int storeNo, int postNo)  {
 		
-		Store store = StoreService.getStore(storeNo);
+		Store store = storeService.getStore(storeNo);
 		model.addAttribute("store", store);
 		
-		Post post = PostService.getPost(postNo);
+		Post post = postService.getPost(postNo);
 		model.addAttribute("post", post);
 		
 		return "store/storeDetailContent";
@@ -112,7 +112,7 @@ public class StoreController {
 		
 		Store store =  new Store();
 	
-		StoreService.insertStore(store);
+		storeService.insertStore(store);
 	 
 		return "store/storeWriteFrom"; 
 	 }

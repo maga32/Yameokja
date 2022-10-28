@@ -15,9 +15,6 @@ public interface PostDao {
 	// 가게 정보 포스트 상세
 	public abstract Post getPost(int postNo);
 	
-	// 가게 포스트 글 갯수
-	public int getPostCount(String Type, String keyword, int postNo);
-	
 	// 가게 포스트 글쓰기
 	public abstract void insertPost(Post post);
 	

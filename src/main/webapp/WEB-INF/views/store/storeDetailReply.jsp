@@ -16,10 +16,10 @@
 			
 			<div class="row justify-content-center">
 				
-			<div class="row">
-				<div class="col-12 border border-4 p-2">
+			<div class="row justify-content-center">
+				<div class="col-12 border border-4">
 				
-					<div class="row">
+					<div class="row justify-content-center">
 						<div class="row">
 							<div class="col-12 border">
 								<h4>${ store.storeName }</h4>
@@ -91,12 +91,12 @@
 							
 							
 						</div>
-						<div class="row justify-content-end border border-success mt-1">
+						<div class="row justify-content-start border border-success mt-1">
 							<div class="col-3">
 							상위리뷰
 							</div>
 							<div class="col-3">
-							<a href="storeDetail?storeNo=${ store.storeNo }">포스트</a>
+								<a href="storeDetail?storeNo=${ store.storeNo }">포스트 리뷰</a>
 							</div>
 							<div class="col-3">
 							별점 리뷰
@@ -130,9 +130,59 @@
 										</div>
 										
 										<div class="col-md-2 border d-block">
-											<button type="submit" class="btn btn-outline-secondary">입력</button>
+											<button type="submit" class="btn justify-content-center btn-outline-secondary">입력</button>
 										</div>
 										
+									</div>
+									
+									
+									<div class="row border my-1">
+										<c:forEach var="r" items="${ rList }">
+											<div class="row">
+											
+												<div class="col-3">
+												
+													<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
+												
+												</div>
+												
+												<div class="col-9">
+												
+													<div class="row">
+													
+													<div class="col-3 pt-2">
+														<img src="https://picsum.photos/50" class="img-fluid rounded-circle float-start" alt="...">
+													</div>
+													
+													<div class="col-9">
+													
+														<div class="row">
+															<div class="col-11 pt-1"><p>${ r.memberNickname }</p></div>
+															<div class="col-1 d-flex"><p>delete</p></div>
+														</div>
+														<p><fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/></p>
+													</div>
+												
+													<div class="row">
+													<p>${ r.postStar }</p>
+													<p>${ r.postContent }</p>
+													
+													</div>
+												
+												
+												</div>
+											
+									
+											</div>
+										</c:forEach>
+										
+												</div>
+											</div>
+										
+										
+									
+									
+									
 									</div>
 									
 								</div>

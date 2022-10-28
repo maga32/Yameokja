@@ -2,7 +2,6 @@ package com.project.yameokja.service.store;
 
 import java.util.List;
 
-import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
 
 public interface StoreService {
