@@ -149,7 +149,7 @@ public class MemberController {
 	public String memberDelete(HttpSession session) {
 		String memberId = (String) session.getAttribute("memberId");
 		session.invalidate();
-		memberService.delMember(memberId);
+		memberService.deleteMember(memberId);
 		
 		return "redirect:/main";
 	}

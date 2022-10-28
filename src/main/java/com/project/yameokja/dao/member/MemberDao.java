@@ -35,5 +35,11 @@ public interface MemberDao {
 	
 	// 회원 레벨 수정
 	public void updateMemberLevel(String memberId, int memberLevel);
+	
+	// 회원 수정
+	public void updateMember(Member member);
+	
+	// 회원 탈퇴
+	public void deleteMember(String memberId);
 
 }
