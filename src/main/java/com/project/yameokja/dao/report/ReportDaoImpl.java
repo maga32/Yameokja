@@ -36,7 +36,7 @@ public class ReportDaoImpl implements ReportDao {
 		map.put("keyword", keyword);
 		//map.put("pageNum", pageNum);
 		
-		System.out.println("dao - keyword : " + keyword + " type : " + type + " reportType : " + reportType + "reportPunishCheck : " + reportPunishCheck);
+		System.out.println("dao - keyword : " + keyword + ", type : " + type + ", reportType : " + reportType + ", reportPunishCheck : " + reportPunishCheck);
 		
 		return sqlSession.selectList(NAME_SPACE + ".getReportList", map);
 	}

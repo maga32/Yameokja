@@ -14,12 +14,13 @@ use yameokja;
 DROP TABLE IF EXISTS report;
 CREATE TABLE IF NOT EXISTS report(
   report_no INTEGER AUTO_INCREMENT PRIMARY KEY,
+  report_title VARCHAR(1000) NOT NULL,
   report_type VARCHAR(20) NOT NULL,
   report_target VARCHAR(20) NOT NULL,  
   report_content VARCHAR(1000) NOT NULL,
   report_date TIMESTAMP NOT NULL,
   report_file INTEGER(5) NULL,
-  report_punish_check VARCHAR(100) NOT NULL,
+  report_punish_check VARCHAR(100) NOT NULL default 0,
   report_punish_content VARCHAR(1000) NULL,
   
   member_id VARCHAR(20) NOT NULL,
@@ -29,8 +30,11 @@ CREATE TABLE IF NOT EXISTS report(
   
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 ##################################################################################################################report_no, report_type, report_target, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no
-INSERT INTO report (report_type, report_target, report_content, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no) VALUES ('report_type01', 'report_target', 'report_content01', '2017-12-01 05:44:32', NULL, 'report_punish_check', NULL, 'memberId01', '1');
+INSERT INTO report (report_type, report_title, report_target, report_content, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no) VALUES ('report_type01', 'title1', 'report_target', 'report_content01', '2017-12-01 05:44:32', NULL, '1', NULL, 'memberId01', '1');
+INSERT INTO report (report_type, report_title, report_target, report_content, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no) VALUES ('report_type01', 'title1', 'report_target', 'report_content01', '2017-12-01 05:44:32', NULL, '0', NULL, 'memberId02', '1');
+INSERT INTO report (report_type, report_title, report_target, report_content, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no) VALUES ('report_type01', 'title1', 'report_target', 'report_content01', '2017-12-01 05:44:32', NULL, '1', NULL, 'memberId03', '1');
 INSERT INTO report (report_type, report_target, report_content, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no) VALUES ('report_type02', 'report_target', 'report_content02', '2017-12-01 05:44:32', NULL, 'report_punish_check', NULL, 'memberId02', '1');
 INSERT INTO report (report_type, report_target, report_content, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no) VALUES ('report_type03', 'report_target', 'report_content03', '2017-12-01 05:44:32', NULL, 'report_punish_check', NULL, 'memberId03', '1');
 INSERT INTO report (report_type, report_target, report_content, report_date, report_file, report_punish_check, report_punish_content, member_id, category_no) VALUES ('report_type04', 'report_target', 'report_content04', '2017-12-01 05:44:32', NULL, 'report_punish_check', NULL, 'memberId04', '1');

@@ -36,21 +36,23 @@ public class ReportController {
 	public String reportForm(Model model, HttpSession session, HttpServletResponse response,
 			@RequestParam(value="categoryNo", required=false, defaultValue="-7") int categoryNo,
 			@RequestParam(value="userId", required=false, defaultValue="null")String userId,
-			String reportTarget	) throws IOException {
+			@RequestParam(value="reportType", required=false, defaultValue="null")String reportType,
+			String reportTarget) throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		// 카테고리 번호로 분류 나누기
-		String reportType = "";
-		if(categoryNo >= 101 && categoryNo <= 102) {
-			reportType = "community";
-		}else if(categoryNo >=1 && categoryNo <=12) {
-			reportType = "store";
-		}
+//		// 카테고리 번호로 분류 나누기
+//		String reportType = "";
+//		if(categoryNo >= 101 && categoryNo <= 102) {
+//			reportType = "community";
+//		}else if(categoryNo >=1 && categoryNo <=12) {
+//			reportType = "store";
+//		}
 		
 		model.addAttribute("reportType", reportType);
-		model.addAttribute("reportTarget", reportTarget);	
+		model.addAttribute("reportTarget", reportTarget);
+		model.addAttribute("categoryNo", categoryNo);	
 		
 		String memberId = (String) session.getAttribute("memberId");
 		
@@ -79,13 +81,14 @@ public class ReportController {
 	// 신고 입력
 	@RequestMapping(value="/addReport", method=RequestMethod.POST)
 	public String addReport(Model model, HttpSession session, HttpServletRequest request,
-			String reportType, String reportTarget, int categoryNo, String reportContent,
+			String reportType, String reportTarget, int categoryNo, String reportContent, String reportTitle,
 			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
 		
 		Report report = new Report();
 		String memberId = (String) session.getAttribute("memberId");
 		
 		report.setMemberId(memberId);
+		report.setReportTitle(reportTitle);
 		report.setReportType(reportType);
 		report.setReportTarget(reportTarget);
 		report.setCategoryNo(categoryNo);
@@ -111,7 +114,8 @@ public class ReportController {
 	// 신고 리스트 조회
 	@RequestMapping("/reportList")
 	public String reportList(Model model, HttpServletResponse response, HttpServletRequest request,
-			@RequestParam(value="reportType", required=false, defaultValue="all")String reportType,
+			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
+			@RequestParam(value="categoryNo", required=false, defaultValue="300")String categoryNo,
 			@RequestParam(value="reportPusichCheck", required=false, defaultValue="0")int reportPunishCheck,
 			@RequestParam(value="type", required=false)String type,
 			@RequestParam(value="keyword", required=false)String keyword
@@ -120,6 +124,9 @@ public class ReportController {
 		
 		List<Report> reportList = reportService.getReportList(reportType, reportPunishCheck, type, keyword);
 		model.addAttribute("reportList", reportList);
+		model.addAttribute("reportType", reportType);
+		System.out.println(reportType);
+		System.out.println(categoryNo);
 		
 		return "report/reportList";
 	}

@@ -14,12 +14,13 @@ use yameokja;
 DROP TABLE IF EXISTS report;
 CREATE TABLE IF NOT EXISTS report(
   report_no INTEGER AUTO_INCREMENT PRIMARY KEY,
+  report_title VARCHAR(1000) NOT NULL,
   report_type VARCHAR(20) NOT NULL,
   report_target VARCHAR(20) NOT NULL,  
   report_content VARCHAR(1000) NOT NULL,
   report_date TIMESTAMP NOT NULL,
   report_file INTEGER(5) NULL,
-  report_punish_check VARCHAR(100) NOT NULL,
+  report_punish_check VARCHAR(100) NOT NULL default 0,
   report_punish_content VARCHAR(1000) NULL,
   
   member_id VARCHAR(20) NOT NULL,

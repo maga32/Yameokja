@@ -19,13 +19,31 @@
 	<h3>신고하기</h3>
 	<hr>
 	<form id="reportForm" name="reportForm" action="addReport" method="post" enctype="multipart/form-data">
-	<input type="hidden" id="reportType" name="reportType" value="${resportType }">
+	<input type="text" id="reportType" name="reportType" value="${ categoryNo }categoryNo">
 		<select id="categoryNo" name="categoryNo">
-			<c:if test="${reportType == 'community'}">
-				<option value=301>불량 수다글 작성</option>
-				<option value=302>불량 모집글 작성</option>
+		<c:if test="${categoryNo == '301'}">
+				<option name = "reportType" value="위치이전 및 폐업">위치이전 및 폐업</option>
+				<option name = "reportType" value="가게정보 변경(영업시간, 가게번호)">가게정보 변경(영업시간, 가게번호)</option>
+				<option name = "reportType" value="허위 가게">허위 가게</option>
+				<option name = "reportType" value="메뉴판 변경">메뉴판 변경</option>
+				<option name = "reportType" value="기타(가게)">기타(가게)</option>
 			</c:if>
-			
+			<c:if test="${categoryNo == '302'}">
+				<option name = "reportType" value="부적절한 게시글 및 댓글">부적절한 게시글 및 댓글</option>
+				<option name = "reportType" value="반복적인 게시글">반복적인 게시글</option>
+				<option name = "reportType" value="허위정보 게시글">허위정보 게시글</option>
+				<option name = "reportType" value="기타(맛집리뷰)">기타(맛집리뷰)</option>
+			</c:if>
+			<c:if test="${categoryNo == '303' or categoryNo == '101' or categoryNo == '102'}">
+				<option name = "reportType" value="부적절한 커뮤니티글">부적절한 커뮤니티글</option>
+				<option name = "reportType" value="반복적인 게시글">반복적인 게시글</option>
+				<option name = "reportType" value="기타(동네글)">기타(동네글)</option>
+			</c:if>
+			<c:if test="${categoryNo == '304'}">
+				<option name = "reportType" value="불건전한 사용자">불건전한 사용자</option>
+				<option name = "reportType" value="기타(사용자)">기타(사용자)</option>
+			</c:if>
+
 		</select>
 		<br>
 		신고대상 :
@@ -33,13 +51,16 @@
 		신고자 :
 		<input type="text" id="memberId" name="memberId" value="${sessionScope.memberId}" readonly>
 		<br>
-		<textarea id="reportContent" name="reportContent">
-		</textarea>
+		제목 : 
+		<input type="text" name="reportTitle" id="reportTitle">
+		<br>
+		내용 : 
+		<textarea id="reportContent" name="reportContent"></textarea>
 		<br>
 		<input type="file" name="reportFile" size="70"
 					id="reportFile" maxlength="50" />
 		<br>
-		<button>취소</button>
+		<button type="reset">취소</button>
 		<input type="submit" name="" value="작성완료">
 	</form>
 </BODY>
