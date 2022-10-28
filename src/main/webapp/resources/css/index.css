@@ -26,3 +26,37 @@ footer {
 .headerFontColor{
 	background-color: #F58500;
 }
+
+.text-small {
+	font-size: 13px;
+	color: Grey;
+}
+
+.text-middle {
+	font-size: 14px;
+	color: Grey;
+}
+
+.text-large {
+	font-size: 15px;
+	color: Grey;
+}
+
+/*---------------- wing 시작 ----------------*/
+/* a 태그 */
+#wing a {text-decoration: none;}
+#wing a:link {color: white;}
+#wing a:visited {color: white;}
+#wing a:hover {color: #white;}
+#wing a:active {color: white;}
+
+#wing {
+	position: fixed;
+	top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+	display:block;
+	background: #F58500;
+}
