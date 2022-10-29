@@ -29,5 +29,5 @@ public interface MemberDao {
 	public void updateMember(Member member);
 	
 	// 회원탈퇴
-	public void delMember(String memberId);
+	public void deleteMember(String memberId);
 }

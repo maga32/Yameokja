@@ -93,8 +93,8 @@ public class MemberService {
 	}
 	
 	// 회원탈퇴
-	public void delMember(String memberId) {
-		memberDao.delMember(memberId);
+	public void deleteMember(String memberId) {
+		memberDao.deleteMember(memberId);
 	}
 
 }

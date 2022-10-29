@@ -9,18 +9,20 @@
 	<!-- 작성자 정보, 제목 -->
 	<div class="row border-bottom justifyContent">
 		<div class="row communityTitle">
-			<c:if test="${ co.categoryNo == 101 }">[수다]</c:if>
-			<c:if test="${ co.categoryNo == 102 }">[모집]</c:if>
-			 ${ co.communityTitle }
+			<div class="col-12">
+				<c:if test="${ co.categoryNo == 101 }">[수다]</c:if>
+				<c:if test="${ co.categoryNo == 102 }">[모집]</c:if>
+				 ${ co.communityTitle }
+			</div>
 		 </div>
 		 <div class=" row my-3">
 		 	<div class=" col-2 imageFrame">
 				<img class="rounded-circle" alt="..." src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" />
 			</div>
 			<div class="col-8">
-				<div class="col-8 memberNicknameFont">닉네임 : ${ co.memberNickname }</div>
-				<div class="col-8 communityRegDateFont">작성일 : ${ co.communityRegDate }</div>
-				<div class="col-8 communityReadCountFont">조회수 : ${ co.communityReadCount }</div>
+				<div class="col-12 memberNicknameFont">닉네임 : ${ co.memberNickname }</div>
+				<div class="col-12 communityRegDateFont">작성일 : ${ co.communityRegDate }</div>
+				<div class="col-12 communityReadCountFont">조회수 : ${ co.communityReadCount }</div>
 			</div>	
 			<div class="col-2">
 				<input type="button" name="" value="링크복사">
@@ -63,14 +65,11 @@
 	
 	
 <!-- 댓글 입력 -->
-	<div class="row">
-	<div class="col-12">
-		<form id="communityReplyWriteForm" name="communityReplyWriteForm" class="col-12">
+	<div class="col-12" id="communityReplyArea">
+		<form id="communityReplyWriteForm" name="communityReplyWriteForm">
 			<input type="hidden" name="communityParentNo" id="communityParentNo" value="${co.communityNo}">
 			<input type="hidden" name="communityReReply" id="communityReReply" value=0>
 			<input type="hidden" name="communityReplyTarget" id="communityReplyTarget" value="">
-			<input type="hidden" name="memberId" id="memberId" value="${sessionScope.memberId}">
-			<input type="hidden" name="memberNickname" value="${sessionScope.memberNickname}">
 			<div class="row border">
 				<div class="col-10 my-2">
 					<textarea id="communityContent" name="communityContent" placeholder="댓글을 입력해주세요"></textarea>
@@ -80,15 +79,13 @@
 				</div>
 			</div>
 		</form>
-	</div>
-	</div>
-	
+		<div class="row border border-top-0">
 <!-- 댓글 목록 -->
-	<div class="row" id="communityReplyArea">
+
 		<div class="col-12" id="communityReplyList border">
 		<c:forEach var="re" items="${ coReplyList }" >
 			
-			<div class="row border m-1">
+			<div class="row border-bottom py-1">
 				<div class="col-2 my-auto">
 					<img class="rounded-circle" alt="..." src="https://dummyimage.com/50x50/ced4da/6c757d.jpg"/>
 					<br><span style="font-size: 10px;">${re.memberNickname}</span>
@@ -103,10 +100,9 @@
 					${re.communityContent}
 				</div>
 				<div class="col-2 border-start my-auto">
-					<button class="btnCommunityReReplyWriteFormOpen inlineBlock" value="${ re.communityNo },${re.memberId}">답글</button>
-	<!-- 변경1 -->
-					<button class="btnCommunityReReplyUpdateFormOpen inlineBlock border-start" value="${ re.communityNo },${re.memberId}">수정</button>
-					<input type="button" class="reportButton inlineBlock border-start" id="" value="신고">
+					<button class="btnCommunityReReplyWriteFormOpen" value="${ re.communityNo },${re.memberId}">답글</button>
+					<button class="btnCommunityReReplyUpdateFormOpen" value="${ re.communityNo },${re.memberId}">수정</button>
+					<input type="button" class="reportButton" id="" value="신고">
 					<form id="communityReplyDeleteForm" name="communityReplyDeleteForm" class="inlineBlock">
 						<input type="hidden" name="replyCommunityParentNo" value="${ co.communityNo }">
 						<input type="hidden" name="replyCommunityNo" value="${ re.communityNo }">
@@ -117,16 +113,17 @@
 				
 				
 	<!-- 답글 입력폼 -->
-				<div id="communityReReplyWriteFormNo${ re.communityNo }" style="display : none">
+				<div class="my-1" id="communityReReplyWriteFormNo${ re.communityNo }" style="display : none">
 					<form id="communityReplyWriteForm" name="communityReplyWriteForm" >
 						<input type="hidden" name="communityParentNo" id="communityParentNo" value="${co.communityNo}">
 						<input type="hidden" name="communityReReply" id="communityReReplyAt${ re.communityNo }" value=0>
 						<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt${ re.communityNo }"	 value="">
-	
-						<div>
-							<textarea id="communityReplyContent" name="communityContent" placeholder="댓글을 입력해주세요">
+						<div class="row">
+							<textarea class="col-10 p-1" id="communityReplyContent" name="communityContent" placeholder="댓글을 입력해주세요">
 							</textarea>
-							<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">
+							<div class=col-2>
+								<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="입력">
+							</div>			
 						</div>
 					</form>
 				</div>
@@ -135,6 +132,7 @@
 				
 				</div>
 		</c:forEach>
+		</div>
 		</div>
 	</div>
 </div>

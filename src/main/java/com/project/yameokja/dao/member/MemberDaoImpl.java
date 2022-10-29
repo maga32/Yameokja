@@ -113,7 +113,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 회원탈퇴
 	@Override
-	public void delMember(String memberId) {
-		sqlSession.delete(NAME_SPACE + ".delMember", memberId);
+	public void deleteMember(String memberId) {
+		sqlSession.delete(NAME_SPACE + ".deleteMember", memberId);
 	}
 }

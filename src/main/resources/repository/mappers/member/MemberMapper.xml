@@ -66,7 +66,7 @@
 	</select>
 	
 	<!-- 회원탈퇴 -->
-	<delete id="delMember">
+	<delete id="deleteMember">
 		DELETE FROM member WHERE member_id = #{memberId}
 	</delete>
 

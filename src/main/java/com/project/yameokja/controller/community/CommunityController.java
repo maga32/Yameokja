@@ -24,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
@@ -40,6 +43,8 @@ public class CommunityController {
 	@Autowired
 	MemberService memberService;
 	
+	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
+
 	private final static String DEFAULT_PATH = "/resources/upload/";
 
 	// 커뮤니티 리스트 출력
@@ -290,6 +295,8 @@ public class CommunityController {
 		model.addAttribute("countPartyMembers", countPartyMembers);
 		// 모집글 end
 		
+		log.debug("log test");
+		
 		return "community/communityDetail";
 	}
 	
@@ -298,6 +305,7 @@ public class CommunityController {
 	@ResponseBody
 	@RequestMapping(value="/replyWrite.ajax", method=RequestMethod.POST)
 	public List<Community> replyWriteAjax(Community community, HttpSession session) throws IOException {
+
 		
 		// 답글의 경우 session에 있는 작성자 정보를 못가져와서, if문으로 제어
 		if( community != null) {
@@ -314,6 +322,7 @@ public class CommunityController {
 			communityListService.updateCommunityReply(community);
 		}
 		
+		log.debug("log test");
 	
 		return communityListService.getCommunityReply(community);
 	}
@@ -343,4 +352,9 @@ public class CommunityController {
 		return communityListService.getCommunityReply(co);
 	} 
 	
+	// test
+	@RequestMapping("/home")
+	public String home() {
+		return "test01";
+	}
 }
