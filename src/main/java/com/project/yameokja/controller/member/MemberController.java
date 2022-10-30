@@ -243,5 +243,22 @@ public class MemberController {
 		System.out.println("차단멤버 : " + memberService.getMember(memberId).getMemberBlockIds());
 		return map;
 	}
+	
+	// 멤버클릭 ajax
+	@RequestMapping("/memberInfo.ajax")
+	@ResponseBody
+	public Map<String, Integer> memberInfo(HttpSession session, String targetId) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		Member member = (Member) session.getAttribute("member");
+		
+		if(memberService.isBlockedMe(targetId, member.getMemberId())) {
+			map.put("block", 1);
+		} else {
+			map.put("block", 0);
+		}
+		map.put("memberLevel", member.getMemberLevel());
+		
+		return map;
+	}
 
 }

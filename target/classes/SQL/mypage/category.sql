@@ -15,6 +15,16 @@ CREATE TABLE IF NOT EXISTS category(
   category_order INTEGER(10) NULL  
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- # community
+-- 101 : 수다글
+-- 102 : 모집글
+-- 0 : 댓글
+-- -1 : 삭제된 댓글
+
+-- # report
+-- 300 : 신고 분류 기본값
+-- 300 ~ 304 : 신고 분류
+
 INSERT INTO category (category_no, category_name, category_order) VALUES (1, '한식', 1);
 INSERT INTO category (category_no, category_name, category_order) VALUES (2, '양식', 2);
 INSERT INTO category (category_no, category_name, category_order) VALUES (3, '중식', 3);
@@ -30,6 +40,14 @@ INSERT INTO category (category_no, category_name, category_order) VALUES (101, '
 INSERT INTO category (category_no, category_name, category_order) VALUES (102, '모집글', 102);
 INSERT INTO category (category_no, category_name, category_order) VALUES (0, '댓글', 0);
 INSERT INTO category (category_no, category_name, category_order) VALUES (-1, '삭제된 댓글', 9998);
+INSERT INTO category (category_no, category_name, category_order) VALUES (-7, 'null값', -7);
+INSERT INTO category (category_no, category_name, category_order) VALUES (300, '신고 분류 기본값', 300);
+INSERT INTO category (category_no, category_name, category_order) VALUES (301, 'report_store', 301);
+INSERT INTO category (category_no, category_name, category_order) VALUES (302, 'report_post', 302);
+INSERT INTO category (category_no, category_name, category_order) VALUES (303, 'report_community', 303);
+INSERT INTO category (category_no, category_name, category_order) VALUES (304, 'report_user', 304);
+
+## 0(처리 대기) 1(처리중) 2(처리 보류) 3(처리완료)
 
 COMMIT;
 

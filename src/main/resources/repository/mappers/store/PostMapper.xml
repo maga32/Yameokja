@@ -2,13 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.yameokja.mappers.StoreMapper">
+<mapper namespace="com.project.yameokja.mappers.PostMapper">
 
+	<!-- 가게 리뷰 리스트를 불러온다 -->
 	<select id="postList" resultType="Post" resultMap="postResultMap">
-		SELECT * FROM post
-			WHERE store_no = #{store_no}
-		OREDER BY post_no DESC
+		SELECT * FROM post 
+			WHERE store_no = #{storeNo} AND post_is_post = 1 
+		ORDER BY post_no DESC;
 	</select>
+	
+	<!-- 가게 댓글 리스트를 불러온다 -->
+	<select id="postListReply" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post 
+			WHERE store_no = #{storeNo} AND post_is_post = 0
+		ORDER BY post_no DESC;
+	</select>
+	
+	<!-- 가게 리뷰 디테일을 불러온다 -->
+	<select id="getPost" resultType="Post" resultMap="postResultMap">
+		SELECT * FROM post
+			WHERE post_no = #{ postNo } 
+		ORDER BY post_no DESC
+	</select>
+	
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />

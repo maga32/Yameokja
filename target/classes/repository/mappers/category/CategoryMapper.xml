@@ -15,7 +15,13 @@
 		SELECT * FROM category
 			<where>
 				<if test="type == 'store'">
-					category_no BETWEEN 1 AND 100
+					category_no BETWEEN 1 AND 99
+				</if>
+				<if test="type == 'community'">
+					category_no BETWEEN 101 AND 199
+				</if>
+				<if test="type == 'report'">
+					category_no BETWEEN 301 AND 399
 				</if>
 			</where>
 			ORDER BY category_order
@@ -25,7 +31,13 @@
 		SELECT category_no FROM category
 			<where>
 				<if test="type == 'store'">
-					category_no BETWEEN 1 AND 100
+					category_no BETWEEN 1 AND 99
+				</if>
+				<if test="type == 'community'">
+					category_no BETWEEN 101 AND 199
+				</if>
+				<if test="type == 'report'">
+					category_no BETWEEN 301 AND 399
 				</if>
 			</where>
 			ORDER BY category_no DESC
@@ -36,11 +48,22 @@
 		SELECT category_order FROM category
 			<where>
 				<if test="type == 'store'">
-					category_no BETWEEN 1 AND 100
+					category_no BETWEEN 1 AND 99
+				</if>
+				<if test="type == 'community'">
+					category_no BETWEEN 101 AND 199
+				</if>
+				<if test="type == 'report'">
+					category_no BETWEEN 301 AND 399
 				</if>
 			</where>
 			ORDER BY category_order DESC
 			LIMIT 0,1
+	</select>
+	
+	<select id="getCategory" resultType="Category" resultMap="categoryResultMap">
+		SELECT * FROM category
+			WHERE category_no = #{categoryNo}
 	</select>
 	
 	<insert id="addCategory" parameterType="Category">
@@ -52,5 +75,12 @@
 		DELETE FROM category
 			WHERE category_no = #{categoryNo}
 	</delete>
+	
+	<update id="updateCategory">
+		UPDATE category
+			SET category_name = #{categoryName},
+				category_order = #{categoryOrder}
+			WHERE category_no = #{categoryNo}
+	</update>
 	
 </mapper>

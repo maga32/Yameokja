@@ -7,6 +7,7 @@
 <article>
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${store.storeNo }">
+		<input type="hidden" name="postNo" value="${post.postNo }">
 	</form>
 	<div class="container-fluid">
 		

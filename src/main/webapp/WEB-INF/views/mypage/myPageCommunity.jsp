@@ -13,10 +13,10 @@
 <div class="fullFrame col-md-12 p-2">
 	<div class="myInformationsFrame col-md-12">
 	
-		<div class="inlineBlock col-md-2.5 mx-1">
+		<div class="d-inline-block col-md-2.5 mx-1">
 			<img alt="프로필 사진" class="myInformation1 col-md-12" src="resources/IMG/mypage/likeIMG.PNG">
 		</div>
-		<div class="inlineBlock col-md-6 mx-1">
+		<div class="d-inline-block col-md-6 mx-1">
 			<div class="myInformation2 col-md-12 ">
 <!-- 		sessionScope.memberId -->
 				<div class="mbIdFont">${ member.memberId }님</div>
@@ -24,7 +24,7 @@
 				<div class="myInformationFont">가입일 : ${ member.memberJoinDate }</div>
 			</div>
 		</div>
-		<div class="inlineBlock col-md-3 mx-1">
+		<div class="d-inline-block col-md-3 mx-1">
 			<div class="myInformation3 col-md-12 ">					
 			<div class="buttons_"><a href="#">회원정보수정</a></div>
 			<div class="buttons_">회 원 탈 퇴</div>

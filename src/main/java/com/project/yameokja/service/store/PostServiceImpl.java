@@ -22,10 +22,15 @@ public class PostServiceImpl implements PostService {
 	public List<Post> postList(int storeNo) {
 		return postDao.postList(storeNo);
 	}
+	
+	@Override
+	public List<Post> postListReply(int storeNo) {
+		return postDao.postListReply(storeNo);
+	}
 
 	@Override
-	public Post getPost(int storeNo, int postNo) {
-		return postDao.getPost(storeNo, postNo);
+	public Post getPost(int postNo) {
+		return postDao.getPost(postNo);
 	}
 
 	@Override
@@ -44,6 +49,20 @@ public class PostServiceImpl implements PostService {
 	public void deletePost(Post post) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public List<Post> bestOnePost(int storeNo) {
+		return postDao.bestOnePost(storeNo);
+	}
+
+	@Override
+	public List<Post> bestTwoPost(int storeNo) {
+		return postDao.bestTwoPost(storeNo);
+	}
+
+	@Override
+	public List<Post> bestThreePost(int storeNo) {
+		return postDao.bestThreePost(storeNo);
 	}
 
 }

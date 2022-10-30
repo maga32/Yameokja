@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.border-E3E5E9{
+	border-color: #E3E5E9;
+}
+
+/* a 태그 */
+a {text-decoration: none;}
+ a:link {color: white;}
+ a:visited {color: white;}
+ a:hover {color: #white;}
+ a:active {color: white;}

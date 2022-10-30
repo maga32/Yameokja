@@ -84,7 +84,7 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
 							<div class="col-3">
 								<div class="row  alignIitems height">
@@ -94,7 +94,7 @@
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
-										<div class="col-12 communityReadCount">${ p.communityReadCount }</div>
+										<div class="col-12 fs-6 text-secondary">${ p.communityReadCount }</div>
 									</div>
 								</div>
 							</div>
@@ -132,7 +132,7 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
 							<div class="col-3">
 								<div class="row  alignIitems height">
@@ -142,7 +142,7 @@
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
-										<div class="col-12 communityReadCount">${ p.communityReadCount }</div>
+										<div class="col-12 fs-6 text-secondary">${ p.communityReadCount }</div>
 									</div>
 								</div>
 							</div>
@@ -180,9 +180,9 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
 							</div>
-							<div class="col-3 col-2 col-3">
+							<div class="col-3">
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
@@ -190,7 +190,7 @@
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
-										<div class="col-12 communityReadCount">${ p.communityReadCount }</div>
+										<div class="col-12 fs-6 text-secondary">${ p.communityReadCount }</div>
 									</div>
 								</div>
 							</div>
@@ -205,13 +205,6 @@
 				<div class=" border border-2 rounded col-12 p-2 col-md-12">등록된 게시글이 없습니다.</div>
 			</c:if>
 			<!-- 동네글 검색결과 empty -->
-
-			<div class="row">
-			<div class="col-12 py-3">
-				<div class="inlineBlock whiteFormButton"><a href="community101WriteForm" class="py-1 px-3">수다글 쓰기</a></div>
-				<div class="inlineBlock whiteFormButton"><a href="community102WriteForm" class="py-1 px-3">모집글 쓰기</a></div>
-			</div>
-			</div>
 
 			<!-- 페이징 시작지점 -->
 			<div class="row text-end">
@@ -242,9 +235,12 @@
 				</c:if>
 			</div>
 			<!-- 페이징 종료지점 -->
-
-
-
+			<div class="row text-start">
+				<div class="col-12 py-3">
+					<div class="inlineBlock whiteFormButton"><a href="community101WriteForm" class="py-1 px-3">수다글 쓰기</a></div>
+					<div class="inlineBlock whiteFormButton"><a href="community102WriteForm" class="py-1 px-3">모집글 쓰기</a></div>
+				</div>
+			</div>
 			<div class="col-12 bg-primary">가게 리스트 들어갈 곳</div>
 		</div>
 		</div>

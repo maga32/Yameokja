@@ -59,12 +59,42 @@
 		
 	<!-- 회원정보 조회(아이디 > 닉네임, 프사) -->
 	<select id="getMemberFor102" resultType="Member">
-		SELECT member_nickname as memberNickname,
+		SELECT member_id as memberId,
+					member_nickname as memberNickname,
 					member_photo as memberPhoto
 		FROM member
 		WHERE member_id = #{memberId}
 	</select>
 	
+	<!-- 총 회원수 조회 -->
+	<select id="getMemberCount" resultType="Integer">
+		SELECT COUNT(*) FROM member
+			<where>
+				<if test="keyword != null">
+					${searchBy} LIKE CONCAT('%',#{keyword},'%')
+				</if>
+			</where>
+	</select>
+	
+	<!-- 회원리스트 조회 -->
+	<select id="getMemberList" resultMap="MemberResultMap">
+		SELECT * FROM member
+			<where>
+				<if test="keyword != null">
+					${searchBy} LIKE CONCAT('%',#{keyword},'%')
+				</if>
+			</where>
+			ORDER BY ${sort} ${order}
+			LIMIT ${startMember},${limit}
+	</select>
+	
+	<!-- 멤버 레벨변경 -->
+	<update id="updateMemberLevel">
+		UPDATE member
+			SET member_level = #{memberLevel} 
+			WHERE member_id = #{memberId}
+	</update>
+
 	<!-- 회원탈퇴 -->
 	<delete id="deleteMember">
 		DELETE FROM member WHERE member_id = #{memberId}

@@ -1,5 +1,7 @@
 package com.project.yameokja.dao.member;
 
+import java.util.List;
+
 import com.project.yameokja.domain.Member;
 
 public interface MemberDao {
@@ -23,11 +25,21 @@ public interface MemberDao {
 	public void memberBlock(String memberId, String memberBlockIds);
 
 	// 회원정보 조회(아이디 > 닉네임, 프사)
-	public Member getMemberFor102(String memberId);
+	Member getMemberFor102(String memberId);
+	
+	// 회원 리스트 조회
+	public List<Member> getMemberList(int startMember, int limit, String sort, String order, String searchBy, String keyword);
 
-	// 회원수정
+	// 총 회원수 조회
+	public int getMemberCount(String searchBy, String keyword);
+	
+	// 회원 레벨 수정
+	public void updateMemberLevel(String memberId, int memberLevel);
+	
+	// 회원 수정
 	public void updateMember(Member member);
 	
-	// 회원탈퇴
+	// 회원 탈퇴
 	public void deleteMember(String memberId);
+
 }

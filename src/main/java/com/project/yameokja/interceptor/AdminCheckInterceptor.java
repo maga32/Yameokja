@@ -24,7 +24,7 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("	alert('로그인이 필요합니다.');");
-			out.println("	location.href='/yameokja/loginForm';");
+			out.println("	window.open('/yameokja/loginForm','LoginForm','width=500, height=600');");
 			out.println("</script>");
 			out.close();
 			

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.project.yameokja.mappers.ReportMapper">
+
+	<insert id="addReport" parameterType="Report">
+		INSERT INTO report
+			(member_id, report_title, report_type, report_target, category_no, 
+			report_content, report_date,	report_file)
+		VALUES (#{memberId}, #{reportTitle}, #{reportType}, #{reportTarget}, #{categoryNo}, 
+		#{reportContent}, SYSDATE(), #{reportFile})
+	</insert>
+
+	<select id="reportList" resultType="Report" parameterType="hashmap" resultMap="ReportResultMap">
+		SELECT * FROM report
+			<where>
+			
+				<if test='reportPunishCheck == "1" '>
+					AND report_punish_check = #{reportPunishCheck}
+				</if>
+				<if test='reportPunishCheck == "2" '>
+					AND report_punish_check = #{reportPunishCheck}
+				</if>
+				<if test='reportPunishCheck == "3" '>
+					AND report_punish_check =  #{reportPunishCheck}
+				</if>
+				
+				<if test='categoryNo == "301" '>
+					 AND category_no = #{categoryNo}
+				</if>
+				<if test='categoryNo == "302" '>
+					 AND category_no = #{categoryNo}
+				</if>
+				<if test='categoryNo == "303" '>
+					AND category_no = #{categoryNo}
+				</if>
+				<if test='categoryNo == "304" '>
+					AND category_no = #{categoryNo}
+				</if>
+				
+				<if test='type == "all" '>
+					AND (report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%'))
+				</if>
+				<if test='type == "title" '>
+					AND report_title LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test='type == "memberId" '>
+					AND member_id LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+				
+			</where>
+		ORDER BY report_no DESC
+	</select>
+	
+	<select id="reportCount" resultType="int" parameterType="hashMap">
+		SELECT COUNT(report_no) FROM report
+			<where>
+			
+				<if test='reportPunishCheck == "1" '>
+					AND report_punish_check = #{reportPunishCheck}
+				</if>
+				<if test='reportPunishCheck == "2" '>
+					AND report_punish_check = #{reportPunishCheck}
+				</if>
+				<if test='reportPunishCheck == "3" '>
+					AND report_punish_check =  #{reportPunishCheck}
+				</if>
+				
+				<if test='categoryNo == "301" '>
+					 AND category_no = #{categoryNo}
+				</if>
+				<if test='categoryNo == "302" '>
+					 AND category_no = #{categoryNo}
+				</if>
+				<if test='categoryNo == "303" '>
+					AND category_no = #{categoryNo}
+				</if>
+				<if test='categoryNo == "304" '>
+					AND category_no = #{categoryNo}
+				</if>
+				
+				<if test='type == "all" '>
+					AND (report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%'))
+				</if>
+				<if test='type == "title" '>
+					AND report_title LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test='type == "memberId" '>
+					AND member_id LIKE CONCAT('%', #{keyword}, '%')
+				</if>	
+				
+			</where>
+	</select>
+	
+	<select id="getReport" resultType="Report" resultMap="ReportResultMap">
+		SELECT * FROM report
+		WHERE report_no = #{ reportNo }
+	</select>
+	
+	<update id="reportUpdate">
+		UPDATE 
+	</update>
+	
+
+	<resultMap type="Report" id="ReportResultMap">
+		<id property="reportNo" column="report_no" />
+		<result property="reportTitle" column="report_title"/>
+		<result property="reportType" column="report_type" />
+		<result property="reportTarget" column="report_target" />
+		<result property="reportContent" column="report_content" />
+		<result property="reportDate" column="report_date" />
+		<result property="reportFile" column="report_file" />
+		<result property="reportPunishCheck" column="report_punish_check" />
+		<result property="reportPunishContent" column="report_punish_content" />
+		<result property="memberId" column="member_id" />
+		<result property="categoryNo" column="category_no" />
+	</resultMap>
+	
+</mapper>

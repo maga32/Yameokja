@@ -8,12 +8,16 @@ public interface CategoryDao {
 
 	List<Category> categoryList(String type);
 
-	int getLastNo(String type);
+	Integer getLastNo(String type);
 
-	int getLastOrder(String type);
+	Integer getLastOrder(String type);
 
 	void addCategory(Category newCategory);
 
 	void deleteCategory(int categoryNo);
+
+	void updateCategory(Category category);
+
+	Category getCategory(int categoryNo);
 
 }

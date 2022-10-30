@@ -66,7 +66,7 @@ public class MemberLoginController {
 		System.out.println("memberLoginController - memberNickname : " + member.getMemberNickname());
 		
 		out.println("<script>");
-		out.println("window.opener.location.href='main';");
+		out.println("opener.location.href=opener.location.href;");
 		out.println("window.close();");
 		out.println("</script>");
 				

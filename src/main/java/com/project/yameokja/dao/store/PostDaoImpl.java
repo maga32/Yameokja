@@ -13,7 +13,7 @@ import com.project.yameokja.domain.Post;
 @Repository
 public class PostDaoImpl implements PostDao {
 
-	private final String NAME_SPACE = "com.project.yameokja.mappers.StoreMapper";
+	private final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	
@@ -25,18 +25,19 @@ public class PostDaoImpl implements PostDao {
 	
 	@Override
 	public List<Post> postList(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE + ".storeDetail", storeNo); 
+		return sqlSession.selectList(NAME_SPACE + ".postList", storeNo); 
+	}
+	
+	
+	@Override
+	public List<Post> postListReply(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".postListReply", storeNo); 
 	}
 
 	@Override
-	public Post getPost(int storeNo, int postNo) {
+	public Post getPost(int postNo) {
 		
-		Map<String, Object> param = new HashMap <String, Object>();
-		
-		param.put("storeNo", storeNo);
-		param.put("postNo", postNo);
-		
-		return sqlSession.selectOne(NAME_SPACE + ".storeDetail", param);
+		return sqlSession.selectOne(NAME_SPACE + ".getPost", postNo);
 	}
 
 	
@@ -62,9 +63,21 @@ public class PostDaoImpl implements PostDao {
 
 
 	@Override
-	public int getPostCount(String Type, String keyword, int postNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Post> bestOnePost(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".bestOnePost", storeNo);
 	}
+
+
+	@Override
+	public List<Post> bestTwoPost(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".bestTwoPost", storeNo);
+	}
+
+
+	@Override
+	public List<Post> bestThreePost(int storeNo) {
+		return sqlSession.selectList(NAME_SPACE + ".bestThreePost", storeNo);
+	}
+
 
 }

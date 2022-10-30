@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class Report {
 
 	private int reportNo;
+	private String reportTitle;
 	private String memberId;
 	private String reportType;
 	private int categoryNo;
@@ -17,11 +18,12 @@ public class Report {
 	
 	public Report() {}
 
-	public Report(int reportNo, String memberId, String reportType, int categoryNo, String reportTarget,
+	public Report(int reportNo, String reportTitle, String memberId, String reportType, int categoryNo, String reportTarget,
 			String reportContent, Timestamp reportDate, String reportFile, int reportPunishCheck,
 			String reportPunishContent) {
 		
 		this.reportNo = reportNo;
+		this.reportTitle = reportTitle;
 		this.memberId = memberId;
 		this.reportType = reportType;
 		this.categoryNo = categoryNo;
@@ -111,6 +113,14 @@ public class Report {
 
 	public void setReportPunishContent(String reportPunishContent) {
 		this.reportPunishContent = reportPunishContent;
+	}
+
+	public String getReportTitle() {
+		return reportTitle;
+	}
+
+	public void setReportTitle(String reportTitle) {
+		this.reportTitle = reportTitle;
 	}
 	
 }
