@@ -32,35 +32,31 @@ public class ReportController {
 	private final static String DEFAULT_PATH = "/resources/upload/";
 	
 	// 신고 팝업창
-	@RequestMapping("/reportForm")
+	@RequestMapping(value = "/reportForm")
 	public String reportForm(Model model, HttpSession session, HttpServletResponse response,
-			@RequestParam(value="categoryNo", required=false, defaultValue="-7") int categoryNo,
-			@RequestParam(value="userId", required=false, defaultValue="null")String userId,
+			 int categoryNo, String postNo, String userId,
 			@RequestParam(value="reportType", required=false, defaultValue="null")String reportType,
-			String reportTarget) throws IOException {
+			@RequestParam(value="reportTarget", required=false, defaultValue="null")String reportTarget) 
+					throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-//		// 카테고리 번호로 분류 나누기
-//		String reportType = "";
-//		if(categoryNo >= 101 && categoryNo <= 102) {
-//			reportType = "community";
-//		}else if(categoryNo >=1 && categoryNo <=12) {
-//			reportType = "store";
-//		}
+		int reportFormCategoryNo = reportService.reportFormCategoryNo(userId, categoryNo, postNo);
 		
-		model.addAttribute("reportType", reportType);
+		//reportType와 userId 차이 알고 넣기
+		model.addAttribute(reportType);
 		model.addAttribute("reportTarget", reportTarget);
-		model.addAttribute("categoryNo", categoryNo);	
+		model.addAttribute("categoryNo", reportFormCategoryNo);
 		
 		String memberId = (String) session.getAttribute("memberId");
 		
 		if(memberId == null) {
 			System.out.println("reportCon - memberId null 로그인 안됨");
 			out.println("<script>");
-			out.println("	window.opener.location.href='main';");
-			out.println("	window.close();");
+			out.println("	history.back();");
+//			out.println("	window.opener.location.href='main';");
+//			out.println("	window.close();");
 			out.println("</script>");
 
 			return null;
@@ -68,8 +64,9 @@ public class ReportController {
 		if(memberId.equals(reportTarget)) {
 			System.out.println("reportCon - memberId ==  신고자와 신고대상자가 같음");
 			out.println("<script>");
-			out.println("	window.opener.location.href='main';");
-			out.println("	window.close();");
+			out.println("	history.back();");
+//			out.println("	window.opener.location.href='main';");
+//			out.println("	window.close();");
 			out.println("</script>");
 
 			return null;
@@ -82,7 +79,9 @@ public class ReportController {
 	@RequestMapping(value="/addReport", method=RequestMethod.POST)
 	public String addReport(Model model, HttpSession session, HttpServletRequest request,
 			String reportType, String reportTarget, int categoryNo, String reportContent, String reportTitle,
-			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
+			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile )
+					throws IllegalStateException, IOException 
+	{
 		
 		Report report = new Report();
 		String memberId = (String) session.getAttribute("memberId");
@@ -111,24 +110,74 @@ public class ReportController {
 		return "report/reportResultForm";
 	}
 	
+	@RequestMapping("/report/reportResultForm")
+	public String reportResultForm(){
+		return "report/reportResultForm";
+		
+	}
+	
 	// 신고 리스트 조회
 	@RequestMapping("/reportList")
 	public String reportList(Model model, HttpServletResponse response, HttpServletRequest request,
-			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
-			@RequestParam(value="categoryNo", required=false, defaultValue="300")String categoryNo,
-			@RequestParam(value="reportPusichCheck", required=false, defaultValue="0")int reportPunishCheck,
-			@RequestParam(value="type", required=false)String type,
-			@RequestParam(value="keyword", required=false)String keyword
+			@RequestParam(value="reportType", required=false, defaultValue="null")String reportType,
+			@RequestParam(value="categoryNo", required=false, defaultValue="300")int categoryNo,
+			@RequestParam(value="reportPunishCheck", required=false, defaultValue="0")String reportPunishCheck,
+			@RequestParam(value="type", required=false, defaultValue="all")String type,
+			@RequestParam(value="keyword", required=false, defaultValue="")String keyword
 			//@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
 		
-		List<Report> reportList = reportService.getReportList(reportType, reportPunishCheck, type, keyword);
+		List<Report> reportList = reportService.reportList(categoryNo, reportPunishCheck, type, keyword);
+
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("reportType", reportType);
-		System.out.println(reportType);
-		System.out.println(categoryNo);
+		model.addAttribute("categoryNo", categoryNo);
+		model.addAttribute("reportPunishCheck", reportPunishCheck);
+		model.addAttribute("keyword", keyword);
 		
 		return "report/reportList";
 	}
+	
+
+	@RequestMapping("/reportDetail")
+	public String reportDetail(
+			Model model, 
+//			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
+//			@RequestParam(value="categoryNo", required=false, defaultValue="300")String categoryNo,
+//			@RequestParam(value="reportPusichCheck", required=false, defaultValue="0")int reportPunishCheck,
+//			@RequestParam(value="type", required=false)String type,
+			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo
+//			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
+			) {
+		Report report = reportService.getReport(reportNo);
+//		List<Report> reportList = reportService.getReportList(reportType, reportPunishCheck, type, keyword);
+//		model.addAttribute("reportList", reportList);
+		model.addAttribute("report", report);
+//		System.out.println(reportType);
+//		System.out.println(categoryNo);
+		
+		return "report/reportDetail";
+	}
+	
+	@RequestMapping("/reportUpdate")
+	public String reportUpdate(
+			Model model, 
+//			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
+//			@RequestParam(value="categoryNo", required=false, defaultValue="300")String categoryNo,
+//			@RequestParam(value="reportPusichCheck", required=false, defaultValue="0")int reportPunishCheck,
+//			@RequestParam(value="type", required=false)String type,
+			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo
+//			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
+			) {
+		Report report = reportService.getReport(reportNo);
+//		List<Report> reportList = reportService.getReportList(reportType, reportPunishCheck, type, keyword);
+//		model.addAttribute("reportList", reportList);
+		model.addAttribute("report", report);
+//		System.out.println(reportType);
+//		System.out.println(categoryNo);
+		
+		return "report/reportUpdate";
+	}
+
 }
 

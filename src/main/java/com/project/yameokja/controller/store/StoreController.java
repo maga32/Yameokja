@@ -65,13 +65,10 @@ public class StoreController {
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
 		List<Post> pList = postService.postList(storeNo); 
 
-		System.out.println("bestOnePost"+bestOnePost);
 		model.addAttribute("store", store);
 		model.addAttribute("bestOnePost", bestOnePost);
 		model.addAttribute("bestTwoPost", bestTwoPost);
 		model.addAttribute("bestThreePost", bestThreePost);
-		model.addAttribute("store", store);		
-
 		model.addAttribute("pList", pList);
 
 		return "store/storeDetail";

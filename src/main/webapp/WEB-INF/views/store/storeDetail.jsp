@@ -7,6 +7,7 @@
 <div class="row py-3">
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
+		<input type="hidden" name="categoryNo" value="${ store.categoryNo }">
 	</form>
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
@@ -70,7 +71,7 @@
 					<div class="col-12 text-end m-0 p-0 d-inline">
 						<i class="fa fa-heart-o" aria-hidden="true"></i>
 						<i class="fa fa-link" aria-hidden="true"></i>
-						<i class="fa fa-bell" aria-hidden="true"></i>
+						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
 					</div>
 				</div>
 			</div>

@@ -11,8 +11,16 @@ public interface ReportDao {
 	public void addReport(Report report);
 	
 	// 신고목록 조회
-	public List<Report> getReportList(String reportType, int reportPunishCheck, String type, String keyword);
+	public List<Report> reportList(int categoryNo, String reportPunishCheck, String type, String keyword);
 	
 	// 신고 목록 수 조회
-	public int reportCount(String reportType, int reportPunishCheck, String type, String keyword);
+	public int reportCount(int categoryNo, String reportPunishCheck, String type, String keyword);
+	
+	//신고 디테일 페이지
+	public Report getReport(int reportNo);
+	
+	//신고 디테일 수정
+	public void reportUpdate(int reportNo);
+
 }
+
