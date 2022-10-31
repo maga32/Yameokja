@@ -51,6 +51,18 @@ $(document).ready(function() {
 		if(!$(e.target).hasClass("memberInfo")) $(".memberInfoView").remove();
 	});
 
+
+	// 윙버튼
+	$("#wingButton").click(function() {
+		$("#wing").addClass("open");
+		$("#wingMask").fadeIn();
+	});
+
+	// 윙버튼 닫기
+	$("#wingMask").click(function() {
+		$("#wing").removeClass("open");
+		$(this).css("display", "none");
+	});
 });
 
 

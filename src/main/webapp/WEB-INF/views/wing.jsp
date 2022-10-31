@@ -5,15 +5,25 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
+<!-- 윙 버튼 -->
+<a id="wingButton" class="d-block d-lg-none btn">
+	<span class="fa-stack fa-lg">
+		<i class="fa fa-circle fa-stack-2x headerColor"></i>
+		<i class="fa fa-bars fa-stack-1x fa-inverse"></i>
+	</span>
+</a>
+
+<!-- 윙 배경 -->
+<div id="wingMask" style="display:none;"></div>
+
 <!-- 윙 -->
-<div id="wing" class="d-none d-lg-block col-lg-3" style="">
+<div id="wing">
 	<div class="row">
 		<div class="col-12">
 			<div class="row">
 				<div class="col-3"></div>
 				<div class="col-6 text-center pt-5 pb-5">
-					<img alt="프로필 사진" class="rounded-circle col-12"
-						src="resources/IMG/mypage/likeIMG.PNG">
+					<img alt="프로필 사진" class="rounded-circle col-12" src="/yameokja/resources/IMG/mypage/likeIMG.PNG">
 				</div>
 				<div class="col-3"></div>
 			</div>
@@ -63,7 +73,7 @@
 				<a href="communityList">커뮤니티</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="#">채팅 목록</a>
+				<a href="javascript:;" onclick="window.open('/yameokja/chat/chatList','채팅목록','width=500, height=810')">채팅 목록</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
 				<a href="#">내가 찜한 가게</a>
@@ -100,7 +110,7 @@
 						<option>관악구</option>
 					</select>
 				</span>
-				<span class="col-4">
+				<span class="col-4 pe-0">
 					<a class="btn btn-light btn-sm rounded-pill border border-2 border-E3E5E9 text-secondary px-3">
 						찾기
 					</a>

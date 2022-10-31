@@ -33,4 +33,13 @@
 	   </interceptor>
 	</interceptors>
 
+	<interceptors>
+	   <interceptor>
+	    <mapping path="/memberUpdate*" />
+	    <mapping path="/memberDelete" />
+   	    <mapping path="/chat/**" />
+	    <beans:ref bean="LoginCheckInterceptor" />
+	   </interceptor>
+	</interceptors>
+	
 </beans:beans>
