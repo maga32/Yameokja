@@ -25,22 +25,17 @@ public class MyPageServiceImpl implements MyPageService {
 	public void setMemberDao(MyPageDao myPageDao) {
 		this.myPageDao = myPageDao;
 	}
+
 	@Override
 	public Member getMember(String userId) {
 		return myPageDao.getMember(userId);
 	}
-	
-	@Override
-	public List<Post> myPagePost(){		
-		return myPageDao.myPagePost("null", 0, 10);
-	}
-	
+
 	@Override
 	public Map<String, Object> myPagePost(int pageNum, String userId) {
-	
 		int currentPage = pageNum;		
 		int startRow = (currentPage -1) * PAGE_SIZE;
-		int listCount = myPageDao.getPostListCount(userId);
+		int listCount = myPageDao.myPagePostCount(userId);
 		
 		if(listCount > 0) {
 			List<Post> postList = myPageDao.myPagePost(userId, startRow, PAGE_SIZE);
@@ -61,23 +56,28 @@ public class MyPageServiceImpl implements MyPageService {
 			postMap.put("userId", userId);
 			
 			return postMap;
-		}
-		
+		}	
+			
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("userId", userId);
-		
-		return postMap;
+			
+		return postMap;		
 	}
-	
+
 	@Override
-	public Map<String, Object> myPageCommunity(String memberId, int pageNum, String status) {
+	public void deleteMyPagePost(int postNo) {
+		myPageDao.deleteMyPagePost(postNo);
+	}
+
+	@Override
+	public Map<String, Object> myPageCommunity(String userId, int pageNum) {
+
 		int currentPage = pageNum;
-		
 		int startRow = (currentPage -1) * PAGE_SIZE;
-		int listCount = myPageDao.getCommunityListCount(memberId);
+		int listCount = myPageDao.myPageCommunityCount(userId);
 		
 		if(listCount > 0) {
-			List<Community> communityList = myPageDao.myPageCommunity(memberId, startRow, PAGE_SIZE, status);
+			List<Community> communityList = myPageDao.myPageCommunity(userId, startRow, PAGE_SIZE);
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
 			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP
 									- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0) + 1;
@@ -98,10 +98,16 @@ public class MyPageServiceImpl implements MyPageService {
 		return null;
 	}
 
+	@Override
+	public void deleteMyPageCommunity(int communityNo) {
+		myPageDao.deleteMyPageCommunity(communityNo);
+	}
 
 	@Override
 	public List<Store> myPageStore(String memberId) {
-		return myPageDao.myPageStore(memberId);
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 
 }

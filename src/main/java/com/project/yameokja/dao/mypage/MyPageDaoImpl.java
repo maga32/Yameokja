@@ -39,36 +39,44 @@ public class MyPageDaoImpl implements MyPageDao {
 		params.put("startRow", startRow);
 		params.put("num", num);
 		
-		return sqlSession.selectList(NAME_SPACE+".myPostList", params);
+		return sqlSession.selectList(NAME_SPACE+".myPagePost", params);
 		
+	}
+
+	@Override
+	public int myPagePostCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+".myPagePostCount", userId);
+	}
+
+	@Override
+	public void deleteMyPagePost(int postNo) {
+		sqlSession.delete(NAME_SPACE+ ".deleteMyPagePost", postNo);
+	}
+
+	@Override
+	public List<Community> myPageCommunity(String userId, int startRow, int num) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
+		params.put("startRow", startRow);
+		params.put("num", num);
+		
+		return sqlSession.selectList(NAME_SPACE+".myPageCommunity", params);
+	}
+
+	@Override
+	public int myPageCommunityCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+".myPageCommunityCount", userId);
+	}
+
+	@Override
+	public void deleteMyPageCommunity(int communityNo) {
+		sqlSession.delete(NAME_SPACE+ ".deleteMyPageCommunity", communityNo);
 	}
 
 	@Override
 	public List<Store> myPageStore(String memberId) {
 		return sqlSession.selectList(NAME_SPACE+".myPageStore", memberId);
 	}
-
-	@Override
-	public List<Community> myPageCommunity(String memberId, int startRow, int num, String status) {
-		
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("memberId", memberId);
-		params.put("startRow", startRow);
-		params.put("num", num);
-		params.put("status", status);
-		
-		return sqlSession.selectList(NAME_SPACE+".myPageCommunity", params);
-	}
-
-	@Override
-	public int getPostListCount(String memberId) {
-		return sqlSession.selectOne(NAME_SPACE+".getPostListCount", memberId);
-	}
-
-	@Override
-	public int getCommunityListCount(String memberId) {
-		return sqlSession.selectOne(NAME_SPACE+".getCommunityListCount", memberId);
-	}
-
 
 }

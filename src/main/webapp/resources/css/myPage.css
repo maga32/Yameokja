@@ -1,0 +1,76 @@
+@charset "UTF-8";
+/* 전체틀 */
+
+/* 내정보 */
+.align-items{
+	display: flex;
+    align-items: center;
+}
+
+
+/* 리스트 별로 이동하는 버튼 */
+.currentPage, .otherPage {
+	border-radius: 20px 0 0 0;
+	display: table-cell;
+}
+.currentPage {
+    color: #F58500;
+    background: #FCD147;	
+}
+
+/* 리스트 */
+.postFrame{
+	display: flex;
+    align-items: center;
+}
+
+.fa-bell{
+	color: #F58500;
+}
+/* a 태그 */
+a {text-decoration: none;}
+
+.buttons_ a:link {color: gray;}
+.buttons_ a:visited {color: gray;}
+.buttons_ a:hover {color: #4aa5ff;}
+.buttons_ a:active {color: 4aa5ff;}
+
+.currentPage a:link {color: gray;}
+.currentPage a:visited {color: gray;}
+.currentPage a:hover {color: #4aa5ff;}
+.currentPage a:active {color: 4aa5ff;}
+
+.otherPage a:link {color: gray;}
+.otherPage a:visited {color: gray;}
+.otherPage a:hover {color: #4aa5ff;}
+.otherPage a:active {color: #4aa5ff;}
+
+.postTitle a:link {color: #6a6767;}
+.postTitle a:visited {color: #6a6767;}
+.postTitle a:hover {color: #4aa5ff;}
+.postTitle a:active {color: #4aa5ff;}
+
+.previousPage a:link {color: gray;}
+.previousPage a:visited {color: gray;}
+.previousPage a:hover {color: #4aa5ff;}
+.previousPage a:active {color: #4aa5ff;}
+
+.pageNumber a:link {color: gray;}
+.pageNumber a:visited {color: gray;}
+.pageNumber a:hover {color: #4aa5ff;}
+.pageNumber a:active {color: #4aa5ff;}
+
+.nextPage a:link {color: gray;}
+.nextPage a:visited {color: gray;}
+.nextPage a:hover {color: #4aa5ff;}
+.nextPage a:active {color: #4aa5ff;}
+
+.updateButton a:link {color: black;}
+.updateButton a:visited {color: black;}
+.updateButton a:hover {color: #4aa5ff;}
+.updateButton a:active {color: #4aa5ff;}
+
+.deleteButton a:link {color: black;}
+.deleteButton a:visited {color: black;}
+.deleteButton a:hover {color: #4aa5ff;}
+.deleteButton a:active {color: #4aa5ff;}

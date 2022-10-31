@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +26,12 @@ import com.project.yameokja.service.report.ReportService;
 public class ReportController {
 	
 	@Autowired
-	ReportService reportService;
+	private ReportService reportService;
 	
+	public void setReportService(ReportService reportService) {
+		this.reportService = reportService;
+	}
+
 	@Autowired
 	private final static String DEFAULT_PATH = "/resources/upload/";
 	
