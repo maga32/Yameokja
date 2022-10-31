@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.yameokja.domain.Report;
 import com.project.yameokja.service.report.ReportService;
@@ -45,7 +46,7 @@ public class ReportController {
 		int reportFormCategoryNo = reportService.reportFormCategoryNo(userId, categoryNo, postNo);
 		
 		//reportType와 userId 차이 알고 넣기
-		model.addAttribute(reportType);
+		model.addAttribute("reportType", reportType);
 		model.addAttribute("reportTarget", reportTarget);
 		model.addAttribute("categoryNo", reportFormCategoryNo);
 		
@@ -142,41 +143,63 @@ public class ReportController {
 	@RequestMapping("/reportDetail")
 	public String reportDetail(
 			Model model, 
-//			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
-//			@RequestParam(value="categoryNo", required=false, defaultValue="300")String categoryNo,
-//			@RequestParam(value="reportPusichCheck", required=false, defaultValue="0")int reportPunishCheck,
-//			@RequestParam(value="type", required=false)String type,
 			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo
 //			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
 		Report report = reportService.getReport(reportNo);
-//		List<Report> reportList = reportService.getReportList(reportType, reportPunishCheck, type, keyword);
-//		model.addAttribute("reportList", reportList);
+
 		model.addAttribute("report", report);
+		model.addAttribute("reportNo", reportNo);
 //		System.out.println(reportType);
-//		System.out.println(categoryNo);
 		
 		return "report/reportDetail";
 	}
 	
-	@RequestMapping("/reportUpdate")
-	public String reportUpdate(
+	@RequestMapping("/reportUpdateForm")
+	public String reportUpdateForm(
 			Model model, 
-//			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
-//			@RequestParam(value="categoryNo", required=false, defaultValue="300")String categoryNo,
-//			@RequestParam(value="reportPusichCheck", required=false, defaultValue="0")int reportPunishCheck,
-//			@RequestParam(value="type", required=false)String type,
 			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo
-//			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
 		Report report = reportService.getReport(reportNo);
-//		List<Report> reportList = reportService.getReportList(reportType, reportPunishCheck, type, keyword);
-//		model.addAttribute("reportList", reportList);
 		model.addAttribute("report", report);
-//		System.out.println(reportType);
-//		System.out.println(categoryNo);
 		
-		return "report/reportUpdate";
+		return "report/reportUpdateForm";
+	}
+	
+	@RequestMapping(value="/reportUpdate", method=RequestMethod.POST)
+	public String reportUpdate(
+			Model model, 
+			RedirectAttributes reAttrs,
+			@RequestParam(value="reportTitle", required=false, defaultValue="")String reportTitle,
+			@RequestParam(value="reportTarget", required=false, defaultValue="")String reportTarget,
+			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
+//			@RequestParam(value="reportFile", required=false, defaultValue="")String reportFile,
+			@RequestParam(value="reportPunishContent", required=false, defaultValue="")String reportPunishContent,
+			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
+			) {
+		Report report = reportService.getReport(reportNo);
+		report.setReportTitle(reportTitle);
+		report.setReportTarget(reportTarget);
+		report.setReportType(reportType);
+//		report.setReportFile(reportFile);
+		report.setReportPunishContent(reportPunishContent);
+
+		reportService.reportUpdate(report);
+
+//		reAttrs.addAttribute("pageNum", pageNum);		
+		return "redirect:reportList";
+	}
+	
+	@RequestMapping(value="/deleteReport")
+	public String deleteReport(
+//			Model model, 
+			RedirectAttributes reAttrs,
+			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
+			
+			) {
+		reportService.deleteReport(reportNo);
+//		reAttrs.addAttribute("pageNum", pageNum);
+		return "redirect:reportList";
 	}
 
 }

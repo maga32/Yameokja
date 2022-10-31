@@ -98,9 +98,19 @@
 		WHERE report_no = #{ reportNo }
 	</select>
 	
-	<update id="reportUpdate">
-		UPDATE 
+	<update id="reportUpdate" parameterType="Report" >
+		UPDATE report
+		SET report_title = #{ reportTitle }, report_type = #{reportType},
+			report_target = #{reportTarget}, 
+<!-- 			report_file = #{reportFile}, -->
+			report_punish_content = #{reportPunishContent}
+		WHERE report_no = #{ reportNo }
 	</update>
+	
+	<delete id="deleteReport">
+		DELETE FROM report
+		WHERE report_no = #{ reportNo }
+	</delete>
 	
 
 	<resultMap type="Report" id="ReportResultMap">

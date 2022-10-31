@@ -64,8 +64,13 @@ public class ReportDaoImpl implements ReportDao {
 	}
 
 	@Override
-	public void reportUpdate(int reportNo) {
-		sqlSession.update(NAME_SPACE+ ".reportUpdate", reportNo);
+	public void reportUpdate(Report report) {
+		sqlSession.update(NAME_SPACE+ ".reportUpdate", report);
+	}
+
+	@Override
+	public void deleteReport(int reportNo) {
+		sqlSession.delete(NAME_SPACE+ ".deleteReport", reportNo);
 	}
 	
 }

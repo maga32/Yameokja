@@ -62,7 +62,12 @@ public class ReportService {
 		return reportDao.getReport(reportNo);
 	}
 	
-	public void reportUpdate(int reportNo) {
-		reportDao.reportUpdate(reportNo);
+	public void reportUpdate(Report report) {
+		reportDao.reportUpdate(report);
 	};
+	
+	public void deleteReport(int reportNo) {
+		reportDao.deleteReport(reportNo);
+	};
+	
 }

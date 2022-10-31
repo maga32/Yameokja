@@ -20,7 +20,10 @@ public interface ReportDao {
 	public Report getReport(int reportNo);
 	
 	//신고 디테일 수정
-	public void reportUpdate(int reportNo);
+	public void reportUpdate(Report report);
+	
+	//삭제
+	public void deleteReport(int reportNo);
 
 }
 
