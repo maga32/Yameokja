@@ -25,6 +25,7 @@
 	<view-controller path="/" view-name="redirect:main" />
 	
 	<beans:bean id="AdminCheckInterceptor" class="com.project.yameokja.interceptor.AdminCheckInterceptor" />
+	<beans:bean id="LoginCheckInterceptor" class="com.project.yameokja.interceptor.LoginCheckInterceptor" />
 	
 	<interceptors>
 	   <interceptor>

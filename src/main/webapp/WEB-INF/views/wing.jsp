@@ -64,6 +64,14 @@
 						</a>
 					</div>
 				</div>
+				
+				<c:if test="${ sessionScope.member.memberLevel >= 7}">
+					<div class="col-12 pb-2">
+						<a class="text-warning" href="/yameokja/admin/adminMember">
+							<i class="fa fa-cog" aria-hidden="true"></i> 관리자 페이지
+						</a>
+					</div>
+				</c:if>
 			</c:if>
 			
 			<div class="col-12 fs-5 fw-semibold p-1">

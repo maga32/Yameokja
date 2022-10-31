@@ -70,6 +70,7 @@ footer {
 	transform: translateX(0px);
 	transition: 0.3s all ease;
     transition: 0.2s all;
+	overflow-y: scroll;
 }
 
 @media (max-width: 991px){
