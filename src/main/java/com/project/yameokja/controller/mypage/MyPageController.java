@@ -36,16 +36,15 @@ public class MyPageController {
 	@RequestMapping(value="/myPagePost")
 	public String myPagePost(
 			Model model, 
-			@RequestParam(value = "pageNum" ,required = false, defaultValue = "1")int pageNum,
-			@RequestParam(value = "userId", required = true, defaultValue = "memberId01")String userId) 
-	{
+			@RequestParam(value = "userId", required = true, defaultValue = "memberId01")String userId,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 		
 //		 회원정보 하나 
 		Member user = myPageService.getMember(userId);
 		
 //		 회원이 쓴 글 리스트
-		Map<String, Object> modelMap = myPageService.myPagePost(pageNum, userId);
-		model.addAllAttributes(modelMap);
+		Map<String, Object> myPagePost = myPageService.myPagePost(userId, pageNum);
+		model.addAllAttributes(myPagePost);
 		model.addAttribute("user", user);
 		model.addAttribute("pageNum", pageNum);
 		

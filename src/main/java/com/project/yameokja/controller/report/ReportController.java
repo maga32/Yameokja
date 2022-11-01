@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -127,18 +128,15 @@ public class ReportController {
 			@RequestParam(value="categoryNo", required=false, defaultValue="300")int categoryNo,
 			@RequestParam(value="reportPunishCheck", required=false, defaultValue="0")String reportPunishCheck,
 			@RequestParam(value="type", required=false, defaultValue="all")String type,
-			@RequestParam(value="keyword", required=false, defaultValue="")String keyword
-			//@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
+			@RequestParam(value="keyword", required=false, defaultValue="")String keyword,
+			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
 		
-		List<Report> reportList = reportService.reportList(categoryNo, reportPunishCheck, type, keyword);
+		Map<String, Object> reportList = reportService.reportList(categoryNo, reportPunishCheck, type, keyword, pageNum);
 
-		model.addAttribute("reportList", reportList);
+		model.addAllAttributes(reportList);
 		model.addAttribute("reportType", reportType);
-		model.addAttribute("categoryNo", categoryNo);
-		model.addAttribute("reportPunishCheck", reportPunishCheck);
-		model.addAttribute("keyword", keyword);
-		
+
 		return "report/reportList";
 	}
 	

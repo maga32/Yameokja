@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css" href="resources/css/reportDetail.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/report.css" />
 <article>
 <form name="reportUpdateForm" id="reportUpdateForm"  action="reportUpdate" method="post" >
 <input type="text" name="reportNo" value="${ report.reportNo }">

@@ -51,6 +51,7 @@
 				
 			</where>
 		ORDER BY report_no DESC
+		LIMIT #{startRow}, #{num}
 	</select>
 	
 	<select id="reportCount" resultType="int" parameterType="hashMap">

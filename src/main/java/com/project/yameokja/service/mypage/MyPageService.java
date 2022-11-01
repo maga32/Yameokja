@@ -12,7 +12,7 @@ public interface MyPageService {
 	
 	public Member getMember(String userId);
 	
-	public Map<String, Object> myPagePost(int pageNum, String userId);
+	public Map<String, Object> myPagePost(String userId, int pageNum);
 	
 	void deleteMyPagePost(int postNo);
 	

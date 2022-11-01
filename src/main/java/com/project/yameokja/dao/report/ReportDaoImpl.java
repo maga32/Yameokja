@@ -1,6 +1,5 @@
 package com.project.yameokja.dao.report;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ public class ReportDaoImpl implements ReportDao {
 	// 신고 목록 조회
 	@Override
 
-	public List<Report> reportList(int categoryNo, String reportPunishCheck, String type, String keyword) {
+	public List<Report> reportList(int categoryNo, String reportPunishCheck, String type, String keyword, int startRow, int num) {
 
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -36,7 +35,8 @@ public class ReportDaoImpl implements ReportDao {
 		map.put("reportPunishCheck", reportPunishCheck);
 		map.put("type", type);
 		map.put("keyword", keyword);
-		//map.put("pageNum", pageNum);
+		map.put("startRow", startRow);
+		map.put("num", num);
 		
 		System.out.println("dao - categoryNo : " + categoryNo + ", reportPunishCheck : " + reportPunishCheck + ", type : " + type + ", keyword : " + keyword);
 		

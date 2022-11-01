@@ -32,7 +32,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public Map<String, Object> myPagePost(int pageNum, String userId) {
+	public Map<String, Object> myPagePost(String userId, int pageNum) {
 		int currentPage = pageNum;		
 		int startRow = (currentPage -1) * PAGE_SIZE;
 		int listCount = myPageDao.myPagePostCount(userId);
