@@ -51,6 +51,7 @@
 				
 			</where>
 		ORDER BY report_no DESC
+		LIMIT #{startRow}, #{num}
 	</select>
 	
 	<select id="reportCount" resultType="int" parameterType="hashMap">
@@ -98,9 +99,19 @@
 		WHERE report_no = #{ reportNo }
 	</select>
 	
-	<update id="reportUpdate">
-		UPDATE 
+	<update id="reportUpdate" parameterType="Report" >
+		UPDATE report
+		SET report_title = #{ reportTitle }, report_content = #{reportContent},
+			report_target = #{reportTarget}, report_type = #{reportType},
+			report_punish_content = #{reportPunishContent}
+<!-- 			report_file = #{reportFile}, -->
+		WHERE report_no = #{ reportNo }
 	</update>
+	
+	<delete id="deleteReport">
+		DELETE FROM report
+		WHERE report_no = #{ reportNo }
+	</delete>
 	
 
 	<resultMap type="Report" id="ReportResultMap">

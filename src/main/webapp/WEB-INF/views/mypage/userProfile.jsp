@@ -18,7 +18,7 @@
 </head>
 <body>
 <form name="blockListForm" id="blockListForm">
-	<input type="hidden" name="userId" value="${ user.memberId }" />
+	<input type="text" name="userId" value="${ user.memberId }" />
 </form>
 <div class="row">
 <!-- 좌측날개 -->
@@ -69,9 +69,10 @@
 			<div class="row">
 			<div class=" col-6 fw-semibold p-1"><a href="myPagePost">활동내역구경가기 -></a></div>
 			<div class=" col-6 p-1 text-end">
-				<span class="fa-stack fa-lg">
+<%-- 				<span class="fa-stack fa-lg" onclick='location.href="reportForm?categoryNo=${categoryNo}&userId=${user.memberId}"'> --%>
+				  <span class="fa-stack fa-lg" onclick='location.href="reportForm?categoryNo=${categoryNo}&userId=${user.memberId}"'>
 				  <i class="fa fa-circle fa-stack-2x"></i>
-				  <i class="fa fa-bell fa-stack-1x text-white"></i>
+				  <i class="fa fa-bell fa-stack-1x text-white"></i>					
 				</span>
 			</div>
 		</div>

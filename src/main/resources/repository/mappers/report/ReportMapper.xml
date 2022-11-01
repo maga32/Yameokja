@@ -101,10 +101,10 @@
 	
 	<update id="reportUpdate" parameterType="Report" >
 		UPDATE report
-		SET report_title = #{ reportTitle }, report_type = #{reportType},
-			report_target = #{reportTarget}, 
-<!-- 			report_file = #{reportFile}, -->
+		SET report_title = #{ reportTitle }, report_content = #{reportContent},
+			report_target = #{reportTarget}, report_type = #{reportType},
 			report_punish_content = #{reportPunishContent}
+<!-- 			report_file = #{reportFile}, -->
 		WHERE report_no = #{ reportNo }
 	</update>
 	

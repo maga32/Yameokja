@@ -19,7 +19,7 @@
 					<img alt="프로필 사진" class=" rounded-circle text-center col-12"
 						src="resources/IMG/mypage/likeIMG.PNG">
 				</div>
-				<div class="text-start col-6 ps-3 p-0 align-items">
+				<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 					<div class="col-12">
 						<div class="fw-bold fs-2">${ user.memberNickname }님</div>
 						<div>이메일 : ${ user.memberEmail }</div>
@@ -28,7 +28,7 @@
 				</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
 				<c:if test="${ sessionScope.memberId == userId }">
-				<div class="col-3 p-0 align-items">
+				<div class="col-3 p-0 d-flex align-items-center">
 					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
 							<a href="#">회원정보수정</a>
@@ -53,11 +53,11 @@
 				</div>
 				</c:if>
 				<c:if test="${ sessionScope.memberId != userId}">
-					<div class="col-3 p-0 align-items">
+					<div class="col-3 p-0 d-flex align-items-center">
 					<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
 							<a href="#"
-								onclick='window.open("userProfile","프로필","width=500, height=600")'>
+								onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>
 								${ user.memberNickname }의 프 로 필</a>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 				<c:if test="${ not empty postList }">
 					<c:forEach var="p" items="${ postList }">
 
-						<div class="postFrame border text-center py-2 rounded col-12 mb-2">
+						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 mx-2">
 								<img src="resources/IMG/LOGOtemporaryIMG.PNG"
 										class="img-thumbnail rounded" alt="...">

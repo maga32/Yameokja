@@ -170,8 +170,8 @@ public class ReportController {
 	@RequestMapping(value="/reportUpdate", method=RequestMethod.POST)
 	public String reportUpdate(
 			Model model, 
-			RedirectAttributes reAttrs,
 			@RequestParam(value="reportTitle", required=false, defaultValue="")String reportTitle,
+			@RequestParam(value="reportContent", required=false, defaultValue="")String reportContent,
 			@RequestParam(value="reportTarget", required=false, defaultValue="")String reportTarget,
 			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
 //			@RequestParam(value="reportFile", required=false, defaultValue="")String reportFile,
@@ -180,14 +180,19 @@ public class ReportController {
 			) {
 		Report report = reportService.getReport(reportNo);
 		report.setReportTitle(reportTitle);
+		report.setReportContent(reportContent);
 		report.setReportTarget(reportTarget);
 		report.setReportType(reportType);
 //		report.setReportFile(reportFile);
 		report.setReportPunishContent(reportPunishContent);
+		System.out.println("reportTitle"+reportTitle);
+		System.out.println("reportContent"+reportContent);
+		System.out.println("reportTarget"+reportTarget);
+		System.out.println("reportType"+reportType);
+		System.out.println("reportPunishContent"+reportPunishContent);
 
 		reportService.reportUpdate(report);
 
-//		reAttrs.addAttribute("pageNum", pageNum);		
 		return "redirect:reportList";
 	}
 	

@@ -18,7 +18,7 @@
 				<img alt="프로필 사진" class=" rounded-circle text-center col-12"
 					src="resources/IMG/mypage/likeIMG.PNG">
 			</div>
-			<div class="text-start col-6 ps-3 p-0 align-items">
+			<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 				<div class="col-12">
 					<div class="fw-bold fs-2">${ user.memberNickname }님</div>
 					<div>이메일 : ${ user.memberEmail }</div>
@@ -27,7 +27,7 @@
 			</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
 			<c:if test="${ sessionScope.memberId == userId }">
-			<div class="col-3 p-0 align-items">
+			<div class="col-3 p-0 d-flex align-items-center">
 				<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
 						<a href="#">회원정보수정</a>
@@ -52,7 +52,7 @@
 			</div>
 			</c:if>
 			<c:if test="${ sessionScope.memberId != userId}">
-				<div class="col-3 p-0 align-items">
+				<div class="col-3 p-0 d-flex align-items-center">
 				<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
 						<a href="#"
@@ -91,7 +91,7 @@
 				</div>
 			</c:if>
 			<div class="col-6 col-md-7 col-sm-6">
-			<div class="text-muted fw-bold fs-3" tabindex="0">
+			<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
 				<a href="#"> 
 					<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
 					<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 

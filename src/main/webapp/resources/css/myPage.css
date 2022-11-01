@@ -2,10 +2,10 @@
 /* 전체틀 */
 
 /* 내정보 */
-.align-items{
-	display: flex;
-    align-items: center;
-}
+/* .align-items{ */
+/* 	display: flex; */
+/*     align-items: center; */
+/* } */
 
 
 /* 리스트 별로 이동하는 버튼 */
@@ -19,10 +19,10 @@
 }
 
 /* 리스트 */
-.postFrame{
-	display: flex;
-    align-items: center;
-}
+/* .postFrame{ */
+/* 	display: flex; */
+/*     align-items: center; */
+/* } */
 
 .fa-bell{
 	color: #F58500;

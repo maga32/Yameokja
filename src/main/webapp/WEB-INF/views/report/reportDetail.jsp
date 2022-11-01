@@ -29,9 +29,7 @@
 				src="/yameokja/resources/IMG/LOGOtemporaryIMG.PNG">
 		</div>
 		<div class="col-12 pt-2 p-0">
-			<div class="col-12 border reportContent">
-				${ report.reportContent }
-			</div>
+			<textarea class="col-12 border border-dark reportContent" name="reportContent" readonly="readonly">${ report.reportContent }</textarea>
 		</div>
 		
 		<div class="col-12 px-3 file">
@@ -51,7 +49,7 @@
 		<div class="col-12 fw-bold ps-1">
 			<h3>신고 처리 결과</h3>
 		</div>
-		<textarea class="col-12"></textarea>
+		<textarea class="col-12" name="reportPunishContent" placeholder="아직 처리되지 않았습니다." readonly="readonly">${ report.reportPunishContent }</textarea>
 	</div>
 	<br>
 	
@@ -75,12 +73,12 @@
 			<button class="col btn btn-danger">영구정지</button>
 		</div>
 		</div>
-		<textarea class="col-12"></textarea>
+		<textarea class="col-12" readonly="readonly"></textarea>
 	</div>
-	
-	<div class="row m-0 justify-content-end px-3 py-2">
-		<input type="button" onclick="location.href='reportList'" class="col-2 w-auto btn btn-secondary" value="목록으로">
-		<input type="button" onclick="location.href='reportUpdateForm?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary mx-2 " value="수정하기">
-		<input type="button" onclick="location.href='deleteReport?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary" value="삭제하기">
-	</div>
+
+<div class="row m-0 justify-content-end px-3 py-2">
+	<input type="button" onclick="location.href='reportList'" class="col-2 w-auto btn btn-secondary" value="목록으로">
+	<input type="button" onclick="location.href='reportUpdateForm?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary mx-2 " value="수정하기">
+	<input type="button" onclick="location.href='deleteReport?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary" value="삭제하기">
+</div>
 </article>
