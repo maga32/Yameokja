@@ -73,7 +73,7 @@
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
 						<i class="fa fa-heart-o" aria-hidden="true"></i>
-						<i class="fa fa-link" aria-hidden="true"></i>
+						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>
 						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
 					</div>
 				</div>

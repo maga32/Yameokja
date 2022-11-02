@@ -8,7 +8,7 @@
 <article>
 <div class="row m-0 bg-white justify-content-center">
 	<form name="postListForm" id="postListForm">
-		<input type="hidden" name="userId" value="${ userId }" />
+		<input type="hidden" name="userId" value="${ user.memberId }" />
 		<input type="hidden" name="pageNum" value="${ pageNum }" />
 	</form>
 	
@@ -26,8 +26,7 @@
 				</div>
 			</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
-			<c:if test="${ sessionScope.memberId == userId }">
-			<input type="text" name="userId" value="${ userId }" />
+			<c:if test="${ sessionScope.memberId == user.memberId }">
 			<div class="col-3 p-0 d-flex align-items-center">
 				<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
@@ -52,7 +51,7 @@
 				</div>
 			</div>
 			</c:if>
-			<c:if test="${ sessionScope.memberId != userId}">
+			<c:if test="${ sessionScope.memberId != user.memberId}">
 				<div class="col-3 p-0 d-flex align-items-center">
 				<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">

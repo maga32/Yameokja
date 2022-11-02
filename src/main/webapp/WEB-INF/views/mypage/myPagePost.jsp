@@ -7,9 +7,10 @@
 <article>
 <div class="row m-0 bg-white justify-content-center">
 	<form name="postListForm" id="postListForm">
-		<input type="hidden" name="userId" value="${ userId }" />
+		<input type="hidden" name="userId" value="${ user.memberId }" />
 		<input type="hidden" name="pageNum" value="${ pageNum }" />
 		<input type="hidden" name="postNo" value="${ postNo }" />
+		<input type="hidden" name="postIsPost" value="${ postIsPost }" />
 	</form>
 	
 		<div class="row py-2 px-0">
@@ -27,7 +28,7 @@
 					</div>
 				</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
-				<c:if test="${ sessionScope.memberId == userId }">
+				<c:if test="${ sessionScope.memberId == user.memberId }">
 				<div class="col-3 p-0 d-flex align-items-center">
 					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
@@ -38,7 +39,7 @@
 						</div>
 						<div class="buttons_">
 							<a href="#"
-								onclick='window.open("userProfile","프로필","width=500, height=600")'>나
+								onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>나
 								의 프 로 필</a>
 						</div>
 						<div class="buttons_">
@@ -52,7 +53,7 @@
 					</div>
 				</div>
 				</c:if>
-				<c:if test="${ sessionScope.memberId != userId}">
+				<c:if test="${ sessionScope.memberId != user.memberId}">
 					<div class="col-3 p-0 d-flex align-items-center">
 					<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
@@ -76,24 +77,23 @@
 <!-- 			postList 시작 -->
 			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 
-				<c:if test="${ not empty postList }">
-					<c:forEach var="p" items="${ postList }">
-
+				<c:if test="${ not empty myPagePost }">
+					<c:forEach var="p" items="${ myPagePost }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
 								<a href="#">
 									<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
 								</a>
 							</div>
-							
-							<div class="postTitle text-start col-6 px-2"><a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">
+							<div class="postTitle text-start col-6 px-2">
+							<a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">
 								<div class="fs-2 fw-bold">${ p.postTitle }</div>
 								<div><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i><fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd" /></div>
 								<div><i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }</div>
 								<div><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }</div>
 							</a></div>
 							
-							<div class="col-3">
+							<div class="col-3  text-end pe-3">
 								<div class="updateButton">
 									<a href=""><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
 								</div>
@@ -102,7 +102,6 @@
 								</div>
 							</div>
 						</div>
-
 					</c:forEach>
 <!-- 					페이지그룹 시작 -->
 					<div class="row text-end">
@@ -133,7 +132,7 @@
 					</div>
 <!-- 					페이지그룹 끝 -->
 				</c:if>
-				<c:if test="${ empty postList }">
+				<c:if test="${ empty myPagePost }">
 					<div class="col-12 text-center"> 작성한 글이 없습니다.</div>
 				</c:if>
 			</div>
