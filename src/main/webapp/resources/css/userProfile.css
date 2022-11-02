@@ -69,3 +69,11 @@
 	font-weight: 500;
 	font-size: 25px;
 }
+
+/* a */
+a { text-decoration: none; }
+
+.myPagePostButton a:link {color: black;}
+.myPagePostButton a:visited {color: black;}
+.myPagePostButton a:hover {color: #4aa5ff;}
+.myPagePostButton a:active {color: 4aa5ff;}

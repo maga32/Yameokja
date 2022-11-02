@@ -30,13 +30,11 @@
 	border: 1px solid black;
 	vertical-align: middle;
 }
-a {
-	text-decoration: none;
-}
 
-.pageNum a{
-	color: gray;
-}
+/* a */
+a { text-decoration: none; }
+
+.pageNum a{ color: gray; }
 .previousPage a:link {color: gray;}
 .previousPage a:visited {color: gray;}
 .previousPage a:hover {color: #4aa5ff;}

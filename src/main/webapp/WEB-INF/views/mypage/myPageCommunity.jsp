@@ -67,10 +67,10 @@
 		</div>
 <!-- 		내정보틀 끝 -->
 		<div class="text-center p-0 mt-3">
-			<div class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPagePost">맛집 리뷰</a></div>
-			<div class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageReply">댓글 리뷰</a></div>
+			<div class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPagePost?userId=${ user.memberId }">맛집 리뷰</a></div>
+			<div class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageReply?userId=${ user.memberId }">댓글 리뷰</a></div>
 			<div class="currentPage fw-bold px-3 py-2">동네글</div>
-			<div class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageLike">찜 목록</a></div>
+			<div class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageLike?userId=${ user.memberId }">찜 목록</a></div>
 		</div>
 <!-- 			communityList 시작 -->
 		<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">

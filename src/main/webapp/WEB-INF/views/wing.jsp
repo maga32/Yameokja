@@ -58,7 +58,7 @@
 						</a>
 					</div>
 					<div class="col-6">
-						<a href="/yameokja/myPagePost" class="wing col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
+						<a href="/yameokja/myPagePost?userId=${ sessionScope.memberId }" class="wing col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
 							마이페이지
 						</a>
 					</div>

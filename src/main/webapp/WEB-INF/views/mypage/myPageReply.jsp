@@ -67,10 +67,10 @@
 			</div>
 			<!--내정보틀 끝 -->
 			<div class="text-center p-0 mt-3">
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPagePost">맛집 리뷰</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPagePost?userId=${ user.memberId }">맛집 리뷰</a></span>
 				<span class="currentPage fw-bold px-3 py-2">댓글 리뷰</span>
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageCommunity">동네글</a></span>
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageLike">찜 목록</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageCommunity?userId=${ user.memberId }">동네글</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageLike?userId=${ user.memberId }">찜 목록</a></span>
 			</div>
 <!-- 			postListHeader 끝 -->
 <!-- 			postList 시작 -->

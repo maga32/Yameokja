@@ -36,7 +36,7 @@ public class MyPageController {
 	@RequestMapping(value="/myPagePost")
 	public String myPagePost(
 			Model model, 
-			@RequestParam(value = "userId", required = true, defaultValue = "memberId01")String userId,
+			@RequestParam(value = "userId", required = true, defaultValue = "memberId10")String userId,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 		
 //		 회원정보 하나 
@@ -46,6 +46,7 @@ public class MyPageController {
 		Map<String, Object> myPagePost = myPageService.myPagePost(userId, pageNum);
 		model.addAllAttributes(myPagePost);
 		model.addAttribute("user", user);
+		model.addAttribute("userId", userId);
 		model.addAttribute("pageNum", pageNum);
 		
 		return "mypage/myPagePost";
@@ -63,7 +64,7 @@ public class MyPageController {
 	@RequestMapping(value="/myPageCommunity")
 	public String myPageCommunity(
 			Model model, 
-			@RequestParam(value = "userId", required = false, defaultValue = "memberId01")String userId, 
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 
 		Member user = myPageService.getMember(userId);
@@ -96,8 +97,7 @@ public class MyPageController {
 	
 	@RequestMapping("/userProfile")
 	public String userProfile(Model model, 
-//			@RequestParam(value = "userId", required = false, defaultValue = "memberId02")String userId,
-			@RequestParam(value = "userId", required = false, defaultValue = "null")String userId) {
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId) {
 		Member user = myPageService.getMember(userId);
 		model.addAttribute("user", user);
 		return "forward:WEB-INF/views/mypage/userProfile.jsp";

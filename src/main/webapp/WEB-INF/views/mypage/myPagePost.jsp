@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/myPage.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/myPage.css" />
 <script type="text/javascript" src="resources/js/mypage.js"></script>
 <article>
 <div class="row m-0 bg-white justify-content-center">
@@ -14,7 +13,7 @@
 	</form>
 	
 		<div class="row py-2 px-0">
-			<div class="row p-0 m-0 border border-3 rounded-3">
+			<div class="row p-0 m-0 pb-2 border border-3 rounded-3">
 
 				<div class="col-3 p-4">
 					<img alt="프로필 사진" class=" rounded-circle text-center col-12"
@@ -24,12 +23,11 @@
 					<div class="col-12">
 						<div class="fw-bold fs-2">${ user.memberNickname }님</div>
 						<div>이메일 : ${ user.memberEmail }</div>
-						<div>가입일 : ${ user.memberJoinDate }</div>
+						<div>가입일 : <fmt:formatDate value="${ user.memberJoinDate }" pattern="yyyy-MM-dd" /></div>
 					</div>
 				</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
 				<c:if test="${ sessionScope.memberId == userId }">
-				<input type="text" name="userId" value="${ userId }" />
 				<div class="col-3 p-0 d-flex align-items-center">
 					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
@@ -70,9 +68,9 @@
 			<!--내정보틀 끝 -->
 			<div class="text-center p-0 mt-3">
 				<span class="currentPage fw-bold px-3 py-2">맛집 리뷰</span>
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageReply">댓글 리뷰</a></span>
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageCommunity">동네글</a></span>
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageLike">찜 목록</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageReply?userId=${ user.memberId }">댓글 리뷰</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageCommunity?userId=${ user.memberId }">동네글</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageLike?userId=${ user.memberId }">찜 목록</a></span>
 			</div>
 <!-- 			postListHeader 끝 -->
 <!-- 			postList 시작 -->
@@ -88,9 +86,9 @@
 								</a>
 							</div>
 							
-							<div class="postTitle text-start col-6 px-2"><a href="#">
+							<div class="postTitle text-start col-6 px-2"><a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">
 								<div class="fs-2 fw-bold">${ p.postTitle }</div>
-								<div><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>${ p.postRegDate }</div>
+								<div><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i><fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd" /></div>
 								<div><i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }</div>
 								<div><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }</div>
 							</a></div>

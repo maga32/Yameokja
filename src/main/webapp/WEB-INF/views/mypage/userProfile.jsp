@@ -67,8 +67,8 @@
 				<div class=" col-6 p-1">아직기능구현안됨</div>		
 			</div>
 			<div class="row">
-			<div class=" col-6 fw-semibold p-1"><a href="myPagePost">활동내역구경가기 -></a></div>
-			<div class=" col-6 p-1 text-end">
+			<div class="col-6 fw-semibold p-1 myPagePostButton"><a href="#" onclick="opener.location.href='myPagePost?userId=${ user.memberId }';window.close();">활동내역구경가기 -></a></div>
+			<div class="col-6 p-1 text-end">
 				<span class="fa-stack fa-lg" onclick="location.href='reportForm?reportTarget=${user.memberId}'">
 				  <i class="fa fa-circle fa-stack-2x"></i>
 				  <i class="fa fa-bell fa-stack-1x text-white"></i>					
