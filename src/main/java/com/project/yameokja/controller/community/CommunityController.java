@@ -84,18 +84,35 @@ public class CommunityController {
 			
 			return null;
 		}
-		
-		
+
 		return "community/community101WriteForm";
 	}
 	
-	
-	// 모집글 작성폼 - communityWriteController 
-	@RequestMapping("community102WriteForm")
-	public String community102WriteForm() {
+	// 수다글 수정폼
+	@RequestMapping("/community101UpdateForm")
+	public String community101UpdateForm(HttpSession session, Model model,
+			HttpServletResponse respones, PrintWriter out, int communityNo) {
 		
-		return "community/community102WriteForm";
-	}
+		respones.setContentType("text/html; charset=utf-8");
+		
+		String memberId = (String)session.getAttribute("memberId");
+		
+		if(memberId == null) {
+			
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 페이지입니다.')");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();				
+			
+			return null;
+		}
+		
+		Community co = communityListService.getCommunityOne(communityNo);
+		model.addAttribute("co", co);
+		
+		return "community/community101UpdateForm";
+	}											
 	
 	// 수다글 작성 프로세스
 	@RequestMapping(value="/community101WriteProcess", method=RequestMethod.POST)
@@ -128,6 +145,63 @@ public class CommunityController {
 		communityListService.addCommunity101(co);
 		
 		return "redirect:/communityList";
+	}
+	
+	// 수다글 수정 프로세스
+	@RequestMapping(value="community101UpdateProcess", method=RequestMethod.POST)
+	public String community102UpdateProcess(String co101Id, String co101Nickname,
+			String co101Title, String co101Content, HttpServletRequest request, int communityNo,
+			@RequestParam(value="co101File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
+		
+		Community co = new Community();
+		
+		co.setCommunityNo(communityNo);
+		co.setCommunityContent(co101Content);
+		co.setCommunityTitle(co101Title);
+		
+		if( !multipartFile.isEmpty()) {
+			
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+			
+	 
+			multipartFile.transferTo(file);
+			co.setCommunityFile(saveName);
+		}
+		
+		communityListService.updateCommunity101(co);
+		return "redirect:/communityList";
+	}
+	
+	
+	// 모집글 수정 폼
+	@RequestMapping(value="community102UpdateForm", method=RequestMethod.POST)
+	public String community102WriteForm(HttpSession session, Model model,
+			HttpServletResponse respones, PrintWriter out, int communityNo) {
+		
+		respones.setContentType("text/html; charset=utf-8");
+		
+		String memberId = (String)session.getAttribute("memberId");
+		
+		if(memberId == null) {
+			
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 페이지입니다.')");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();				
+			
+			return null;
+		}
+		
+		Community co = communityListService.getCommunityOne(communityNo);
+		model.addAttribute("co", co);
+		
+		return "community/community102UpdateForm";
 	}
 	
 	// 모집글 작성 프로세스
@@ -171,6 +245,45 @@ public class CommunityController {
 		
 		return "redirect:/communityList";
 	}
+	
+	// 모집글 수정 프로세스
+		@RequestMapping(value="community102UpdateProcess", method=RequestMethod.POST)
+		public String community102UpdateProcess(String co102Id, String co102Nickname,
+				String co102Title, String co102Content, int communityNo, String co102PartyDDay,
+				String co102PartyPlace, int co102PartyMembers, HttpServletRequest request,
+				@RequestParam(value="co102File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
+			
+			String[] splitDDay = co102PartyDDay.split("T");
+			String sumDDay = splitDDay[0] + " " +splitDDay[1] + ":00";
+			Timestamp co102PartyDDayResult = Timestamp.valueOf(sumDDay);
+			
+			Community co = new Community();
+			
+			co.setCommunityNo(communityNo);
+			co.setCommunityContent(co102Content);
+			co.setCommunityTitle(co102Title);
+			co.setPartyMembers(co102PartyMembers);
+			co.setPartyPlace(co102PartyPlace);
+			co.setPartyDDay(co102PartyDDayResult);
+
+		
+			if( !multipartFile.isEmpty()) {
+				
+				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+				UUID uid  = UUID.randomUUID();
+				String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+				
+				File file = new File(filePath, saveName);
+				System.out.println("file : " + file.getName());
+
+				multipartFile.transferTo(file);
+				co.setCommunityFile(saveName);
+			}
+		
+			communityListService.updateCommunity102(co);
+			
+			return "redirect:/communityList";
+		}
 	
 	
 	// 모집 참여 및 참여취소
@@ -236,10 +349,23 @@ public class CommunityController {
 		}
 		
 		return "redirect:communityDetail?communityNo="+communityNo;
+	}	
+	
+	// 커뮤니티 글 삭제
+	@RequestMapping("/communityDelete")
+	public String communityDelete(int communityNo, HttpSession session) {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		Community co = communityListService.getCommunityOne(communityNo);
+		
+		if(memberId.equals(co.getMemberId())) {
+			communityListService.deleteCommunity(communityNo);
+		}else {
+			System.out.println("con-communityDelete : 작성자가 아님");
+		}
+		
+		return "redirect:communityList";
 	}
-	
-	
-	
 	
 	// 커뮤니티 글 상세보기
 	@RequestMapping("/communityDetail")
@@ -297,8 +423,8 @@ public class CommunityController {
 		int countPartyMembers = 0;
 		List<Member> memberPhotoList = new ArrayList<Member>();
 		if(co.getpartyMemberIds() == null) {
-			System.out.println("controller - getpmem이 비었음");
-			return null;
+			System.out.println("this.categoryNo = 101");
+			return "community/communityDetail";
 		}
 		String[] members = co.getpartyMemberIds().split(",");
 		

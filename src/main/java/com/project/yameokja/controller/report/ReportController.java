@@ -72,7 +72,7 @@ public class ReportController {
 			return null;
 		}
 		
-		return "report/reportForm";
+		return "forward:WEB-INF/views/report/reportForm.jsp";
 	}
 	
 	// 신고 입력

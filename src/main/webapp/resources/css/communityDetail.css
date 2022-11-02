@@ -22,13 +22,8 @@
     justify-content: center;
 }
 
-.btnCommunityReReplyWriteFormOpen{
-	border: none;
-	background-color: white;
-	color: #7A7A80;
-	font-size: 13px;
-}
-.btnCommunityReReplyUpdateFormOpen{
+.btnCommunityReReplyWriteFormOpen, .btnCommunityReReplyUpdateFormOpen,
+	.replyDelete{
 	border: none;
 	background-color: white;
 	color: #7A7A80;

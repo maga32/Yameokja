@@ -50,16 +50,34 @@ public class CommunityDaoImpl implements CommunityDao {
 		sqlSession.insert(NAME_SPACE + ".addCommunity101", co);
 	}
 	
+	// 커뮤니티 수다글 수정
+	@Override
+	public void updateCommunity101(Community co) {
+		sqlSession.update(NAME_SPACE + ".updateCommunity101", co);
+	}
+		
 	// 커뮤니티 모집글 작성
 	@Override
 	public void addCommunity102(Community co) {
 		sqlSession.insert(NAME_SPACE + ".addCommunity102", co);
 	}
 
+	// 커뮤니티 모집글 수정
+	@Override
+	public void updateCommunity102(Community co) {
+		sqlSession.update(NAME_SPACE + ".updateCommunity102", co);
+	}
+
 	// 커뮤니티 글 상세보기
 	@Override
 	public Community getCommunityOne(int coNo) {
 		return sqlSession.selectOne(NAME_SPACE + ".getCommunityOne", coNo);
+	}
+
+	// 커뮤니티 글 삭제
+	@Override
+	public void deleteCommunity(int coNo) {
+		sqlSession.delete(NAME_SPACE + "deleteCommunity", coNo);
 	}
 
 	// 커뮤니티 글 조회수 증가
@@ -118,6 +136,5 @@ public class CommunityDaoImpl implements CommunityDao {
 		sqlSession.update(NAME_SPACE + ".update102PartyMemberIds", params);
 	}
 
-	
 }
 

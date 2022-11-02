@@ -20,11 +20,20 @@ public interface CommunityDao {
 	// 커뮤니티 수다글 작성
 	public void addCommunity101(Community co);
 	
+	// 커뮤니티 수다글 수정
+	public void updateCommunity101(Community co);
+	
 	// 커뮤니티 모집글 작성
 	public void addCommunity102(Community co);
+	
+	// 커뮤니티 모집글 수정
+	public void updateCommunity102(Community co);
 
 	// 커뮤니티 글 상세보기
 	public Community getCommunityOne(int coNo);
+	
+	// 커뮤니티 글 삭제
+	public void deleteCommunity(int coNo);
 	
 	// 커뮤니티 글 조회수 증가
 	public void addReadCount(int coNo);

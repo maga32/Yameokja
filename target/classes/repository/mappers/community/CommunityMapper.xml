@@ -68,6 +68,15 @@
 				  #{communityFile}, #{categoryNo}, #{memberId}, #{memberNickname})
 	</insert>
 	
+<!-- 커뮤니티 수다글 수정  -->
+	<update id="updateCommunity101" parameterType="Community">
+		UPDATE community
+			SET community_title = #{communityTitle},
+			community_content = #{communityContent},
+			community_file = #{communityFile}
+		WHERE community_no = #{communityNo}
+	</update>
+	
 <!-- 커뮤니티 모집글 작성 -->
 	<insert id="addCommunity102" parameterType="Community">
 		INSERT INTO community
@@ -78,6 +87,17 @@
 				  #{communityFile}, #{categoryNo}, #{memberId}, #{memberNickname},
 				  #{partyMembers}, #{partyDDay}, #{partyPlace}, #{partyMemberIds})
 	</insert>
+
+<!-- 커뮤니티 모집글 수정  -->
+	<update id="updateCommunity102" parameterType="Community">
+		UPDATE community
+			SET community_title = #{communityTitle},
+			community_content = #{communityContent},
+			community_file = #{communityFile},
+			party_members = #{partyMembers},
+			party_place = #{partyPlace}
+		WHERE community_no = #{communityNo}
+	</update>
 	
 <!-- 커뮤니티 모집글 참여 등록 -->
 	<update id="update102PartyMemberIds" parameterType="hashmap">
@@ -92,6 +112,11 @@
 		FROM community
 		WHERE community_no = #{coNo}
 	</select>
+	
+<!-- 커뮤니티 글 삭제 -->
+	<delete id="deleteCommunity">
+		DELETE From community WHERE community_no = #{ no }
+	</delete>	
 	
 <!--  조회수 추가 메서드 -->
 	<update id="addReadCount">

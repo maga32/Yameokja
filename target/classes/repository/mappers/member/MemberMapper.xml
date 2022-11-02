@@ -65,7 +65,7 @@
 		FROM member
 		WHERE member_id = #{memberId}
 	</select>
-
+	
 	<!-- 총 회원수 조회 -->
 	<select id="getMemberCount" resultType="Integer">
 		SELECT COUNT(*) FROM member
