@@ -48,16 +48,18 @@
 <!-- search end -->
 <!-- category IMG start -->
 	<div class="row my-3 p-0">
-	<div class="col-6 py-2 col-md-3 border">
-		<a href="storeListAll"><img width="100%" alt="카테고리IMG" src="resources/IMG/LOGOtemporaryIMG.PNG"></a>
-	</div>
-	<c:forEach var="li" items="${ categoryList }">
-		<div class="col-6 py-2 col-md-3 border">
-			<a href="storeList?categoryNo=${ li.categoryNo }">
-				<img width="100%" alt="" src="resources/IMG/category/categoryIMG${ li.categoryNo }.PNG">${ li.categoryName }
+		<div class="col-6 py-2 col-md-3">
+			<a href="storeListAll">
+				<img width="100%" class="rounded" alt="전체" src="/yameokja/resources/IMG/categoryIMG/전체.png">
 			</a>
 		</div>
-	</c:forEach>
+		<c:forEach var="li" items="${ categoryList }">
+			<div class="col-6 py-2 col-md-3">
+				<a href="storeList?categoryNo=${ li.categoryNo }">
+					<img width="100%" class="rounded" alt="${ li.categoryName }" src="/yameokja/resources/IMG/categoryIMG/${ li.categoryName }.png">
+				</a>
+			</div>
+		</c:forEach>
 	</div>
 </div>
 </article>
