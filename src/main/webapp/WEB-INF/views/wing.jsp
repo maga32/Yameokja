@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
+<link rel="stylesheet" type="text/css" href="/yameokja/resources/css/wing.css" />
 <!-- 윙 버튼 -->
 <a id="wingButton" class="d-block d-lg-none btn">
 	<span class="fa-stack fa-lg">
@@ -99,7 +98,7 @@
 				</c:if>
 				<c:if test="${ empty sessionScope.memberId }">
 					<input
-						class="col-12 rounded-pill border border-2 border-E3E5E9 text-secondary bg-white p-1 mb-3"
+						class="col-12 rounded-pill border border-2 text-secondary bg-white p-1 mb-3"
 						type="text" value="&nbsp;&nbsp;">
 				</c:if>
 			</div>
@@ -109,17 +108,17 @@
 			</div>
 			<div class="row">
 				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 border-E3E5E9 text-secondary p-1">
+					<select class="text-center rounded-pill border border-2 text-secondary p-1">
 						<option>서울시</option>
 					</select>
 				</span>
 				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 border-E3E5E9 text-secondary p-1">
+					<select class="text-center rounded-pill border border-2 text-secondary p-1">
 						<option>관악구</option>
 					</select>
 				</span>
 				<span class="col-4 pe-0">
-					<a class="btn btn-light btn-sm rounded-pill border border-2 border-E3E5E9 text-secondary px-3">
+					<a class="btn btn-light btn-sm rounded-pill border border-2 text-secondary px-3">
 						찾기
 					</a>
 				</span>
