@@ -38,8 +38,9 @@ public class ReportController {
 	
 	// 신고 팝업창
 	@RequestMapping(value = "/reportForm")
-	public String reportForm(Model model, HttpSession session, HttpServletResponse response,
-			 int categoryNo, String postNo, String userId,
+	public String reportForm(
+			Model model, HttpSession session, HttpServletResponse response, String postNo,
+			@RequestParam(value="categoryNo", required=false, defaultValue="-7")int categoryNo,
 			@RequestParam(value="reportType", required=false, defaultValue="null")String reportType,
 			@RequestParam(value="reportTarget", required=false, defaultValue="null")String reportTarget) 
 					throws IOException {
@@ -47,7 +48,7 @@ public class ReportController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		int reportFormCategoryNo = reportService.reportFormCategoryNo(userId, categoryNo, postNo);
+		int reportFormCategoryNo = reportService.reportFormCategoryNo(reportTarget, categoryNo, postNo);
 		
 		//reportType와 userId 차이 알고 넣기
 		model.addAttribute("reportType", reportType);

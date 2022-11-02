@@ -99,9 +99,8 @@
 					<div class="col">${ p.postRegDate }</div>
 				</div>
 				<div class="col-5 p-0 m-0">
-					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }postReadCount?</div>
-					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }postUpCount?</div>
-					<div class="col text-end"><i class="fa fa-bell" aria-hidden="true"></i></div>
+					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }</div>
+					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }</div>
 				</div>
 			</div>
 			<div class="row border-top py-4 m-1">
@@ -136,12 +135,12 @@
 				<div class="col-3 mx-2">
 					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
 				</div>
-				<div class="col-6 postContent text-start mx-2">
+				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
 						<a href="#">${ p.postTitle }</a>
 					</div>
-					<div class="" id="postNo">
-						<a href="#">postNo=${ p.postNo }</a>
+					<div class="">
+						<a href="#">${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -152,14 +151,6 @@
 					</div>
 					<div class="">
 						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
-					</div>
-				</div>
-				<div class="upAndDel col-3">
-					<div class="updateButton">
-						프사
-					</div>
-					<div class="deleteButton" id="deleteButton">
-						${ p.memberNickname }
 					</div>
 				</div>
 			</div>
@@ -170,14 +161,15 @@
 	<c:forEach var="p" items="${ bestThreePost }">
 			<div class="postFrame border text-center py-2 rounded col-12 mb-2">
 				<div class="col-3 mx-2">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+					<a href="#"><img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+					</a>
 				</div>
-				<div class="col-6 postContent text-start mx-2">
+				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
 						<a href="#">${ p.postTitle }</a>
 					</div>
-					<div class="" id="postNo">
-						<a href="#">postNo=${ p.postNo }</a>
+					<div class="">
+						<a href="#">${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -188,14 +180,6 @@
 					</div>
 					<div class="">
 						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
-					</div>
-				</div>
-				<div class="upAndDel col-3">
-					<div class="updateButton">
-						프사
-					</div>
-					<div class="deleteButton" id="deleteButton">
-						${ p.memberNickname }
 					</div>
 				</div>
 			</div>

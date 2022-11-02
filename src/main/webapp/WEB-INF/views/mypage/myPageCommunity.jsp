@@ -27,6 +27,7 @@
 			</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
 			<c:if test="${ sessionScope.memberId == userId }">
+			<input type="text" name="userId" value="${ userId }" />
 			<div class="col-3 p-0 d-flex align-items-center">
 				<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">

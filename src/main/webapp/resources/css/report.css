@@ -37,7 +37,6 @@ a {
 .pageNum a{
 	color: gray;
 }
-
 .previousPage a:link {color: gray;}
 .previousPage a:visited {color: gray;}
 .previousPage a:hover {color: #4aa5ff;}
@@ -55,20 +54,6 @@ a {
 
 /* reportDetail */
 
-.bold{
-/* 	fw-bold, d-table , fs-, m-0, p-0, body는 article에.
-; */
-}
-.center{
-/* 	text-align: center; */
-}
-.text-red{
-/* 	color: red; */
-}
-
-.paging{
-/* 	font-weight: bold; */
-}
 textarea{
 	height: 200px;
 }

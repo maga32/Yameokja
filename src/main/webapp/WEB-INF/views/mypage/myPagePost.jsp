@@ -10,6 +10,7 @@
 	<form name="postListForm" id="postListForm">
 		<input type="hidden" name="userId" value="${ userId }" />
 		<input type="hidden" name="pageNum" value="${ pageNum }" />
+		<input type="hidden" name="postNo" value="${ postNo }" />
 	</form>
 	
 		<div class="row py-2 px-0">
@@ -28,6 +29,7 @@
 				</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
 				<c:if test="${ sessionScope.memberId == userId }">
+				<input type="text" name="userId" value="${ userId }" />
 				<div class="col-3 p-0 d-flex align-items-center">
 					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
@@ -80,29 +82,20 @@
 					<c:forEach var="p" items="${ postList }">
 
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
-							<div class="col-3 mx-2">
-								<img src="resources/IMG/LOGOtemporaryIMG.PNG"
-										class="img-thumbnail rounded" alt="...">
+							<div class="col-3 px-2">
+								<a href="#">
+									<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+								</a>
 							</div>
-							<div class="text-start col-6 mx-2">
-								<div class="postTitle fs-2 fw-bold">
-									<a href="#">${ p.postTitle }</a>
-								</div>
-								<div class="postNo" id="postNo">
-									<a href="#">postNo=${p.postNo}</a>
-								</div>
-								<div class="">
-									<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
-									${ p.postRegDate }
-								</div>
-								<div class="">
-									<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
-								</div>
-								<div class="">
-									<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
-								</div>
-							</div>
-							<div class="d-inline-block col-3">
+							
+							<div class="postTitle text-start col-6 px-2"><a href="#">
+								<div class="fs-2 fw-bold">${ p.postTitle }</div>
+								<div><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>${ p.postRegDate }</div>
+								<div><i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }</div>
+								<div><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }</div>
+							</a></div>
+							
+							<div class="col-3">
 								<div class="updateButton">
 									<a href=""><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
 								</div>

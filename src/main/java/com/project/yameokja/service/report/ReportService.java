@@ -11,7 +11,7 @@ public interface ReportService {
 	
 	public Map<String, Object> reportList(int categoryNo, String reportPunishCheck, String type, String keyword, int pageNum);
 	
-	public int reportFormCategoryNo(String userId,  int categoryNo, String postNo);
+	public int reportFormCategoryNo(String reportTarget,  int categoryNo, String postNo);
 	
 	public Report getReport(int reportNo);
 	
