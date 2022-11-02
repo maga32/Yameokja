@@ -16,7 +16,7 @@
 		<h1 class="border-3 border-bottom center">신고하기</h1>
 	</div>
 	
-	<form id="reportForm" name="reportForm" action="addReport" method="post" enctype="multipart/form-data">
+	<form id="reportForm" name="reportForm" action="reportAdd" method="post" enctype="multipart/form-data">
 		<div class="row px-2">
 			<div class="row my-1">
 				<div class="col-3 ps bold">신고 대상<br>신고자</div>

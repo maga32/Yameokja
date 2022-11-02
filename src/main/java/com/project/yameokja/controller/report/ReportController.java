@@ -84,7 +84,7 @@ public class ReportController {
 	}
 	
 	// 신고 입력
-	@RequestMapping(value="/addReport", method=RequestMethod.POST)
+	@RequestMapping(value="/reportAdd", method=RequestMethod.POST)
 	public String addReport(Model model, HttpSession session, HttpServletRequest request,
 			String reportType, String reportTarget, int categoryNo, String reportContent, String reportTitle,
 			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile )
