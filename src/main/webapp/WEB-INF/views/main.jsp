@@ -50,13 +50,13 @@
 	<div class="row my-3 p-0">
 		<div class="col-6 py-2 col-md-3">
 			<a href="storeListAll">
-				<img width="100%" class="rounded" alt="전체" src="/yameokja/resources/IMG/categoryIMG/전체.png">
+				<img width="100%" class="rounded" alt="전체" src="/yameokja/resources/IMG/categoryIMG/All.png">
 			</a>
 		</div>
 		<c:forEach var="li" items="${ categoryList }">
 			<div class="col-6 py-2 col-md-3">
 				<a href="storeList?categoryNo=${ li.categoryNo }">
-					<img width="100%" class="rounded" alt="${ li.categoryName }" src="/yameokja/resources/IMG/categoryIMG/${ li.categoryName }.png">
+					<img width="100%" class="rounded" alt="${ li.categoryName }" src="/yameokja/resources/IMG/categoryIMG/${ li.categoryNo }.png">
 				</a>
 			</div>
 		</c:forEach>
