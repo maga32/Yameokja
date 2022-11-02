@@ -53,12 +53,12 @@
 				</div>
 				<div class="row px-2 pt-3 pb-4">
 					<div class="col-6">
-						<a href="/yameokja/logout" class="col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
+						<a href="/yameokja/logout" class="wing col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
 							로그아웃
 						</a>
 					</div>
 					<div class="col-6">
-						<a href="/yameokja/myPagePost" class="col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
+						<a href="/yameokja/myPagePost" class="wing col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
 							마이페이지
 						</a>
 					</div>
@@ -66,7 +66,7 @@
 				
 				<c:if test="${ sessionScope.member.memberLevel >= 7}">
 					<div class="col-12 pb-2">
-						<a class="text-warning" href="/yameokja/admin/adminMember">
+						<a class="text-warning wing" href="/yameokja/admin/adminMember">
 							<i class="fa fa-cog" aria-hidden="true"></i> 관리자 페이지
 						</a>
 					</div>
@@ -74,16 +74,16 @@
 			</c:if>
 			
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="main">메인 페이지</a>
+				<a href="main" class="wing">메인 페이지</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="communityList">커뮤니티</a>
+				<a href="communityList" class="wing">커뮤니티</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="javascript:;" onclick="window.open('/yameokja/chat/chatList','채팅목록','width=500, height=810')">채팅 목록</a>
+				<a href="javascript:;"  class="wing" onclick="window.open('/yameokja/chat/chatList','채팅목록','width=500, height=810')">채팅 목록</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="#">내가 찜한 가게</a>
+				<a href="#" class="wing">내가 찜한 가게</a>
 			</div>
 			
 			<div class="col-12 fs-6 text-white fw-semibold mt-4 p-1">
@@ -108,17 +108,34 @@
 			</div>
 			<div class="row">
 				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 text-secondary p-1">
-						<option>서울시</option>
+					<select class="text-center rounded-pill border border-2 text-secondary p-1" name="address1" id="address1" onchange="addressChange(this)">
+						<option>선택</option>
+						<option value="seoul">서울</option>
+						<option value="kyeonggi">경기</option>
+						<option value="incheon">인천</option>
+						<option value="daejeon">대전</option>
+						<option value="daegu">대구</option>
+						<option value="busan">부산</option>
+						<option value="ulsan">울산</option>
+						<option value="gwangju">광주</option>
+						<option value="gangwon">강원</option>
+						<option value="sejong">세종</option>
+						<option value="chungbuk">충북</option>
+						<option value="chungnam">충남</option>
+						<option value="gyeongbuk">경북</option>
+						<option value="gyeongnam">경남</option>
+						<option value="jeonbuk">전북</option>
+						<option value="jeonnam">전남</option>
+						<option value="jeju">제주</option>
 					</select>
 				</span>
 				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 text-secondary p-1">
-						<option>관악구</option>
+					<select class="text-center rounded-pill border border-2 text-secondary p-1" name="address2" id="address2">
+						<option>선택</option>
 					</select>
 				</span>
 				<span class="col-4 pe-0">
-					<a class="btn btn-light btn-sm rounded-pill border border-2 text-secondary px-3">
+					<a href="main" class="btn btn-light btn-sm rounded-pill border border-2 text-secondary px-3">
 						찾기
 					</a>
 				</span>

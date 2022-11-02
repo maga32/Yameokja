@@ -11,21 +11,21 @@
  
 <article>
 	<div class="row yellowBar"></div>
-	<div class="row justify-content-left pt-3 pb-1">
-		<h1 class="col-4 border-3 border-bottom center bold pb-1">신고하기</h1>
+	<div class="row m-0 p-3">
+	<div class="row justify-content-left">
+		<h1 class="border-3 border-bottom center">신고하기</h1>
 	</div>
 	
 	<form id="reportForm" name="reportForm" action="addReport" method="post" enctype="multipart/form-data">
 		<div class="row px-2">
 			<div class="row my-1">
-				<div class="col-3 ps text-center bold">신고 대상</div>
+				<div class="col-3 ps bold">신고 대상<br>신고자</div>
 				<div class="col-3 border-start">
-					<input type="text" class="borderZero text-center" id="reportTarget" name="reportTarget" value="${reportTarget}" readonly><br>
-					신고자 :
-		<input type="text" id="memberId" name="memberId" value="${sessionScope.memberId}" readonly>
+					<input type="text" class=" border-0" id="reportTarget" name="reportTarget" value="${reportTarget}" readonly><br>
+					<input type="text" class=" border-0" id="memberId" name="memberId" value="${sessionScope.memberId}" readonly>
 				</div>
 			</div>
-			<div class="row col-3 mx-2 my-1 w-auto">
+			<div class="row mx-2 my-1 w-auto">
 				<select id="reportType" name="reportType">
 					<c:if test="${categoryNo == '301'}">
 						<option value="위치이전 및 폐업">위치이전 및 폐업</option>
@@ -51,10 +51,6 @@
 					</c:if>
 				</select>
 			</div>
-			<div class="row col-5 my-1 justify-content-end border">
-				<div class="col-6 border-end text-center">pno임시${ postNo }</div>
-				<div class="col-6 text-center">${ categoryNo }</div>
-			</div>
 			<div class="col-12 mx-2 my-1">
 				<input type="text" name="reportTitle" id="reportTitle" placeholder="제목을 입력하세요">
 			</div>
@@ -76,4 +72,5 @@
 			<!-- hidden 영역 end-->
 		</div>
 	</form>
+	</div>
 </article>

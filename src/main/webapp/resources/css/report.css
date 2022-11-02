@@ -52,6 +52,11 @@ a {
 .nextPage a:hover {color: #4aa5ff;}
 .nextPage a:active {color: 4aa5ff;}
 
+.divTableCell a:link {color: black;}
+.divTableCell a:visited {color: black;}
+.divTableCell a:hover {color: #4aa5ff;}
+.divTableCell a:active {color: 4aa5ff;}
+
 /* reportDetail */
 
 textarea{

@@ -61,6 +61,7 @@ public class ReportController {
 			System.out.println("reportCon - memberId null 로그인 안됨");
 			out.println("<script>");
 			out.println("	history.back();");
+			out.println("	alert('reportCon - memberId null 로그인 안됨');");
 //			out.println("	window.opener.location.href='main';");
 //			out.println("	window.close();");
 			out.println("</script>");
@@ -71,6 +72,7 @@ public class ReportController {
 			System.out.println("reportCon - memberId ==  신고자와 신고대상자가 같음");
 			out.println("<script>");
 			out.println("	history.back();");
+			out.println("	alert('reportCon - memberId ==  신고자와 신고대상자가 같음');");
 //			out.println("	window.opener.location.href='main';");
 //			out.println("	window.close();");
 			out.println("</script>");
@@ -78,7 +80,7 @@ public class ReportController {
 			return null;
 		}
 		
-		return "report/reportForm";
+		return "forward:WEB-INF/views/report/reportForm.jsp";
 	}
 	
 	// 신고 입력
