@@ -87,59 +87,60 @@
 			</div>
 			
 			<div class="col-12 fs-6 text-white fw-semibold mt-4 p-1">
-				설정된 위치
+				내 주소
 			</div>
 			<div class="col-12">
 				<c:if test="${ not empty sessionScope.memberId }">
-					<div class="fw-semibold ps-3 text-warning">
+					<div class="fw-semibold ps-3 text-warning" id="myAddress">
 						<i class="fa fa-map-marker" aria-hidden="true"></i>
 						&nbsp;&nbsp;${ sessionScope.member.memberAddress }
 					</div>
 				</c:if>
 				<c:if test="${ empty sessionScope.memberId }">
-					<input
-						class="col-12 rounded-pill border border-2 text-secondary bg-white p-1 mb-3"
-						type="text" value="&nbsp;&nbsp;">
+					<a class="btn text-warning" onclick="window.open('/yameokja/loginForm','LoginForm','width=500, height=600')">
+						로그인이 필요합니다
+					</a>
 				</c:if>
 			</div>
 			
-			<div class="col-12 text-white fs-6 fw-semibold text-start mt-4 mb-1">
-				다른 지역 설정
-			</div>
-			<div class="row">
-				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 text-secondary p-1" name="address1" id="address1" onchange="addressChange(this)">
-						<option>선택</option>
-						<option value="seoul">서울</option>
-						<option value="kyeonggi">경기</option>
-						<option value="incheon">인천</option>
-						<option value="daejeon">대전</option>
-						<option value="daegu">대구</option>
-						<option value="busan">부산</option>
-						<option value="ulsan">울산</option>
-						<option value="gwangju">광주</option>
-						<option value="gangwon">강원</option>
-						<option value="sejong">세종</option>
-						<option value="chungbuk">충북</option>
-						<option value="chungnam">충남</option>
-						<option value="gyeongbuk">경북</option>
-						<option value="gyeongnam">경남</option>
-						<option value="jeonbuk">전북</option>
-						<option value="jeonnam">전남</option>
-						<option value="jeju">제주</option>
-					</select>
-				</span>
-				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 text-secondary p-1" name="address2" id="address2">
-						<option>선택</option>
-					</select>
-				</span>
-				<span class="col-4 pe-0">
-					<a href="main" class="btn btn-light btn-sm rounded-pill border border-2 text-secondary px-3">
-						찾기
-					</a>
-				</span>
-			</div>
+			<c:if test="${ not empty sessionScope.memberId }">
+				<div class="col-12 text-white fs-6 fw-semibold text-start mt-4 mb-1">
+					내 주소 변경
+				</div>
+				<div class="row">
+					<span class="col-8">
+						<select class="text-center rounded-pill border border-2 text-secondary p-1 me-1" name="address1" id="address1" onchange="addressChange(this)">
+							<option>선택</option>
+							<option value="seoul">서울</option>
+							<option value="kyeonggi">경기</option>
+							<option value="incheon">인천</option>
+							<option value="daejeon">대전</option>
+							<option value="daegu">대구</option>
+							<option value="busan">부산</option>
+							<option value="ulsan">울산</option>
+							<option value="gwangju">광주</option>
+							<option value="gangwon">강원</option>
+							<option value="sejong">세종</option>
+							<option value="chungbuk">충북</option>
+							<option value="chungnam">충남</option>
+							<option value="gyeongbuk">경북</option>
+							<option value="gyeongnam">경남</option>
+							<option value="jeonbuk">전북</option>
+							<option value="jeonnam">전남</option>
+							<option value="jeju">제주</option>
+						</select>
+						&nbsp;
+						<select class="text-center rounded-pill border border-2 text-secondary p-1" name="address2" id="address2">
+							<option>선택</option>
+						</select>
+					</span>
+					<span class="col-4 pe-0">
+						<a class="btn btn-light btn-sm rounded-pill border border-2 text-secondary px-3" id="memberChangeAddress">
+							변경
+						</a>
+					</span>
+				</div>
+			</c:if>
 			
 		</div>
 	</div>

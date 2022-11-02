@@ -71,6 +71,12 @@ footer {
 	transition: 0.3s all ease;
     transition: 0.2s all;
 	overflow-y: scroll;
+	-ms-overflow-style: none;
+}
+
+#wing::-webkit-scrollbar {
+	display: none;
+	width: 0 !important;
 }
 
 @media (max-width: 991px){
