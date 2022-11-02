@@ -4,17 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
+
 <div class="row py-3">
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
+	
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
+	
 <!-- 	store info start -->
 	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
-				<div class="col-12 fs-3 fw-semibold text-secondary">${store.storeName }</div>
+				<div class="col-12 fs-4 fw-semibold text-secondary">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
@@ -77,9 +80,10 @@
 		</div>
 	</div>
 <!-- 	store info end -->
+
 	<div class="text-center col-12 mt-3">
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2">맛집 리뷰</span>
-		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="#">별점 리뷰</a></span> 
+		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
 	</div>
 
 <!-- 	review start -->	
@@ -205,7 +209,7 @@
 	<div class="row text-end">
 		<div class="col-12 py-3">
 			<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
-			<div class="d-inline-block storeDetailPostButton text-end"><a href="#" class="py-1 px-3">리뷰 전체보기</a></div>
+			<div class="d-inline-block storeDetailPostButton text-end"><a href="storeDetailList?storeNo=${ store.storeNo }" class="py-1 px-3">리뷰 전체보기</a></div>
 			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
 		</div>
 	</div>

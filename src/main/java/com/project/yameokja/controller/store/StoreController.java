@@ -77,6 +77,18 @@ public class StoreController {
 		return "store/storeDetail";
 	}
 	
+	// 가게 상세 and 리뷰리스트
+		@RequestMapping("/storeDetailList")
+		public String storeDetailList(Model model, int storeNo) {
+			
+			Store store = storeService.getStore(storeNo);
+			model.addAttribute("store", store);
+			
+			List<Post> pList = postService.postList(storeNo); 
+			model.addAttribute("pList", pList);
+			
+			return "store/storeDetailList";
+		}
 	
 	
 	

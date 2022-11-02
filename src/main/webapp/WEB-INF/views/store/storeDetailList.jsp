@@ -8,15 +8,17 @@
 <article>
 <div class="row py-3">
 	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${store.storeNo }">
+		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 	</form>
 	
+<!-- 	fullFrame start-->
 	<div class="col-12 p-2">
-		
-			<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
+	
+<!-- 	store info start -->
+	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
-				<div class="col-12 fs-3 fw-semibold text-secondary">${store.storeName }</div>
+				<div class="col-12 fs-4 fw-semibold text-secondary">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
@@ -78,103 +80,48 @@
 			</div>
 		</div>
 	</div>
-	<!-- 	store info end -->
-						
-						<div class="text-center col-12 mt-3">
-							<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetail?storeNo=${ store.storeNo }">맛집 리뷰</a></span>
-							<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
-						</div>
-						
-						<div class="row justify-content-center border rounded mt-1">
-						
-							<div class="row justify-content-center">
+<!-- 	store info end -->
 
-								<div class="col-md-12 border ">
-									<h5>별점리뷰 작성</h5>
-									<p>별 별 별 별 별</p>
-									<div class="row">
-									
-										<div class="col-md-12 border">
-										
-										</div>
-										
-									</div>
-									
-									<div class="row justify-content-center">
-									
-										<div class="col-md-10 border">
-											<input type="text">
-										</div>
-										
-										<div class="col-md-2 border d-block">
-											<button type="submit" class="btn justify-content-center btn-outline-secondary">입력</button>
-										</div>
-										
-									</div>
-									
-									
-									<div class="row border justify-content-center my-1">
-										<c:forEach var="r" items="${ rList }">
-											<div class="row">
-											
-												<div class="col-3 align-self-center">
-												
-													<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
-												
-												</div>
-												
-												<div class="col-9">
-												
-													<div class="row">
-													
-													<div class="col-2 align-self-center">
-														<img src="https://picsum.photos/55" class="img-fluid rounded-circle float-start" alt="...">
-													</div>
-													
-													<div class="col-10">
-													
-														<div class="row">
-															<div class="col-9 align-self-center"><span>${ r.memberNickname }</p></div>
-															<div class="col-3 text-end"><p><a href="#">delete</a></p></div>
-														</div>
-														<span><fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/></span>
-													</div>
-													
-													<div class="row">
-													<span>${ r.postStar }</span>
-													<p>${ r.postContent }내용확인용 내용확인용내용확인용내용확인용내용확인용내용확인용</p>
-														</div>
-													</div>
-											
-													</div>
-												</div>
-											</c:forEach>
-										
-											</div>
-											</div>
-										
-									
-									
-									
-									</div>
-									
-								</div>
-							</div>
-		
+	<div class="text-center col-12 mt-3">
+		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2">맛집 리뷰</span>
+		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
+	</div>
 
-						</div>		
-						
+<!-- 	review start -->	
+	<div class="rounded-end rounded-bottom d-inline-block border col-12 p-2">
+	<c:if test="${ not empty pList }">
+		<c:forEach var="p" items="${ pList }">
+			<div class="row border rounded-1 m-1 p-1">
+					<div class="col-3 align-self-center">
+						<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
 					</div>
-				
-				</div>
-				
-				
-				</div>
-			
+					<div class="col-9">
+						<div class="row py-1">
+							<h4><a href="storeDetailContent?storeNo=${ store.storeNo}&postNo=${ p.postNo }">${ p.postTitle }</a></h4>
+						</div>
+						<div class="row pb-1">
+							<a href="#">${ p.memberNickname }</a>
+						</div>
+						<div class="row">
+							<span class=" fs-7 text-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							 <fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd"/></span>
+						</div>
+						<div class="row">
+							<span class=" fs-7 text-secondary"><i class="fa fa-eye" aria-hidden="true"></i>
+							 ${ p.postReadCount }</span>
+						</div>
+						<div class="row">
+							<span class=" fs-7 text-secondary"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+							 ${ p.postUpCount }</span>
+						</div>
+					</div>
 			</div>
-    
-			</div>
-		</div>
-</div>
+		</c:forEach>
+	</c:if>			
 	
+	</div>
+
+<!-- 	fullFrame end-->			
+	</div>
+</div>
 </article>
