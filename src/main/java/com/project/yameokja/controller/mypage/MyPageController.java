@@ -102,11 +102,5 @@ public class MyPageController {
 		model.addAttribute("user", user);
 		return "forward:WEB-INF/views/mypage/userProfile.jsp";
 	}
-	
-	@RequestMapping("/wing")
-	public String wing() {
-		
-		return "wing";
-	}
 
 }
