@@ -3,14 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
+<script src="resources/js/store.js"></script>
 <article>
 
 <div class="row py-3">
-	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${ store.storeNo }">
-		<input type="hidden" name="categoryNo" value="${ store.categoryNo }">
-	</form>
-	
+		<!-- 히든 영역 -->
+		<input type="hidden" id="memberId" value="${sessionScope.memberId}">
+		<input type="hidden" id="memberBookmarks" value="${ sessionScope.member.memberBookmarks }">
+		<input type="hidden" id="storeNo" value="${ store.storeNo }">
+		<input type="hidden" id="categoryNo" value="${ store.categoryNo }">
+		<!-- 히든 영역 end-->
+		
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
 	
@@ -72,7 +75,10 @@
 				<div class="row">
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
+					
+					<!-- d -->
+						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"></button>
+					
 						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>
 						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
 					</div>

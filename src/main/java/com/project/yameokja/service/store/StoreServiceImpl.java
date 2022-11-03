@@ -12,37 +12,45 @@ import com.project.yameokja.domain.Store;
 public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
-	private StoreDao StoreDao;
-
-	public void setStoreDao(StoreDao storeDao) {
-		this.StoreDao = storeDao;
-	}
+	private StoreDao storeDao;
 
 	@Override
 	public List<Store> storeList(int categoryNo) {
-		return StoreDao.StoreList(categoryNo);
+		return storeDao.StoreList(categoryNo);
 	}
 	
+	@Override
 	public List<Store> storeListAll() {
-		return StoreDao.StoreListAll();
+		return storeDao.StoreListAll();
 	}
 
 	@Override
 	public Store getStore(int storeNo) {
-		return StoreDao.getStore(storeNo);
+		return storeDao.getStore(storeNo);
 	}
 	
 
 	@Override
 	public void insertStore(Store store) {
-		StoreDao.insertStore(store);
+		storeDao.insertStore(store);
 	}
 
 	@Override
 	public void updateStore(Store store) {
-		StoreDao.updateStore(store);
+		storeDao.updateStore(store);
 		
 	}
-
+	
+	// 가게 즐겨찾기 추가
+	@Override
+	public void addBookmarks(int storeNo) {
+		storeDao.addBookmarks(storeNo);
+	}
+	
+	// 가게 즐겨찾기 삭제
+	@Override
+	public void deleteBookmarks(int storeNo) {
+		storeDao.deleteBookmarks(storeNo);
+	}
 	
 }

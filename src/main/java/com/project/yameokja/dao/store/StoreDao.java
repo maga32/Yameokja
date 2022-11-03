@@ -27,4 +27,9 @@ public interface StoreDao {
 	// 가게 정보 삭제
 	public abstract void deleteStore(Store store);
 	
+	// 가게 즐겨찾기 추가
+	public abstract void addBookmarks(int storeNo);
+		
+	// 가게 즐겨찾기 삭제
+	public void deleteBookmarks(int storeNo);
 }

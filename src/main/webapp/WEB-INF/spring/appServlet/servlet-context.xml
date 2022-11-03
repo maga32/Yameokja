@@ -40,6 +40,7 @@
 	    <mapping path="/memberDelete" />
    	    <mapping path="/chat/**" />
    	    <mapping path="/report*" />
+   	    <mapping path="/bookmarks*" />
 	    <beans:ref bean="LoginCheckInterceptor" />
 	   </interceptor>
 	</interceptors>

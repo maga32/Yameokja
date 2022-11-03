@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.bookmarks-on, .bookmarks-off{
+	border: 0px;
+	background: transparent;
+}
+
 .sdfsdf{
 	display: flex;
 }
