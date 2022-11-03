@@ -132,11 +132,13 @@ public class ReportController {
 			@RequestParam(value="reportPunishCheck", required=false, defaultValue="0")String reportPunishCheck,
 			@RequestParam(value="type", required=false, defaultValue="all")String type,
 			@RequestParam(value="keyword", required=false, defaultValue="")String keyword,
-			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
+			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum,
+			@RequestParam(value="userId", required=false, defaultValue="")String userId
 			) {
 		
-		Map<String, Object> reportList = reportService.reportList(categoryNo, reportPunishCheck, type, keyword, pageNum);
+		Map<String, Object> reportList = reportService.reportList(userId, categoryNo, reportPunishCheck, type, keyword, pageNum);
 
+		//회원이 작성한 신고글만 가져오기
 		model.addAllAttributes(reportList);
 		model.addAttribute("reportType", reportType);
 

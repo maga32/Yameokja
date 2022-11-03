@@ -13,7 +13,7 @@ import com.project.yameokja.domain.Post;
 @Repository
 public class PostDaoImpl implements PostDao {
 
-	private final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
+	private static final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	
@@ -30,9 +30,20 @@ public class PostDaoImpl implements PostDao {
 	
 	
 	@Override
-	public List<Post> postListReply(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE + ".postListReply", storeNo); 
+	public List<Post> postListReply(int storeNo, int startRow, int num) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("storeNo", storeNo);
+		params.put("startRow", startRow);
+		params.put("num", num);
+		
+		return sqlSession.selectList(NAME_SPACE + ".postListReply", params); 
 	}
+
+	@Override
+	public int myPageReplyCount(int storeNo) {
+		return sqlSession.selectOne(NAME_SPACE+".myPageReplyCount", storeNo);
+		}
 
 	@Override
 	public Post getPost(int postNo) {
@@ -77,6 +88,14 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public List<Post> bestThreePost(int storeNo) {
 		return sqlSession.selectList(NAME_SPACE + ".bestThreePost", storeNo);
+	}
+
+
+	@Override
+	public void postReplyAdd(Post post) {
+		System.out.println("postReplyAdd 앞 : "+post.getPostNo());
+		sqlSession.insert(NAME_SPACE + ".postReplyAdd", post);
+		System.out.println("postReplyAdd 뒤 : ");
 	}
 
 

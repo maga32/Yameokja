@@ -23,6 +23,7 @@ public class StoreServiceImpl implements StoreService {
 		return StoreDao.StoreList(categoryNo);
 	}
 	
+	@Override
 	public List<Store> storeListAll() {
 		return StoreDao.StoreListAll();
 	}

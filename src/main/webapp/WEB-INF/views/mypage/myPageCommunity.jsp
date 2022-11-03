@@ -10,6 +10,7 @@
 	<form name="postListForm" id="postListForm">
 		<input type="hidden" name="userId" value="${ user.memberId }" />
 		<input type="hidden" name="pageNum" value="${ pageNum }" />
+		<input type="hidden" name="postNo" value="${ postNo }" />
 	</form>
 	
 	<div class="row py-2 px-0">
@@ -22,7 +23,7 @@
 				<div class="col-12">
 					<div class="fw-bold fs-2">${ user.memberNickname }님</div>
 					<div>이메일 : ${ user.memberEmail }</div>
-					<div>가입일 : ${ user.memberJoinDate }</div>
+					<div>가입일 : <fmt:formatDate value="${ user.memberJoinDate }" pattern="yyyy-MM-dd" /></div>
 				</div>
 			</div>
 <!-- 				로그인 일 때 보이는 버튼들 시작 -->
@@ -37,7 +38,7 @@
 					</div>
 					<div class="buttons_">
 						<a href="#"
-							onclick='window.open("userProfile","프로필","width=500, height=600")'>나
+							onclick='window.open("userProfile?userId=${ sessionScope.memberId }","프로필","width=500, height=600")'>나
 							의 프 로 필</a>
 					</div>
 					<div class="buttons_">
@@ -46,7 +47,7 @@
 							단 목 록</a>
 					</div>
 					<div class="buttons_">
-						<a href="#">신 고 목 록</a>
+						<a href="reportList?userId=${ sessionScope.memberId }">신 고 목 록</a>
 					</div>
 				</div>
 			</div>
@@ -56,7 +57,7 @@
 				<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
 						<a href="#"
-							onclick='window.open("userProfile","프로필","width=500, height=600")'>
+							onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>
 							${ user.memberNickname }의 프 로 필</a>
 					</div>
 				</div>
@@ -77,7 +78,7 @@
 		<c:if test="${ not empty communityList }">
 		<c:forEach var="c" items="${ communityList }">
 		<div class=" border border-2 rounded col-12 p-2 col-md-12">
-			<div class="row">
+			<div class="d-flex align-items-center row">
 			<c:if test="${ empty c.communityFile }">
 				<div class="col-3 col-md-3 col-sm-3">
 					<img src="resources/IMG/LOGOtemporaryIMG.PNG"
@@ -90,24 +91,21 @@
 						class="img-thumbnail rounded float-start" alt="유저가 올린 이미지">
 				</div>
 			</c:if>
-			<div class="col-6 col-md-7 col-sm-6">
+			<div class="col-6 col-md-7 col-sm-6 text-start">
 			<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
 				<a href="#"> 
 					<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
 					<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
-					${ c.communityTitle }제목
+					${ c.communityTitle }제목(댓글 수)
 				</a>
 			</div>
-			<p class="text-secondary" id="communityMemberNickname">${ c.memberId }<br>[임시communityNo]${ c.communityNo}</p>
-			<p class="text-secondary" id="communityRegDate">${ c.communityRegDate }</p>
+			<p class="text-secondary" id="communityMemberNickname">${ c.memberNickname }<br>[임시communityNo]${ c.communityNo}</p>
+			<div class="text-secondary" id="communityRegDate"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><fmt:formatDate value="${ c.communityRegDate }" pattern="yyyy-MM-dd" /></div>
 			</div>
 			<div class="col-3 col-md-2 col-sm-3 border-start border-1">
 				<div class="row">
-					<div class="col-4 d-flex-column">
-					<p style="color: gray"><i class="fa fa-eye" aria-hidden="true"></i></p>
-					</div>
-					<div class="col-8 d-flex-column">
-					<p class="text-end" style="font-size: 11px; color: gray">${ c.communityReadCount }</p>
+					<div class="col d-flex-column text-secondary">
+						<i class="fa fa-eye fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReadCount }
 					</div>
 					</div>
 				</div>

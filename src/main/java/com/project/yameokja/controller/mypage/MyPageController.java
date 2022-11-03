@@ -118,8 +118,7 @@ public class MyPageController {
 	
 	@RequestMapping("/userProfile")
 	public String userProfile(Model model, 
-			@RequestParam(value = "userId", required = false, defaultValue = "")String userId,
-			@RequestParam(value = "postIsPost", required = false, defaultValue = "1")int postIsPost) {
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId) {
 		Member user = myPageService.getMember(userId);
 		int myPagePostCount = myPageDao.myPagePostCount(userId);
 		int myPageCommunityCount = myPageDao.myPageCommunityCount(userId);

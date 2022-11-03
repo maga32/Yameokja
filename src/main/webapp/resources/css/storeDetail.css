@@ -1,7 +1,13 @@
 @charset "UTF-8";
 
-.sdfsdf{
-	display: flex;
+/* 리스트 별로 이동하는 버튼 */
+.currentPage, .otherPage {
+	border-radius: 20px 0 0 0;
+	display: table-cell;
+}
+.currentPage {
+    color: #F58500;
+    background: #FCD147;	
 }
 
 .fs-7{
@@ -20,10 +26,6 @@
 }
 .postContent {
 	width: 60%;
-}
-.postTitle {
-	font-size: 25px;
-	font-weight: 900;
 }
 .postFrame{
 	display: flex;
@@ -45,6 +47,12 @@
 }
 /* a 태그 */
 a {text-decoration: none;}
+
+a:link {color: #6a6767;}
+a:visited {color: #6a6767;}
+a:hover {color: #4aa5ff;}
+a:active {color: 4aa5ff;}
+
 .postListbutton a:link {color: gray;}
 .postListbutton a:visited {color: gray;}
 .postListbutton a:hover {color: #4aa5ff;}
@@ -60,10 +68,19 @@ a {text-decoration: none;}
 .deleteButton a:hover {color: #4aa5ff;}
 .deleteButton a:active {color: 4aa5ff;}
 
-a:link {color: #6a6767;}
-a:visited {color: #6a6767;}
-a:hover {color: #4aa5ff;}
-a:active {color: 4aa5ff;}
+.currentPage a:link {color: gray;}
+.currentPage a:visited {color: gray;}
+.currentPage a:hover {color: #4aa5ff;}
+.currentPage a:active {color: 4aa5ff;}
+
+.otherPage a:link {color: gray;}
+.otherPage a:visited {color: gray;}
+.otherPage a:hover {color: #4aa5ff;}
+.otherPage a:active {color: #4aa5ff;}
+.postTitle a:link {color: #6a6767;}
+.postTitle a:visited {color: #6a6767;}
+.postTitle a:hover {color: #4aa5ff;}
+.postTitle a:active {color: #4aa5ff;}
 
 /* storeWhiteFormButton */
 .storeWhiteFormButton a:link {

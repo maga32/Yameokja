@@ -10,7 +10,6 @@
 		<input type="hidden" name="userId" value="${ user.memberId }" />
 		<input type="hidden" name="pageNum" value="${ pageNum }" />
 		<input type="hidden" name="postNo" value="${ postNo }" />
-		<input type="hidden" name="postIsPost" value="${ postIsPost }" />
 	</form>
 	
 		<div class="row py-2 px-0">
@@ -39,7 +38,7 @@
 						</div>
 						<div class="buttons_">
 							<a href="#"
-								onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>나
+								onclick='window.open("userProfile?userId=${ sessionScope.memberId }","프로필","width=500, height=600")'>나
 								의 프 로 필</a>
 						</div>
 						<div class="buttons_">
@@ -48,7 +47,7 @@
 								단 목 록</a>
 						</div>
 						<div class="buttons_">
-							<a href="#">신 고 목 록</a>
+							<a href="reportList?userId=${ sessionScope.memberId }">신 고 목 록</a>
 						</div>
 					</div>
 				</div>

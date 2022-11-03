@@ -1,8 +1,13 @@
 package com.project.yameokja.controller.store;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
@@ -33,6 +39,9 @@ public class StoreController {
 	public void setPostService(PostService postService) {
 		this.postService = postService;
 	}
+	
+	@Autowired
+	private final static String DEFAULT_PATH = "/resources/upload/";
 	
 	// 가게리스트를 전부 받는다
 	@RequestMapping("/storeListAll")
@@ -91,13 +100,17 @@ public class StoreController {
 	
 	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
-	public String StoreDetailReply(Model model, int storeNo) {
+	public String StoreDetailReply(
+			Model model, 
+			@RequestParam(value = "storeNo", required = false, defaultValue = "1")int storeNo,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 		
 		Store store = storeService.getStore(storeNo);
-		model.addAttribute("store", store);
 		
-		List<Post> rList = postService.postListReply(storeNo); 
-		model.addAttribute("rList", rList);
+		Map<String, Object> postListReply = postService.postListReply(storeNo, pageNum);
+		model.addAllAttributes(postListReply);
+		model.addAttribute("store", store);
+		model.addAttribute("pageNum", pageNum);
 		
 		return "store/storeDetailReply";
 	}
@@ -135,6 +148,41 @@ public class StoreController {
 		storeService.insertStore(store);
 	 
 		return "store/storeWriteFrom"; 
+	 }
+	
+	@RequestMapping(value="/storeDatailReplyForm", method=RequestMethod.POST)
+	public String insertStoreProcess(
+			RedirectAttributes reAttr, int storeNo, HttpSession session,
+			String postContent, int postStar, HttpServletRequest request,
+			@RequestParam(value="postFile2", required=false) MultipartFile multipartFile) 
+		throws IllegalStateException, IOException { 
+		
+		Post post =  new Post();
+		String memberId = (String) session.getAttribute("memberId");
+		String memberNickname = (String) session.getAttribute("memberNickname");
+		
+		post.setMemberId(memberId);
+		post.setMemberNickname(memberNickname);
+		post.setStoreNo(storeNo);
+		post.setPostContent(postContent);
+		post.setPostStar(postStar);
+		
+		if( !multipartFile.isEmpty()) {
+			
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+			 
+			multipartFile.transferTo(file);
+			post.setPostFile1(saveName);
+		}	
+		postService.postReplyAdd(post);
+		reAttr.addAttribute("storeNo", storeNo);
+	 
+		return "redirect:store/postListReply"; 
 	 }
 	 
 }
