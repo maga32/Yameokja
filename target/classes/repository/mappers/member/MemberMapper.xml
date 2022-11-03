@@ -99,7 +99,23 @@
 	<delete id="delMember">
 		DELETE FROM member WHERE member_id = #{memberId}
 	</delete>
+	
+	<!-- 회원 즐겨찾기 목록 추가 -->
+	<update id="addMemberBookmarks">
+		UPDATE member
+			SET member_bookmarks = 
+				IF (member_bookmarks = "", #{storeNo}, CONCAT(member_bookmarks, ',', #{storeNo}) )
+		WHERE member_id = #{memberId}
+	</update>
+	
+	<!-- 회원 즐겨찾기 목록 삭제  -->
+	<update id="deleteMemberBookmarks">
+		UPDATE member
+			SET member_bookmarks = replace(member_bookmarks, #{strStoreNo}, '')
+		WHERE member_id = #{memberId}
+	</update>
 
+	
 	<resultMap type="Member" id="MemberResultMap">
 		<id property="memberId" column="member_id" />
 		<result property="memberPhoto" column="member_photo" />

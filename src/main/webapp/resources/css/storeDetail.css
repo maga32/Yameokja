@@ -9,6 +9,10 @@
     color: #F58500;
     background: #FCD147;	
 }
+.bookmarks-on, .bookmarks-off{
+	border: 0px;
+	background: transparent;
+}
 
 .fs-7{
 	font-size: 13px;

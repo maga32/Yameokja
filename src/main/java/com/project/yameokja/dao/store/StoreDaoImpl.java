@@ -1,6 +1,8 @@
 package com.project.yameokja.dao.store;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +72,16 @@ public class StoreDaoImpl implements StoreDao {
 		
 	}
 
+	// 가게 즐겨찾기 추가
+	@Override
+	public void addBookmarks(int storeNo) {
+		sqlSession.update(NAME_SPACE+".addBookmarks", storeNo);
+	}
 	
+	// 가게 즐겨찾기 삭제
+	@Override
+	public void deleteBookmarks(int storeNo) {
+		sqlSession.update(NAME_SPACE+".deleteBookmarks", storeNo);
+	}
 	
 }
