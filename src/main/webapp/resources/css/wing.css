@@ -1,9 +1,0 @@
-@charset "UTF-8";
-
-/* a 태그 */
-a {text-decoration: none;}
-
-.wing a:link {color: white;}
-.wing a:visited {color: white;}
-.wing a:hover {color: #white;}
-.wing a:active {color: white;}

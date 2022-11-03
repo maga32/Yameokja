@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<link rel="stylesheet" type="text/css" href="/yameokja/resources/css/wing.css" />
+
+<script src="/yameokja/resources/js/member.js"></script>
+
 <!-- 윙 버튼 -->
 <a id="wingButton" class="d-block d-lg-none btn">
 	<span class="fa-stack fa-lg">
