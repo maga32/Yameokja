@@ -24,6 +24,8 @@ public interface ReportDao {
 	
 	//삭제
 	public void deleteReport(int reportNo);
+	
+	void memberPermanenSuspension(String memberId);
 
 }
 

@@ -16,11 +16,11 @@
 			<div class="col-3 border-end fw-bold">제목</div>
 			<div class="col-9"><input type="text" name="reportTitle" value="${ report.reportTitle }"></div>
 			<div class="col-3 border-end fw-bold">신고자</div>
-			<div class="col-9">${ report.memberId }</div>
+			<div class="col-9"><input type="text" class="border-0" value="${ report.memberId }" readonly="readonly"></div>
 			<div class="col-3 border-end fw-bold">신고대상</div>
-			<div class="col-9">${ report.reportTarget }</div>
+			<div class="col-9"><input type="text" name="reportTarget" class="border-0" value="${ report.reportTarget }" readonly="readonly"></div>
 			<div class="col-3 border-end fw-bold">신고 작성일</div>
-			<div class="col-9">${ report.reportDate }</div>
+			<div class="col-9"></div><input type="text" name="reportDate" class="border-0" value="${ report.reportDate }" readonly="readonly"></div>
 		</div>
 		<div class="col-4 d-flex align-items-center">
 			<img alt="신고첨부이미지" width="100%"
@@ -43,19 +43,11 @@
 	</div>
 	<br>
 	
-	<div class="row m-0 justify-content-center">
+	<div class="row m-0 d-flex justify-content-center">
 		<div class="col-12 fw-bold ps-1">
 			<h3>신고 처리 결과</h3>
 		</div>
-		<textarea class="col-12" name="reportPunishContent" placeholder="아직 처리되지 않았습니다.">${ report.reportPunishContent }</textarea>
-	</div>
-	<br>
-	
-	<div class="row m-0 justify-content-center">
-		<div class="col-12 fw-bold ps-1">
-			<h3>신고 대상 처리</h3>
-		</div>
-		<div class="col-6 text-start d-flex align-items-center ps-4">
+		<div class="col-12 text-start d-flex align-items-center ps-4">
 			<select id="reportPunishCheck" name="reportPunishCheck">
 				<option value=0 >처리 대기</option>
 				<option value=1 >처리 중</option>
@@ -63,16 +55,17 @@
 				<option value=3 >처리 완료</option>
 			</select>
 		</div>
-		<div class="col-6">
-			<div class="row py-2 m-0 justify-content-end">
-			<div class="col align-self-center pe-3 text-danger w-auto">
-				처벌 유저 아이디
-			</div>
-			<button class="col btn btn-danger">영구정지</button>
-		</div>
-		</div>
-		<textarea class="col-12"></textarea>
 	</div>
+	<br>
+	
+	<c:if test="${ sessionScope.member.memberLevel > 6 }">
+	<div class="row m-0 d-flex justify-content-center">
+		<div class="col-12 fw-bold ps-1">
+			<h3>신고 대상 처리</h3>
+		</div>
+		<textarea class="col-12" name="reportPunishContent">${ report.reportPunishContent }</textarea>
+	</div>
+	</c:if>
 	
 <div class="row m-0 justify-content-end px-3 py-2">
 	<input type="button" onclick="location.href='reportList'" class="col-2 w-auto btn btn-secondary" value="목록으로">

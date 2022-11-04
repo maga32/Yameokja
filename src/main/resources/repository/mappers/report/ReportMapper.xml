@@ -116,6 +116,12 @@
 		WHERE report_no = #{ reportNo }
 	</delete>
 	
+	<update id="memberPermanenSuspension" parameterType="String" >
+		UPDATE member
+		SET member_level = 0
+		WHERE member_id = #{ memberId }
+	</update>
+	
 
 	<resultMap type="Report" id="ReportResultMap">
 		<id property="reportNo" column="report_no" />

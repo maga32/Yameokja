@@ -74,5 +74,12 @@ public class ReportDaoImpl implements ReportDao {
 	public void deleteReport(int reportNo) {
 		sqlSession.delete(NAME_SPACE+ ".deleteReport", reportNo);
 	}
+
+	@Override
+	public void memberPermanenSuspension(String memberId) {
+		System.out.println("앞"+memberId);
+		sqlSession.update(NAME_SPACE+ ".memberPermanenSuspension", memberId);
+		System.out.println("뒤"+memberId);
+	}
 	
 }

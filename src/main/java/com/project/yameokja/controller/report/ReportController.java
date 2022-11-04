@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Report;
+import com.project.yameokja.service.member.MemberService;
 import com.project.yameokja.service.report.ReportService;
 
 @Controller
@@ -28,6 +30,9 @@ public class ReportController {
 	
 	@Autowired
 	private ReportService reportService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	public void setReportService(ReportService reportService) {
 		this.reportService = reportService;
@@ -150,12 +155,13 @@ public class ReportController {
 	public String reportDetail(
 			Model model, 
 			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo
-//			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
 		Report report = reportService.getReport(reportNo);
+		Member member= memberService.getMember(report.getReportTarget());
 
 		model.addAttribute("report", report);
 		model.addAttribute("reportNo", reportNo);
+		model.addAttribute("member", member);
 //		System.out.println(reportType);
 		
 		return "report/reportDetail";
@@ -190,11 +196,11 @@ public class ReportController {
 		report.setReportType(reportType);
 //		report.setReportFile(reportFile);
 		report.setReportPunishContent(reportPunishContent);
-		System.out.println("reportTitle"+reportTitle);
-		System.out.println("reportContent"+reportContent);
-		System.out.println("reportTarget"+reportTarget);
-		System.out.println("reportType"+reportType);
-		System.out.println("reportPunishContent"+reportPunishContent);
+		System.out.println("reportTitle : "+reportTitle);
+		System.out.println("reportContent : "+reportContent);
+		System.out.println("reportTarget : "+reportTarget);
+		System.out.println("reportType : "+reportType);
+		System.out.println("reportPunishContent : "+reportPunishContent);
 
 		reportService.reportUpdate(report);
 
@@ -211,6 +217,18 @@ public class ReportController {
 		reportService.deleteReport(reportNo);
 //		reAttrs.addAttribute("pageNum", pageNum);
 		return "redirect:reportList";
+	}
+	
+	@RequestMapping(value="/memberPermanenSuspension")
+	public String memberPermanenSuspension(
+			RedirectAttributes reAttrs,
+			@RequestParam(value="reportNo", required=false, defaultValue="")int reportNo,
+			@RequestParam(value="reportTarget", required=false, defaultValue="")String memberId) {
+		
+		reportService.memberPermanenSuspension(memberId);
+		
+		reAttrs.addAttribute("reportNo", reportNo);
+		return "redirect:reportDetail";
 	}
 
 }

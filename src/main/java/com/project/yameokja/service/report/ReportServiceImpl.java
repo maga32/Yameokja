@@ -98,4 +98,9 @@ public class ReportServiceImpl implements ReportService {
 		reportDao.deleteReport(reportNo);
 	}
 
+	@Override
+	public void memberPermanenSuspension(String memberId) {
+		reportDao.memberPermanenSuspension(memberId);
+	}
+
 }
