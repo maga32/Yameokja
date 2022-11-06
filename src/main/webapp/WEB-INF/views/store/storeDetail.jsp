@@ -78,15 +78,15 @@
 					
 					<!-- d -->
 						<div>
-							${sessionScope.member.memberBookmarks}
+							${userBookmarks}
 							<br>
 							${store.storeNo}
 						</div>
-					<c:if test = "${fn:contains(sessionScope.member.memberBookmarks, store.storeNo)}">
+					<c:if test = "${fn:contains(userBookmarks, store.storeNo)}">
 						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
 								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=memberId01&storeNo=385' "></button>
 					</c:if>
-					<c:if test = "${!fn:contains(sessionScope.member.memberBookmarks, store.storeNo)}">
+					<c:if test = "${!fn:contains(userBookmarks, store.storeNo)}">
 						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
 								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=memberId01&storeNo=385' "></button>
 					</c:if>

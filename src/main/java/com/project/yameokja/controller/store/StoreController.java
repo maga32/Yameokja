@@ -68,8 +68,15 @@ public class StoreController {
 	
 	// 가게 상세 and 리뷰 리스트
 	@RequestMapping("/storeDetail")
-	public String StoreDetail(Model model, int storeNo) {
+	public String StoreDetail(Model model, int storeNo, HttpSession session) {
 
+		String memberId = (String) session.getAttribute("memberId");
+		
+		if(memberId != null) {
+			Member user = (Member) memberSerivce.getMember(memberId);
+			model.addAttribute("userBookmarks", user.getMemberBookmarks());
+		}
+		
 		Store store = storeService.getStore(storeNo);
 		List<Post> bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
@@ -190,7 +197,7 @@ public class StoreController {
 	// 스토어 즐겨찾기 추가
 	@RequestMapping("/bookmarksAdd")
 	public String addBookmarks(String memberId, int storeNo,
-			HttpServletResponse response) throws IOException {
+			HttpServletResponse response, Model model) throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
