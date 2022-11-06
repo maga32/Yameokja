@@ -90,18 +90,39 @@
 								<input type="hidden" name="storeNo" value="${ p.storeNo }" />
 								<input type="hidden" name="postNo" value="${ p.postNo }" />
 								<a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">
-									<div class="fs-3 fw-bold">${ p.postTitle }</div>
 									<div>
 										<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 										<fmt:formatDate value="${ p.postRegDate }"
 											pattern="yyyy-MM-dd" />
 									</div>
 									<div>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
+										<c:if test="${ p.postStar == 5 }">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${ p.postStar == 4 }">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${ p.postStar == 3 }">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${ p.postStar == 2 }">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${ p.postStar == 1 }">
+											<i class="fa fa-star" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${ p.postStar == 0 }">
+										</c:if>
 									</div>
 									<div>
 										 ${ p.postContent }
@@ -111,7 +132,7 @@
 
 							<div class="col-3 text-end pe-3">
 								<div class="deleteButton" id="deleteButton">
-									<a href="deleteMyPagePost?postNo=${p.postNo}">
+									<a href="deleteMyPagePost?postNo=${p.postNo}&userId=${ member.memberId }">
 										<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
 									</a>
 								</div>

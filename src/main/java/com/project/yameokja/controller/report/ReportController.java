@@ -29,14 +29,9 @@ import com.project.yameokja.service.report.ReportService;
 public class ReportController {
 	
 	@Autowired
-	private ReportService reportService;
-	
+	private ReportService reportService;	
 	@Autowired
 	private MemberService memberService;
-	
-	public void setReportService(ReportService reportService) {
-		this.reportService = reportService;
-	}
 
 	@Autowired
 	private final static String DEFAULT_PATH = "/resources/upload/";
@@ -185,7 +180,7 @@ public class ReportController {
 			@RequestParam(value="reportContent", required=false, defaultValue="")String reportContent,
 			@RequestParam(value="reportTarget", required=false, defaultValue="")String reportTarget,
 			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
-//			@RequestParam(value="reportFile", required=false, defaultValue="")String reportFile,
+			@RequestParam(value="reportFile", required=false, defaultValue="")String reportFile,
 			@RequestParam(value="reportPunishContent", required=false, defaultValue="")String reportPunishContent,
 			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
 			) {
@@ -194,13 +189,8 @@ public class ReportController {
 		report.setReportContent(reportContent);
 		report.setReportTarget(reportTarget);
 		report.setReportType(reportType);
-//		report.setReportFile(reportFile);
+		report.setReportFile(reportFile);
 		report.setReportPunishContent(reportPunishContent);
-		System.out.println("reportTitle : "+reportTitle);
-		System.out.println("reportContent : "+reportContent);
-		System.out.println("reportTarget : "+reportTarget);
-		System.out.println("reportType : "+reportType);
-		System.out.println("reportPunishContent : "+reportPunishContent);
 
 		reportService.reportUpdate(report);
 

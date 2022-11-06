@@ -17,7 +17,7 @@
 
 				<div class="col-3 p-4">
 					<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-						src="resources/IMG/mypage/likeIMG.PNG">
+						src="/yameokja/resources/IMG/LOGOsquareIMG.png">
 				</div>
 				<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 					<div class="col-12">
@@ -31,10 +31,10 @@
 				<div class="col-3 p-0 d-flex align-items-center">
 					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
-							<a href="#">회원정보수정</a>
+							<a href="memberUpdateForm">회원정보수정</a>
 						</div>
 						<div class="buttons_">
-							<a href="#">회 원 탈 퇴</a>
+							<a href="memberDelete">회 원 탈 퇴</a>
 						</div>
 						<div class="buttons_">
 							<a href="#"
@@ -81,7 +81,7 @@
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
 								<a href="#">
-									<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+									<img src="/yameokja/resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
 								</a>
 							</div>
 							<div class="postTitle text-start col-6 px-2">
@@ -97,7 +97,7 @@
 									<a href=""><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
 								</div>
 								<div class="deleteButton" id="deleteButton">
-									<a href="deleteMyPagePost?postNo=${p.postNo}"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+									<a href="deleteMyPagePost?postNo=${p.postNo}&userId=${ member.memberId }"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</div>

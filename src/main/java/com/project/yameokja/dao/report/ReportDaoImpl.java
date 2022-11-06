@@ -38,9 +38,7 @@ public class ReportDaoImpl implements ReportDao {
 		map.put("startRow", startRow);
 		map.put("num", num);
 		map.put("userId", userId);
-		
-		System.out.println("dao - userId : " + userId +"categoryNo : " + categoryNo + ", reportPunishCheck : " + reportPunishCheck + ", type : " + type + ", keyword : " + keyword);
-		
+				
 		return sqlSession.selectList(NAME_SPACE + ".reportList", map);
 	}
 	
@@ -77,9 +75,7 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public void memberPermanenSuspension(String memberId) {
-		System.out.println("앞"+memberId);
 		sqlSession.update(NAME_SPACE+ ".memberPermanenSuspension", memberId);
-		System.out.println("뒤"+memberId);
 	}
 	
 }

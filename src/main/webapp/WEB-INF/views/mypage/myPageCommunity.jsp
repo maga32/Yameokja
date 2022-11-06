@@ -96,16 +96,16 @@
 				<a href="#"> 
 					<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
 					<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
-					${ c.communityTitle }제목(댓글 수)
+					${ c.communityTitle }(${ c.communityReadCount })
 				</a>
 			</div>
-			<p class="text-secondary" id="communityMemberNickname">${ c.memberNickname }<br>[임시communityNo]${ c.communityNo}</p>
+			<p class="text-secondary" id="communityMemberNickname">${ c.memberNickname }</p>
 			<div class="text-secondary" id="communityRegDate"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><fmt:formatDate value="${ c.communityRegDate }" pattern="yyyy-MM-dd" /></div>
 			</div>
 			<div class="col-3 col-md-2 col-sm-3 border-start border-1">
 				<div class="row">
 					<div class="col d-flex-column text-secondary">
-						<i class="fa fa-eye fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReadCount }
+						<i class="fa fa-eye fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReplyCount }
 					</div>
 					</div>
 				</div>

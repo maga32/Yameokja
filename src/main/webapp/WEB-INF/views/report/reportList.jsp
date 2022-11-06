@@ -50,8 +50,8 @@
 		<div class="divTableRow border-">
 			<div class="divTableCell">${re.reportType }</div>
 			<div class="divTableCell"><a href="reportDetail?reportNo=${ re.reportNo }" >${re.reportTitle}/${ re.reportTarget }</a></div>
-			<div class="divTableCell">${re.reportPunishCheck}/(임시)${re.categoryNo}</div>
-			<div class="divTableCell">${re.memberId}임시reportNo(${ re.reportNo })</div>
+			<div class="divTableCell">${re.reportPunishCheck}</div>
+			<div class="divTableCell">${re.memberId}</div>
 			<div class="divTableCell"><fmt:formatDate value="${ re.reportDate }" pattern="yyyy-MM-dd" />
 			</div>
 		</div>

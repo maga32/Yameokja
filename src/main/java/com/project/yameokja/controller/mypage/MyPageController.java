@@ -20,13 +20,12 @@ import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.service.mypage.MyPageService;
-//스프링 MVC의 컨트롤러임을 선언하고 있다.
+
 @Controller
 public class MyPageController {
 
 	@Autowired
 	private MyPageService myPageService;
-	
 	@Autowired
 	private MyPageDao myPageDao;
 	
@@ -76,9 +75,10 @@ public class MyPageController {
 	@RequestMapping(value="/deleteMyPagePost")
 	public String deleteMyPagePost(
 			RedirectAttributes reAttrs,
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value="postNo", required=false, defaultValue="0")int postNo) {
 		myPageService.deleteMyPagePost(postNo);
-//		reAttrs.addAttribute("pageNum", pageNum);
+		reAttrs.addAttribute("userId", userId);
 		return "redirect:myPagePost";
 	}
 	
@@ -101,9 +101,10 @@ public class MyPageController {
 	@RequestMapping(value="/deleteMyPageCommunit")
 	public String deleteMyPageCommunit(
 			RedirectAttributes reAttrs,
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value="communityNo", required=false, defaultValue="0")int communityNo) {
 		myPageService.deleteMyPagePost(communityNo);
-//		reAttrs.addAttribute("pageNum", pageNum);
+		reAttrs.addAttribute("userId", userId);
 		return "redirect:myPagePost";
 	}
 	

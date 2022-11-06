@@ -20,11 +20,6 @@ public class ReportServiceImpl implements ReportService {
 	private static final int PAGE_GROUP = 10;
 
 	@Override
-	public void addReport(Report report) {
-		reportDao.addReport(report);
-	}
-
-	@Override
 	public Map<String, Object> reportList(String userId, int categoryNo, String reportPunishCheck,String type, String keyword, int pageNum) {
 		int currentPage = pageNum;		
 		int startRow = (currentPage -1) * PAGE_SIZE;
@@ -101,6 +96,12 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public void memberPermanenSuspension(String memberId) {
 		reportDao.memberPermanenSuspension(memberId);
+	}
+
+
+	@Override
+	public void addReport(Report report) {
+		reportDao.addReport(report);
 	}
 
 }
