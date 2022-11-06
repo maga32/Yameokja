@@ -89,7 +89,8 @@ public class CommunityDaoImpl implements CommunityDao {
 	// 커뮤니티 댓글 입력
 	@Override
 	public void addCommunityReply(Community co) {
-		sqlSession.insert(NAME_SPACE + ".addCommunityReply", co);  
+		sqlSession.insert(NAME_SPACE + ".addCommunityReply", co);
+		sqlSession.update(NAME_SPACE + ".addCommunityReplyCount", co.getCommunityParentNo());
 	}
 	
 	//커뮤니티 댓글 수정
@@ -106,12 +107,13 @@ public class CommunityDaoImpl implements CommunityDao {
 
 	// 커뮤니티 댓글 삭제
 	@Override
-	public void delCommunityReply(int no) {
+	public void delCommunityReply(int no,  int communityParentNo) {
 		
 		int reReplyCount = sqlSession.selectOne(NAME_SPACE + ".countCommunityReReply", no); 
 		if( reReplyCount < 1) {
 			System.out.println("답글 없음, 답글 갯수 : " + reReplyCount);
 			sqlSession.delete(NAME_SPACE + ".delCommunityReply", no);
+			sqlSession.update(NAME_SPACE + ".deleteCommunityReplyCount", communityParentNo);
 			
 		}else {
 			System.out.println("답글 있음, 답글 갯수 : " + reReplyCount);

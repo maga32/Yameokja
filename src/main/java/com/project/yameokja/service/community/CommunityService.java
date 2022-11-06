@@ -114,8 +114,8 @@ public class CommunityService {
 	}
 	
 	// 커뮤니티 댓글 삭제
-	public void delCommunityReply(int no) {
-		communityListDao.delCommunityReply(no);
+	public void delCommunityReply(int no, int communityParentNo) {
+		communityListDao.delCommunityReply(no, communityParentNo);
 	}
 	
 	// 커뮤니티 댓글 작성자 출력

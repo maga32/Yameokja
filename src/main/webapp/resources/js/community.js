@@ -54,13 +54,22 @@ $(function(){
 	
 // 커뮤니티 댓글 작성
 	$(document).on("submit", "#communityReplyWriteForm", function() {
-	
-	
+		
+		
+		/*
+		var communityNo = $("#communityNo").val()
+		
+		
+		
+		alert($("#communityContent").val().length);
+		
+		
 		if(($("#communityContent").val().length <= 1) && ($("#communityReplyContent").val().length <= 1)) {
 			alert("댓글은 한 글자 이상 입력해야 합니다.");
 			// Ajax 요청을 취소한다.
 			return false;
 		}
+		*/
 		
 		var id = $("#memberId").val();
 		
@@ -68,7 +77,7 @@ $(function(){
 			alert("댓글을 작성하려면 로그인해 주세요.");
 			return false;
 		}
-		
+
 		var params = $(this).serialize();
 		var u = "replyWrite.ajax";
 
@@ -132,17 +141,18 @@ $(function(){
 		target = target.split(",");
 		
 		var targetNo = target[0];
-		var targetId = target[1];
+		var targetNickname = target[1];
+		// 클릭한 버튼의 타겟번호가 포함된 답글 폼을 id 기준으로 찾아 숨김 or 보임 처리
 		var status = $("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style");
 		var communityParent = $("#communityReReplyParentNoAt" + targetNo).val();
-		alert(communityParent);
+		// alert(communityParent);
 		
-		alert(target+ " - " + targetNo + " - " + targetId + " - " + communityParent);
-		alert("답글을 달아주세요!" + targetNo + status);
+		// alert(target+ " - " + targetNo + " - " + targetNickname + " - " + communityParent);
+		// alert("답글을 달아주세요!" + targetNo + status);
 		if( status == "display : none"){
 			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : block");
 			$("#communityReReplyAt" + targetNo).val(targetNo);
-			$("#communityReplyTargetAt" + targetNo).val(targetId);
+			$("#communityReplyTargetAt" + targetNo).val(targetNickname);
 			if( communityParent != '0' ){
 				$("#communityReReplyAt" + targetNo).val(communityParent);
 			}
@@ -158,12 +168,27 @@ $(function(){
 		target = target.split(",");
 		
 		var targetNo = target[0];
-		var targetId = target[1];
+		var targetNickname = target[1];
+		var targetContentNo =""; 
+		var str = "";
+
+		// 배열의 길이가 3이라는 것은, 답글임을 의미한다.
+		if(target.length > 2){
+			var targetContentNo = target[2];
+			// alert("답글이며, 답글의 댓글번호 : " + targetContentNo);
+			var content = $("div[id=communityReplyContentResultAt" +targetContentNo+ "]").text();
+			str = '<input type="hidden" name="communityNo" value="' + targetContentNo + '">'
+		}else{
+			var content = $("div[id=communityReplyContentResultAt" +targetNo+ "]").text();
+			str = '<input type="hidden" name="communityNo" value="' + targetNo + '">'
+		}
+		
+		$("form[class=communityReReplyWriteFormNo" + targetNo+ "]").append(str);
+		
 		var status = $("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style");
-		var content = $("div[id=communityReplyContentResultAt" +targetNo+ "]").text();
-		alert(target+ " - " + targetNo + " - " + targetId + " - " + content);
-			
-		alert("답글을 수정해주세요!" + targetNo + status);
+		
+		// alert(target+ " - " + targetNo + " - " + targetNickname + " - " + content);
+		// alert("답글을 수정해주세요!" + targetNo + status);
 		if( status == "display : none"){
 			$("#communityReplyContentAt" +targetNo).val(content);
 			$("div[id=communityReReplyWriteFormNo" + targetNo+ "]").attr("style", "display : block");
@@ -176,10 +201,13 @@ $(function(){
 	
 });
 
+
+
+
 // 댓글 ajax 처리
 function replyAjaxAction(u, d){
 
-	alert(d)
+	// alert(d)
 
 	$.ajax({
 			url: u,
@@ -196,57 +224,80 @@ function replyAjaxAction(u, d){
 				}else{
 					$("#communityReplyList").empty();				
 					$.each(resultData, function(index, value) {					
-	
+						
+						var sessionMemberId = $("#memberId").val();
 						var id = $("#communityParentNo").val();
 						var communityReReplyZeroCheck = value.communityReReply;
 						let parentCommunityNo = value.communityNo;
 						
+						// 날짜 출력형식 지정
+						var regDate = new Date(value.communityRegDate);
+						regDate = "(" + regDate.getFullYear() + "-" + (regDate.getMonth()+1) + "-" + regDate.getDate() + " " + regDate.getHours() + ":" + regDate.getMinutes() + ":" + regDate.getSeconds() + ")";
+						
 						if(communityReReplyZeroCheck == 0){
+						
 							var result1 = 
-								"<div style='border:1px solid black'>"
-								+ "	작성자" + value.memberId + "<br>"
-								+ "	작성일" + value.communityRegDate + "<br>"
-								+ '	<div id="communityReplyContentResultAt' + value.communityNo + '">' + value.communityContent + '</div><br>'
-								// 답글 여부, 글 번호 체크
-								+ "	글 번호" + value.communityNo + "<br>"
-								+ "	답글 여부" + value.communityReReply + "<br>"
-								+ '<button class="btnCommunityReReplyWriteFormOpen" value="' + value.communityNo + ',' + value.memberId + '">답글</button>'
-								+ '<input type="hidden" id="communityReReplyParentNoAt' + value.communityNo + '" value="' + value.communityReReply + '">';
+								"<div class='row border-bottom pt-1'>"				
+								+ "<div class='col-2 my-auto text-center'>"				
+								+ "<img class='rounded-circle userImg' alt='" + value.memberNickname + "' src=\"resources/IMG/member/" + value.memberPhoto + "\"	onclick='window.open(\"userProfile?userId='" +value.memberId + " ',\"LoginForm\",\"width=500, height=600\")'/>"
+								+ "	<br><span style=\"font-size: 10px;\"> " + value.memberNickname + "</span>"
+								+ "</div>"
 								
-							if( value.categoryNo == -1 ){
+								+ '<div class="col-8 my-2">'
+								// 댓글 하위 데이터 / 댓글 삭제, 답글
+								+ '<div class="fw-bold">'
+								+ regDate
+								+ '</div>'
+								+ '<div id="communityReplyContentResultAt' + value.communityNo + '">' + value.communityContent
+								+ '</div>'
+								+ '</div>'
+								
+								+ '<div class="col-2 border-start text-center">'
+								+ '<button class="btnCommunityReReplyWriteFormOpen btnReply" value="' + value.communityNo + ','+ value.memberNickname + '">답글</button><br>'
+								
+							if( value.categoryNo == -1 || value.memberId != sessionMemberId){
 								var result2 = "";
 							}else{
 								var result2 = 
-								'<button class="btnCommunityReReplyUpdateFormOpen" value="' + value.communityNo + ',' + value.memberId + '">수정</button>'
+								'<button class="btnCommunityReReplyUpdateFormOpen btnReply" value="' + value.communityNo + ',' + value.memberNickname + '">수정</button><br>'
 								+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
 								+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
 								+ '<input type="hidden" name="replyCommunityNo" value="'+value.communityNo+'">'
-								+ '<input type="submit" name="replyDelete">'
+								+ '<button class="replyDelete btnReply">삭제</button>'
 								+ '</form>';					
 							}							
 					
 							var result3 = 
-								'<input type="button" id="" value="신고">'
-								+ '<div id="communityReReplyWriteFormNo' + value.communityNo + '" style="display : none">'
-								+ '<form id="communityReplyWriteForm" name="communityReplyWriteForm" >'
-								+ '<input type="hidden" name="communityParentNo" id="communityParentNo" value="' + value.communityParentNo + '">'
-								+ '<input type="hidden" name="communityReReply" id="communityReReplyAt' + value.communityNo + '" value=0>'
-								+ '<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt' + value.communityNo + '"	 value="">'
-								+ '<input type="hidden" name="communityReplyUpdateNo" value="' + value.communityNo + '">'
-								+ '<input type="hidden" name="communityNo" id="communityNo' + value.communityNo + '" value="">'
-								+ '<div>'
-								+ '<textarea id="communityReplyContentAt' + value.communityNo + '" name="communityContent" placeholder="댓글을 입력해주세요">'
+								'<button class="reportButton btnReply" onclick=\'window.open("reportForm?categoryNo=' + value.categoryNo + '&communityNo=' + value.communityNo + '&reportTarget=' + value.memberId + ' ","reportForm","width=500, height=600")\'>신고</button>'
+								+ '</div>'
+								+ '<div class="my-1" id="communityReReplyWriteFormNo' + value.communityNo + '" style="display : none">'
+								+ '<form class="communityReReplyWriteFormNo' + value.communityNo + '" id="communityReplyWriteForm" name="communityReplyWriteForm" >'
+								+ '	<input type="hidden" name="communityParentNo" id="communityParentNoAt' + value.communityNo + '" value="' + value.communityParentNo + '">'
+								+ '	<input type="hidden" name="communityReReply" id="communityReReplyAt' + value.communityNo + '" value=0>'
+								+ '	<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt' + value.communityNo + '"	 value="">'
+								+ '	<input type="hidden" name="communityReReplyParentNo" id="communityReReplyParentNoAt' + value.communityNo + '"	value="' + value.communityReReply + '">'
+								// + '	<input type="hidden" name="communityReplyUpdateNo" value="' + value.communityNo + '">'
+								+ '	<input type="hidden" name="communityNo2" id="communityNo' + value.communityNo + '" value="">'
+								+ '<div class="row">'
+								+ '<textarea class="col-10 p-1" id="communityReplyContentAt' + value.communityNo + '" name="communityContent" placeholder="댓글을 입력해주세요">'
 								+ '</textarea>'
+								+ '<div class="col-2">'
 								+ '<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">'
 								+ 	'</div>'
+								+ 	'</div>'
 								+ '</form>'
-								+ "</div>"
-								+ "</div>";
+								+ '</div>';
+								
 								
 								var str = result1 + result2 + result3;
 								$("#communityReplyList").append(str);		
 								
 								$.each(resultData, function(index, value){
+								
+									// 날짜 출력형식 지정2
+									var regDate2 = new Date(value.communityRegDate);
+									regDate2= "(" + regDate2.getFullYear() + "-" + (regDate2.getMonth()+1) + "-" + regDate2.getDate() + " " + regDate2.getHours() + ":" + regDate2.getMinutes() + ":" + regDate2.getSeconds() + ")";
+						
 									
 									// 반복되는 parentCommunityNo = 0 초기화 해결 - 값 유지하기
 									if(parentCommunityNo != 0) {
@@ -254,47 +305,64 @@ function replyAjaxAction(u, d){
 									}
 	
 									var childCommunityReReply = value.communityReReply;
+									var result4 = "";
 									//console.log("parentCommunityNoEach2 : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
 									
-									// 355번호 글 = 새로운 for문 안의 reReply가 355일 때
+									// ex) 355번호 글 = 새로운 for문 안의 reReply가 355일 때
 									if(parentCommunityNoEach2 == childCommunityReReply){
-										var result2 = 
-											"<div style='border:1px solid black'>"
-											+ "	작성자" + value.memberId + "<br>"
-											+ "	작성일" +  value.communityRegDate + "<br>"
-											+ "	내용 @"+ value.communityReplyTarget + " " + value.communityContent + "<br>"
-											// 답글 여부, 글 번호 체크
-											+ "	글 번호" + value.communityNo + "<br>"
-											+ "	답글 여부" + value.communityReReply + "<br>"
-											+ '<button class="btnCommunityReReplyWriteFormOpen" value="' + value.communityNo + ',' + value.memberId + '">답글</button>'
-											+ '<input type="hidden" id="communityReReplyParentNoAt' + value.communityNo + '" value="' + value.communityReReply + '">'
-											+ '<input type="button" id="" value="수정">'
+										var result4 =
+											'<div class="row border-bottom">' 
+											+'<div class="col-1 d-flex align-items-center d-flex justify-content-end pe-2">'
+											+ '<div class="fs-3">↳'
+											+ '</div>'
+											+ '</div>'
+											
+											+ '<div class="col-2 pt-1  text-center reReply">'
+											+ '<div class="col-12 align-self-center">'
+											+ "<img class='rounded-circle userImg' alt='" + value.memberNickname + "' src=\"resources/IMG/member/" + value.memberPhoto + "\"	onclick='window.open(\"userProfile?userId='" +value.memberId + " ',\"LoginForm\",\"width=500, height=600\")'/>"
+											+ "	<br><span style=\"font-size: 10px;\"> " + value.memberNickname + "</span>"
+											+ '</div>'
+											+ '</div>'	
+
+											+ '<div class="col-7 py-2 reReply">'
+											+ '<div class="col-12 my-auto">'						
+											+ '<div class="fw-bold">'
+											+ regDate2
+											+ '</div> <span class="text-primary">@' + value.communityReplyTarget + '</span>&nbsp;'
+											+ '<div class="inlineBlock" id="communityReplyContentResultAt' + value.communityNo + '">' + value.communityContent
+											+ '</div>'
+											+ '</div>'
+											+ '</div>'
+											
+											+ '<div class="col-2 border-start text-center reReply">'
+											
+											+ '<button class="btnCommunityReReplyWriteFormOpen btnReReply" value="' + parentCommunityNoEach2 + ',' + value.memberNickname + '">답글</button><br>'
+											+ '<input type="hidden" id="communityReReplyParentNoAt' + value.communityNo + '" value="' + value.communityReReply + '">';
+											
+										if( value.categoryNo == -1 || value.memberId != sessionMemberId){
+											var result5 = "";
+										}else{
+											var result5 = 
+											'<button class="btnCommunityReReplyUpdateFormOpen btnReply" value="' + parentCommunityNoEach2 + ',' + value.memberNickname + ',' + value.communityNo + '">수정</button><br>'
 											+ '<form id="communityReplyDeleteForm" name="communityReplyDeleteForm">'
-											+ '<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
-											+ '<input type="hidden" name="replyCommunityNo" value="'+value.communityNo+'">'
-											+ '<input type="submit" name="replyDelete">'
-											+ '</form>'
-											+ '<input type="button" id="" value="신고">'
-											+ '<div id="communityReReplyWriteFormNo' + value.communityNo + '" style="display : none">'
-											+ '<form id="communityReplyWriteForm" name="communityReplyWriteForm" >'
-											+ '<input type="hidden" name="communityParentNo" id="communityParentNo" value="' + value.communityParentNo + '">'
-											+ '<input type="hidden" name="communityReReply" id="communityReReplyAt' + value.communityNo + '" value=0>'
-											+ '<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt' + value.communityNo + '"	 value="">'
-											+ '<div>'
-											+ '<textarea id="communityReplyContentAt' + value.communityNo + '" name="communityContent" placeholder="댓글을 입력해주세요">'
-											+ '</textarea>'
-											+ '<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">'
-											+ 	'</div>'
-											+ '</form>'
-											+ "</div>"
+											+ '	<input type="hidden" name="replyCommunityParentNo" value="'+id+'">'
+											+ '	<input type="hidden" name="replyCommunityNo" value="'+value.communityNo+'">'
+											+ '	<button class="replyDelete btnReply">삭제</button>'
+											+ '</form>';					
+										}				
+											
+											var result6 =
+											'<button class="reportButton btnReply" onclick=\'window.open("reportForm?categoryNo=' + value.categoryNo + '&communityNo=' + value.communityNo + '&reportTarget=' + value.memberId + ' ","reportForm","width=500, height=600")\'>신고</button>'	
 											+ "</div>";
 											
-											$("#communityReplyList").append(result2);
+											var str2 = result4 + result5 + result6;
+											$("#communityReplyList").append(str2);
 											// console.log("parentCommunityNoEach : " +parentCommunityNoEach2+ " - childCommunityReReply : " + childCommunityReReply);
 											// console.log("출력 시점 - communityNo:" + value.communityNo);
 									}
 								});
 							}
+							// 답글이 없을 경우 div 닫기
 											
 					}); 
 				}// else end			

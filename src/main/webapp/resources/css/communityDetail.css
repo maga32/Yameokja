@@ -21,20 +21,35 @@
     align-items: center;
     justify-content: center;
 }
+.userImg{
+	height:50px; 
+	width:50px;
+	border : 1px solid gray;
+}
+.communityImg{
+	height:75px; 
+	width:75px;
+	border : 1px solid gray;
+}
+.coContent{
+	min-height: 300px;
+}
+.btnCommunityDetail{
+	border: 1px solid gray;
+	font-weight: bold;
+	color: white;
+}
+ .reReply{
+ 	background-color: rgba(217, 217, 217, 0.2);
+ 	}
 
-.btnCommunityReReplyWriteFormOpen, .btnCommunityReReplyUpdateFormOpen,
-	.replyDelete{
+.btnReply, .btnReReply{
 	border: none;
-	background-color: white;
+	background-color:transparent;
 	color: #7A7A80;
 	font-size: 13px;
 }
-.reportButton{
-	border: none;
-	background-color: white;
-	color: #7A7A80;
-	font-size: 13px;
-}
+
 textarea{
 	width: -webkit-fill-available;
 }

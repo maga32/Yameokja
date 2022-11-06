@@ -108,8 +108,9 @@
 	
 <!-- 커뮤니티 글 상세보기 -->
 	<select id="getCommunityOne" resultMap="CommunityResultMap" resultType="Community">
-		SELECT *
+		SELECT community.*, member.member_photo
 		FROM community
+		LEFT JOIN member ON community.member_id = member.member_id
 		WHERE community_no = #{coNo}
 	</select>
 	
@@ -143,9 +144,11 @@
 	
 <!-- 커뮤니티 댓글 출력 -->
 	<select id="getCommunityReply" parameterType="Community" resultMap="CommunityResultMap">
-		SELECT * FROM community
+		SELECT community.*, member.member_photo FROM community
+		LEFT JOIN member ON community.member_id = member.member_id
 		WHERE community_parent_no = #{ communityParentNo } AND category_no <![CDATA[<=]]>  '0'
 	</select>
+	
 	
 <!-- 커뮤니티 댓글 삭제 - 답글이 없는경우 -->
 	<delete id="delCommunityReply">
@@ -171,12 +174,27 @@
 		SELECT member_id as memberId FROM community
 		WHERE community_no = #{no}
 	</select>
+	
+<!-- 커뮤니티 게시글 댓글 수 추가 -->
+	<update id="addCommunityReplyCount">
+		UPDATE community
+			SET community_reply_count = community_reply_count + 1
+			WHERE community_no = #{no}
+	</update>
+
+<!-- 커뮤니티 게시글 댓글 수 삭제 -->
+	<update id="deleteCommunityReplyCount">
+		UPDATE community
+			SET community_reply_count = community_reply_count - 1
+			WHERE community_no = #{no}
+	</update>	
 
 	
 	<resultMap type="Community" id="CommunityResultMap">
 		<id property="communityNo" column="community_no" />
 		<result property="memberId" column="member_id" />
 		<result property="memberNickname" column="member_nickname" />
+		<result property="memberPhoto" column="member_photo" />
 		<result property="categoryNo" column="category_no" />
 		<result property="communityTitle" column="community_title" />
 		<result property="communityRegDate" column="community_reg_date" />

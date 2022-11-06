@@ -454,19 +454,20 @@ public class CommunityController {
 		// 답글의 경우 session에 있는 작성자 정보를 못가져와서, if문으로 제어
 		if( community != null) {
 			if(community.getMemberId() == null) {
-				community.setMemberId((String) session.getAttribute("memberId"));
-				community.setMemberNickname((String) session.getAttribute("memberNickname"));
+				community.setMemberId(((Member) session.getAttribute("member")).getMemberId());
+				community.setMemberNickname(((Member) session.getAttribute("member")).getMemberNickname());
 			}
 		}
 		
 		System.out.println("contorller - communtiyNo : " + community.getCommunityNo());
 		if(community.getCommunityNo() == 0) {
 			communityListService.addCommunityReply(community);
+			System.out.println("커뮤번호0, 멤버아이디 조회 : " + community.getMemberId() );
 		}else {
 			communityListService.updateCommunityReply(community);
 		}
 		
-	
+		System.out.println("rewrite end");
 		return communityListService.getCommunityReply(community);
 	}
 	
@@ -480,7 +481,7 @@ public class CommunityController {
 		String memberId = communityListService.getCommunityReplyMemberId(replyCommunityNo);
 		
 		if( memberId.equals(session.getAttribute("memberId"))){
-			communityListService.delCommunityReply(replyCommunityNo);
+			communityListService.delCommunityReply(replyCommunityNo, replyCommunityParentNo);
 			
 			System.out.println("controller - memberId : " + memberId + " / sessionId : " + session.getAttribute("memberId"));
 			

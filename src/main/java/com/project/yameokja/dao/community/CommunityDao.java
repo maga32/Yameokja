@@ -48,7 +48,7 @@ public interface CommunityDao {
 	public List<Community> getCommunityReply(Community co);
 	
 	// 커뮤니티 댓글 삭제
-	public void delCommunityReply(int no);
+	public void delCommunityReply(int no, int communityParentNo);
 	
 	// 커뮤니티 댓글 작성자 출력
 	public String getCommunityReplyMemberId(int no);
