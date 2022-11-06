@@ -30,5 +30,8 @@ public interface PostDao {
 	public List<Post> bestTwoPost(int storeNo);
 	
 	public List<Post> bestThreePost(int storeNo);
+
+	//포스트 작성
+	int postWrite(Post post);
 	
 }

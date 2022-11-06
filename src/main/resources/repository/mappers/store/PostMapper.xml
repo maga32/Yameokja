@@ -46,6 +46,10 @@
 		ORDER BY post_no DESC
 	</select>
 	
+	<insert id="postWrite" parameterType="Post" useGeneratedKeys="true" keyProperty="postNo">
+		INSERT INTO post (store_no, post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_up_count, member_id, member_nickname)
+			VALUE(#{storeNo}, #{postTitle}, #{postContent}, 0, #{postFile1}, #{postFile2}, #{postFile3}, #{postFile4}, #{postFile5}, SYSDATE(), '1', 0, #{memberId}, #{memberNickname})
+	</insert>
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />

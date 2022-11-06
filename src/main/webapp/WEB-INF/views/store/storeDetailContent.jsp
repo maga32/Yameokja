@@ -118,7 +118,9 @@
 			</div>
 			
 			<div class="row">
-				${ post.postContent }
+				<pre>
+					${ post.postContent }
+				</pre>
 			</div>
 			
 		</div>

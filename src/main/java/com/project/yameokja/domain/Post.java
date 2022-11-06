@@ -24,7 +24,7 @@ public class Post {
 	
 	public Post() {}
 
-	public Post(int postNo, int storetNo, String postTitle, String postContent, int postReadCount, String postFile1,
+	public Post(int postNo, int storeNo, String postTitle, String postContent, int postReadCount, String postFile1,
 			String postFile2, String postFile3, String postFile4, String postFile5, Timestamp postRegDate,
 			String postIsPost, int postStar, int postUpCount, String postUpList, String memberId,
 			String memberNickname) {
@@ -56,11 +56,11 @@ public class Post {
 		this.postNo = postNo;
 	}
 
-	public int getStoretNo() {
+	public int getStoreNo() {
 		return storeNo;
 	}
 
-	public void setStoretNo(int storetNo) {
+	public void setStoreNo(int storeNo) {
 		this.storeNo = storeNo;
 	}
 
