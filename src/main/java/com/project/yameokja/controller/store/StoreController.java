@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,10 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import javax.servlet.http.HttpServletResponse;
-=======
->>>>>>> post
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
