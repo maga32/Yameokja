@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <article>
 	<%@ include file="adminWing.jsp" %>
-	<div class="px-2 p-sm-3 p-2">
+	<div class="p-sm-3 py-2 px-4">
 		
 		<!-- 검색 -->
 		<div class="d-flex">
@@ -64,8 +64,9 @@
 			<c:forEach var="li" items="${ memberList }">
 				<div class="col-5 py-2 d-flex">
 					<div class="align-self-center">
-						<!-- 멤버 사진으로 대체 -->
-						<img class="rounded-circle mr-2" src="https://picsum.photos/40">
+						<div class="border rounded-circle d-flex align-items-center" style="width:40px; height:40px; overflow:hidden;">
+							<img src="/yameokja/resources/IMG/member/${ li.memberPhoto }" style="width:40px;">
+						</div>
 					</div>
 					<div class="px-2">
 						<a class="memberInfo" data-memberId="${ li.memberId }">
