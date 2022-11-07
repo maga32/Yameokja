@@ -60,6 +60,7 @@ footer {
 
 #wing {
 	position: fixed;
+	z-index: 20;
 	top: 0;
     bottom: 0;
     left: 0;
@@ -71,6 +72,12 @@ footer {
 	transition: 0.3s all ease;
     transition: 0.2s all;
 	overflow-y: scroll;
+	-ms-overflow-style: none;
+}
+
+#wing::-webkit-scrollbar {
+	display: none;
+	width: 0 !important;
 }
 
 @media (max-width: 991px){
@@ -103,7 +110,8 @@ footer {
 
 #wingButton {
 	position: fixed;
-	top: 5%;
+	z-index: 10;
+	top: 2%;
     left: 0;
     width:70px;
 }
