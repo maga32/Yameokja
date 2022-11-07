@@ -152,3 +152,25 @@ $(document).on("click", ".chatStart", function() {
 });
 
 // 회원 드롭메뉴 관련 끝 ----------------------------------------------------------------------------------------------------------------
+
+// wing 주소변경
+$(document).on("click", "#memberChangeAddress", function() {
+	var address = $("#address1").val() + "," + $("#address2").val();
+	$.ajax({
+		url: "/yameokja/memberChangeAddress.ajax",
+		type: "post",
+		data: "memberAddress=" + address,
+		context: this,
+		success: function(resData) {		
+			if(resData) {
+				alert("변경 완료");
+				$("#myAddress").html("<i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;&nbsp;&nbsp;" + address);
+			} else {
+				alert("로그인이 필요합니다");
+			}
+		},
+		error: function(){
+			console.log("not logined");
+		}
+	});
+});

@@ -5,15 +5,46 @@
 <mapper namespace="com.project.yameokja.mappers.StoreMapper">
 	
 	<!-- 가게 특정 카테고리 -->
- 	<select id="storeList" resultType="Store" resultMap="storeResultMap">
-		SELECT * FROM store
-			WHERE category_no = #{category_no}
-		ORDER BY store_no DESC
+ 	<select id="storeList" resultType="Store" resultMap="storeResultMap" parameterType="HashMap">
+		SELECT *
+		 FROM store
+		<where>
+			<if test="categoryNo != 99">
+				category_no = #{ categoryNo }	
+			</if>
+			<if test="categoryNo == 99">
+				category_no = #{ categoryNo }	
+			</if>
+			<if test="keyword != 'null' ">
+				AND store_address LIKE CONCAT('%',#{type},'%') AND store_name LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+				<trim prefix="ORDER BY">
+					<choose>
+                        <when test="orderBy == 'sName' "> store_name ASC </when>
+                        <when test="orderBy == 'sReviewCount' "> store_review_count DESC </when>
+                        <when test="orderBy == 'sBookmarks' "> store_bookmarks DESC </when>
+                        <otherwise>store_no DESC</otherwise>
+                     </choose>
+                </trim>       
+		LIMIT #{startRow}, #{num}
 	</select>
 	
-	<!-- 가게 전부 -->
-	<select id="storeListAll" resultType="Store" resultMap="storeResultMap">
-		SELECT * FROM store ORDER BY store_no DESC
+	<!-- 가게 글 갯수 -->
+	<select id="getStoreCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(store_no)
+		 FROM store
+		<where>
+			<if test="categoryNo != 99">
+				category_no = #{ categoryNo }	
+			</if>
+			<if test="categoryNo == 99">
+				category_no = #{ categoryNo }	
+			</if>
+			<if test="keyword != 'null' ">
+				AND store_address = #{type} AND store_name LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
 	</select>
 	
 	<!-- 가게 상세 -->
@@ -31,7 +62,7 @@
 				store_parking, category_no)
 				
     VALUES(#{storeName}, #{storePhone}, #{storeLatitude}, #{storeLongitude},
-    			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, "null",
+    			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, null,
     			#{storeDayOff}, #{storeParking}, #{categoryNo})
 	</insert>
 	
@@ -48,7 +79,6 @@
 			SET store_bookmarks = IF(store_bookmarks <![CDATA[<]]> "1", "0", store_bookmarks - "1")
 		WHERE store_no = #{storeNo}
 	</update>
-	
 
 	<resultMap id="storeResultMap" type="Store">
 		<id property="storeNo" column="store_no" />

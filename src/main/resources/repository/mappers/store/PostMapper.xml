@@ -53,16 +53,22 @@
 		ORDER BY post_no DESC
 	</select>
 	
+
 	<insert id="postReplyAdd" parameterType="Post">
 		INSERT INTO post
 			(post_content, post_reg_date, post_is_post, post_star, store_no, member_id, member_nickname, post_file1, post_file2)
 		VALUES (#{postContent}, SYSDATE(), 0, #{postStar}, #{storeNo}, #{memberId}, #{memberNickname}, "이거일임", #{postFile2})
+
+	<insert id="postWrite" parameterType="Post" useGeneratedKeys="true" keyProperty="postNo">
+		INSERT INTO post (store_no, post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_up_count, member_id, member_nickname)
+			VALUE(#{storeNo}, #{postTitle}, #{postContent}, 0, #{postFile1}, #{postFile2}, #{postFile3}, #{postFile4}, #{postFile5}, SYSDATE(), '1', 0, #{memberId}, #{memberNickname})
 	</insert>
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />
 		<result property="postTitle" column="post_title"/>
 		<result property="postContent" column="post_content" />
+		<result property="postReadCount" column="post_read_count" />
 		<result property="postFile1" column="post_file1" />
 		<result property="postFile2" column="post_file2" />
 		<result property="postFile3" column="post_file3" />

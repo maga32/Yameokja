@@ -5,39 +5,47 @@
 <link rel="stylesheet" type="text/css" 	href="resources/css/communityDetail.css" />
 <script src="resources/js/community.js"></script>
 <article>
-<div class="row border justifyContent p-1 m-2">
+<div class="row border justifyContent p-1 m-0">
 	<!-- 작성자 정보, 제목 -->
 	<div class="row border-bottom justifyContent">
 		<div class="row communityTitle">
-			<div class="col-12">
+			<div class="col-12 border-bottom pb-2">
 				<c:if test="${ co.categoryNo == 101 }">[수다]</c:if>
 				<c:if test="${ co.categoryNo == 102 }">[모집]</c:if>
 				 ${ co.communityTitle }
+				 (${ co.communityReplyCount })
 			</div>
 		 </div>
 		 <div class=" row my-3">
 		 	<div class=" col-2 imageFrame">
-				<img class="rounded-circle" alt="..." src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" />
+		 		<img class="rounded-circle communityImg" alt="${co.memberNickname}" src="resources/IMG/member/${co.memberPhoto }"
+						onclick='window.open("userProfile?userId=${co.memberId}","LoginForm","width=500, height=600")'/>
 			</div>
 			<div class="col-8">
-				<div class="col-12 memberNicknameFont">닉네임 : ${ co.memberNickname }</div>
-				<div class="col-12 communityRegDateFont">작성일 : ${ co.communityRegDate }</div>
-				<div class="col-12 communityReadCountFont">조회수 : ${ co.communityReadCount }</div>
+				<div class="col-12 memberNicknameFont">${ co.memberNickname }</div>
+				<div class="col-12 communityRegDateFont">(<fmt:formatDate value="${co.communityRegDate}" pattern="yyyy-MM-dd hh:mm:ss"/>)</div>
+				<div class="col-12 communityReadCountFont"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;${ co.communityReadCount }</div>
 			</div>	
-			<div class="col-2">
-				<input type="button" onclick="clip(); return false;" value="링크복사">
-				<button onclick='window.open("reportForm?categoryNo=${co.categoryNo}&communityNo=${co.communityNo}&reportTarget=${co.memberId}","reportForm","width=500, height=600")'>신고</button>
+			<div class="col-2 p-0 text-end">
+				<span class="fa-stack fa-lg"  onclick='clip(); return false;'>
+				  <i class="fa fa-circle fa-stack-2x"></i>
+				  <i class="fa fa-bell fa-stack-1x text-white"></i>
+				</span>
+				<span class="fa-stack fa-lg"  onclick='window.open("reportForm?categoryNo=${co.categoryNo}&communityNo=${co.communityNo}&reportTarget=${co.memberId}","reportForm","width=500, height=600")'>
+				  <i class="fa fa-circle fa-stack-2x"></i>
+				  <i class="fa fa-bell fa-stack-1x text-white"></i>
+				</span>
 			</div>
 		</div>
 	</div>
 	<!-- 본문 + 사진 -->
-	<div class="row col-12">
+	<div class="row col-12 border mb-3 coContent">
 		<c:if test="${not empty co.communityFile }">
-			<div>
-				<img src="resources/IMG/LOGOtemporaryIMG.PNG">	
+			<div class="imageFrame border-bottom py-2 mb-1">
+				<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${co.communityFile }">	
 			</div>
 		</c:if>
-		<div>
+		<div class="p-1">
 			${ co.communityContent }
 		</div>
 	</div>
@@ -49,7 +57,7 @@
 			모집 장소 : ${ co.partyPlace }<br>
 			모집 인원 : ${countPartyMembers} / ${ co.partyMembers }
 			
-			<c:if test="${sessionScope.memberId != co.memberId || result} ">
+			<c:if test="${sessionScope.member.memberId != co.memberId || result} ">
 				<button type="button" onClick="location.href='btn102PartyJoin?communityNo=${co.communityNo}'">참가</button>
 			</c:if>
 			<br>
@@ -82,13 +90,17 @@
 				</div>
 			</div>
 		</form>
-		<div class="row border border-top-0">
+		
+<!-- hidden 영역 -->
+		<input type="hidden" id="memberId" value="${sessionScope.member.memberId}">
+<!-- hidden 영역 end-->	
+		
 <!-- 댓글 목록 -->
-
-		<div class="col-12" id="communityReplyList border">
+		<div class="row border border-top-0">
+		<div class="col-12" id="communityReplyList">
 		<c:forEach var="re" items="${ coReplyList }" >
 			<c:if test="${re.communityReReply == '0' }">
-			<div class="row border-bottom py-1">	
+			<div class="row border-bottom pt-1">	
 				<div class="col-2 my-auto text-center">
 					<img class="rounded-circle userImg" alt="${re.memberNickname}" src="resources/IMG/member/${re.memberPhoto }"
 						onclick='window.open("userProfile?userId=${re.memberId}","LoginForm","width=500, height=600")'/>
@@ -99,14 +111,13 @@
 					<div class="fw-bold">
 						(<fmt:formatDate value="${re.communityRegDate}" pattern="yyyy-MM-dd hh:mm:ss"/>)
 					</div>	
-					<div>${re.communityNo} / ${re.communityReReply}</div>
-					<div>${re.communityContent}</div>
+					<div id="communityReplyContentResultAt${re.communityNo }">${re.communityContent}</div>
 				</div>
-				<div class="col-2 border-start my-auto text-center">
-					<button class="btnCommunityReReplyWriteFormOpen btnReply" value="${ re.communityNo },${re.memberId}">답글</button><br>
-					<c:if test="${sessionScope.memberId == re.memberId }"></c:if>
-					<c:if test="${sessionScope.memberId != re.memberId }">
-						<button class="btnCommunityReReplyUpdateFormOpen btnReply" value="${ re.communityNo },${re.memberId}">수정</button><br>
+				<div class="col-2 border-start text-center">
+					<button class="btnCommunityReReplyWriteFormOpen btnReply" value="${ re.communityNo },${re.memberNickname}">답글</button><br>
+					<c:if test="${sessionScope.member.memberId != re.memberId }"></c:if>
+					<c:if test="${sessionScope.member.memberId == re.memberId }">
+						<button class="btnCommunityReReplyUpdateFormOpen btnReply" value="${ re.communityNo },${re.memberNickname}">수정</button><br>
 						<form id="communityReplyDeleteForm" name="communityReplyDeleteForm" class="">
 							<input type="hidden" name="replyCommunityParentNo" value="${ co.communityNo }">
 							<input type="hidden" name="replyCommunityNo" value="${ re.communityNo }">
@@ -115,17 +126,22 @@
 					</c:if>
 					<button class="reportButton btnReply" onclick='window.open("reportForm?categoryNo=${re.categoryNo}&communityNo=${re.communityNo}&reportTarget=${re.memberId}","reportForm","width=500, height=600")'>신고</button>
 				</div>
+				
 	<!--  댓글 목록 end -->	
 	<!-- 답글 입력폼 -->
 				<div class="my-1" id="communityReReplyWriteFormNo${ re.communityNo }" style="display : none">
-					<form id="communityReplyWriteForm" name="communityReplyWriteForm" >
-						<input type="hidden" name="communityParentNo" id="communityParentNo" value="${co.communityNo}">
+					<form class="communityReReplyWriteFormNo${ re.communityNo }" id="communityReplyWriteForm" name="communityReplyWriteForm" >
+						<input type="hidden" name="communityParentNo" id="communityParentNoAt${re.communityNo }" value="${co.communityNo}">					
 						<input type="hidden" name="communityReReply" id="communityReReplyAt${ re.communityNo }" value=0>
 						<input type="hidden" name="communityReplyTarget" id="communityReplyTargetAt${ re.communityNo }"	 value="">
+						<input type="hidden" name="communityReReplyParentNo" id="communityReReplyParentNoAt${ re.communityNo }"	value="${re.communityReReply}">
+						<!-- <input type="hidden" name="communityReplyUpdateNo" value="${re.communityNo }"> -->
+						<!-- 1105 수정 line1 -->
+						<input type="hidden" name="communityNo2" id="communityNo${re.communityNo }" value="">
 						<div class="row">
 							<textarea class="col-10 p-1" id="communityReplyContent" name="communityContent" placeholder="댓글을 입력해주세요">
 							</textarea>
-							<div class=col-2>
+							<div class="col-2">
 								<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="입력">
 							</div>			
 						</div>
@@ -136,10 +152,10 @@
 	<!-- 답글 목록 -->
 				<c:forEach var="rere" items="${ coReplyList }">
 					<c:if test="${re.communityNo == rere.communityReReply }">
-						<div class="col-1 d-flex align-items-center d-flex justify-content-end pe-0">
+						<div class="col-1 d-flex align-items-center d-flex justify-content-end pe-2">
 							<div class="fs-3">↳</div>
 						</div>
-						<div class="col-2 d-flex text-center border-top reReply">
+						<div class="col-2 pt-1  text-center border-top reReply">
 							<div class="col-12 align-self-center">
 								<img class="rounded-circle userImg" alt="${rere.memberNickname}" src="resources/IMG/member/${rere.memberPhoto }"
 									onclick='window.open("userProfile?userId=${rere.memberId}","LoginForm","width=500, height=600")'/>
@@ -151,27 +167,26 @@
 								<!--  댓글 하위 데이터 / 댓글 삭제, 답글 -->
 								<div class="fw-bold">
 									(<fmt:formatDate value="${rere.communityRegDate}" pattern="yyyy-MM-dd hh:mm:ss"/>)
-								</div>
-								<div>${rere.communityNo} / ${rere.communityReReply}</div>
-								<div>${rere.communityContent}</div>
+								</div><span class="text-primary">@${rere.communityReplyTarget }</span>
+								<div class="inlineBlock" id="communityReplyContentResultAt${rere.communityNo }">&nbsp;${rere.communityContent}</div>
 							</div>
 						</div>
 						<div class="col-2 border-start border-top text-center reReply">
-							<button class="btnCommunityReReplyWriteFormOpen reReply" value="${ rere.communityNo },${rere.memberId}">답글</button><br>
-							<c:if test="${sessionScope.memberId == re.memberId }"></c:if>
-							<c:if test="${sessionScope.memberId != re.memberId }">
-								<button class="btnCommunityReReplyUpdateFormOpen reReply" value="${ rere.communityNo },${rere.memberId}">수정</button><br>
+							<button class="btnCommunityReReplyWriteFormOpen btnReReply" value="${ re.communityNo },${rere.memberNickname}">답글</button><br>
+							<c:if test="${sessionScope.member.memberId != rere.memberId }"></c:if>
+							<c:if test="${sessionScope.member.memberId == rere.memberId }">
+								<button class="btnCommunityReReplyUpdateFormOpen btnReReply" value="${ re.communityNo },${rere.memberNickname},${ rere.communityNo }">수정</button><br>								
 								<form id="communityReplyDeleteForm" name="communityReplyDeleteForm" class="">
 									<input type="hidden" name="replyCommunityParentNo" value="${ co.communityNo }">
-									<input type="hidden" name="replyCommunityNo" value="${ rere.communityNo }">
+									<input type="hidden" name="replyCommunityNo" value="${ rere.communityNo }">	
 									<button class="replyDelete btnReReply">삭제</button>
 								</form>
 							</c:if>
-							<button class="reportButton btnReReply" onclick='window.open("reportForm?categoryNo=${rere.categoryNo}&communityNo=${rere.communityNo}&reportTarget=${rere.memberId}","reportForm","width=500, height=600")'>신고</button>
+								<button class="reportButton btnReReply" onclick='window.open("reportForm?categoryNo=${rere.categoryNo}&communityNo=${rere.communityNo}&reportTarget=${rere.memberId}","reportForm","width=500, height=600")'>신고</button>		
 						</div>
 					</c:if>
 				</c:forEach>
-	<!-- 답글 목록 end -->				
+	<!-- 답글 목록 end -->						
 				</div>
 				</c:if>
 
@@ -180,10 +195,10 @@
 		</div>
 	</div>
 </div>
-<div>
-	<form action="community102UpdateForm?communityNo=${co.communityNo}" method="post">
-	<button >수정하기</button>
+<div class="text-end my-1 m-0">
+	<form class=" inlineBlock" action="community102UpdateForm?communityNo=${co.communityNo}" method="post">
+	<button class="btn btn-warning btnCommunityDetail">수정하기</button>
 	</form>
-	<button onclick="location.href='communityDelete?communityNo=${co.communityNo}' ">삭제하기</button>
+	<button class="btn btn-warning inlineBlock btnCommunityDetail" onclick="location.href='communityDelete?communityNo=${co.communityNo}' ">삭제하기</button>
 </div>
 </article>

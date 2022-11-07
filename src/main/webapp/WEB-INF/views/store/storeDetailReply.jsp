@@ -7,8 +7,14 @@
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
-<div class="col-12 p-2">
-	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
+
+	<form name="storeDetailForm" id="storeDetailForm">
+		<input type="hidden" name="storeNo" value="${store.storeNo }">
+	</form>
+	
+	<div class="col-12 p-2">
+		
+			<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
 				<div class="col-12 fs-3 fw-semibold text-secondary">${store.storeName }</div>
@@ -26,8 +32,8 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
 			</div>
 			</div>

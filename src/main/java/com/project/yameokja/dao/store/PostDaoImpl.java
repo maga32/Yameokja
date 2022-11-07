@@ -22,13 +22,13 @@ public class PostDaoImpl implements PostDao {
 		this.sqlSession = sqlSession;
 	}
 	
-	
+	//가게 리뷰글 리스트
 	@Override
 	public List<Post> postList(int storeNo) {
 		return sqlSession.selectList(NAME_SPACE + ".postList", storeNo); 
 	}
 	
-	
+	// 가게 별점댓글 리스트
 	@Override
 	public List<Post> postListReply(int storeNo, int startRow, int num) {
 		
@@ -39,7 +39,8 @@ public class PostDaoImpl implements PostDao {
 		
 		return sqlSession.selectList(NAME_SPACE + ".postListReply", params); 
 	}
-
+	
+	// 가게 리뷰글 상세보기
 	@Override
 	public int myPageReplyCount(int storeNo) {
 		return sqlSession.selectOne(NAME_SPACE+".myPageReplyCount", storeNo);
@@ -51,25 +52,30 @@ public class PostDaoImpl implements PostDao {
 		return sqlSession.selectOne(NAME_SPACE + ".getPost", postNo);
 	}
 
-	
+	// 가게 리뷰글 작성
 	@Override
 	public void insertPost(Post post) {
 		// TODO Auto-generated method stub
 
 	}
-
 	
+	// 가게 리뷰글 수정
 	@Override
 	public void updatePost(Post post) {
 		// TODO Auto-generated method stub
 
 	}
-
 	
+	// 가게 리뷰글 삭제
 	@Override
-	public void deletePost(Post post) {
-		// TODO Auto-generated method stub
+	public void deletePost(int postNo) {
+		sqlSession.delete(NAME_SPACE + ".deletePost", postNo);
+	}
 
+	// 가게 별점댓글 삭제
+	@Override
+	public void deleteReply(int postNo) {
+		sqlSession.delete(NAME_SPACE + ".deleteReply", postNo);
 	}
 
 
@@ -93,9 +99,12 @@ public class PostDaoImpl implements PostDao {
 
 	@Override
 	public void postReplyAdd(Post post) {
-		System.out.println("postReplyAdd 앞 : "+post.getPostNo());
 		sqlSession.insert(NAME_SPACE + ".postReplyAdd", post);
-		System.out.println("postReplyAdd 뒤 : ");
+
+	//포스트 작성
+	@Override
+	public int postWrite(Post post) {
+		return sqlSession.insert(NAME_SPACE + ".postWrite", post);
 	}
 
 

@@ -22,8 +22,11 @@ public interface PostService {
 	// 포스트 수정
 	public abstract void updatePost(Post post);
 	
-	// 포스트 삭제
-	public abstract void deletePost(Post post);
+	// 가게 리뷰글 삭제
+	public abstract void deletePost(int postNo);
+	
+	// 가게 댓글
+	public abstract void deleteReply(int postNo);
 	
 	//베스트 포스트 리스트
 	public List<Post> bestOnePost(int storeNo);
@@ -34,4 +37,6 @@ public interface PostService {
 	
 	public void postReplyAdd(Post post);
 
+	// 포스트 작성
+	int postWrite(Post post);
 }

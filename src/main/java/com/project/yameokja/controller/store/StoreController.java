@@ -1,9 +1,10 @@
 package com.project.yameokja.controller.store;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,13 +14,16 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpServletResponse;
+=======
+>>>>>>> post
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,31 +49,100 @@ public class StoreController {
 	@Autowired
 	private final static String DEFAULT_PATH = "/resources/upload/";
 	
-	// 가게리스트를 전부 받는다
-	@RequestMapping("/storeListAll")
-	public String StoreListAll(Model model) {
-		
-		List<Store> sList = storeService.storeListAll();
-		model.addAttribute("sList", sList);
-		
-		return "store/storeListAll";
-	}
-
 	// 가게 리스트
 	@RequestMapping("/storeList")
-	public String StoreList(Model model, int categoryNo) {
-
-		List<Store> sList = storeService.storeList(categoryNo);
-		model.addAttribute("sList", sList);
-
+	public String StoreList(Model model, String type1, String type2,
+			@RequestParam(value="categoryNo", required=false, defaultValue="99") int categoryNo,
+			@RequestParam(value="keyword", required=false, defaultValue="null") String keyword,
+			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
+			@RequestParam(value="orderBy", required=false, defaultValue="null") String orderBy,
+			HttpServletResponse response, PrintWriter out) {
+		
+		response.setContentType("text/html; charset=utf-8");
+		
+		String type = "";
+		
+		if(type1 != null) {
+			
+			switch(type1) {
+				case "seoul":
+					type1 = "서울시";
+					 break;
+				case "kyeonggi":
+					type1 = "경기";
+					break;
+				case "incheon":
+					type1 = "인천";
+					 break;
+				case "daejeon":
+					type1 = "대전";
+					break;
+				case "daegu":
+					type1 = "대구";
+					 break;
+				case "busan":
+					type1 = "부산";
+					break;
+				case "ulsan":
+					type1 = "울산";
+					 break;
+				case "gwangju":
+					type1 = "광주";
+					break;
+				case "gangwon":
+					type1 = "강원";
+					 break;
+				case "sejong":
+					type1 = "세종";
+					break;
+				case "chungbuk":
+					type1 = "충북";
+					 break;
+				case "chungnam":
+					type1 = "충남";
+					break;
+				case "gyeongbuk":
+					type1 = "경북";
+					 break;
+				case "gyeongnam":
+					type1 = "경남";
+					break;
+				case "jeonbuk":
+					type1 = "전북";
+					 break;
+				case "jeonnam":
+					type1 = "전남";
+					break;
+				case "jeju":
+					type1 = "세종";
+					break;
+			}
+			type = type1+ "," + type2;
+		}
+		
+		Map<String, Object> sList = storeService.storeList(categoryNo, pageNum, type, keyword, orderBy);
+		
+		model.addAllAttributes(sList);
+		model.addAttribute("categoryNo", categoryNo);
+		model.addAttribute("type", type);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("orderBy", orderBy);
+		
 		return "store/storeList";
 	}
 	
 	
 	// 가게 상세 and 리뷰 리스트
 	@RequestMapping("/storeDetail")
-	public String StoreDetail(Model model, int storeNo) {
+	public String StoreDetail(Model model, int storeNo, HttpSession session) {
 
+		String memberId = (String) session.getAttribute("memberId");
+		
+		if(memberId != null) {
+			Member user = (Member) memberSerivce.getMember(memberId);
+			model.addAttribute("userBookmarks", user.getMemberBookmarks());
+		}
+		
 		Store store = storeService.getStore(storeNo);
 		List<Post> bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
@@ -150,7 +223,7 @@ public class StoreController {
 	 
 		return "store/storeWriteFrom"; 
 	 }
-	
+
 	@RequestMapping(value="/storeDatailReplyForm", method=RequestMethod.POST)
 	public String insertStoreProcess(
 			RedirectAttributes reAttr, int storeNo, HttpSession session,
@@ -190,7 +263,7 @@ public class StoreController {
 	// 스토어 즐겨찾기 추가
 	@RequestMapping("/bookmarksAdd")
 	public String addBookmarks(String memberId, int storeNo,
-			HttpServletResponse response) throws IOException {
+			HttpServletResponse response, Model model) throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -267,4 +340,9 @@ public class StoreController {
 		return "redirect:storeDetail?storeNo=" + storeNo;
 	}
 	 
+	@RequestMapping(value="/delete")
+	public String deleteDetailReply(HttpServletResponse respnonse) {
+		return "";
+	}
+	
 }
