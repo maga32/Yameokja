@@ -22,43 +22,49 @@ public class PostDaoImpl implements PostDao {
 		this.sqlSession = sqlSession;
 	}
 	
-	
+	//가게 리뷰글 리스트
 	@Override
 	public List<Post> postList(int storeNo) {
 		return sqlSession.selectList(NAME_SPACE + ".postList", storeNo); 
 	}
 	
-	
+	// 가게 별점댓글 리스트
 	@Override
 	public List<Post> postListReply(int storeNo) {
 		return sqlSession.selectList(NAME_SPACE + ".postListReply", storeNo); 
 	}
-
+	
+	// 가게 리뷰글 상세보기
 	@Override
 	public Post getPost(int postNo) {
 		
 		return sqlSession.selectOne(NAME_SPACE + ".getPost", postNo);
 	}
 
-	
+	// 가게 리뷰글 작성
 	@Override
 	public void insertPost(Post post) {
 		// TODO Auto-generated method stub
 
 	}
-
 	
+	// 가게 리뷰글 수정
 	@Override
 	public void updatePost(Post post) {
 		// TODO Auto-generated method stub
 
 	}
-
 	
+	// 가게 리뷰글 삭제
 	@Override
-	public void deletePost(Post post) {
-		// TODO Auto-generated method stub
+	public void deletePost(int postNo) {
+		sqlSession.delete(NAME_SPACE + ".deletePost", postNo);
+	}
 
+	// 가게 별점댓글 삭제
+	@Override
+	public void deleteReply(int postNo) {
+		sqlSession.delete(NAME_SPACE + ".deleteReply", postNo);
 	}
 
 
@@ -78,6 +84,9 @@ public class PostDaoImpl implements PostDao {
 	public List<Post> bestThreePost(int storeNo) {
 		return sqlSession.selectList(NAME_SPACE + ".bestThreePost", storeNo);
 	}
+
+
+	
 
 
 }

@@ -46,6 +46,8 @@
 		ORDER BY post_no DESC
 	</select>
 	
+	
+	
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />

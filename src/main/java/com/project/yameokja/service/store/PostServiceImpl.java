@@ -46,10 +46,15 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void deletePost(Post post) {
-		// TODO Auto-generated method stub
-		
+	public void deletePost(int postNo) {
+		postDao.deletePost(postNo);
 	}
+
+	@Override
+	public void deleteReply(int postNo) {
+		postDao.deleteReply(postNo);
+	}
+	
 	@Override
 	public List<Post> bestOnePost(int storeNo) {
 		return postDao.bestOnePost(storeNo);
@@ -64,5 +69,7 @@ public class PostServiceImpl implements PostService {
 	public List<Post> bestThreePost(int storeNo) {
 		return postDao.bestThreePost(storeNo);
 	}
+
+	
 
 }

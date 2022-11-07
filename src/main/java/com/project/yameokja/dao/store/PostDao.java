@@ -21,8 +21,11 @@ public interface PostDao {
 	// 가게 포스트 수정
 	public abstract void updatePost(Post post);
 	
-	// 가게 포스트 삭제
-	public abstract void deletePost(Post post);
+	// 가게 리뷰글 삭제
+	public void deletePost(int postNo);
+	
+	// 가게 별점댓글 삭제
+	public void deleteReply(int postNo);
 	
 	//베스트 포스트 리스트
 	public List<Post> bestOnePost(int storeNo);
