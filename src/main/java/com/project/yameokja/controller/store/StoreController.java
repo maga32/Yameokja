@@ -25,8 +25,8 @@ public class StoreController {
 	@Autowired
 	private PostService postService;
 
-	public void setStoreService(StoreService StoreService) {
-		this.storeService = StoreService;
+	public void setStoreService(StoreService storeService) {
+		this.storeService = storeService;
 	}
 	public void setPostService(PostService postService) {
 		this.postService = postService;
@@ -63,18 +63,27 @@ public class StoreController {
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
 		List<Post> pList = postService.postList(storeNo); 
 
-		System.out.println("bestOnePost"+bestOnePost);
 		model.addAttribute("store", store);
 		model.addAttribute("bestOnePost", bestOnePost);
 		model.addAttribute("bestTwoPost", bestTwoPost);
 		model.addAttribute("bestThreePost", bestThreePost);
-		model.addAttribute("store", store);		
-
 		model.addAttribute("pList", pList);
 
 		return "store/storeDetail";
 	}
 	
+	// 가게 상세 and 리뷰리스트
+		@RequestMapping("/storeDetailList")
+		public String storeDetailList(Model model, int storeNo) {
+			
+			Store store = storeService.getStore(storeNo);
+			model.addAttribute("store", store);
+			
+			List<Post> pList = postService.postList(storeNo); 
+			model.addAttribute("pList", pList);
+			
+			return "store/storeDetailList";
+		}
 	
 	
 	

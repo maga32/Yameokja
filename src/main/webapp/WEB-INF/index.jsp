@@ -69,15 +69,17 @@
 <body>
 <div class="row">
 <!-- 좌측날개 -->
-<div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
+<div class="d-none d-sm-block col-sm-2 col-lg-3 m-0 p-0"></div>
+	<!-- 윙 -->
+	<%@ include file="views/wing.jsp" %>
 	<!-- 센터 -->
-	<div class="col-12 col-sm-8 col-lg-6">
+	<div class="col-12 col-sm-8 col-lg-6 m-0 p-0">
 	<%@ include file="template/header.jsp" %>
 	<jsp:include page="${ param.body }" />
 	<%@ include file="template/footer.jsp" %>
 	</div>
 <!-- 우측날개 -->
-<div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
+<div class="d-none d-sm-block col-sm-2 col-lg-3 m-0 p-0"></div>
 </div>	
 </body>
 </html>

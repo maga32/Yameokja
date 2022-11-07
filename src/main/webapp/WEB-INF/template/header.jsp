@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header>
-<div class="row">
+<div class="row m-0 p-0">
 <div class="col-12 py-2">
 	<div class="col-12">
 		<a href="/yameokja/main">
@@ -26,8 +26,9 @@
 		<a href="/yameokja/storeListAll">storeList</a>
 		<a href="/yameokja/admin">admin</a>
 		<a href="" class="chatStart" data-targetid="memberId03">채팅하기</a>
-				<a href="wing">Wing</a>
-						<a href="#" onclick='window.open("reportForm","reportForm","width=500, height=600")'>report</a>
+		<a href="/yameokja/wing">Wing</a>
+		<a href="/yameokja/reportList">reportList</a>
+		<a href="#" onclick='window.open("reportForm","reportForm","width=500, height=600")'>report</a>
 
 <!-- 		나중에 삭제 끝-->
 		

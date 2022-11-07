@@ -4,17 +4,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
+
 <div class="row py-3">
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
+		<input type="hidden" name="categoryNo" value="${ store.categoryNo }">
 	</form>
+	
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
+	
 <!-- 	store info start -->
 	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
-				<div class="col-12 fs-3 fw-semibold text-secondary">${store.storeName }</div>
+				<div class="col-12 fs-4 fw-semibold text-secondary">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
@@ -22,145 +26,6 @@
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
 					(5.0)
-
-	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${ store.storeNo }">
-	</form>
-<div class="container-fluid">
-
-			<div class="row">
-				<div class="col-12 border border-4 my-1">
-				
-					<div class="row justify-content-center">
-						<div class="row">
-							<div class="col-12">
-								<h4>${store.storeName }</h4>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12 border">
-								<div class="row">
-									<div class="col-3">
-										<div class="row">
-											<div class="col-4 border"><i class="fa fa-eye" aria-hidden="true"></i></div>
-											<div class="col-8 border">${store.storeReadCount }</div>
-										</div>
-										<div class="row">
-											<div class="col-4 border"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-											<div class="col-8 border">${store.storeReviewCount }</div>
-										</div>
-										<div class="row">
-											<div class="col-4 border"><i class="fa fa-heart" aria-hidden="true"></i></div>
-											<div class="col-8 border">${store.storeBookmarks }</div>
-										</div>
-										
-									</div>
-									<div class="col-3 border"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-									<div class="col-3 border"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-									<div class="col-3 border"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-					
-						<div class="row border border-dark">
-							<div class="col-6 border border-primary">
-								<div class="row">
-									<div class="col-4">주소</div>
-									<div class="col-8">${ store.storeAddress }</div>
-								</div>
-								<div class="row">
-									<div class="col-4">전화번호</div>
-									<div class="col-8">${ store.storePhone }</div>
-								</div>
-								<div class="row">
-									<div class="col-4" id="foodType">음식종류</div>
-									<div class="col-8">${ store.categoryNo }</div>
-								</div>
-								<div class="row">
-									<div class="col-4">주차</div>
-									<div class="col-8">${ store.storeParking }</div>
-								</div>
-							</div>
-										
-							<div class="col-6 border border-danger">
-								<div class="row">
-									<div class="col-4">영업시간</div>
-									<div class="col-8">${ store.storeTime }</div>
-								</div>
-								<div class="row">
-									<div class="col-4">휴무일</div>
-									<div class="col-8">${ store.storeDayOff }</div>
-								</div>
-								<div class="row">
-									<div class="col-12">가게 사정에 따라 변경 될 수 있음</div>
-								</div>
-							</div>
-							
-							
-							
-						</div>
-						<div class="row d-flex justify-content-end border border-success mt-1">
-								<div class="col-3">
-									상위리뷰
-								</div>
-								<div class="col-3">
-									포스트 리뷰
-								</div>
-								<div class="col-3">
-									<a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a>
-								</div>
-								<div class="col-3">
-							</div>
-							
-						</div>
-						
-						<div class="row justify-content-center border border-primary mt-1">
-							<c:forEach var="p" items="${ pList }">
-									
-							
-								<div class="row">
-								
-									<div class="col-md-3">
-										<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
-									</div>
-									
-									<div class="col-md-9">
-									
-										<div class="row">
-											<div class="col-md-12 mb-3">
-											<h4 class="fw-bold">
-
-													<a href="storeDetailContent?storeNo=${store.storeNo }&postNo=${ p.postNo }">
-													${ p.postTitle }</a></h4>
-
-											</div>
-										</div>
-										
-										<div class="row">
-										
-											<div class="col-md-8">
-												<p class="fa fa-pencil-square-o" aria-hidden="true">
-													<fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd"/>
-												</p><br>
-												<p class="fa fa-eye" aria-hidden="true"> ${ p.postReadCount }</p><br>
-												<p class="fa fa-thumbs-up" aria-hidden="true"> ${ p.postUpCount }</p>
-											</div>
-											
-											<div class="col-md-4">
-												<img src="https://picsum.photos/40" class="img-thumbnail rounded-circle" alt="...">${ p.memberNickname }
-											</div>
-											
-										</div>
-										
-									</div>
-									
-								</div>
-							</c:forEach>
-							
-						</div>
-
 				</div>
 				<div class="col-12"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${store.storeReadCount }</div>
 				<div class="col-12"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;${store.storeReviewCount }</div>	
@@ -209,16 +74,17 @@
 					<div class="col-12 text-end m-0 p-0 d-inline">
 						<i class="fa fa-heart-o" aria-hidden="true"></i>
 						<i class="fa fa-link" aria-hidden="true"></i>
-						<i class="fa fa-bell" aria-hidden="true"></i>
+						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 <!-- 	store info end -->
+
 	<div class="text-center col-12 mt-3">
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2">맛집 리뷰</span>
-		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="#">별점 리뷰</a></span> 
+		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
 	</div>
 
 <!-- 	review start -->	
@@ -237,9 +103,8 @@
 					<div class="col">${ p.postRegDate }</div>
 				</div>
 				<div class="col-5 p-0 m-0">
-					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }postReadCount?</div>
-					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }postUpCount?</div>
-					<div class="col text-end"><i class="fa fa-bell" aria-hidden="true"></i></div>
+					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }</div>
+					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }</div>
 				</div>
 			</div>
 			<div class="row border-top py-4 m-1">
@@ -274,12 +139,12 @@
 				<div class="col-3 mx-2">
 					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
 				</div>
-				<div class="col-6 postContent text-start mx-2">
+				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
 						<a href="#">${ p.postTitle }</a>
 					</div>
-					<div class="" id="postNo">
-						<a href="#">postNo=${ p.postNo }</a>
+					<div class="">
+						<a href="#">${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -290,14 +155,6 @@
 					</div>
 					<div class="">
 						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
-					</div>
-				</div>
-				<div class="upAndDel col-3">
-					<div class="updateButton">
-						프사
-					</div>
-					<div class="deleteButton" id="deleteButton">
-						${ p.memberNickname }
 					</div>
 				</div>
 			</div>
@@ -308,14 +165,15 @@
 	<c:forEach var="p" items="${ bestThreePost }">
 			<div class="postFrame border text-center py-2 rounded col-12 mb-2">
 				<div class="col-3 mx-2">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+					<a href="#"><img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+					</a>
 				</div>
-				<div class="col-6 postContent text-start mx-2">
+				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
 						<a href="#">${ p.postTitle }</a>
 					</div>
-					<div class="" id="postNo">
-						<a href="#">postNo=${ p.postNo }</a>
+					<div class="">
+						<a href="#">${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -328,14 +186,6 @@
 						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
 					</div>
 				</div>
-				<div class="upAndDel col-3">
-					<div class="updateButton">
-						프사
-					</div>
-					<div class="deleteButton" id="deleteButton">
-						${ p.memberNickname }
-					</div>
-				</div>
 			</div>
 	</c:forEach>
 	</c:if>					
@@ -344,7 +194,7 @@
 	<div class="row text-end">
 		<div class="col-12 py-3">
 			<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
-			<div class="d-inline-block storeDetailPostButton text-end"><a href="#" class="py-1 px-3">리뷰 전체보기</a></div>
+			<div class="d-inline-block storeDetailPostButton text-end"><a href="storeDetailList?storeNo=${ store.storeNo }" class="py-1 px-3">리뷰 전체보기</a></div>
 			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
 		</div>
 	</div>

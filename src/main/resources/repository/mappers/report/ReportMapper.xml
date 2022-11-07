@@ -6,87 +6,112 @@
 
 	<insert id="addReport" parameterType="Report">
 		INSERT INTO report
-			(member_id, report_title, report_type, report_target, category_no, report_content,
-			 report_date,	report_file)
-			 VALUES (#{memberId}, #{reportTitle}, #{reportType}, #{reportTarget}, #{categoryNo}, #{reportContent},
-				  SYSDATE(), #{reportFile})
+			(member_id, report_title, report_type, report_target, category_no, 
+			report_content, report_date,	report_file)
+		VALUES (#{memberId}, #{reportTitle}, #{reportType}, #{reportTarget}, #{categoryNo}, 
+		#{reportContent}, SYSDATE(), #{reportFile})
 	</insert>
-	
-	<select id="getReportList" resultMap="ReportResultMap">
+
+	<select id="reportList" resultType="Report" parameterType="hashmap" resultMap="ReportResultMap">
 		SELECT * FROM report
 			<where>
-				<if test="reportType == 'store' ">
-					report_type = "store" 
-				</if>
-				<if test="reportType =='community' ">
-					report_type = "community" 
-				</if>
-				<if test="reportType =='user' ">
-					report_type = "user" 
-				</if>
-				<if test="reportPunishCheck == 0 ">
+			
+				<if test='reportPunishCheck == "1" '>
 					AND report_punish_check = #{reportPunishCheck}
 				</if>
-				<if test="reportPunishCheck == 1 ">
+				<if test='reportPunishCheck == "2" '>
 					AND report_punish_check = #{reportPunishCheck}
 				</if>
-				<if test="reportPunishCheck == 2 ">
+				<if test='reportPunishCheck == "3" '>
 					AND report_punish_check =  #{reportPunishCheck}
 				</if>
-				<if test="reportPunishCheck == 3 ">
-					AND report_punish_check =  #{reportPunishCheck}
+				
+				<if test='categoryNo == "301" '>
+					 AND category_no = #{categoryNo}
 				</if>
-				<if test="type == 'all' ">
-					AND report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%') 
+				<if test='categoryNo == "302" '>
+					 AND category_no = #{categoryNo}
 				</if>
-				<if test="type == 'title' ">
+				<if test='categoryNo == "303" '>
+					AND category_no = #{categoryNo}
+				</if>
+				<if test='categoryNo == "304" '>
+					AND category_no = #{categoryNo}
+				</if>
+				
+				<if test='type == "all" '>
+					AND (report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%'))
+				</if>
+				<if test='type == "title" '>
 					AND report_title LIKE CONCAT('%', #{keyword}, '%')
 				</if>
-				<if test="type == 'memberId' ">
+				<if test='type == "memberId" '>
 					AND member_id LIKE CONCAT('%', #{keyword}, '%')
 				</if>
+				
 			</where>
 		ORDER BY report_no DESC
+		LIMIT #{startRow}, #{num}
 	</select>
 	
 	<select id="reportCount" resultType="int" parameterType="hashMap">
-		SELECT COUNT(*) FROM report
-		<where>
-				<if test="type == 'all' ">
-					report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%') 
+		SELECT COUNT(report_no) FROM report
+			<where>
+			
+				<if test='reportPunishCheck == "1" '>
+					AND report_punish_check = #{reportPunishCheck}
 				</if>
-				<if test="type == 'title' ">
-					report_title LIKE CONCAT('%', #{keyword}, '%')
+				<if test='reportPunishCheck == "2" '>
+					AND report_punish_check = #{reportPunishCheck}
 				</if>
-				<if test="type == 'memberId' ">
-					member_id LIKE CONCAT('%', #{keyword}, '%')
+				<if test='reportPunishCheck == "3" '>
+					AND report_punish_check =  #{reportPunishCheck}
 				</if>
-				<if test="reportType =='all' ">
-					AND report_type = "all" 
+				
+				<if test='categoryNo == "301" '>
+					 AND category_no = #{categoryNo}
 				</if>
-				<if test="reportType =='sotre' ">
-					AND report_type = "store" 
+				<if test='categoryNo == "302" '>
+					 AND category_no = #{categoryNo}
 				</if>
-				<if test="reportType =='community' ">
-					AND report_type = "community" 
+				<if test='categoryNo == "303" '>
+					AND category_no = #{categoryNo}
 				</if>
-				<if test="repo rtType =='user' ">
-					AND report_type = "user" 
+				<if test='categoryNo == "304" '>
+					AND category_no = #{categoryNo}
 				</if>
-				<if test="reportPunishCheck==0">
-					AND report_punish_check = 0
+				
+				<if test='type == "all" '>
+					AND (report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%'))
 				</if>
-				<if test="reportPunishCheck==1">
-					AND report_punish_check = 1
+				<if test='type == "title" '>
+					AND report_title LIKE CONCAT('%', #{keyword}, '%')
 				</if>
-				<if test="reportPunishCheck==2">
-					AND report_punish_check = 2
-				</if>
-				<if test="reportPunishCheck==3">
-					AND report_punish_chek = 3
-				</if>
+				<if test='type == "memberId" '>
+					AND member_id LIKE CONCAT('%', #{keyword}, '%')
+				</if>	
+				
 			</where>
 	</select>
+	
+	<select id="getReport" resultType="Report" resultMap="ReportResultMap">
+		SELECT * FROM report
+		WHERE report_no = #{ reportNo }
+	</select>
+	
+	<update id="reportUpdate" parameterType="Report" >
+		UPDATE report
+		SET report_title = #{ reportTitle }, report_content = #{reportContent},
+			report_target = #{reportTarget}, report_type = #{reportType},
+			report_punish_content = #{reportPunishContent}
+<!-- 			report_file = #{reportFile}, -->
+		WHERE report_no = #{ reportNo }
+	</update>
+	
+	<delete id="deleteReport">
+		DELETE FROM report
+		WHERE report_no = #{ reportNo }
+	</delete>
 	
 
 	<resultMap type="Report" id="ReportResultMap">

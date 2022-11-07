@@ -24,7 +24,7 @@
 			</div>	
 			<div class="col-2">
 				<input type="button" onclick="clip(); return false;" value="링크복사">
-				<button onclick='window.open("reportForm?categoryNo=${co.categoryNo}&reportTarget=${co.memberId}","reportForm","width=500, height=600")'>신고</button>
+				<button onclick='window.open("reportForm?categoryNo=${co.categoryNo}&communityNo=${co.communityNo}&reportTarget=${co.memberId}","reportForm","width=500, height=600")'>신고</button>
 			</div>
 		</div>
 	</div>

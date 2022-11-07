@@ -13,12 +13,12 @@
   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   	<link rel="stylesheet" type="text/css" href="resources/css/index.css" />
   	<link rel="stylesheet" type="text/css" href="resources/css/userProfile.css" />
-<!-- <script type="text/javascript" src="resources/js/chat.js"></script> -->
   	<script src="resources/js/jquery-3.2.1.min.js"></script>
+  	<script src="/yameokja/resources/js/common.js"></script>
 </head>
 <body>
 <form name="blockListForm" id="blockListForm">
-	<input type="hidden" name="userId" value="${ user.memberId }" />
+	<input type="text" name="userId" value="${ user.memberId }" />
 </form>
 <div class="row">
 <!-- 좌측날개 -->
@@ -69,9 +69,9 @@
 			<div class="row">
 			<div class=" col-6 fw-semibold p-1"><a href="myPagePost">활동내역구경가기 -></a></div>
 			<div class=" col-6 p-1 text-end">
-				<span class="fa-stack fa-lg">
+				<span class="fa-stack fa-lg" onclick="location.href='reportForm?reportTarget=${user.memberId}'">
 				  <i class="fa fa-circle fa-stack-2x"></i>
-				  <i class="fa fa-bell fa-stack-1x text-white"></i>
+				  <i class="fa fa-bell fa-stack-1x text-white"></i>					
 				</span>
 			</div>
 		</div>
@@ -83,8 +83,8 @@
 		</c:if>
 		<c:if test="${ (sessionScope.memberId != user.memberId) || (user.memberId == 'null') }">
 			<div class="buttonFrame text-center col-12 mt-3 py-3">
-				<button type="button" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" class="chatButton btn col-6 ">채팅신청</button>
+				<button type="button"  onclick="window.close()" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#" class="chatStart btn" data-targetId="${ user.memberId }">채팅신청</a>
 			</div>
 		</c:if>
 	</div>

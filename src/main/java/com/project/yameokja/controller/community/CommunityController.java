@@ -246,6 +246,8 @@ public class CommunityController {
 	public String communityDetail(Model model, int communityNo,
 			HttpServletRequest request, HttpSession session) {
 		
+		System.out.println("codetail start");
+		
 		// 조회수. readCommunityPost - 현재 세션에 담겨있는 조회한 글들을 불러오고, 없다면 새로 저장
 		String readCommunityPost = (String) session.getAttribute("readCommunityPost");
 				
@@ -287,28 +289,32 @@ public class CommunityController {
 		}
 		// 댓글 출력 end
 		
-		// 해당 게시글이 모집글일 경우
-		if(co.getCategoryNo() == 102) {
-			
-			// 모집 참여 - timestamp 확인 및 비교 메서드(partyDDayCheck)사용
-			boolean result = partyDDayCheck(co);
-			model.addAttribute("result", result);
-			
-			// 해당 글 모집 참가인원 조회
-			int countPartyMembers = 0;
-			List<Member> memberPhotoList = new ArrayList<Member>();
-			String[] members = co.getpartyMemberIds().split(",");
-			
-			System.out.println("con members : " + members[0]);
-			
-			for(int i = 0; i<members.length; i++) {
-				countPartyMembers += 1;
-				Member memberPhoto = memberService.getMemberFor102(members[i]);
-				memberPhotoList.add(memberPhoto);
-			}
-			model.addAttribute("memberPhotoList", memberPhotoList);
-			model.addAttribute("countPartyMembers", countPartyMembers);
-		}// 모집글 end
+		// mid
+		System.out.println("codetail mid");
+		
+		// 모집글.
+		// 해당 글 모집 참가인원 조회
+		int countPartyMembers = 0;
+		List<Member> memberPhotoList = new ArrayList<Member>();
+		if(co.getpartyMemberIds() == null) {
+			System.out.println("controller - getpmem이 비었음");
+			return null;
+		}
+		String[] members = co.getpartyMemberIds().split(",");
+		
+		System.out.println("con members : " + members[0]);
+		
+		for(int i = 0; i<members.length; i++) {
+			countPartyMembers += 1;
+			Member memberPhoto = memberService.getMemberFor102(members[i]);
+			memberPhotoList.add(memberPhoto);
+		}
+		model.addAttribute("memberPhotoList", memberPhotoList);
+		model.addAttribute("countPartyMembers", countPartyMembers);
+		
+		
+		System.out.println("codetail end");
+		// 모집글 end
 		
 		return "community/communityDetail";
 	}

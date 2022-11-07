@@ -1,37 +1,22 @@
 package com.project.yameokja.service.report;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.project.yameokja.dao.report.ReportDao;
-import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Report;
 
-@Service
-public class ReportService {
+public interface ReportService {
 	
-	@Autowired
-	ReportDao reportDao;	
+	public void addReport(Report report);
 	
-	private static final int PAGE_SIZE = 10;
-	private static final int PAGE_GROUP = 10;
+	public Map<String, Object> reportList(int categoryNo, String reportPunishCheck, String type, String keyword, int pageNum);
 	
-	// 신고 입력
-	public void addReport(Report report) {
-		reportDao.addReport(report);
-	}
+	public int reportFormCategoryNo(String reportTarget,  int categoryNo, String postNo);
 	
-	// 신고 목록 조회
-	public List<Report> getReportList(String reportType, int reportPunishCheck, 
-				String type, String keyword){
-		
-		List<Report> reportList = reportDao.getReportList(reportType, reportPunishCheck, type, keyword);	
-		
-		return reportList;
-	}
+	public Report getReport(int reportNo);
+	
+	public void reportUpdate(Report report);
+	
+	public void deleteReport(int reportNo);
+
 }
