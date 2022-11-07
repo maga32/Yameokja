@@ -21,16 +21,16 @@
 <div id="wing">
 	<div class="row">
 		<div class="col-12">
-			<div class="row">
-				<div class="col-3"></div>
-				<div class="col-6 text-center pt-5 pb-5">
-					<img alt="프로필 사진" class="rounded-circle col-12" src="/yameokja/resources/IMG/mypage/likeIMG.PNG">
-				</div>
-				<div class="col-3"></div>
-			</div>
 	
 			<!-- 비로그인 상태 -->
 			<c:if test="${ empty sessionScope.memberId }">
+				<div class="row">
+					<div class="col-3"></div>
+					<div class="col-6 text-center pt-5 pb-5">
+						<img alt="프로필 사진" class="rounded-circle col-12" src="/yameokja/resources/IMG/member/memberDefault.png">
+					</div>
+					<div class="col-3"></div>
+				</div>
 				<div class="col-12 text-white fs-3 fw-semibold text-center">
 					로그인을 해주세요
 				</div>
@@ -49,6 +49,9 @@
 			</c:if>
 			<!-- 로그인 상태 -->
 			<c:if test="${ not empty sessionScope.memberId }">
+				<div class="d-flex align-items-center border rounded-circle" style="margin:30px auto; overflow:hidden; width:150px; height:150px;;">
+					<img alt="프로필 사진" class="col-12" src="/yameokja/resources/IMG/member/${ sessionScope.member.memberPhoto }">
+				</div>
 				<div class="col-12 text-white fs-3 fw-semibold text-center">
 					${ memberNickname }님<br>
 					환영합니다
@@ -76,16 +79,16 @@
 			</c:if>
 			
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="main" class="wing">메인 페이지</a>
+				<a href="/yameokja/main" class="wing">메인 페이지</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="communityList" class="wing">커뮤니티</a>
+				<a href="/yameokja/communityList" class="wing">커뮤니티</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="javascript:;"  class="wing" onclick="window.open('/yameokja/chat/chatList','채팅목록','width=500, height=810')">채팅 목록</a>
+				<a href="javascript:;" class="wing" onclick="window.open('/yameokja/chat/chatList','채팅목록','width=500, height=810')">채팅 목록</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="#" class="wing">내가 찜한 가게</a>
+				<a href="/yameokja/myPageLike" class="wing">내가 찜한 가게</a>
 			</div>
 			
 			<div class="col-12 fs-6 text-white fw-semibold mt-4 p-1">

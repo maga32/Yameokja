@@ -60,6 +60,7 @@ footer {
 
 #wing {
 	position: fixed;
+	z-index: 20;
 	top: 0;
     bottom: 0;
     left: 0;
@@ -109,7 +110,8 @@ footer {
 
 #wingButton {
 	position: fixed;
-	top: 5%;
+	z-index: 10;
+	top: 2%;
     left: 0;
     width:70px;
 }
