@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
+
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${store.storeNo }">
 	</form>
@@ -31,8 +32,8 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
 			</div>
 			</div>
@@ -89,31 +90,24 @@
 						
 							<div class="row justify-content-center">
 
-								<div class="col-md-12 border ">
+								<div class="col-md-12 border">
 									<h5>별점리뷰 작성</h5>
-									<p>별 별 별 별 별</p>
-									<div class="row">
-									
-										<div class="col-md-12 border">
-										
-										</div>
-										
-									</div>
-									
+									<span>별 별 별 별 별</span>
 									<div class="row justify-content-center">
 									
-										<div class="col-md-10 border">
-											<input type="text">
+										<div class="col-md-10">
+											<input type="text" style="width:100%; height:100%;">
 										</div>
 										
-										<div class="col-md-2 border d-block">
-											<button type="submit" class="btn justify-content-center btn-outline-secondary">입력</button>
+										<div class="col-md-2">
+											<button type="submit" class="btn btn-outline-secondary" style="width:100%; height:100%;">작성</button>
 										</div>
 										
 									</div>
 									
 									
-									<div class="row border justify-content-center my-1">
+									<div class="row border justify-content-center my-3">
+									<c:if test="${not empty rList }">
 										<c:forEach var="r" items="${ rList }">
 											<div class="row">
 											
@@ -134,7 +128,7 @@
 													<div class="col-10">
 													
 														<div class="row">
-															<div class="col-9 align-self-center"><span>${ r.memberNickname }</p></div>
+															<div class="col-9 align-self-center"><span>${ r.memberNickname }</span></div>
 															<div class="col-3 text-end"><p><a href="#">delete</a></p></div>
 														</div>
 														<span><fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/></span>
@@ -147,15 +141,19 @@
 													</div>
 											
 													</div>
+													</div>
+												</c:forEach>
+											</c:if>
+											<c:if test="${empty rList }">
+												<div class="row align-self-center border-none">
+													<p class="text-center">작성된 댓글이 없습니다.</p>
 												</div>
-											</c:forEach>
-										
+											</c:if>
 											</div>
-											</div>
-										
-									
-									
-									
+											
+											</div>	
+											
+																
 									</div>
 									
 								</div>
@@ -163,18 +161,5 @@
 		
 
 						</div>		
-						
-					</div>
-				
-				</div>
-				
-				
-				</div>
-			
-			</div>
-    
-			</div>
-		</div>
-</div>
 	
 </article>

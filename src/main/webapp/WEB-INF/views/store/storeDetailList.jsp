@@ -83,7 +83,7 @@
 <!-- 	store info end -->
 
 	<div class="text-center col-12 mt-3">
-		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2">맛집 리뷰</span>
+		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetail?storeNo=${ store.storeNo }">맛집 리뷰</a></span>
 		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
 	</div>
 
@@ -117,8 +117,21 @@
 					</div>
 			</div>
 		</c:forEach>
+	</c:if>
+	<c:if test="${ empty pList }">
+		<div class="row rounded-1 m-1 p-1">
+			<p class="text-center">아직 작성된 글이 없습니다.</p>
+		</div>
 	</c:if>			
 	
+	</div>
+	
+	<div class="row text-end">
+		<div class="col-12 py-3">
+			<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWriteForm" class="py-1 px-3">글 쓰기</a></div>
+			<div class="d-inline-block storeDetailPostButton text-end"><a href="storeDetailList?storeNo=${ store.storeNo }" class="py-1 px-3">리뷰 전체보기</a></div>
+			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
+		</div>
 	</div>
 
 <!-- 	fullFrame end-->			

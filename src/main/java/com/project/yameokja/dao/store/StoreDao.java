@@ -7,10 +7,10 @@ import com.project.yameokja.domain.Store;
 public interface StoreDao {
 	
 	// 음식종류에 해당하는 가게 리스트
-	public abstract List<Store> StoreList(int categoryNo);
+	public abstract List<Store> StoreList(int startRow, int categoryNo, int num, String keyword, String type, String orderBy);
 	
-	// 가게 리스트 전부
-	public abstract List<Store> StoreListAll();
+	// 가게 글 갯수
+	public int getStoreCount(String type, String keyword, int categoryNo); 
 	
 	// 가게 정보 상세
 	public abstract Store getStore(int storeNo);
