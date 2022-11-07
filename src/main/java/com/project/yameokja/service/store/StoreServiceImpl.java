@@ -14,11 +14,8 @@ import com.project.yameokja.domain.Store;
 public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
-	private StoreDao StoreDao;
+	private StoreDao storeDao;
 
-	public void setStoreDao(StoreDao storeDao) {
-		this.StoreDao = storeDao;
-	}
 	
 	private static final int PAGE_SIZE = 10;
 	private static final int PAGE_GROUP = 10;
@@ -31,7 +28,7 @@ public class StoreServiceImpl implements StoreService {
 		int startRow = (currentPage - 1) * PAGE_SIZE;
 		int listCount = 0;
 		
-		listCount = StoreDao.getStoreCount(type, keyword, categoryNo);
+		listCount = storeDao.getStoreCount(type, keyword, categoryNo);
 		
 		System.out.println(listCount + type + keyword);
 		
@@ -39,7 +36,7 @@ public class StoreServiceImpl implements StoreService {
 		
 		if(listCount > 0) {
 			
-			List<Store> sList = StoreDao.StoreList(startRow, categoryNo, PAGE_SIZE, keyword, type, orderBy);
+			List<Store> sList = storeDao.StoreList(startRow, categoryNo, PAGE_SIZE, keyword, type, orderBy);
 			
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
 			

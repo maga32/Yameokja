@@ -68,14 +68,29 @@ public class CommunityService {
 		communityListDao.addCommunity101(co);
 	}
 	
+	// 커뮤니티 수다글 수정
+	public void updateCommunity101(Community co) {
+		communityListDao.updateCommunity101(co);
+	}
+	
 	// 커뮤니티 모집글 등록
 	public void addCommunity102(Community co) {
 		communityListDao.addCommunity102(co);
 	}
 	
+	// 커뮤니티 모집글 수정
+	public void updateCommunity102(Community co) {
+		communityListDao.updateCommunity102(co);
+	}
+	
 	// 커뮤니티 글 상세보기
 	public Community getCommunityOne(int coNo) {
 		return communityListDao.getCommunityOne(coNo);
+	}
+	
+	// 커뮤니티 글 삭제
+	public void deleteCommunity(int coNo) {
+		communityListDao.deleteCommunity(coNo);
 	}
 	
 	// 커뮤니티 글 조회수 증가
@@ -99,8 +114,8 @@ public class CommunityService {
 	}
 	
 	// 커뮤니티 댓글 삭제
-	public void delCommunityReply(int no) {
-		communityListDao.delCommunityReply(no);
+	public void delCommunityReply(int no, int communityParentNo) {
+		communityListDao.delCommunityReply(no, communityParentNo);
 	}
 	
 	// 커뮤니티 댓글 작성자 출력

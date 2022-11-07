@@ -1,6 +1,6 @@
 package com.project.yameokja.controller.store;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -340,7 +340,7 @@ public class StoreController {
 	 
 	@RequestMapping(value="/delete")
 	public String deleteDetailReply(HttpServletResponse respnonse) {
-		
+		return "";
 	}
 	
 }
