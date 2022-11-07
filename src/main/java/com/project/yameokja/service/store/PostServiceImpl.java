@@ -1,13 +1,10 @@
 package com.project.yameokja.service.store;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Map;
-=======
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
->>>>>>> post
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,7 +107,8 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public void postReplyAdd(Post post) {
 		postDao.postReplyAdd(post);
-
+	}
+		
 	//포스트 작성
 	@Override
 	public int postWrite(Post post) {
