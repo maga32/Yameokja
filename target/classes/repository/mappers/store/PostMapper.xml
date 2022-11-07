@@ -63,6 +63,7 @@
 		<id property="postNo" column="post_no" />
 		<result property="postTitle" column="post_title"/>
 		<result property="postContent" column="post_content" />
+		<result property="postReadCount" column="post_read_count" />
 		<result property="postFile1" column="post_file1" />
 		<result property="postFile2" column="post_file2" />
 		<result property="postFile3" column="post_file3" />
