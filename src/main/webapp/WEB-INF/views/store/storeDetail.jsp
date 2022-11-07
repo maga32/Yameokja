@@ -111,7 +111,7 @@
 	<c:forEach var="p" items="${ bestOnePost }">	
 		<div class="border text-start p-2 rounded col-12 mb-2">
 			<div class="col-12 fw-bold fs-5 text-secondary">${ store.storeName }</div>
-			<div class="col-12 fw-bold fs-3 text-secondary"><a href="#">[BEST]${ p.postTitle }</a></div>
+			<div class="col-12 fw-bold fs-3 text-secondary"><a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">[BEST]${ p.postTitle }</a></div>
 			<div class="row my-2 mx-0 justify-content-center">
 				<div class="col-2 p-0 m-0">
 					<img src="https://picsum.photos/200" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
@@ -128,13 +128,9 @@
 			<div class="row border-top py-4 m-1">
 				<div class="col-5">
 					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded float-start" alt="...">
-					리뷰 관련 사진
+					<!-- <img src="resources/IMG/post/${ p.postFile1 }" class="img-thumbnail rounded float-start"> -->
 				</div>
-				<div class="col-7">${ p.postContent }짧아서 추가함. 장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.</div>
+				<div class="col-7">${ p.postContent }</div>
 			</div>
 			<div class="col-12 text-end">
 				<input type="button" class="updateButton text-secondary bg-white" value="수정">

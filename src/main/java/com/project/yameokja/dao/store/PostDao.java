@@ -37,8 +37,14 @@ public interface PostDao {
 	
 	public List<Post> bestThreePost(int storeNo);
 
-	//포스트 작성
+	// 포스트 작성
 	int postWrite(Post post);
+	
+	// 포스트 업데이트
+	void postUpdate(Post post);
+	
+	// 포스트 삭제
+	void postDelete(int postNo);
 	
 	public void postReplyAdd(Post post);
 	

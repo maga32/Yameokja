@@ -12,3 +12,11 @@ $(document).on("click", "#submit", function() {
 	}
 
 });
+
+function deletePost(postNo) {
+	var result = confirm('리뷰를 삭제하시겠습니까?');
+
+	if(result) {
+		location.href="postDelete?postNo=" + postNo;
+	}
+}
