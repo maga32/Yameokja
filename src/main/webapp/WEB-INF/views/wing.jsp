@@ -20,15 +20,7 @@
 <!-- 윙 -->
 <div id="wing">
 	<div class="row">
-		<div class="col-12">
-			<div class="row">
-				<div class="col-3"></div>
-				<div class="col-6 text-center pt-5 pb-5">
-					<img alt="프로필 사진" class="rounded-circle col-12" src="/yameokja/resources/IMG/LOGOsquareIMG.png">
-				</div>
-				<div class="col-3"></div>
-			</div>
-	
+		<div class="col-12">	
 			<!-- 비로그인 상태 -->
 			<c:if test="${ empty sessionScope.memberId }">
 				<div class="row">

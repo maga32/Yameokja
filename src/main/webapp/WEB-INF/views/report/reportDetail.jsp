@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/css/reportDetail.css" />
 <article>
+<div class="row m-0">
 	<div class="row justify-content-center pt-4">
 		<h1 class="col-6 border-3 border-bottom center bold pb-1">신고 상세보기</h1>
 	</div>
@@ -23,7 +24,7 @@
 			<div class="col-9">${ report.reportDate }</div>
 		</div>
 		<div class="col-4">
-			<img alt="신고첨부이미지" height="100px"
+			<img alt="신고첨부이미지" class="col-12"
 				src="/yameokja/resources/IMG/LOGOtemporaryIMG.PNG">
 		</div>
 		<div class="col-12 px-3 pt-2">
@@ -83,5 +84,5 @@
 	<input type="button" onclick="location.href='reportUpdateForm?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary mx-2 " value="수정하기">
 	<input type="button" onclick="location.href='deleteReport?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary" value="삭제하기">
 </div>
-
+</div>
 </article>

@@ -35,7 +35,10 @@
 			</div>
 		</form>
 	</div>
-	<div class="divTable">
+
+<!-- 		(일반글)keyword == '' and not empty reportList -->
+		<c:if test="${ keyword == '' and not empty reportList }">
+		<div class="divTable">
 		<div class="divTableRow row">
 				<div class="divTableHead text-center col-2">분류</div>
 				<div class="divTableHead text-center col-4">신고 제목</div>
@@ -43,9 +46,6 @@
 				<div class="divTableHead text-center col-2">신고자</div>
 				<div class="divTableHead text-center col-2">작성일</div>
 		</div>
-
-<!-- 		(일반글)keyword == '' and not empty reportList -->
-		<c:if test="${ keyword == '' and not empty reportList }">
 		<c:forEach var="re" items="${reportList}">
 		<div class="divTableRow border-">
 			<div class="divTableCell">${re.reportType }</div>
@@ -56,6 +56,7 @@
 			</div>
 		</div>
 		</c:forEach>
+		</div>
 <!-- 	페이지그룹 시작 -->
 		<div class="row text-end">
 		<div class="col-12 pe-4">
@@ -90,6 +91,14 @@
 		
 <!-- 		(검색글)keyword != '' and not empty reportList -->
 		<c:if test="${ keyword != '' and not empty reportList }">
+		<div class="divTable">
+		<div class="divTableRow row">
+				<div class="divTableHead text-center col-2">분류</div>
+				<div class="divTableHead text-center col-4">신고 제목</div>
+				<div class="divTableHead text-center col-2">처리결과<br>categoryNo</div>
+				<div class="divTableHead text-center col-2">신고자</div>
+				<div class="divTableHead text-center col-2">작성일</div>
+		</div>
 		<c:forEach var="re" items="${reportList}">
 			<div class="divTableRow">
 				<div class="divTableCell">${re.reportType }</div>
@@ -99,6 +108,7 @@
 				<div class="divTableCell">${re.reportDate }</div>
 			</div>
 		</c:forEach>
+		</div>
 <!-- 					페이지그룹 시작 -->
 		<div class="row text-end">
 		<div class="col-12 pe-4">
@@ -132,6 +142,5 @@
 		<c:if test="${ keyword != '' and empty reportList }">
 			"${ keyword }"로 작성된 신고글이 없습니다.
 		</c:if>
-	</div>
 	
 </article>

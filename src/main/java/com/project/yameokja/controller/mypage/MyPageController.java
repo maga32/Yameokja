@@ -1,10 +1,13 @@
 package com.project.yameokja.controller.mypage;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import com.project.yameokja.dao.mypage.MyPageDao;
 import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
+import com.project.yameokja.service.member.MemberService;
 import com.project.yameokja.service.mypage.MyPageService;
 
 @Controller
@@ -28,6 +32,8 @@ public class MyPageController {
 	private MyPageService myPageService;
 	@Autowired
 	private MyPageDao myPageDao;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(value="/mainmain", method=RequestMethod.GET)
 	public String main() {
@@ -108,15 +114,6 @@ public class MyPageController {
 		return "redirect:myPagePost";
 	}
 	
-	@RequestMapping("/blockList")
-	public String blockList(Model model, 
-			@RequestParam(value = "memberId", required = false, 
-			defaultValue = "memberId01")String memberId) {
-		
-		model.addAttribute("memberId", memberId);
-		return "forward:WEB-INF/views/mypage/blockList.jsp";
-	}
-	
 	@RequestMapping("/userProfile")
 	public String userProfile(Model model, 
 			@RequestParam(value = "userId", required = false, defaultValue = "")String userId) {
@@ -127,6 +124,19 @@ public class MyPageController {
 		model.addAttribute("myPagePostCount", myPagePostCount);
 		model.addAttribute("myPageCommunityCount", myPageCommunityCount);
 		return "forward:WEB-INF/views/mypage/userProfile.jsp";
+	}
+	
+	@RequestMapping("/blockList")
+	public String blockList(Model model, HttpSession session, 
+			HttpServletResponse response) throws IOException {
+		
+//		String memberId = (String)session.getAttribute("memberId");
+		Member member = memberService.getMember((String)session.getAttribute("memberId"));
+		String memberBlockIds = member.getMemberBookmarks();
+		String[] memberBlockId = memberBlockIds.split(",");
+		
+		model.addAttribute("memberBlockId", memberBlockId);
+		return "forward:WEB-INF/views/mypage/blockList.jsp";
 	}
 
 }

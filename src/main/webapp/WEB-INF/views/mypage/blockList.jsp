@@ -21,48 +21,29 @@
 	<input type="hidden" name="memberId" value="${ member.memberId }"/>
 </form>
 <div class="row text-center p-5">
-<div class="fullFrame col-12">
+	<div class="fullFrame col-12">
 		<h2 class="header fw-bold text-secondary text-start col-12 pb-3  ">차단 대상 목록</h2>
 		<div class="fw-semibold fs-5 col-12 text-start p-2">아이디</div>
 		<div class="blockListFrame col-12">
-		<div class="blockList rounded-3 d-inline-flex my-1 p-2 col-12">
-			<div class="blockId text-start fw-semibold fs-5 col-8">test_id</div>
-			<div class="text-end col-4">
-				<button type="button" class="UnblockIdButton text-white fw-semibold btn">차단 해제</button>
-			</div>
-		</div>
-<!-- 		blockList 반복구간 -->
-		<div class="blockList rounded-3 d-inline-flex my-1 p-2 col-12">
-			<div class="blockId text-start fw-semibold fs-5 col-8">test_id</div>
-			<div class="text-end col-4">
-				<button type="button" class="UnblockIdButton text-white fw-semibold btn">차단 해제</button>
-			</div>
-		</div>	
-		<div class="blockList rounded-3 d-inline-flex my-1 p-2 col-12">
-			<div class="blockId text-start fw-semibold fs-5 col-8">test_id</div>
-			<div class="text-end col-4">
-				<button type="button" class="UnblockIdButton text-white fw-semibold btn">차단 해제</button>
-			</div>
-		</div>
-		<div class="blockList rounded-3 d-inline-flex my-1 p-2 col-12">
-			<div class="blockId text-start fw-semibold fs-5 col-8">test_id</div>
-			<div class="text-end col-4">
-				<button type="button" class="UnblockIdButton text-white fw-semibold btn">차단 해제</button>
-			</div>
-		</div>
-		<div class="blockList rounded-3 d-inline-flex my-1 p-2 col-12">
-			<div class="blockId text-start fw-semibold fs-5 col-8">test_id</div>
-			<div class="text-end col-4">
-				<button type="button" class="UnblockIdButton text-white fw-semibold btn">차단 해제</button>
-			</div>
-		</div>
 		
-<!-- 	끝	blockList 반복구간 -->		
-	</div>
-	<div class="buttonFrame text-center col-12 my-3">
-		<a class="closeButton fs-5 text-white fw-semibold btn" onclick='window.close()'>확인</a>
-	</div>
-</div><!--전체틀 끝 -->
+<!-- 		blockList 반복구간 -->
+		<c:if test="${ not empty memberBlockId }">
+			<c:forEach var="m" items="${ memberBlockId }">
+			<div class="blockList rounded-3 d-inline-flex my-1 p-2 col-12">
+				<div class="blockId text-start fw-semibold fs-5 col-8">${ m.memberBlockId }</div>
+				<div class="text-end col-4">
+					<button type="button" class="UnblockIdButton text-white fw-semibold btn">차단 해제</button>
+				</div>
+			</div>
+			</c:forEach>
+		</c:if>
+		
+	<!-- 	끝	blockList 반복구간 -->		
+		</div>
+		<div class="buttonFrame text-center col-12 my-3">
+			<a class="closeButton fs-5 text-white fw-semibold btn" onclick='window.close()'>확인</a>
+		</div>
+	</div><!--전체틀 끝 -->
 </div>
 </body>
 </html>
