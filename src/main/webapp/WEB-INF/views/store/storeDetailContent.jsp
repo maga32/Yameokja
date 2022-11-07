@@ -118,7 +118,9 @@
 			</div>
 			
 			<div class="row">
-				${ post.postContent }
+				<pre>
+					${ post.postContent }
+				</pre>
 			</div>
 			
 		</div>
@@ -126,7 +128,7 @@
 	</div>
 	<div class="row text-end">
 		<div class="col-12 py-3">
-			<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
+			<div class="d-inline-block storeWhiteFormButton text-start"><a href="postWriteForm?storeNo=${ store.storeNo }" class="py-1 px-3">글 쓰기</a></div>
 			<div class="d-inline-block storeDetailPostButton text-end"><a href="storeDetailList?storeNo=${ store.storeNo }" class="py-1 px-3">리뷰 전체보기</a></div>
 			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
 		</div>

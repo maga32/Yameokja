@@ -37,4 +37,6 @@ public interface PostService {
 	
 	public void postReplyAdd(Post post);
 
+	// 포스트 작성
+	int postWrite(Post post);
 }

@@ -100,6 +100,11 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public void postReplyAdd(Post post) {
 		sqlSession.insert(NAME_SPACE + ".postReplyAdd", post);
+
+	//포스트 작성
+	@Override
+	public int postWrite(Post post) {
+		return sqlSession.insert(NAME_SPACE + ".postWrite", post);
 	}
 
 
