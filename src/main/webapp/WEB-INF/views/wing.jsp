@@ -58,7 +58,7 @@
 						</a>
 					</div>
 					<div class="col-6">
-						<a href="/yameokja/myPagePost" class="wing col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
+						<a href="/yameokja/myPagePost?userId=${ sessionScope.memberId }" class="wing col-12 btn btn-light text-small text-secondary rounded-pill border border-2 py-2 px-1">
 							마이페이지
 						</a>
 					</div>
@@ -108,7 +108,8 @@
 			</div>
 			<div class="row">
 				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 text-secondary p-1" name="address1" id="address1" onchange="addressChange(this)">
+					<select class="text-center rounded-pill border border-2 text-secondary p-1" >
+<!-- 					 위에 추가 name="address1" id="address1" onchange="addressChange(this)" -->
 						<option>선택</option>
 						<option value="seoul">서울</option>
 						<option value="kyeonggi">경기</option>
@@ -130,7 +131,8 @@
 					</select>
 				</span>
 				<span class="col-4">
-					<select class="text-center rounded-pill border border-2 text-secondary p-1" name="address2" id="address2">
+					<select class="text-center rounded-pill border border-2 text-secondary p-1">
+<!-- 					위에 추가 name="address2" id="address2" -->
 						<option>선택</option>
 					</select>
 				</span>

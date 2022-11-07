@@ -1,6 +1,7 @@
 package com.project.yameokja.service.store;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.yameokja.domain.Post;
 
@@ -10,7 +11,7 @@ public interface PostService {
 	public abstract List<Post> postList(int storeNo);
 	
 	// 별점 리스트
-	public abstract List<Post> postListReply(int storeNo);
+	public abstract Map<String, Object> postListReply(int storeNo, int pageNum);
 		
 	// 포스트 상세
 	public abstract Post getPost(int postNo);
@@ -33,5 +34,7 @@ public interface PostService {
 	public List<Post> bestTwoPost(int storeNo);
 	
 	public List<Post> bestThreePost(int storeNo);
+	
+	public void postReplyAdd(Post post);
 
 }

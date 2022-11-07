@@ -125,85 +125,85 @@ INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, sto
 ############################# 예진 ###################
 
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('그란데', "0507-1328-7692", '127.124632', '37.3237346', '0', '그란데메인.png', '그란데메뉴.png', '수지구', '0', '0', '0', '11:00 ~ 22:00', '없음', '주차가능', 'memberId01', '2');
+	VALUES ('그란데', "0507-1328-7692", '127.124632', '37.3237346', '0', '그란데메인.png', '그란데메뉴.png', '경기,수지구', '0', '0', '0', '11:00 ~ 22:00', '없음', '주차가능', 'memberId01', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('쏘렐라 1호점', "031-782-5882", '127.105375', '37.3661372', '0', '쏘렐라_1호점메인.png', '쏘렐라_1호점메뉴.png', '분당구', '0', '0', '0', '11:30 ~ 22:00', '일요일, 월요일', '주차가능', 'memberId02', '2');
+	VALUES ('쏘렐라 1호점', "031-782-5882", '127.105375', '37.3661372', '0', '쏘렐라_1호점메인.png', '쏘렐라_1호점메뉴.png', '경기,분당구', '0', '0', '0', '11:30 ~ 22:00', '일요일, 월요일', '주차가능', 'memberId02', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('지오쿠치나', "031-711-9488", '127.113835', '37.3771309', '0', '지오쿠치나메인.png', '지오쿠치나메뉴.png', '분당구', '0', '0', '0', '11:30 ~ 21:50', '없음', '주차가능', 'memberId03', '2');
+	VALUES ('지오쿠치나', "031-711-9488", '127.113835', '37.3771309', '0', '지오쿠치나메인.png', '지오쿠치나메뉴.png', '경기,분당구', '0', '0', '0', '11:30 ~ 21:50', '없음', '주차가능', 'memberId03', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('올라 백운호수점', "0507-1435-1055", '127.006102', '37.3742830', '0', '올라_백운호수점메인.png', '올라_백운호수점메뉴.png', '의왕시', '0', '0', '10', '11:30 ~ 22:00', '없음', '주차가능', 'memberId04', '2');
+	VALUES ('올라 백운호수점', "0507-1435-1055", '127.006102', '37.3742830', '0', '올라_백운호수점메인.png', '올라_백운호수점메뉴.png', '경기,의왕시', '0', '0', '10', '11:30 ~ 22:00', '없음', '주차가능', 'memberId04', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('스테이크나인', "0507-1358-9010", '127.118526', '37.6697521', '0', '스테이크나인메인.png', '스테이크나인메뉴.png', '남양주시', '0', '0', '10', '11:00 ~ 22:00', '없음', '주차불가능', 'memberId05', '2');
+	VALUES ('스테이크나인', "0507-1358-9010", '127.118526', '37.6697521', '0', '스테이크나인메인.png', '스테이크나인메뉴.png', '경기,남양주시', '0', '0', '10', '11:00 ~ 22:00', '없음', '주차불가능', 'memberId05', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('식물감각', "031-957-3123", '126.698770', '37.7873581', '0', '식물감각메인.png', '식물감각메뉴.png', '파주시', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId06', '2');
+	VALUES ('식물감각', "031-957-3123", '126.698770', '37.7873581', '0', '식물감각메인.png', '식물감각메뉴.png', '경기,파주시', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId06', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('올리코', "031-913-1324", '126.747289', '37.6713836', '0', '올리코메인.png', '올리코메뉴.png', '파주시', '0', '0', '0', '11:30 ~ 20:00', '월요일, 화요일', '주차불가능', 'memberId07', '2');
+	VALUES ('올리코', "031-913-1324", '126.747289', '37.6713836', '0', '올리코메인.png', '올리코메뉴.png', '경기,파주시', '0', '0', '0', '11:30 ~ 20:00', '월요일, 화요일', '주차불가능', 'memberId07', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('굿갓레스토랑', "0507-1408-7759", '127.048612', '37.7377609', '0', '굿갓레스토랑메인.png', '굿갓레스토랑메뉴.png', '의정부시', '0', '0', '10', '11:30 ~ 21:30', '없음', '주차불가능', 'memberId08', '2');
+	VALUES ('굿갓레스토랑', "0507-1408-7759", '127.048612', '37.7377609', '0', '굿갓레스토랑메인.png', '굿갓레스토랑메뉴.png', '경기,의정부시', '0', '0', '10', '11:30 ~ 21:30', '없음', '주차불가능', 'memberId08', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('오말리', "031-901-1233", '126.773730', '37.6577428', '0', '오말리메인.png', '오말리메뉴.png', '고양시', '0', '0', '0', '11:30 ~ 22:00', '없음', '주차가능', 'memberId09', '2');
+	VALUES ('오말리', "031-901-1233", '126.773730', '37.6577428', '0', '오말리메인.png', '오말리메뉴.png', '경기,고양시', '0', '0', '0', '11:30 ~ 22:00', '없음', '주차가능', 'memberId09', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('까사', "031-476-3053", '126.953976', '37.3914831', '0', '까사메인.png', '까사메뉴.png', '안양시', '0', '0', '0', '11:30 ~ 22:00', '없음', '주차불가능', 'memberId10', '2');
+	VALUES ('까사', "031-476-3053", '126.953976', '37.3914831', '0', '까사메인.png', '까사메뉴.png', '경기,안양시', '0', '0', '0', '11:30 ~ 22:00', '없음', '주차불가능', 'memberId10', '2');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('동동국수집', "031-576-1588", '127.236561', '37.5571153', '0', '동동국수집메인.png', '동동국수집메뉴.png', '남양주시', '0', '0', '0', '9:00 ~ 21:00', '없음', '주차가능', 'memberId01', '1');
+	VALUES ('동동국수집', "031-576-1588", '127.236561', '37.5571153', '0', '동동국수집메인.png', '동동국수집메뉴.png', '경기,남양주시', '0', '0', '0', '9:00 ~ 21:00', '없음', '주차가능', 'memberId01', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('마방집', "031-791-0011", '127.217136', '37.5321679', '0', '마방집메인.png', '마방집메뉴.png', '하남시', '0', '0', '0', '11:00 ~ 21:30', '토요일, 일요일', '주차불가능', 'memberId02', '1');
+	VALUES ('마방집', "031-791-0011", '127.217136', '37.5321679', '0', '마방집메인.png', '마방집메뉴.png', '경기,하남시', '0', '0', '0', '11:00 ~ 21:30', '토요일, 일요일', '주차불가능', 'memberId02', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('거궁 이천점', "031-637-4007", '127.405808', '37.2999783', '0', '거궁_이천점메인.png', '거궁_이천점메뉴.png', '이천시', '0', '0', '0', '10:30 ~ 21:30', '없음', '주차가능', 'memberId03', '1');
+	VALUES ('거궁 이천점', "031-637-4007", '127.405808', '37.2999783', '0', '거궁_이천점메인.png', '거궁_이천점메뉴.png', '경기,이천시', '0', '0', '0', '10:30 ~ 21:30', '없음', '주차가능', 'memberId03', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('초대한정식', "031-557-7318", '127.171527', '37.5855810', '0', '초대한정식메인.png', '초대한정식메뉴.png', '남양주시', '0', '0', '0', '11:30 ~ 21:30', '없음', '주차가능', 'memberId04', '1');
+	VALUES ('초대한정식', "031-557-7318", '127.171527', '37.5855810', '0', '초대한정식메인.png', '초대한정식메뉴.png', '경기,남양주시', '0', '0', '0', '11:30 ~ 21:30', '없음', '주차가능', 'memberId04', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('목향원', "031-527-2255", '127.101474', '37.6834356', '0', '목향원메인.png', '목향원메뉴.png', '남양주시', '0', '0', '0', '10:30 ~ 22:00', '없음', '주차가능', 'memberId05', '1');
+	VALUES ('목향원', "031-527-2255", '127.101474', '37.6834356', '0', '목향원메인.png', '목향원메뉴.png', '경기,남양주시', '0', '0', '0', '10:30 ~ 22:00', '없음', '주차가능', 'memberId05', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('김삿갓밥집', "031-559-9188", '127.361444', '37.6642422', '0', '김삿갓밥집메인.png', '김삿갓밥집메뉴.png', '남양주시', '0', '0', '0', '11:00 ~ 17:00', '월요일, 화요일', '주차가능', 'memberId06', '1');
+	VALUES ('김삿갓밥집', "031-559-9188", '127.361444', '37.6642422', '0', '김삿갓밥집메인.png', '김삿갓밥집메뉴.png', '경기,남양주시', '0', '0', '0', '11:00 ~ 17:00', '월요일, 화요일', '주차가능', 'memberId06', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('청목', "031-634-5414", '127.408604', '37.2995993', '0', '청목메인.png', '청목메뉴.png', '이천시', '0', '0', '0', '9:50 ~ 21:30', '없음', '주차가능', 'memberId07', '1');
+	VALUES ('청목', "031-634-5414", '127.408604', '37.2995993', '0', '청목메인.png', '청목메뉴.png', '경기,이천시', '0', '0', '0', '9:50 ~ 21:30', '없음', '주차가능', 'memberId07', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('달보드레', "0507-1421-7900", '127.039398', '37.2896076', '0', '달보드레메인.png', '달보드레메뉴.png', '수원시', '0', '0', '0', '10:00 ~ 22:00', '월요일', '주차가능', 'memberId08', '1');
+	VALUES ('달보드레', "0507-1421-7900", '127.039398', '37.2896076', '0', '달보드레메인.png', '달보드레메뉴.png', '경기,수원시', '0', '0', '0', '10:00 ~ 22:00', '월요일', '주차가능', 'memberId08', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('고미꽃시래', "0507-1436-6969", '127.140367', '37.3766432', '0', '고미꽃시래메인.png', '고미꽃시래메뉴.png', '성남구', '0', '0', '0', '11:00 ~ 21:30', '없음', '주차가능', 'memberId09', '1');
+	VALUES ('고미꽃시래', "0507-1436-6969", '127.140367', '37.3766432', '0', '고미꽃시래메인.png', '고미꽃시래메뉴.png', '경기,성남구', '0', '0', '0', '11:00 ~ 21:30', '없음', '주차가능', 'memberId09', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('자연담은밥상백운재', "031-422-6909", '127.012087', '37.3851399', '0', '자연담은밥상백운재메인.png', '자연담은밥상백운재메뉴.png', '의왕시', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId10', '1');
+	VALUES ('자연담은밥상백운재', "031-422-6909", '127.012087', '37.3851399', '0', '자연담은밥상백운재메인.png', '자연담은밥상백운재메뉴.png', '경기,의왕시', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId10', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('순보보', "0507-1314-9343", '126.958648', '37.4774773', '0', '순보보메인.png', '순보보메뉴.png', '관악구', '0', '0', '0', '11:00 ~ 21:30', '없음', '주차불가능', 'memberId01', '1');
+	VALUES ('순보보', "0507-1314-9343", '126.958648', '37.4774773', '0', '순보보메인.png', '순보보메뉴.png', '서울,관악구', '0', '0', '0', '11:00 ~ 21:30', '없음', '주차불가능', 'memberId01', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('정가한정식', "0507-1443-8988", '126.939865', '37.4827850', '0', '정가한정식메인.png', '정가한정식메뉴.png', '관악구', '0', '0', '0', '11:30 ~ 21:40', '설연휴', '주차가능', 'memberId02', '1');
+	VALUES ('정가한정식', "0507-1443-8988", '126.939865', '37.4827850', '0', '정가한정식메인.png', '정가한정식메뉴.png', '서울,관악구', '0', '0', '0', '11:30 ~ 21:40', '설연휴', '주차가능', 'memberId02', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('남도한상', "02-889-8318", '126.947336', '37.4861403', '0', '남도한상메인.png', '남도한상메뉴.png', '관악구', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId03', '1');
+	VALUES ('남도한상', "02-889-8318", '126.947336', '37.4861403', '0', '남도한상메인.png', '남도한상메뉴.png', '서울,관악구', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId03', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('미가할매집', "02-888-6940", '126.929085', '37.4877164', '0', '미가할매집메인.png', '미가할매집메뉴.png', '관악구', '0', '0', '0', '11:30 ~ 22:00', '없음', '주차가능', 'memberId04', '1');
+	VALUES ('미가할매집', "02-888-6940", '126.929085', '37.4877164', '0', '미가할매집메인.png', '미가할매집메뉴.png', '서울,관악구', '0', '0', '0', '11:30 ~ 22:00', '없음', '주차가능', 'memberId04', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('감나무집', "0507-1489-0081", '126.951005', '37.4779428', '0', '감나무집메인.png', '감나무집메뉴.png', '관악구', '0', '0', '0', '11:30 ~ 21:30', '일요일', '주차가능', 'memberId05', '1');
+	VALUES ('감나무집', "0507-1489-0081", '126.951005', '37.4779428', '0', '감나무집메인.png', '감나무집메뉴.png', '서울,관악구', '0', '0', '0', '11:30 ~ 21:30', '일요일', '주차가능', 'memberId05', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('포도원삼계탕', "02-873-7909", '126.930165', '37.4822119', '0', '포도원삼계탕메인.png', '포도원삼계탕메뉴.png', '관악구', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId06', '1');
+	VALUES ('포도원삼계탕', "02-873-7909", '126.930165', '37.4822119', '0', '포도원삼계탕메인.png', '포도원삼계탕메뉴.png', '서울,관악구', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차가능', 'memberId06', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('토당골', "02-887-0252", '126.929742', '37.4867617', '0', '토당골메인.png', '토당골메뉴.png', '관악구', '0', '0', '0', '11:30 ~ 24:00', '없음', '주차불가능', 'memberId07', '1');
+	VALUES ('토당골', "02-887-0252", '126.929742', '37.4867617', '0', '토당골메인.png', '토당골메뉴.png', '서울,관악구', '0', '0', '0', '11:30 ~ 24:00', '없음', '주차불가능', 'memberId07', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('지리산삼계탕', "02-885-2015", '126.930245', '37.4811127', '0', '지리산삼계탕메인.png', '지리산삼계탕메뉴.png', '관악구', '0', '0', '0', '11:00 ~ 22:00', '없음', '주차가능', 'memberId08', '1');
+	VALUES ('지리산삼계탕', "02-885-2015", '126.930245', '37.4811127', '0', '지리산삼계탕메인.png', '지리산삼계탕메뉴.png', '서울,관악구', '0', '0', '0', '11:00 ~ 22:00', '없음', '주차가능', 'memberId08', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('관악산가마솥삼계탕', "02-887-0188", '126.950981', '37.4805918', '0', '관악산가마솥삼계탕메인.png', '관악산가마솥삼계탕메뉴.png', '관악구', '0', '0', '0', '11:30 ~ 21:00', '없음', '주차가능', 'memberId09', '1');
+	VALUES ('관악산가마솥삼계탕', "02-887-0188", '126.950981', '37.4805918', '0', '관악산가마솥삼계탕메인.png', '관악산가마솥삼계탕메뉴.png', '서울,관악구', '0', '0', '0', '11:30 ~ 21:00', '없음', '주차가능', 'memberId09', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('이레삼계탕', "02-877-8833", '126.964912', '37.4759838', '0', '이레삼계탕메인.png', '이레삼계탕메뉴.png', '관악구', '0', '0', '0', '10:30 ~ 21:00', '일요일', '주차불가능', 'memberId10', '1');
+	VALUES ('이레삼계탕', "02-877-8833", '126.964912', '37.4759838', '0', '이레삼계탕메인.png', '이레삼계탕메뉴.png', '서울,관악구', '0', '0', '0', '10:30 ~ 21:00', '일요일', '주차불가능', 'memberId10', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('한근한방삼계탕', "02-877-2100", '126.943664', '37.4827508', '0', '한근한방삼계탕메인.png', '한근한방삼계탕메뉴.png', '관악구', '0', '0', '0', '11:00 ~ 21:30', '없음', '주차가능', 'memberId01', '1');
+	VALUES ('한근한방삼계탕', "02-877-2100", '126.943664', '37.4827508', '0', '한근한방삼계탕메인.png', '한근한방삼계탕메뉴.png', '서울,관악구', '0', '0', '0', '11:00 ~ 21:30', '없음', '주차가능', 'memberId01', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('참이맛감자탕 사당점', "02-587-5879", '126.980649', '37.4753298', '0', '참이맛감자탕메인.png', '참이맛감자탕메뉴.png', '관악구', '0', '0', '10', '8:00 ~ 24:00', '없음', '주차가능', 'memberId02', '1');
+	VALUES ('참이맛감자탕 사당점', "02-587-5879", '126.980649', '37.4753298', '0', '참이맛감자탕메인.png', '참이맛감자탕메뉴.png', '서울,관악구', '0', '0', '10', '8:00 ~ 24:00', '없음', '주차가능', 'memberId02', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('박막례청진동해장국', "02-875-9882", '126.952590', '37.4745918', '0', '박막례청진동해장국메인.png', '박막례청진동해장국메뉴.png', '관악구', '0', '0', '0', '00:00 ~ 24:00', '없음', '주차가능', 'memberId03', '1');
+	VALUES ('박막례청진동해장국', "02-875-9882", '126.952590', '37.4745918', '0', '박막례청진동해장국메인.png', '박막례청진동해장국메뉴.png', '서울,관악구', '0', '0', '0', '00:00 ~ 24:00', '없음', '주차가능', 'memberId03', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('수라간뼈해장국', "02-874-1233", '126.942214', '37.4863992', '0', '수라간뼈해장국메인.png', '수라간뼈해장국메뉴.png', '관악구', '0', '0', '0', '10:30 ~ 22:00', '토요일', '주차불가능', 'memberId04', '1');
+	VALUES ('수라간뼈해장국', "02-874-1233", '126.942214', '37.4863992', '0', '수라간뼈해장국메인.png', '수라간뼈해장국메뉴.png', '서울,관악구', '0', '0', '0', '10:30 ~ 22:00', '토요일', '주차불가능', 'memberId04', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('오인자아구찜 본점', "0507-1332-8422", '126.962910', '37.4769832', '0', '오인자아구찜_본점메인.png', '오인자아구찜_본점메뉴.png', '관악구', '0', '0', '0', '10:00 ~ 22:00', '없음', '주차가능', 'memberId05', '1');
+	VALUES ('오인자아구찜 본점', "0507-1332-8422", '126.962910', '37.4769832', '0', '오인자아구찜_본점메인.png', '오인자아구찜_본점메뉴.png', '서울,관악구', '0', '0', '0', '10:00 ~ 22:00', '없음', '주차가능', 'memberId05', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('대호아구집', "02-889-1700", '126.953648', '37.4815209', '0', '대호아구집메인.png', '대호아구집메뉴.png', '관악구', '0', '0', '0', '10:00 ~ 22:00', '월요일', '주차가능', 'memberId06', '1');
+	VALUES ('대호아구집', "02-889-1700", '126.953648', '37.4815209', '0', '대호아구집메인.png', '대호아구집메뉴.png', '서울,관악구', '0', '0', '0', '10:00 ~ 22:00', '월요일', '주차가능', 'memberId06', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('조춘식동갑이네 서울대본점', "02-877-7199", '126.951239', '37.4825290', '0', '조춘식동갑이네_서울대본점메인.png', '조춘식동갑이네_서울대본점메뉴.png', '관악구', '0', '0', '0', '10:30 ~ 23:00', '목요일', '주차가능', 'memberId07', '1');
+	VALUES ('조춘식동갑이네 서울대본점', "02-877-7199", '126.951239', '37.4825290', '0', '조춘식동갑이네_서울대본점메인.png', '조춘식동갑이네_서울대본점메뉴.png', '서울,관악구', '0', '0', '0', '10:30 ~ 23:00', '목요일', '주차가능', 'memberId07', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('고창복의낙지세상 봉천점', "02-886-4242", '126.941968', '37.4826419', '0', '고창복의낙지세상_봉천점메인.png', '고창복의낙지세상_봉천점메뉴.png', '관악구', '0', '0', '0', '11:00 ~ 22:00', '없음', '주차불가능', 'memberId08', '1');
+	VALUES ('고창복의낙지세상 봉천점', "02-886-4242", '126.941968', '37.4826419', '0', '고창복의낙지세상_봉천점메인.png', '고창복의낙지세상_봉천점메뉴.png', '서울,관악구', '0', '0', '0', '11:00 ~ 22:00', '없음', '주차불가능', 'memberId08', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('해물나라', "02-3487-2050", '126.976918', '37.4749507', '0', '해물나라메인.png', '해물나라메뉴.png', '관악구', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차불가능', 'memberId09', '1');
+	VALUES ('해물나라', "02-3487-2050", '126.976918', '37.4749507', '0', '해물나라메인.png', '해물나라메뉴.png', '서울,관악구', '0', '0', '0', '11:00 ~ 21:00', '없음', '주차불가능', 'memberId09', '1');
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_read_count, store_file_main, store_file_menu, store_address, store_review_count, store_star, store_bookmarks, store_time, store_day_off, store_parking, member_id, category_no)
-	VALUES ('남도해물요리전문점', "02-888-8253", '126.945397', '37.4792017', '0', '남도해물요리전문점메인.png', '남도해물요리전문점메뉴.png', '관악구', '0', '0', '0', '10:00 ~ 22:00', '월요일', '주차불가능', 'memberId10', '1');
+	VALUES ('남도해물요리전문점', "02-888-8253", '126.945397', '37.4792017', '0', '남도해물요리전문점메인.png', '남도해물요리전문점메뉴.png', '서울,관악구', '0', '0', '0', '10:00 ~ 22:00', '월요일', '주차불가능', 'memberId10', '1');
     
 ############### 승화 ##############################
 

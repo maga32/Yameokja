@@ -13,7 +13,7 @@ import com.project.yameokja.domain.Post;
 @Repository
 public class PostDaoImpl implements PostDao {
 
-	private final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
+	private static final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	
@@ -30,11 +30,22 @@ public class PostDaoImpl implements PostDao {
 	
 	// 가게 별점댓글 리스트
 	@Override
-	public List<Post> postListReply(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE + ".postListReply", storeNo); 
+	public List<Post> postListReply(int storeNo, int startRow, int num) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("storeNo", storeNo);
+		params.put("startRow", startRow);
+		params.put("num", num);
+		
+		return sqlSession.selectList(NAME_SPACE + ".postListReply", params); 
 	}
 	
 	// 가게 리뷰글 상세보기
+	@Override
+	public int myPageReplyCount(int storeNo) {
+		return sqlSession.selectOne(NAME_SPACE+".myPageReplyCount", storeNo);
+		}
+
 	@Override
 	public Post getPost(int postNo) {
 		
@@ -86,7 +97,10 @@ public class PostDaoImpl implements PostDao {
 	}
 
 
-	
+	@Override
+	public void postReplyAdd(Post post) {
+		sqlSession.insert(NAME_SPACE + ".postReplyAdd", post);
+	}
 
 
 }

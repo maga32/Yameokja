@@ -71,20 +71,31 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public Store getStore(int storeNo) {
-		return StoreDao.getStore(storeNo);
+		return storeDao.getStore(storeNo);
 	}
 	
 
 	@Override
 	public void insertStore(Store store) {
-		StoreDao.insertStore(store);
+		storeDao.insertStore(store);
 	}
 
 	@Override
 	public void updateStore(Store store) {
-		StoreDao.updateStore(store);
+		storeDao.updateStore(store);
 		
 	}
-
+	
+	// 가게 즐겨찾기 추가
+	@Override
+	public void addBookmarks(int storeNo) {
+		storeDao.addBookmarks(storeNo);
+	}
+	
+	// 가게 즐겨찾기 삭제
+	@Override
+	public void deleteBookmarks(int storeNo) {
+		storeDao.deleteBookmarks(storeNo);
+	}
 	
 }

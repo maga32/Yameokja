@@ -33,15 +33,15 @@
 <!-- 			profileHeader end -->
 <!-- 			profileFrame1 start -->
 		<div class="profileFrame1 col-12">
-			<div class=" inlineBlock col-4 p-3">
+			<div class=" d-table-cell col-4 p-3">
 				<img alt="프로필 사진" class="profileIMG text-center rounded-circle col-12" src="resources/IMG/mypage/likeIMG.PNG">
-			</div><div class="profileCategoryFrame inlineBlock col-8">
+			</div><div class="profileCategoryFrame d-table-cell col-8">
 				<div class="col-12">
 					<div class="profileheader col-12">좋아하는 음식 종류</div>
 				<div class="col-12">
-					<div class=" inlineBlock"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>한식</div>
-					<div class=" inlineBlock"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>양식</div>
-					<div class=" inlineBlock"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>중식</div>
+					<div class=" d-table-cell"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>한식</div>
+					<div class=" d-table-cell"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>양식</div>
+					<div class=" d-table-cell"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>중식</div>
 				</div>
 				</div>
 			</div>
@@ -56,19 +56,19 @@
 			</div>
 			<div class="row">
 				<div class=" col-6 fw-semibold fs-6 p-1">가입일</div>
-				<div class=" col-6 p-1">${ user.memberJoinDate }</div>	
+				<div class=" col-6 p-1"><fmt:formatDate value="${ user.memberJoinDate }" pattern="yyyy-MM-dd" /></div>	
 			</div>
 			<div class="row">
 				<div class=" col-6 fw-semibold p-1">작성한리뷰총합</div>
-				<div class=" col-6 p-1">아직기능구현안됨</div>
+				<div class=" col-6 p-1">가게 등록 글 수 : ${ myPagePostCount }개,<br>가게 후기 글 수 : ${ myPageCommunityCount }개<br>총합 : ${ myPagePostCount + myPageCommunityCount }개</div>
 			</div>
 			<div class="row">
 				<div class=" col-6 fw-semibold p-1">받은추천총합</div>
 				<div class=" col-6 p-1">아직기능구현안됨</div>		
 			</div>
 			<div class="row">
-			<div class=" col-6 fw-semibold p-1"><a href="myPagePost">활동내역구경가기 -></a></div>
-			<div class=" col-6 p-1 text-end">
+			<div class="col-6 fw-semibold p-1 myPagePostButton"><a href="#" onclick="opener.location.href='myPagePost?userId=${ user.memberId }';window.close();">활동내역구경가기 -></a></div>
+			<div class="col-6 p-1 text-end">
 				<span class="fa-stack fa-lg" onclick="location.href='reportForm?reportTarget=${user.memberId}'">
 				  <i class="fa fa-circle fa-stack-2x"></i>
 				  <i class="fa fa-bell fa-stack-1x text-white"></i>					
@@ -78,12 +78,12 @@
 <!-- 			profileFrame2 end -->
 		<c:if test="${ sessionScope.memberId == user.memberId }">
 			<div class="buttonFrame text-center col-12 mt-3 py-3">
-				<button type="button" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>
+				<button type="button" onclick="window.close()" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>
 			</div>
 		</c:if>
 		<c:if test="${ (sessionScope.memberId != user.memberId) || (user.memberId == 'null') }">
 			<div class="buttonFrame text-center col-12 mt-3 py-3">
-				<button type="button"  onclick="window.close()" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" onclick="window.close()" class="closeButton btn col-6">확&nbsp;&nbsp;인</button>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="#" class="chatStart btn" data-targetId="${ user.memberId }">채팅신청</a>
 			</div>
 		</c:if>

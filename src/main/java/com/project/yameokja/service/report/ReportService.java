@@ -9,7 +9,7 @@ public interface ReportService {
 	
 	public void addReport(Report report);
 	
-	public Map<String, Object> reportList(int categoryNo, String reportPunishCheck, String type, String keyword, int pageNum);
+	public Map<String, Object> reportList(String userId, int categoryNo, String reportPunishCheck, String type, String keyword, int pageNum);
 	
 	public int reportFormCategoryNo(String reportTarget,  int categoryNo, String postNo);
 	

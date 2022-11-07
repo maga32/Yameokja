@@ -35,8 +35,15 @@
 	<!-- 가게 댓글 리스트를 불러온다 -->
 	<select id="postListReply" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post 
-			WHERE store_no = #{storeNo} AND post_is_post = 0
-		ORDER BY post_no DESC;
+		WHERE store_no = #{storeNo} AND post_is_post = 0
+		ORDER BY post_no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<select id="myPageReplyCount" resultType="int">
+		SELECT count(post_no) FROM post 
+		WHERE store_no = #{storeNo}
+		AND post_is_post = 0
 	</select>
 	
 	<!-- 가게 리뷰 디테일을 불러온다 -->
@@ -46,6 +53,11 @@
 		ORDER BY post_no DESC
 	</select>
 	
+	<insert id="postReplyAdd" parameterType="Post">
+		INSERT INTO post
+			(post_content, post_reg_date, post_is_post, post_star, store_no, member_id, member_nickname, post_file1, post_file2)
+		VALUES (#{postContent}, SYSDATE(), 0, #{postStar}, #{storeNo}, #{memberId}, #{memberNickname}, "이거일임", #{postFile2})
+	</insert>
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />

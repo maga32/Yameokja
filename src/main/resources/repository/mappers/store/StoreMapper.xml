@@ -65,6 +65,20 @@
     			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, null,
     			#{storeDayOff}, #{storeParking}, #{categoryNo})
 	</insert>
+	
+	<!-- 가게 즐겨찾기 추가 -->
+	<update id="addBookmarks">
+		UPDATE store
+			SET store_bookmarks = store_bookmarks + "1"
+		WHERE store_no = #{storeNo}
+	</update>
+	
+	<!-- 가게 즐겨찾기 삭제 -->
+	<update id="deleteBookmarks">
+		UPDATE store
+			SET store_bookmarks = IF(store_bookmarks <![CDATA[<]]> "1", "0", store_bookmarks - "1")
+		WHERE store_no = #{storeNo}
+	</update>
 
 	<resultMap id="storeResultMap" type="Store">
 		<id property="storeNo" column="store_no" />
