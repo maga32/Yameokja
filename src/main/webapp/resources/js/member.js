@@ -4,11 +4,16 @@ $(function(){
 	$("#memberJoinForm").on("submit", function(){
 		
 		var isIdCheck = $("#isIdCheck").val();
+		var passCheck = $("#passCheck").val();
 		var pass1 = $("#pass1").val();
 		var pass2 = $("#pass2").val();
-	
+		
 		if(isIdCheck == "false"){
 			alert("아이디 중복확인을 해주세요");
+			return false;
+		}
+		if(passCheck == "false"){
+			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		}
 		if(pass1.length == 0 || pass2.length == 0){
@@ -18,6 +23,16 @@ $(function(){
 
 		return joinFormCheck();
 	});
+	
+	// 회원가입 및 회원수정. 아이디 중복확인 후 값 변경시 check false
+	$("#memberId").on("change", function(){
+			$("#isIdCheck").val(false);
+	});
+	
+	// 회원가입 및 회원수정. 닉네임 중복확인 후 값 변경시 check false
+	$("#memberNickname").on("change", function(){
+			$("#isNicknameCheck").val(false);
+		});
 	
 	// 회원수정 필수 입력값 검사
 	$("#memberUpdateForm").on("submit", function(){
@@ -110,11 +125,15 @@ $(function(){
 		if(pass1 != "" || pass2 != ""){
 			if(pass1 == pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치합니다');
-			
+				$("#passCheck").val(true);
 			}else if(pass1 != pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치하지 않습니다');
+				$("#passCheck").val(false);
 			}
-		}else{$("#memberPasswordWarning").text('비밀번호를 입력해주세요');}
+		}else{
+			$("#memberPasswordWarning").text('비밀번호를 입력해주세요');
+			$("#passCheck").val(false);
+		}
 	});
 	
 	// 비밀번호 일치 확인2
@@ -126,9 +145,10 @@ $(function(){
 		if(pass1 != "" || pass2 != ""){
 			if(pass1 == pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치합니다');
-			
+				$("#passCheck").val(true);
 			}else if(pass1 != pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치하지 않습니다');
+				$("#passCheck").val(false);
 			}
 		}
 	});
@@ -205,10 +225,10 @@ function addressChange(e) {
 	var jeonnam = ["강진군", "고흥군", "곡성군", "광양시", "구례군", "나주시", "담양군", "목포시", "무안군", "보성군", "순천시", "신안군", "여수시", "영광군", "영암군", "완도군", "장성군", "장흥군", "진도군", "함평군", "해남군", "화순군"];
 	var jeju = ["서귀포시", "제주시"];
 	
-	var target =  document.getElementById("address2");
+	var target =  e.nextElementSibling;
 
-	if(e.value == "seoul") var d = seoul;
-	else if(e.value == "") var d = kyeonggi;
+	if(e.value == "서울") var d = seoul;
+	else if(e.value == "경기") var d = kyeonggi;
 	else if(e.value == "대전") var d = daejeon;
 	else if(e.value == "인천") var d = incheon;
 	else if(e.value == "대구") var d = daegu;

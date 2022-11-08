@@ -77,7 +77,7 @@ public class CommunityDaoImpl implements CommunityDao {
 	// 커뮤니티 글 삭제
 	@Override
 	public void deleteCommunity(int coNo) {
-		sqlSession.delete(NAME_SPACE + "deleteCommunity", coNo);
+		sqlSession.delete(NAME_SPACE + ".deleteCommunity", coNo);
 	}
 
 	// 커뮤니티 글 조회수 증가

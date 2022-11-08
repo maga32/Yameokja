@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS member(
   member_email VARCHAR(20) NOT NULL,
   member_address VARCHAR(20) NOT NULL,
   member_mobile VARCHAR(20) NOT NULL,
-  member_bookmarks VARCHAR(1000) NULL,
+  member_bookmarks VARCHAR(1000) NULL default '0',
   member_join_date TIMESTAMP NOT NULL,
   member_del_date TIMESTAMP NULL,
   member_favorite_category VARCHAR(40) NULL,
@@ -32,6 +32,10 @@ CREATE TABLE IF NOT EXISTS member(
   member_block_ids VARCHAR(1000) NULL
   
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+desc member;
+
+ALTER TABLE member CHANGE member_photo member_photo VARCHAR(100) NULL;
 ###############################################################################################################################################################################################member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids
 
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)

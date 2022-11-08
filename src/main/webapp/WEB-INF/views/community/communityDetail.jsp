@@ -28,25 +28,25 @@
 			</div>	
 			<div class="col-2 p-0 text-end">
 				<span class="fa-stack fa-lg"  onclick='clip(); return false;'>
-				  <i class="fa fa-circle fa-stack-2x"></i>
-				  <i class="fa fa-bell fa-stack-1x text-white"></i>
+				  <i class="fa fa-circle fa-stack-2x text-warning"></i>
+				  <i class="fa fa-link fa-stack-1x text-white" aria-hidden="true"></i>
 				</span>
 				<span class="fa-stack fa-lg"  onclick='window.open("reportForm?categoryNo=${co.categoryNo}&communityNo=${co.communityNo}&reportTarget=${co.memberId}","reportForm","width=500, height=600")'>
-				  <i class="fa fa-circle fa-stack-2x"></i>
+				  <i class="fa fa-circle fa-stack-2x text-warning"></i>
 				  <i class="fa fa-bell fa-stack-1x text-white"></i>
 				</span>
 			</div>
 		</div>
 	</div>
 	<!-- 본문 + 사진 -->
-	<div class="row col-12 border mb-3 coContent">
+	<div class="row col-12 border mb-3">
 		<c:if test="${not empty co.communityFile }">
 			<div class="imageFrame border-bottom py-2 mb-1">
 				<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${co.communityFile }">	
 			</div>
 		</c:if>
-		<div class="p-1">
-			${ co.communityContent }
+		<div class="p-1 coContent ">
+			${ co.communityContent }"
 		</div>
 	</div>
 	
@@ -111,7 +111,7 @@
 					<div class="fw-bold">
 						(<fmt:formatDate value="${re.communityRegDate}" pattern="yyyy-MM-dd hh:mm:ss"/>)
 					</div>	
-					<div id="communityReplyContentResultAt${re.communityNo }">${re.communityContent}</div>
+					<div class="replyContent" id="communityReplyContentResultAt${re.communityNo }">${re.communityContent}</div>
 				</div>
 				<div class="col-2 border-start text-center">
 					<button class="btnCommunityReReplyWriteFormOpen btnReply" value="${ re.communityNo },${re.memberNickname}">답글</button><br>
@@ -168,7 +168,7 @@
 								<div class="fw-bold">
 									(<fmt:formatDate value="${rere.communityRegDate}" pattern="yyyy-MM-dd hh:mm:ss"/>)
 								</div><span class="text-primary">@${rere.communityReplyTarget }</span>
-								<div class="inlineBlock" id="communityReplyContentResultAt${rere.communityNo }">&nbsp;${rere.communityContent}</div>
+								<div class="inlineBlock replyContent" id="communityReplyContentResultAt${rere.communityNo }">&nbsp;${rere.communityContent}</div>
 							</div>
 						</div>
 						<div class="col-2 border-start border-top text-center reReply">
@@ -197,8 +197,8 @@
 </div>
 <div class="text-end my-1 m-0">
 	<form class=" inlineBlock" action="community102UpdateForm?communityNo=${co.communityNo}" method="post">
-	<button class="btn btn-warning btnCommunityDetail">수정하기</button>
+	<button class="btn btn-warning shadow btnCommunityDetail">수정하기</button>
 	</form>
-	<button class="btn btn-warning inlineBlock btnCommunityDetail" onclick="location.href='communityDelete?communityNo=${co.communityNo}' ">삭제하기</button>
+	<button class="btn btn-warning shadow inlineBlock btnCommunityDetail" onclick="location.href='communityDelete?communityNo=${co.communityNo}' ">삭제하기</button>
 </div>
 </article>

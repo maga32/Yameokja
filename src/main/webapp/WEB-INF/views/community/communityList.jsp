@@ -70,8 +70,7 @@
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
 								<div class="col-3">
-									<img src="upload/community/${ p.communityFile }"
-										class="img-thumbnail rounded float-start" alt="...">
+									<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${p.communityFile }">
 								</div>
 							</c:if>
 							<div class="col-6">
@@ -90,7 +89,7 @@
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
-											<i class="fa fa-eye" aria-hidden="true"></i>
+											<i class="fa fa-eye colorGray" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
@@ -118,8 +117,7 @@
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
 								<div class="col-3">
-									<img src="upload/community/${ p.communityFile }"
-										class="img-thumbnail rounded float-start" alt="...">
+									<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${p.communityFile }">
 								</div>
 							</c:if>
 							<div class="col-6">
@@ -138,7 +136,7 @@
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
-											<i class="fa fa-eye" aria-hidden="true"></i>
+											<i class="fa fa-eye colorGray" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
@@ -166,8 +164,7 @@
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
 								<div class="col-3">
-									<img src="upload/community/${ p.communityFile }"
-										class="img-thumbnail rounded float-start" alt="...">
+									<img src="resources/IMG/community/${p.communityFile }">
 								</div>
 							</c:if>
 							<div class="col-6 ">
@@ -186,7 +183,7 @@
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
-											<i class="fa fa-eye" aria-hidden="true"></i>
+											<i class="fa fa-eye colorGray" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">

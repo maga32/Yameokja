@@ -4,32 +4,34 @@
 <script src="resources/js/formcheck.js"></script>
 <script src="resources/js/member.js"></script>
 <article>
-	<h1>회원 수정</h1>
+	<h1 class="fw-bold mt-3">회원수정</h1>
 	* 표시는 필수입력사항
 	<hr>
 
 	<form action="memberUpdateProcess" method="POST" id="memberUpdateForm"
 		 name="memberUpdateForm" encType="multipart/form-data">
 		<div>
-			* 이름 <br> <input type="text" name="memberName" id="memberName"
-				value="${member.memberName }" readonly><br>
+			<div class="mt-2">* 이름</div>
+			<input type="text" name="memberName" id="memberName" value="${member.memberName }" readonly><br>
 		</div>
 		<div>
-			* 아이디 <br> <input type="text" name="memberId" id="memberId"
-				value="${member.memberId }" readonly> 
+			<div class="mt-2">* 아이디</div>
+			<input type="text" name="memberId" id="memberId" value="${member.memberId }" readonly> 
 				<br>
 		</div>
 		
 		<div>
-			* 닉네임 <br> <input type="text" name="memberNickname" id="memberNickname"
-				placeholder="변경하실 닉네임을 입력해주세요" value="${member.memberNickname }"> <input type="button"
-				name="memberNicknameCheck" id="memberNicknameCheck" value="닉네임 중복확인">
+			<div class="mt-2">* 닉네임</div>
+				<input type="text" name="memberNickname" id="memberNickname"
+					placeholder="변경하실 닉네임을 입력해주세요" value="${member.memberNickname }"> <input type="button"
+					name="memberNicknameCheck" id="memberNicknameCheck" value="닉네임 중복확인">
 				<input type="hidden" name="isNicknameCheck" id="isNicknameCheck" value="false">
 				<input type="hidden" name="updateCheck" id="updateCheck" value=True><br>
 		</div>
 		<div> 
-			* 이메일<br> <input type="text" name="email" id="email"
-				placeholder="이메일 주소를 입력해주세요" value="${email}">@ <input type="text"
+			<div class="mt-2">* 이메일</div>
+			<input type="text" name="email" id="email"
+				placeholder="이메일 주소를 입력해주세요" value="${email}"> @ <input type="text"
 				name="domain" id="domain" value="${domain}"> <select id="domainList">
 				<option>직접 입력</option>
 				<option>naver.com</option>
@@ -39,7 +41,7 @@
 			</select>
 		</div>
 		<div>
-			* 휴대폰 번호<br>
+			<div class="mt-2">* 휴대폰 번호</div>
 				<select id="phone1" name="phone1" id="phone1">
 				<c:if test='${phone1 == "010" }'>
 					<option selected="selected">010</option>
@@ -61,11 +63,11 @@
 		</div>
 
 		<div>
-			* 프로필 사진<br> <input type="file" name="memberPhoto" size="70"
-				id="memberPhoto" maxlength="50" />
+			<div class="mt-2">* 프로필 사진</div>
+			<input type="file" name="memberPhoto" size="70" id="memberPhoto" maxlength="50"/>
 		</div>
 		<div>
-			* 우리동네 위치<br>
+			<div class="mt-2">* 우리동네 위치</div>
 			<select name="address1" id="address1"
 				onchange="addressChange(this)">
 				<option>선택</option>
@@ -94,24 +96,70 @@
 		</div>
 
 		<div>
-			* 선호음식 선택<br> 
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="1">한식
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="2">양식
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="3">중식
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="4">일식<br>
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="5">아시안
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="6">술집
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="7">카페,디저트
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="8">분식<br>
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="9">고기
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="10">채식
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="11">패스트푸드
-			<input type="checkBox" name="foodCategory" id="foodCategory" value="12">기타<br>
+			<div class="mt-2">* 선호음식 선택</div>
+			<!-- test -->
+			<div class="row">
+				<div class="col-11 row">
+					<c:forEach var="li" items="foodCategoryList">
+						<div class="col-3">
+							<input type="checkBox" name="foodCategory" id="foodCategory" value="">	
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<!-- text end -->
+			
+			<div class="row">
+				<div class="col-11 row">
+					<c:forEach var="fc" items="list">
+						
+					</c:forEach>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="1">한식		
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="2">양식		
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="3">중식
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="4">일식
+					</div>
+					
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="5">아시안
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="6">술집	
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="7">카페,디저트
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="8">분식
+					</div>
+					
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="9">고기	
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="10">채식
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="11">패스트푸드
+					</div>
+					<div class="col-3">
+						<input type="checkBox" name="foodCategory" id="foodCategory" value="12">기타<br>
+					</div>
+				</div>
+			</div>
 			<input type="hidden" name="memberFavoriteCategory" id="memberFavoriteCategory" value="">
 			<input type="hidden" name="memberFavoriteCategoryCount" id="memberFavoriteCategoryCount" value="">
 		</div>
-		<input type="reset" value="다시쓰기"> <input type="submit" id="memberJoinUpdateFormSubmit"
-			value="회원수정">
-
+		<div class="mb-2">
+			<input type="reset" value="다시쓰기">
+			<input type="submit" id="memberJoinUpdateFormSubmit" value="회원수정">
+		</div>
 	</form>
 </article>

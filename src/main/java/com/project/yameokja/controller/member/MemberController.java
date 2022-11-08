@@ -1,9 +1,12 @@
 package com.project.yameokja.controller.member;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -29,7 +32,7 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
-	private static final String DEFAULT_PATH = "/resources/upload/userProfile";
+	private static final String DEFAULT_PATH = "/resources/IMG/member";
 
 	// 회원가입 폼
 	@RequestMapping("/memberJoinForm")
@@ -53,6 +56,19 @@ public class MemberController {
 		String phone2 = memberMobile[1];
 		String phone3 = memberMobile[2];
 		
+		String memberFavoriteCategory = member.getMemberFavoriteCategory();
+		String[] categoryList = {"한식", "양식", "중식", "일식", "아시안", "술집", "카페,디저트", ",분식", "고기", "채식", "패스트푸드", "기타"};
+		
+		ArrayList<foodCategories> foodCategoryList = new ArrayList<foodCategories>();
+		int index = 1;
+		for (String item : categoryList) {
+			foodCategories food = new foodCategories(index, item);
+			foodCategoryList.add(food);
+		    index += 1;
+		}
+	
+		model.addAttribute("memberFavoriteCategory", memberFavoriteCategory);
+		model.addAttribute("foodCategoryList", foodCategoryList);
 		model.addAttribute("email", email);
 		model.addAttribute("domain", domain);
 		model.addAttribute("phone1", phone1);
@@ -63,12 +79,31 @@ public class MemberController {
 		return "member/memberUpdateForm";
 	}
 	
+	public static class foodCategories{
+		private int index;
+		private String value;
+		
+		public foodCategories(int index, String value) {
+			this.index = index;
+			this.value = value;
+		}
+
+		public int getIndex() {
+			return index;
+		}
+		public String getValue() {
+			return value;
+		}	
+	}
+	
+	
+
 	// 회원가입 프로세스
 	@RequestMapping(value="/memberJoinProcess", method=RequestMethod.POST)
 	public String addMember(String memberName, String memberId, String memberNickname,
 			String pass1, String pass2, String email, String domain,
 			String phone1, String phone2, String phone3,	String address1, String address2,
-			@RequestParam(value="memberPhoto", required=false) MultipartFile mfMemberPhoto,
+			@RequestParam(value="memberPhoto", required=false) MultipartFile multipartFile,
 			String memberFavoriteCategory, HttpServletResponse response,
 			HttpServletRequest request) throws IOException {
 
@@ -84,19 +119,20 @@ public class MemberController {
 		m.setMemberPassword(pass1);
 		m.setMemberEmail(email + "@" + domain);
 		m.setMemberMobile(phone1 + "-" + phone2 + "-" +phone3);
-		m.setMemberAddress(address1 + " " + address2);
+		m.setMemberAddress(address1 + "," + address2);
 		m.setMemberFavoriteCategory(memberFavoriteCategory);
 		
-		// 파일 업로드
-		System.out.println("MemberJoinController - originName : " + mfMemberPhoto.getOriginalFilename());
-		System.out.println("MemberJoinController - name : " + mfMemberPhoto.getName());
-		
-		if(!mfMemberPhoto.isEmpty()) {
+		if(!multipartFile.isEmpty()) {
 		
 			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
-			UUID uid = UUID.randomUUID();
-			String saveName = uid.toString() + "_" ; 
-
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+			
+			multipartFile.transferTo(file);
+			m.setMemberPhoto(saveName);
 		}
 		
 		out.println("<script>");
@@ -113,7 +149,7 @@ public class MemberController {
 	public String memberUpdateProcess(String memberId, String memberNickname,
 			String email, String domain, String phone1, String phone2, String phone3,
 			String address1, String address2, String memberFavoriteCategory, HttpServletResponse response,
-			@RequestParam(value="memberPhoto", required=false) MultipartFile mfMemberPhoto,
+			@RequestParam(value="memberPhoto", required=false) MultipartFile multipartFile,
 			HttpServletRequest request) throws IOException{
 		
 		response.setContentType("text/html; charset=utf-8");
@@ -128,10 +164,17 @@ public class MemberController {
 		member.setMemberAddress(address1 + " " + address2);
 		member.setMemberFavoriteCategory(memberFavoriteCategory);
 		
-		if(!mfMemberPhoto.isEmpty()) {
+		if(!multipartFile.isEmpty()) {
+			
 			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
-			UUID uid = UUID.randomUUID();
-			String saveName = uid.toString() + "_" ; 
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+			
+			multipartFile.transferTo(file);
+			member.setMemberPhoto(saveName);
 		}
 		
 		memberService.updateMember(member);

@@ -1,6 +1,6 @@
 package com.project.yameokja.controller.community;
 
-import java.io.File; 
+import java.io.File;  
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
@@ -41,7 +41,7 @@ public class CommunityController {
 	@Autowired
 	MemberService memberService;
 	
-	private final static String DEFAULT_PATH = "/resources/upload/";
+	private final static String DEFAULT_PATH = "/resources/IMG/community";
 
 	// 커뮤니티 리스트 출력
 	@RequestMapping("/communityList")
@@ -247,43 +247,43 @@ public class CommunityController {
 	}
 	
 	// 모집글 수정 프로세스
-		@RequestMapping(value="community102UpdateProcess", method=RequestMethod.POST)
-		public String community102UpdateProcess(String co102Id, String co102Nickname,
-				String co102Title, String co102Content, int communityNo, String co102PartyDDay,
-				String co102PartyPlace, int co102PartyMembers, HttpServletRequest request,
-				@RequestParam(value="co102File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
-			
-			String[] splitDDay = co102PartyDDay.split("T");
-			String sumDDay = splitDDay[0] + " " +splitDDay[1] + ":00";
-			Timestamp co102PartyDDayResult = Timestamp.valueOf(sumDDay);
-			
-			Community co = new Community();
-			
-			co.setCommunityNo(communityNo);
-			co.setCommunityContent(co102Content);
-			co.setCommunityTitle(co102Title);
-			co.setPartyMembers(co102PartyMembers);
-			co.setPartyPlace(co102PartyPlace);
-			co.setPartyDDay(co102PartyDDayResult);
-
+	@RequestMapping(value="community102UpdateProcess", method=RequestMethod.POST)
+	public String community102UpdateProcess(String co102Id, String co102Nickname,
+			String co102Title, String co102Content, int communityNo, String co102PartyDDay,
+			String co102PartyPlace, int co102PartyMembers, HttpServletRequest request,
+			@RequestParam(value="co102File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
 		
-			if( !multipartFile.isEmpty()) {
-				
-				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
-				UUID uid  = UUID.randomUUID();
-				String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
-				
-				File file = new File(filePath, saveName);
-				System.out.println("file : " + file.getName());
-
-				multipartFile.transferTo(file);
-				co.setCommunityFile(saveName);
-			}
+		String[] splitDDay = co102PartyDDay.split("T");
+		String sumDDay = splitDDay[0] + " " +splitDDay[1] + ":00";
+		Timestamp co102PartyDDayResult = Timestamp.valueOf(sumDDay);
 		
-			communityListService.updateCommunity102(co);
+		Community co = new Community();
+		
+		co.setCommunityNo(communityNo);
+		co.setCommunityContent(co102Content);
+		co.setCommunityTitle(co102Title);
+		co.setPartyMembers(co102PartyMembers);
+		co.setPartyPlace(co102PartyPlace);
+		co.setPartyDDay(co102PartyDDayResult);
+
+	
+		if( !multipartFile.isEmpty()) {
 			
-			return "redirect:/communityList";
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+
+			multipartFile.transferTo(file);
+			co.setCommunityFile(saveName);
 		}
+	
+		communityListService.updateCommunity102(co);
+		
+		return "redirect:/communityList";
+	}
 	
 	
 	// 모집 참여 및 참여취소

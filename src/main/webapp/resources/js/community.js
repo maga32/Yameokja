@@ -248,7 +248,7 @@ function replyAjaxAction(u, d){
 								+ '<div class="fw-bold">'
 								+ regDate
 								+ '</div>'
-								+ '<div id="communityReplyContentResultAt' + value.communityNo + '">' + value.communityContent
+								+ '<div class="replyContent" id="communityReplyContentResultAt' + value.communityNo + '">' + value.communityContent
 								+ '</div>'
 								+ '</div>'
 								
@@ -329,7 +329,7 @@ function replyAjaxAction(u, d){
 											+ '<div class="fw-bold">'
 											+ regDate2
 											+ '</div> <span class="text-primary">@' + value.communityReplyTarget + '</span>&nbsp;'
-											+ '<div class="inlineBlock" id="communityReplyContentResultAt' + value.communityNo + '">' + value.communityContent
+											+ '<div class="inlineBlock replyContent" id="communityReplyContentResultAt' + value.communityNo + '">' + value.communityContent
 											+ '</div>'
 											+ '</div>'
 											+ '</div>'
