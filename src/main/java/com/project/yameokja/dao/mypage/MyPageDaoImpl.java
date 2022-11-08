@@ -90,9 +90,4 @@ public class MyPageDaoImpl implements MyPageDao {
 		sqlSession.delete(NAME_SPACE+ ".deleteMyPageCommunity", communityNo);
 	}
 
-	@Override
-	public List<Store> myPageStore(String memberId) {
-		return sqlSession.selectList(NAME_SPACE+".myPageStore", memberId);
-	}
-
 }

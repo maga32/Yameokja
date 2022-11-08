@@ -3,6 +3,7 @@ package com.project.yameokja.controller.member;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -146,12 +147,23 @@ public class MemberController {
 
 	// 회원 탈퇴
 	@RequestMapping("/memberDelete")
-	public String memberDelete(HttpSession session) {
+	public String memberDelete(HttpSession session, PrintWriter out, 
+			HttpServletResponse response) {
 		String memberId = (String) session.getAttribute("memberId");
-		session.invalidate();
-		memberService.deleteMember(memberId);
+		response.setContentType("text/html;charset=utf-8");
+		System.out.println("1");
+		out.println("<script>");
+		out.println("confirm('삭제하시겠습니까?');");
+		System.out.println("2");
+		out.println("confirm('정말 삭제하시겠습니까?');");
+		out.println("</script>");
+		out.close();
+		System.out.println("3");
 		
-		return "redirect:/main";
+		memberService.deleteMember(memberId);
+		session.invalidate();
+		
+		return "main";
 	}
 	
 	// 아이디 중복확인

@@ -31,7 +31,7 @@
 				<div class="col-3 p-0 d-flex align-items-center">
 					<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
-							<a href="memberUpdateForm">회원정보수정</a>
+							<a href="memberUpdateForm?memberId=${ sessionScope.memberId }">회원정보수정</a>
 						</div>
 						<div class="buttons_">
 							<a href="memberDelete">회 원 탈 퇴</a>

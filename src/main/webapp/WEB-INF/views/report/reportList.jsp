@@ -62,7 +62,7 @@
 		<div class="col-12 pe-4">
 			<c:if test="${ startPage > pageGroup }">
 				<div class="previousPage text-secondery d-inline-block">
-					<a href="reportList?pageNum=${ startPage - pageGroup }&categoryNo=${ categoryNo }"><</a>
+					<a href="reportList?pageNum=${ startPage - pageGroup }"><</a>
 				</div>
 			</c:if>
 			<div class="pageNumber text-secondery d-inline-block">
@@ -72,14 +72,14 @@
 				</c:if>
 				<c:if test="${ i != currentPage }">
 					<div class=" d-inline-block">
-						<a href="reportList?pageNum=${ i }&categoryNo=${ categoryNo }">&nbsp;${ i }&nbsp;</a>
+						<a href="reportList?pageNum=${ i }">&nbsp;${ i }&nbsp;</a>
 					</div>
 				</c:if>
 			</c:forEach>
 			</div>						
 			<c:if test="${ endPage < pageCount }">
 				<div class="nextPage text-secondery d-inline-block">
-					<a href="reportList?pageNum=${ startPage + pageGroup }&categoryNo=${ categoryNo }">></a>
+					<a href="reportList?pageNum=${ startPage + pageGroup }">></a>
 				</div>
 			</c:if>
 		</div>
@@ -114,7 +114,7 @@
 		<div class="col-12 pe-4">
 			<c:if test="${ startPage > pageGroup }">
 				<div class="previousPage text-secondery d-inline-block">
-					<a href="reportList?pageNum=${ startPage - pageGroup }&categoryNo=${ categoryNo }&type=${type}&keyword=${keyword}"><</a>
+					<a href="reportList?pageNum=${ startPage - pageGroup }&type=${type}&keyword=${keyword}"><</a>
 				</div>
 			</c:if>
 			<div class="pageNumber text-secondery d-inline-block">
@@ -124,14 +124,14 @@
 				</c:if>
 				<c:if test="${ i != currentPage }">
 					<div class=" d-inline-block">
-						<a href="reportList?pageNum=${ i }&categoryNo=${ categoryNo }&type=${type}&keyword=${keyword}">&nbsp;${ i }&nbsp;</a>
+						<a href="reportList?pageNum=${ i }&type=${type}&keyword=${keyword}">&nbsp;${ i }&nbsp;</a>
 					</div>
 				</c:if>
 			</c:forEach>
 			</div>						
 			<c:if test="${ endPage < pageCount }">
 				<div class="nextPage text-secondery d-inline-block">
-					<a href="reportList?pageNum=${ startPage + pageGroup }&categoryNo=${ categoryNo }&type=${type}&keyword=${keyword}">></a>
+					<a href="reportList?pageNum=${ startPage + pageGroup }&type=${type}&keyword=${keyword}">></a>
 				</div>
 			</c:if>
 		</div>

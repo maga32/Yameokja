@@ -27,7 +27,4 @@ public interface MyPageDao {
 	//동네글 삭제
 	void deleteMyPageCommunity(int communityNo);
 	
-	//찜 리스트
-	public List<Store> myPageStore(String memberId);
-	
 }

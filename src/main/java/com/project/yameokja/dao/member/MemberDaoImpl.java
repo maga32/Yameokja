@@ -148,7 +148,7 @@ public class MemberDaoImpl implements MemberDao {
 	// 회원탈퇴
 	@Override
 	public void deleteMember(String memberId) {
-		sqlSession.delete(NAME_SPACE + ".delMember", memberId);
+		sqlSession.delete(NAME_SPACE + ".deleteMember", memberId);
 
 	}
 	// 회원 즐겨찾기 가게 추가

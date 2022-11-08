@@ -157,7 +157,6 @@ public class ReportController {
 		model.addAttribute("report", report);
 		model.addAttribute("reportNo", reportNo);
 		model.addAttribute("member", member);
-//		System.out.println(reportType);
 		
 		return "report/reportDetail";
 	}
@@ -199,13 +198,11 @@ public class ReportController {
 	
 	@RequestMapping(value="/deleteReport")
 	public String deleteReport(
-//			Model model, 
 			RedirectAttributes reAttrs,
 			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
 			
 			) {
 		reportService.deleteReport(reportNo);
-//		reAttrs.addAttribute("pageNum", pageNum);
 		return "redirect:reportList";
 	}
 	
