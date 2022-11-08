@@ -6,9 +6,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="resources/js/store.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <meta charset="UTF-8">
 <article>
-<form name="storeWriteForm" action="storeWriteProcess" id="storeWriteForm" method="post">
+
+<form name="storeWriteForm" action="storeWriteProcess" 
+	id="storeWriteForm" method="POST" encType="multipart/form-data">
 
 <div class="container-fluid">
 	
@@ -30,15 +33,15 @@
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>가게 이름</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
-		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
-		            				<div class="col-3"><button class="col-12">중복 확인</button>
+		            				<input class="col-12 form-control" type="text" name="storeName" id="storeName"></div>
+		            				<div class="col-3"><button class="btn btn-outline-warning col-12">중복 확인</button>
 		            				</div>
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>전화번호</h3></div>
 	            				<div class="row mb-4">
 		            				<div class="col-3">
-			            				<select class="col-12 form-control-sm" name="phone1" id="phone1">
+			            				<select class="col-12 form-control" name="phone1" id="phone1">
 			            				<option>선택</option>
 				            				<option value="02">서울 (02)</option>
 											<option value="031">경기 (031)</option>
@@ -58,90 +61,87 @@
 											<option value="061">전남 (061)</option>
 											<option value="064">제주 (064)</option>
 											<option value="0507">안심번호 (0507)</option>
-			            					<option value="direct">직접입력</option>
 			            				</select>
-			            				<input class="col-12 form-control-sm" type="text" id="selectboxDirect" name="selectboxDirect">
 			            			</div>
 			            			<div class="col-1 text-center fs-5">
 			            			-
 			            			</div>
 			            			<div class="col-3">
-			            				<input class="col-12 form-control-sm" type="text" name="phone2" id="phone2">
+			            				<input class="col-12 form-control" type="text" name="phone2" id="phone2">
 			            			</div>
 			            			<div class="col-1 text-center fs-5">
 			            			-
 			            			</div>
 			            			<div class="col-3">
-			            				<input class="col-12 form-control-sm" type="text" name="phone3" id="phone3">
+			            				<input class="col-12 form-control" type="text" name="phone3" id="phone3">
 			            			</div>
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>주소</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
-		            				<input class="col-12 form-control-sm mb-1" type="text" aria-label=".form-control-sm example"></div>
-		            				<div class="col-3"><button class="col-12">주소 확인</button>
+		            				<input class="col-12 form-control mb-1" type="text" name="address1" id="address1"></div>
+		            				<div class="col-3"><button type="button" class="btn btn-outline-warning col-12" id="storeAddress">주소 확인</button>
 		            				</div>
 		            				<div class="col-9">
-		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
+		            				<input class="col-12 form-control" type="text" name="address2" id="address2"></div>
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>맛집 종류</h3></div>
+	            				
 	            			<div class="row mb-4">
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">한식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="1">
+			            					<label class="form-check-label" for="categoryNo">한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">양식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="2">
+			            					<label class="form-check-label" for="categoryNo">양식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">중식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="3">
+			            					<label class="form-check-label" for="categoryNo">중식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">일식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" id="4">
+			            					<label class="form-check-label" for="categoryNo">일식</label>
 		            				</div>
 		            			</div>
 		            			
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">한식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  id="5">
+			            					<label class="form-check-label" for="categoryNo">아시안</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">양식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  id="6">
+			            					<label class="form-check-label" for="categoryNo">술집</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">중식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  id="7">
+			            					<label class="form-check-label" for="categoryNo">카페, 디저트</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">일식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  id="8">
+			            					<label class="form-check-label" for="categoryNo">분식</label>
 		            				</div>
 		            			</div>
 		            			
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">한식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" id="9">
+			            					<label class="form-check-label" for="categoryNo">고기</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">양식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" id="10">
+			            					<label class="form-check-label" for="categoryNo">채식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="foodCheck">
-			            					<label class="form-check-label" for="foodCheck">중식</label>
+			            				<input class="form-check-input" type="radio" name="categoryNo" id="11">
+			            					<label class="form-check-label" for="categoryNo">패스트푸드</label>
 		            				</div>
-
-		            			</div>
-		            			
+		            			</div>    			
 	            			</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">대표 사진</h3></div>
@@ -160,28 +160,21 @@
 	            				
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>영업 시간</h3></div>
 	            				<div class="row mb-4">
-	            					<div class="col-6 border border-2">
-	            						<div class="col-12 border border-1 my-2">여는 시간
-	            							
-	            						</div>
+	            					<div class="col-12 my-2">
+	            						<label for="exampleFormControlInput1" class="form-label">여는시간</label>
+	            							<textarea type="text" class="form-control" name="storeTime"></textarea>
 	            					</div>
-	            					<div class="col-6 border border-2">
-	            						<div class="col-12 border border-1 my-2">닫는 시간</div>
-	            					</div>
-		            				
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">휴무일</h3></div>
 	            					<div class="row mb-4">
-		            					<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
+		            					<input class="col-12 form-control" type="text">
 	            					</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">주차가능 유무</h3></div>
 	            						<div class="row mb-4">
-		            					<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
-	            					</div>
-	            				
-	            				
+		            					<input class="col-12 form-control" type="text">
+	            					</div>	
 	            			
 	            			</div>
 	            			
@@ -190,15 +183,18 @@
 	            				<div class="col-3"></div>
 	            				<div class="col-3"></div>
 	            				<div class="col-3 text-center fs-6">
-	            					<button class="col-12 p-2 fw-bold btn btn-outline-secondary rounded">
-	            					<a class="text-decoration-none text-reset" href="">취소</a></button>
+	            					<button type="reset" class="col-12 p-2 fw-bold btn btn-outline-secondary rounded">
+	            						<a class="text-decoration-none text-reset" href="#">초기화</a>
+	            					</button>
 	            				</div>
 	            				<div class="col-3 text-center fs-6">
-	            					<button type="submit" class="col-12 p-2 fw-bold btn btn-outline-warning rounded"
-	            					onclick="">작성</button>
+	            					<button class="col-12 p-2 fw-bold btn btn-outline-warning rounded" onclick="">등록
+	            					</button>
 	            				</div>
 							</div>
 	            			</div>
+	            			
+	            			
 	            		</div>
 	            		
 	            		

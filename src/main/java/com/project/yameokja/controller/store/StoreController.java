@@ -1,11 +1,15 @@
 package com.project.yameokja.controller.store;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +41,8 @@ public class StoreController {
 		this.postService = postService;
 	}
 	
+	private final static String DEFAULT_PATH = "/resources/IMG/store";
+	
 	// 가게 리스트
 	@RequestMapping("/storeList")
 	public String StoreList(Model model, String type1, String type2,
@@ -44,69 +50,14 @@ public class StoreController {
 			@RequestParam(value="keyword", required=false, defaultValue="null") String keyword,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 			@RequestParam(value="orderBy", required=false, defaultValue="null") String orderBy,
-			HttpServletResponse response, PrintWriter out) {
+			HttpServletResponse response,HttpServletRequest request, PrintWriter out) throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
+		out = response.getWriter();
 		
 		String type = "";
 		
-		if(type1 != null) {
-			
-			switch(type1) {
-				case "seoul":
-					type1 = "서울시";
-					 break;
-				case "kyeonggi":
-					type1 = "경기";
-					break;
-				case "incheon":
-					type1 = "인천";
-					 break;
-				case "daejeon":
-					type1 = "대전";
-					break;
-				case "daegu":
-					type1 = "대구";
-					 break;
-				case "busan":
-					type1 = "부산";
-					break;
-				case "ulsan":
-					type1 = "울산";
-					 break;
-				case "gwangju":
-					type1 = "광주";
-					break;
-				case "gangwon":
-					type1 = "강원";
-					 break;
-				case "sejong":
-					type1 = "세종";
-					break;
-				case "chungbuk":
-					type1 = "충북";
-					 break;
-				case "chungnam":
-					type1 = "충남";
-					break;
-				case "gyeongbuk":
-					type1 = "경북";
-					 break;
-				case "gyeongnam":
-					type1 = "경남";
-					break;
-				case "jeonbuk":
-					type1 = "전북";
-					 break;
-				case "jeonnam":
-					type1 = "전남";
-					break;
-				case "jeju":
-					type1 = "세종";
-					break;
-			}
-			type = type1+ "," + type2;
-		}
+		type = type1+ "," + type2;		
 		
 		Map<String, Object> sList = storeService.storeList(categoryNo, pageNum, type, keyword, orderBy);
 		
@@ -122,37 +73,39 @@ public class StoreController {
 	
 	// 가게 상세 and 리뷰 리스트
 	@RequestMapping("/storeDetail")
-	public String StoreDetail(Model model, int storeNo) {
+	public String StoreDetail(Model model, int storeNo,
+			@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
 
 		Store store = storeService.getStore(storeNo);
 		List<Post> bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
-		List<Post> pList = postService.postList(storeNo); 
+		
+		List<Post> pList = postService.postList(storeNo, detailOrderBy);
 
 		model.addAttribute("store", store);
 		model.addAttribute("bestOnePost", bestOnePost);
 		model.addAttribute("bestTwoPost", bestTwoPost);
 		model.addAttribute("bestThreePost", bestThreePost);
 		model.addAttribute("pList", pList);
+		model.addAttribute("detailOrderBy", detailOrderBy);
 
 		return "store/storeDetail";
 	}
 	
 	// 가게 상세 and 리뷰리스트
 		@RequestMapping("/storeDetailList")
-		public String storeDetailList(Model model, int storeNo) {
+		public String storeDetailList(Model model, int storeNo,
+				@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
 			
 			Store store = storeService.getStore(storeNo);
 			model.addAttribute("store", store);
 			
-			List<Post> pList = postService.postList(storeNo); 
+			List<Post> pList = postService.postList(storeNo, detailOrderBy); 
 			model.addAttribute("pList", pList);
 			
 			return "store/storeDetailList";
 		}
-	
-	
 	
 	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
@@ -191,20 +144,73 @@ public class StoreController {
 	
 	 // 가게 정보 글쓰기 프로세스
 	@RequestMapping(value="/storeWriteProcess", method=RequestMethod.POST)
-	public String insertStoreProcess(
-			@RequestParam(value="fileMain", required=false) MultipartFile multipartFile) 
+	public String insertStoreProcess(String memberId, String storeName, 
+			String phone1, String phone2, String phone3, String storeLatitude,
+			String storeLongitude,String address2, String address1, String storeTime,
+			String storeBookmarks, String storeDayOff, String storeParking, int categoryNo,
+			@RequestParam(value="fileMain", required=false) MultipartFile multipartFile,
+			@RequestParam(value="fileMenu", required=false) MultipartFile multipartFile2,
+			HttpServletResponse response, HttpServletRequest request, HttpSession session) 
 		throws IllegalStateException, IOException { 
 		
-		Store store =  new Store();
-	
-		storeService.insertStore(store);
-	 
-		return "store/storeWriteFrom"; 
-	 }
-	 
-	@RequestMapping(value="/delete")
-	public String deleteDetailReply(HttpServletResponse respnonse) {
+		System.out.println("스토어 작성 시작");
 		
-	}
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		Store store =  new Store();
+		
+		memberId = (String)session.getAttribute("memberId");
+		
+		store.setMemberId(memberId);
+		store.setStoreName(storeName);
+		store.setStorePhone(phone1 + "-" + phone2 + "-" +phone3);
+		store.setStoreAddress(address1 + " " + address2);
+		store.setStoreLatitude(storeLatitude);
+		store.setStoreLongitude(storeLongitude);
+		store.setStoreTime(storeTime);
+		store.setCategoryNo(categoryNo);
+		store.setStoreDayOff(storeDayOff);
+		store.setStoreParking(storeParking);
+		
+		System.out.println("store_name :" + storeName);
+		System.out.println("글작성하는 친구 : " + memberId);
+		
+		if(!multipartFile.isEmpty()) {
+			
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+
+			multipartFile.transferTo(file);
+			store.setStoreFileMain(saveName);
+			
+			System.out.println(saveName);
+		}
+		
+		if(!multipartFile2.isEmpty()) {
+			
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile2.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+
+			multipartFile2.transferTo(file);
+			store.setStoreFileMenu(saveName);
+			
+			System.out.println(saveName);
+		}
+		
+		storeService.insertStore(store);
+		
+		return "redirect:storeList"; 
+	 }
+
+	
 	
 }

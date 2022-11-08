@@ -7,7 +7,7 @@ import com.project.yameokja.domain.Post;
 public interface PostService {
 
 	// 포스트 리스트
-	public abstract List<Post> postList(int storeNo);
+	public abstract List<Post> postList(int storeNo, String detailOrderBy);
 	
 	// 별점 리스트
 	public abstract List<Post> postListReply(int storeNo);

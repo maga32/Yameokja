@@ -7,7 +7,7 @@ import com.project.yameokja.domain.Post;
 public interface PostDao {
 	
 	// 가게 정보 포스트 리스트
-	public abstract List<Post> postList(int storeNo);
+	public abstract List<Post> postList(int storeNo, String detailOrderBy);
 	
 	// 가게 정보 별점리뷰 리스트
 	public abstract List<Post> postListReply(int storeNo);

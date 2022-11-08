@@ -1,6 +1,8 @@
 package com.project.yameokja.service.store;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> postList(int storeNo) {
-		return postDao.postList(storeNo);
+	public List<Post> postList(int storeNo, String detailOrderBy) {
+		return postDao.postList(storeNo, detailOrderBy);
 	}
 	
 	@Override

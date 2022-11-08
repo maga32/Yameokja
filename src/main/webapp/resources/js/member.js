@@ -205,26 +205,25 @@ function addressChange(e) {
 	var jeonnam = ["강진군", "고흥군", "곡성군", "광양시", "구례군", "나주시", "담양군", "목포시", "무안군", "보성군", "순천시", "신안군", "여수시", "영광군", "영암군", "완도군", "장성군", "장흥군", "진도군", "함평군", "해남군", "화순군"];
 	var jeju = ["서귀포시", "제주시"];
 	
-	
-	var target = document.getElementById("address2");
+	var target =  e.nextElementSibling;
 
-	if(e.value == "seoul") var d = seoul;
-	else if(e.value == "kyeonggi") var d = kyeonggi;
-	else if(e.value == "incheon") var d = incheon;
-	else if(e.value == "daejeon") var d = daejeon;
-	else if(e.value == "daegu") var d = daegu;
-	else if(e.value == "busan") var d = busan;
-	else if(e.value == "ulsan") var d = ulsan;
-	else if(e.value == "gwangju") var d = gwangju;
-	else if(e.value == "gangwon") var d = gangwon;
-	else if(e.value == "sejong") var d = sejong;
-	else if(e.value == "chungbuk") var d = chungbuk;
-	else if(e.value == "chungnam") var d = chungnam;
-	else if(e.value == "gyeongbuk") var d = gyeongbuk;
-	else if(e.value == "gyeongnam") var d = gyeongnam;
-	else if(e.value == "jeonbuk") var d = jeonbuk;
-	else if(e.value == "jeonnam") var d = jeonnam;
-	else if(e.value == "jeju") var d = jeju;
+	if(e.value == "서울") var d = seoul;
+	else if(e.value == "경기") var d = kyeonggi;
+	else if(e.value == "대전") var d = daejeon;
+	else if(e.value == "인천") var d = incheon;
+	else if(e.value == "대구") var d = daegu;
+	else if(e.value == "부산") var d = busan;
+	else if(e.value == "울산") var d = ulsan;
+	else if(e.value == "광주") var d = gwangju;
+	else if(e.value == "강원") var d = gangwon;
+	else if(e.value == "세종") var d = sejong;
+	else if(e.value == "충북") var d = chungbuk;
+	else if(e.value == "충남") var d = chungnam;
+	else if(e.value == "경북") var d = gyeongbuk;
+	else if(e.value == "경남") var d = gyeongnam;
+	else if(e.value == "전북") var d = jeonbuk;
+	else if(e.value == "전남") var d = jeonnam;
+	else if(e.value == "제주") var d = jeju;
 	
 	target.options.length = 0;
 	

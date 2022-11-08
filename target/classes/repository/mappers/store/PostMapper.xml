@@ -8,7 +8,13 @@
 	<select id="postList" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post 
 			WHERE store_no = #{storeNo} AND post_is_post = 1 
-		ORDER BY post_no DESC;
+		<trim prefix="ORDER BY">
+					<choose>
+                        <when test="detailOrderBy == 'pRegDate' "> post_reg_date ASC </when>
+                        <when test="detailOrderBy == 'pUpCount' "> post_up_count DESC </when>
+                        <otherwise>post_no DESC</otherwise>
+                     </choose>
+                </trim>
 	</select>
 	
 	<select id="bestOnePost" resultType="Post" resultMap="postResultMap">
@@ -45,6 +51,8 @@
 			WHERE post_no = #{ postNo } 
 		ORDER BY post_no DESC
 	</select>
+	
+	
 	
 
 	<resultMap id="postResultMap" type="Post">

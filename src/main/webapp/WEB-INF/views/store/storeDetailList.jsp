@@ -89,7 +89,18 @@
 
 <!-- 	review start -->	
 	<div class="rounded-end rounded-bottom d-inline-block border col-12 p-2">
+	<div class="row">
+		<div class="col-2"></div>
+		<div class="col-2"></div>
+		<div class="col-2"></div>
+		<div class="col-6 text-end px-2 m-0">
+			<button class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pNo">기본순</button>
+			<button class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pRegDate">최신순</button>
+			<button class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pUpCount">추천순</button>
+		</div>
+	</div>
 	<c:if test="${ not empty pList }">
+		
 		<c:forEach var="p" items="${ pList }">
 			<div class="row border rounded-1 m-1 p-1">
 					<div class="col-3 align-self-center">
@@ -120,7 +131,7 @@
 	</c:if>
 	<c:if test="${ empty pList }">
 		<div class="row rounded-1 m-1 p-1">
-			<p class="text-center">아직 작성된 글이 없습니다.</p>
+			<p class="text-center">작성된 글이 없습니다.</p>
 		</div>
 	</c:if>			
 	

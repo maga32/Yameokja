@@ -7,41 +7,48 @@
 <script src="resources/js/member.js"></script>
 <script src="resources/js/store.js"></script>
 <article>
-	
+		
+	<form name="storeSearchForm" id="storeSearchForm" action="storeList">
+				<input type="hidden" name="categoryNo" value="${ categoryNo }">
     
         <div class="row my-2 p-0">
-				<select class="row col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" name="type1" onchange="addressChange(this)">
+				<select class="row col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" 
+				name="type1" id="type1" onchange="addressChange(this)">
 						<option>선택</option>
-						<option value="seoul">서울</option>
-						<option value="kyeonggi">경기</option>
-						<option value="incheon">인천</option>
-						<option value="daejeon">대전</option>
-						<option value="daegu">대구</option>
-						<option value="busan">부산</option>
-						<option value="ulsan">울산</option>
-						<option value="gwangju">광주</option>
-						<option value="gangwon">강원</option>
-						<option value="sejong">세종</option>
-						<option value="chungbuk">충북</option>
-						<option value="chungnam">충남</option>
-						<option value="gyeongbuk">경북</option>
-						<option value="gyeongnam">경남</option>
-						<option value="jeonbuk">전북</option>
-						<option value="jeonnam">전남</option>
-						<option value="jeju">제주</option>
+						<option>서울</option>
+						<option>경기</option>
+						<option>인천</option>
+						<option>대전</option>
+						<option>대구</option>
+						<option>부산</option>
+						<option>울산</option>
+						<option>광주</option>
+						<option>강원</option>
+						<option>세종</option>
+						<option>충북</option>
+						<option>충남</option>
+						<option>경북</option>
+						<option>경남</option>
+						<option>전북</option>
+						<option>전남</option>
+						<option>제주</option>
 				</select>
-				<select class="col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" name="type2">
+				<select class="col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" 
+				name="type2" id="type2">
 					<option>선택</option>
 				</select>
-				<div class="col-6"></div>
+				
+				<div class="col-5 align-self-center text-end">
+					<a href="storeWriteForm" class="py-1" name="storeWriteForm" id="storeWriteForm">새로운 가게 등록</a>
+				</div>
 			</div>
-			<form name="storeSearchForm" id="storeSearchForm" action="storeList">
-				<input type="hidden" name="categoryNo" value="${ categoryNo }">
+			
 	        <div class="row m-0 p-0">
 				<div class="col-10 p-0">
 					<input class="col-12 form-select-sm rounded-pill border border-2 text-secondary bg-white p-1 m-1" 
 						type="text" name="keyword" id="keyword" placeholder="가게명을 입력하세요">
 				</div>
+				
 				<div class="col-2 py-1">
 					<button class="col-12 btn btn-sm btn-outline-warning col-12 rounded-pill border border-2 border-warning p-1"
 						name="storeSearchKeyword" id="storeSearchKeyword">
@@ -72,7 +79,7 @@
 	        <div class=" border border-2 rounded col-12 p-2 col-md-12 my-1">
 	        	<div class="row mb-2">
 	        	<div class="col-3 col-md-3 col-sm-3">
-	        		<img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" class="img-thumbnail rounded float-start" alt="...">
+	        		<img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" width="200" height="200" class="img-thumbnail rounded float-start" alt="...">
 	        	</div>
 	        		<div class="col-6 col-md-7 col-sm-6">
 		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }" class="text-muted font-weight-bold text-decoration-none" role="button" tabindex="0">

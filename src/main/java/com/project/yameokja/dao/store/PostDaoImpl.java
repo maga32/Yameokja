@@ -24,8 +24,16 @@ public class PostDaoImpl implements PostDao {
 	
 	//가게 리뷰글 리스트
 	@Override
-	public List<Post> postList(int storeNo) {
-		return sqlSession.selectList(NAME_SPACE + ".postList", storeNo); 
+	public List<Post> postList(int storeNo, String detailOrderBy) {
+		
+		Map<String,Object> param = new HashMap<String, Object>();
+		
+		param.put("storeNo", storeNo);
+		param.put("detailOrderBy", detailOrderBy);
+		
+		System.out.println("detailOrderBy : " + detailOrderBy);
+		
+		return sqlSession.selectList(NAME_SPACE + ".postList", param); 
 	}
 	
 	// 가게 별점댓글 리스트
