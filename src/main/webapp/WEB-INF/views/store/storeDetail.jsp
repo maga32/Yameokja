@@ -33,17 +33,12 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1">
 				
 					<!-- 지도 영역 -->
-				<input type="hidden" id="storeLatitude" value="${ store.storeLatitude }">
-				<input type="hidden" id="storeLongitude" value="${ store.storeLongitude }">
-
-				<div class="col border rounded-3 p-1 m-1">
-				
-					<div id="map" style="width:150px;height:150px;"></div>
+					<div id="map" style="height:100%;"></div>
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
 						<script>
 							var container = document.getElementById('map');
@@ -58,15 +53,16 @@
 							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
 							    map: map // 마커를 표시할 지도 객체
 							});
+							
+							var items = ${store.storeName}
 
 							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
 							kakao.maps.event.addListener(marker, 'click', function() {
-								window.open('https://map.kakao.com/link/search/');
+								window.open('https://map.kakao.com/link/search/스테이블모먼트')
 							});
 						</script>
 				<!-- 지도 영역 end-->
-				
-				</div>		
+	
 			</div>
 			</div>
 		</div>
@@ -140,14 +136,9 @@
 			</div>
 			<div class="row border-top py-4 m-1">
 				<div class="col-5">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded float-start" alt="...">
-					리뷰 관련 사진
+					<img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="...">
 				</div>
-				<div class="col-7">${ p.postContent }짧아서 추가함. 장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.
-				장문의 리뷰내용이 올라갑니다.장문의 리뷰내용이 올라갑니다.</div>
+				<div class="col-7">${ p.postContent }</div>
 			</div>
 			<div class="col-12 text-end">
 				<input type="button" class="updateButton text-secondary bg-white" value="수정">
@@ -182,10 +173,10 @@
 						${ p.postRegDate }
 					</div>
 					<div class="">
-						<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
+						<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postReadCount }
 					</div>
 					<div class="">
-						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
+						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
 					</div>
 				</div>
 			</div>
@@ -211,10 +202,10 @@
 						${ p.postRegDate }
 					</div>
 					<div class="">
-						<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
+						<i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postReadCount }
 					</div>
 					<div class="">
-						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
+						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpCount }
 					</div>
 				</div>
 			</div>

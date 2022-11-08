@@ -32,9 +32,34 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1">
+				<!-- 지도 영역 -->
+					<div id="map" style="height:100%;"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
+						<script>
+							var container = document.getElementById('map');
+							var options = {
+								center: new kakao.maps.LatLng(35.1388113, 129.061905),
+								level: 2
+							};
+					
+							var map = new kakao.maps.Map(container, options);
+							
+							var marker = new kakao.maps.Marker({
+							    position: new kakao.maps.LatLng(35.1388113, 129.061905), // 마커의 좌표
+							    map: map // 마커를 표시할 지도 객체
+							});
+							
+							var items = ${store.storeName}
+
+							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+							kakao.maps.event.addListener(marker, 'click', function() {
+								window.open('https://map.kakao.com/link/search/스테이블모먼트')
+							});
+						</script>
+				<!-- 지도 영역 end-->	
 			</div>
 			</div>
 		</div>
@@ -90,21 +115,24 @@
 						
 							<div class="row justify-content-center">
 
-								<div class="col-md-12 border">
-									<h5>별점리뷰 작성</h5>
-									<span>별 별 별 별 별</span>
-									<div class="row justify-content-center">
+								<div class="col-md-12">
+									<form name="replyWriteForm" id="replyWriteForm">
+										<input type="hidden" name="bbsNo" value="${ post.postNo }"/>
+										<input type="hidden" name="replyWriter" value="${ sessionScope.member.id }" />
+									<h5 class="text-start">별점리뷰 작성</h5>	
+									<div class="row">
 									
 										<div class="col-md-10">
-											<input type="text" style="width:100%; height:100%;">
+											<textarea style="width:100%; height:100%;"
+											name="postReply" id="postReply"></textarea>
 										</div>
 										
 										<div class="col-md-2">
-											<button type="submit" class="btn btn-outline-secondary" style="width:100%; height:100%;">작성</button>
+											<button class="btn btn-outline-secondary" 
+											style="width:100%; height:100%;" name="postReplyBtn" id="postReplyBtn">작성</button>
 										</div>
-										
 									</div>
-									
+									</form>
 									
 									<div class="row border justify-content-center my-3">
 									<c:if test="${not empty rList }">
@@ -125,18 +153,54 @@
 														<img src="https://picsum.photos/55" class="img-fluid rounded-circle float-start" alt="...">
 													</div>
 													
-													<div class="col-10">
+													<div class="col-10 text-center">
 													
 														<div class="row">
 															<div class="col-9 align-self-center"><span>${ r.memberNickname }</span></div>
 															<div class="col-3 text-end"><p><a href="#">delete</a></p></div>
 														</div>
-														<span><fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/></span>
+														<span class=""><fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/></span>
 													</div>
 													
 													<div class="row">
-													<span>${ r.postStar }</span>
-													<p>${ r.postContent }내용확인용 내용확인용내용확인용내용확인용내용확인용내용확인용</p>
+													<span class="text-start">
+														<c:if test="${ r.postStar == 5 }">
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+														</c:if>
+														<c:if test="${ r.postStar == 4 }">
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+														</c:if>
+														<c:if test="${ r.postStar == 3 }">
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+														</c:if>
+														<c:if test="${ r.postStar == 2 }">
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+														</c:if>
+														<c:if test="${ r.postStar == 1 }">
+															<i class="fa fa-star text-warning" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+															<i class="fa fa-star-o" aria-hidden="true"></i>
+														</c:if>
+													</span>
+													<p class="text-start">${ r.postContent }</p>
 														</div>
 													</div>
 											

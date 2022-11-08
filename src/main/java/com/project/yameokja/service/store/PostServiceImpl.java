@@ -37,8 +37,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public void insertPost(Post post) {
-		// TODO Auto-generated method stub
-
+		postDao.insertPost(post);
 	}
 
 	@Override
@@ -46,10 +45,16 @@ public class PostServiceImpl implements PostService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	@Override
 	public void deletePost(int postNo) {
 		postDao.deletePost(postNo);
+	}
+	
+	// 별점댓글 작성 / 삭제
+	@Override
+	public void addReply(int postNo) {
+		postDao.addReply(postNo);
 	}
 
 	@Override
@@ -71,6 +76,8 @@ public class PostServiceImpl implements PostService {
 	public List<Post> bestThreePost(int storeNo) {
 		return postDao.bestThreePost(storeNo);
 	}
+
+	
 
 	
 

@@ -85,5 +85,11 @@ SELECT
 INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES 
 	('post_title10', 'post_content10', null, 'mainImg', null, null, null, null, sysdate(), '0', '1', '0', 'post_up_list', '10', 'memberId10', 'nickname10');
     
-select * from post where post_is_post = 1
-order by post_up_count asc;
+select * from store where store_no = 60;
+
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES
+	('post_title10', '그럭저럭이네요', 13, 'mainImg', null, null, null, null, sysdate(), '1', '0', '25', 'post_up_list', '104', 'memberId03', 'nickname08');
+    INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES
+	('post_title10', '맛있었습니다!', 23, 'mainImg', null, null, null, null, sysdate(), '1', '0', '78', 'post_up_list', '104', 'memberId04', 'nickname07');
+    INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES
+	('post_title10', '괜찮아요 :)', 56, 'mainImg', null, null, null, null, sysdate(), '1', '0', '85', 'post_up_list', '104', 'memberId08', 'nickname02');

@@ -15,14 +15,17 @@ public interface PostDao {
 	// 가게 정보 포스트 상세
 	public abstract Post getPost(int postNo);
 	
-	// 가게 포스트 글쓰기
-	public abstract void insertPost(Post post);
+	// 가게 리뷰글 글쓰기
+	public void insertPost(Post post);
 	
-	// 가게 포스트 수정
-	public abstract void updatePost(Post post);
+	// 가게 리뷰글 수정
+	public void updatePost(Post post);
 	
 	// 가게 리뷰글 삭제
 	public void deletePost(int postNo);
+	
+	// 가게 별점댓글 작성
+	public void addReply(int postNo);
 	
 	// 가게 별점댓글 삭제
 	public void deleteReply(int postNo);

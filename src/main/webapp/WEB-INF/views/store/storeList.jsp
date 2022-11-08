@@ -79,7 +79,7 @@
 	        <div class=" border border-2 rounded col-12 p-2 col-md-12 my-1">
 	        	<div class="row mb-2">
 	        	<div class="col-3 col-md-3 col-sm-3">
-	        		<img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" width="200" height="200" class="img-thumbnail rounded float-start" alt="...">
+	        		<img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" style="width:200; height:200;" class="img-thumbnail rounded float-start">
 	        	</div>
 	        		<div class="col-6 col-md-7 col-sm-6">
 		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }" class="text-muted font-weight-bold text-decoration-none" role="button" tabindex="0">

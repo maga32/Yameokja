@@ -52,8 +52,7 @@ public class PostDaoImpl implements PostDao {
 	// 가게 리뷰글 작성
 	@Override
 	public void insertPost(Post post) {
-		// TODO Auto-generated method stub
-
+		sqlSession.insert(NAME_SPACE + ".insertPost", post);
 	}
 	
 	// 가게 리뷰글 수정
@@ -67,6 +66,11 @@ public class PostDaoImpl implements PostDao {
 	@Override
 	public void deletePost(int postNo) {
 		sqlSession.delete(NAME_SPACE + ".deletePost", postNo);
+	}
+	
+	// 가게 별점댓글 작성
+	public void addReply(int postNo) {
+		sqlSession.insert(NAME_SPACE + ".insertReply", postNo);
 	}
 
 	// 가게 별점댓글 삭제
@@ -92,6 +96,8 @@ public class PostDaoImpl implements PostDao {
 	public List<Post> bestThreePost(int storeNo) {
 		return sqlSession.selectList(NAME_SPACE + ".bestThreePost", storeNo);
 	}
+
+	
 
 
 	

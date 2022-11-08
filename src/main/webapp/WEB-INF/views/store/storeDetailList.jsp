@@ -33,9 +33,34 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1">
+				
+				<div id="map" style="width:150px;height:150px;"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
+						<script>
+							var container = document.getElementById('map');
+							var options = {
+								center: new kakao.maps.LatLng(35.8189345, 128.516267),
+								level: 2
+							};
+					
+							var map = new kakao.maps.Map(container, options);
+							
+							var marker = new kakao.maps.Marker({
+							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
+							    map: map // 마커를 표시할 지도 객체
+							});
+							
+							var items = ${store.storeName}
+
+							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+							kakao.maps.event.addListener(marker, 'click', function() {
+								window.open('https://map.kakao.com/link/search/스테이블모먼트')
+							});
+						</script>
+					</div>
 			</div>
 			</div>
 		</div>
@@ -104,7 +129,7 @@
 		<c:forEach var="p" items="${ pList }">
 			<div class="row border rounded-1 m-1 p-1">
 					<div class="col-3 align-self-center">
-						<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
+						<img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="...">
 					</div>
 					<div class="col-9">
 						<div class="row py-1">
