@@ -67,30 +67,30 @@
 			<input type="file" name="memberPhoto" size="70" id="memberPhoto" maxlength="50"/>
 		</div>
 		<div>
-			<div class="mt-2">* 우리동네 위치</div>
+			<div class="mt-2">* 우리동네 위치 (기존 위치 : ${largeAddress}, ${smallAddress} )</div>
 			<select name="address1" id="address1"
 				onchange="addressChange(this)">
 				<option>선택</option>
-				<option value="seoul">서울</option>
-				<option value="kyeonggi">경기</option>
-				<option value="incheon">인천</option>
-				<option value="daejeon">대전</option>
-				<option value="daegu">대구</option>
-				<option value="busan">부산</option>
-				<option value="ulsan">울산</option>
-				<option value="gwangju">광주</option>
-				<option value="gangwon">강원</option>
-				<option value="sejong">세종</option>
-				<option value="chungbuk">충북</option>
-				<option value="chungnam">충남</option>
-				<option value="gyeongbuk">경북</option>
-				<option value="gyeongnam">경남</option>
-				<option value="jeonbuk">전북</option>
-				<option value="jeonnam">전남</option>
-				<option value="jeju">제주</option>
+				<option ${largeAddress == "서울" ? 'selected="selected"' : '' } value="서울">서울</option>
+				<option ${largeAddress == "경기" ? 'selected="selected"' : '' } value="경기">경기</option>
+				<option ${largeAddress == "인천" ? 'selected="selected"' : '' } value="인천">인천</option>
+				<option ${largeAddress == "대전" ? 'selected="selected"' : '' } value="대전">대전</option>
+				<option ${largeAddress == "대구" ? 'selected="selected"' : '' } value="대구">대구</option>
+				<option ${largeAddress == "부산" ? 'selected="selected"' : '' } value="부산">부산</option>
+				<option ${largeAddress == "울산" ? 'selected="selected"' : '' } value="울산">울산</option>
+				<option ${largeAddress == "광주" ? 'selected="selected"' : '' } value="광주">광주</option>
+				<option ${largeAddress == "강원" ? 'selected="selected"' : '' } value="강원">강원</option>
+				<option ${largeAddress == "세종" ? 'selected="selected"' : '' } value="세종">세종</option>
+				<option ${largeAddress == "충북" ? 'selected="selected"' : '' } value="충북">충북</option>
+				<option ${largeAddress == "충남" ? 'selected="selected"' : '' } value="충남">충남</option>
+				<option ${largeAddress == "경북" ? 'selected="selected"' : '' } value="경북">경북</option>
+				<option ${largeAddress == "경남" ? 'selected="selected"' : '' } value="경남">경남</option>
+				<option ${largeAddress == "전북" ? 'selected="selected"' : '' } value="전북">전북</option>
+				<option ${largeAddress == "전남" ? 'selected="selected"' : '' } value="전남">전남</option>
+				<option ${largeAddress == "제주" ? 'selected="selected"' : '' } value="제주">제주</option>
 				
 			</select> <select name="address2" id="address2">
-				<option>선택</option>
+				<option value="${smallAddress }">${smallAddress }</option>
 			</select>
 
 		</div>
@@ -100,60 +100,26 @@
 			<!-- test -->
 			<div class="row">
 				<div class="col-11 row">
-					<c:forEach var="li" items="foodCategoryList">
+					<c:set var="onload" value="false"/>
+					<c:forEach var="li" items="${foodCategoryList}">
 						<div class="col-3">
-							<input type="checkBox" name="foodCategory" id="foodCategory" value="">	
+						<c:forEach var="memLi" items="${memberFavoriteCategory}">
+							<c:if test="${li.index == memLi }">
+								<input type="checkBox" name="foodCategory" id="foodCategory" value="${li.index }"
+								${li.index == memLi ? 'checked' : '' }>${li.value }
+								<c:set var="onload" value="true"/>
+							</c:if>
+						</c:forEach>
+						<c:if test="${onload == false }">
+							<input type="checkBox" name="foodCategory" id="foodCategory" value="${li.index }"
+									${li.index == memLi ? 'checked' : '' }>${li.value }
+						</c:if>
+						<c:set var="onload" value="false"/>
 						</div>
 					</c:forEach>
 				</div>
 			</div>
 			<!-- text end -->
-			
-			<div class="row">
-				<div class="col-11 row">
-					<c:forEach var="fc" items="list">
-						
-					</c:forEach>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="1">한식		
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="2">양식		
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="3">중식
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="4">일식
-					</div>
-					
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="5">아시안
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="6">술집	
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="7">카페,디저트
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="8">분식
-					</div>
-					
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="9">고기	
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="10">채식
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="11">패스트푸드
-					</div>
-					<div class="col-3">
-						<input type="checkBox" name="foodCategory" id="foodCategory" value="12">기타<br>
-					</div>
-				</div>
-			</div>
 			<input type="hidden" name="memberFavoriteCategory" id="memberFavoriteCategory" value="">
 			<input type="hidden" name="memberFavoriteCategoryCount" id="memberFavoriteCategoryCount" value="">
 		</div>

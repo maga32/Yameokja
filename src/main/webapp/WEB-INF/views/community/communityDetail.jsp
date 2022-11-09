@@ -63,7 +63,7 @@
 			<br>
 			<c:forEach var="u" items="${memberPhotoList }">
 				<c:if test="${u.memberNickname == co.memberNickname }">
-					<img class="rounded-circle" style="border:5px solid blue; height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"
+					<img class="rounded-circle" style="border:5px solid orange; height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"
 						onclick='window.open("userProfile?userId=${u.memberId}","LoginForm","width=500, height=600")'/>
 				</c:if>
 				<c:if test="${u.memberNickname != co.memberNickname }">
@@ -167,8 +167,8 @@
 								<!--  댓글 하위 데이터 / 댓글 삭제, 답글 -->
 								<div class="fw-bold">
 									(<fmt:formatDate value="${rere.communityRegDate}" pattern="yyyy-MM-dd hh:mm:ss"/>)
-								</div><span class="text-primary">@${rere.communityReplyTarget }</span>
-								<div class="inlineBlock replyContent" id="communityReplyContentResultAt${rere.communityNo }">&nbsp;${rere.communityContent}</div>
+								</div>
+								<div class="replyContent" id="communityReplyContentResultAt${rere.communityNo }"><span class="text-primary">@${rere.communityReplyTarget }</span>&nbsp;${rere.communityContent}</div>
 							</div>
 						</div>
 						<div class="col-2 border-start border-top text-center reReply">

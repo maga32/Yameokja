@@ -56,8 +56,13 @@ public class MemberController {
 		String phone2 = memberMobile[1];
 		String phone3 = memberMobile[2];
 		
-		String memberFavoriteCategory = member.getMemberFavoriteCategory();
-		String[] categoryList = {"한식", "양식", "중식", "일식", "아시안", "술집", "카페,디저트", ",분식", "고기", "채식", "패스트푸드", "기타"};
+		String[] memberAddress = (member.getMemberAddress().split(","));
+		String largeAddress = memberAddress[0];
+		String smallAddress = memberAddress[1];
+		
+		
+		String[] memberFavoriteCategory = member.getMemberFavoriteCategory().split(",");
+		String[] categoryList = {"한식", "양식", "중식", "일식", "아시안", "술집", "카페,디저트", "분식", "고기", "채식", "패스트푸드", "기타"};
 		
 		ArrayList<foodCategories> foodCategoryList = new ArrayList<foodCategories>();
 		int index = 1;
@@ -66,9 +71,13 @@ public class MemberController {
 			foodCategoryList.add(food);
 		    index += 1;
 		}
+		
+		System.out.println("memberFavoriteCategory : " + memberFavoriteCategory[0]);
 	
 		model.addAttribute("memberFavoriteCategory", memberFavoriteCategory);
 		model.addAttribute("foodCategoryList", foodCategoryList);
+		model.addAttribute("largeAddress", largeAddress);
+		model.addAttribute("smallAddress", smallAddress);
 		model.addAttribute("email", email);
 		model.addAttribute("domain", domain);
 		model.addAttribute("phone1", phone1);

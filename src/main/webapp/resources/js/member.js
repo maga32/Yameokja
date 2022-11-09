@@ -315,7 +315,11 @@ function joinFormCheck(){
 		return false;
 	}
 	if(memberFavoriteCategoryCount < 3){
-		alert("선호 음식 종류를 3가지 이상 입력해주세요.");
+		alert("선호 음식을 3종류 이상 입력해주세요.");
+		return false;
+	}
+	if(memberFavoriteCategoryCount > 6){
+		alert("선호 음식은 6종류까지 선택 가능합니다.");
 		return false;
 	}
 	
