@@ -27,11 +27,6 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public Member getMember(String userId) {
-		return myPageDao.getMember(userId);
-	}
-
-	@Override
 	public Map<String, Object> myPagePost(String userId, int pageNum) {
 		int currentPage = pageNum;		
 		int startRow = (currentPage -1) * PAGE_SIZE;
@@ -135,9 +130,11 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<Store> myPageStore(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Store getStore(String storeNo, String userId) {
+		List<Store> storeList = (List<Store>) myPageDao.getStore(storeNo, userId);
+		Map<String, Object> storeMap = new HashMap<String, Object>();
+		storeMap.put("storeList", storeList);
+		return (Store) storeMap;
 	}
 	
 

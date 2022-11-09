@@ -18,36 +18,38 @@
 </head>
 <body>
 <form name="blockListForm" id="blockListForm">
-	<input type="text" name="userId" value="${ user.memberId }" />
+	<input type="hidden" name="userId" value="${ user.memberId }" />
 </form>
-<div class="row">
-<!-- 좌측날개 -->
-<div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
-	<!-- 센터 -->
-	<div class="col-12 col-sm-8 col-lg-6 p-5">
+<div class="row m-0">
+<!-- 센터 -->
+	<div class="col-12 col-sm-8 col-lg-6 p-3">
 <!-- 		profileHeader start -->
 	<div class="fullFrame col-12">
-		<div class="profileHeaderFrame col-12">
-			<div class="profileheader col-12 py-3">${ user.memberNickname } 님의 프로필</div>
+		<div class="col-12">
+			<div class="text-center fw-bold fs-1 col-12 py-3">${ user.memberNickname } 님의 프로필</div>
 		</div>	
 <!-- 			profileHeader end -->
 <!-- 			profileFrame1 start -->
-		<div class="profileFrame1 col-12">
-			<div class=" d-table-cell col-4 p-3">
-				<img alt="프로필 사진" class="profileIMG text-center rounded-circle col-12" src="resources/IMG/mypage/likeIMG.PNG">
-			</div><div class="profileCategoryFrame d-table-cell col-8">
-				<div class="col-12">
-					<div class="profileheader col-12">좋아하는 음식 종류</div>
-				<div class="col-12">
-					<div class=" d-table-cell"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>한식</div>
-					<div class=" d-table-cell"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>양식</div>
-					<div class=" d-table-cell"><img  class="profileCategoryIMG"alt="카테고리음식IMG" src="resources/IMG/mypage/likeIMG.PNG"><br>중식</div>
-				</div>
+		<div class="profileFrame1  border-2 border-top border-dark row m-0">
+			<div class=" d-table-cell col-4 p-0">
+				<img alt="프로필 사진" class="col-8 m-0 p-0" src="resources/IMG/mypage/likeIMG.PNG">
+			</div><div class="col-8 p-0">
+				<div class="row m-0">
+					<div class="border-2 border-bottom border-dark fw-bold fs-5 col-12">좋아하는 음식 종류 BEST 3</div>
+					<div class="row pt-2 m-0 text-center">
+					<c:if test="${ not empty memberFavoriteCategory }">
+						<c:forTokens var="m" items="${ memberFavoriteCategory }" delims=",">
+							<div class="col px-1 py-0"><img  class="col-12" alt="카테고리음식IMG" src="resources/IMG/categoryIMG/${ m }.png"></div>
+						</c:forTokens>
+					</c:if>
+					<c:if test="${ empty memberFavoriteCategory }">
+						<div class="col px-1 py-0">좋아하는 음식 종류가 없습니다.</div>
+					</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
 <!-- 		profileFrame1 end -->
-		
 <!-- 			profileFrame2 start -->
 			<div class="profileFrame2 col-12 mt-3">
 			<div class="row">
@@ -59,12 +61,12 @@
 				<div class=" col-6 p-1"><fmt:formatDate value="${ user.memberJoinDate }" pattern="yyyy-MM-dd" /></div>	
 			</div>
 			<div class="row">
-				<div class=" col-6 fw-semibold p-1">작성한리뷰총합</div>
-				<div class=" col-6 p-1">가게 등록 글 수 : ${ myPagePostCount }개,<br>가게 후기 글 수 : ${ myPageCommunityCount }개<br>총합 : ${ myPagePostCount + myPageCommunityCount }개</div>
+				<div class=" col-6 fw-semibold p-1">작성한 리뷰 총 합</div>
+				<div class=" col-6 p-1">가게 등록 글 수 : ${ myPagePostCount }개,<br>가게 후기 글 수 : ${ myPageCommunityCount }개<br>총 합 : ${ myPagePostCount + myPageCommunityCount }개</div>
 			</div>
 			<div class="row">
-				<div class=" col-6 fw-semibold p-1">받은추천총합</div>
-				<div class=" col-6 p-1">아직기능구현안됨</div>		
+				<div class=" col-6 fw-semibold p-1">받은 추천 총 합</div>
+				<div class=" col-6 p-1">${ sumPostUpCount }개</div>
 			</div>
 			<div class="row">
 			<div class="col-6 fw-semibold p-1 myPagePostButton"><a href="#" onclick="opener.location.href='myPagePost?userId=${ user.memberId }';window.close();">활동내역구경가기 -></a></div>
@@ -90,8 +92,6 @@
 	</div>
 	</div>
 	</div>
-<!-- 우측날개 -->
-<div class="d-none d-sm-block col-sm-2 col-lg-3"></div>
 </div>
 </body>
 </html>

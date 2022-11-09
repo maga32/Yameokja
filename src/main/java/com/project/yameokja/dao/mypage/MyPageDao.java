@@ -8,8 +8,7 @@ import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
 
 public interface MyPageDao {
-	//회원의 정보
-	public Member getMember(String userId);
+
 	//포스트(post) 리스트
 	public List<Post> myPagePost(String userId, int startRow, int num);
 	//작성글 갯수
@@ -26,5 +25,9 @@ public interface MyPageDao {
 	public int myPageCommunityCount(String userId);
 	//동네글 삭제
 	void deleteMyPageCommunity(int communityNo);
+	
+	int sumPostUpCount(String userId);
+	
+	public Store getStore(String storeNo, String userId);
 	
 }

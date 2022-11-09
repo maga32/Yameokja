@@ -51,10 +51,10 @@
 			<h3>신고 처리 결과</h3>
 		</div>
 		<textarea class="col-12" name="reportPunishCheck" readonly="readonly">
-<c:if test="${ report.reportPunishCheck == 0 }">처리 대기</c:if>
-<c:if test="${ report.reportPunishCheck == 1 }">처리 중</c:if>
-<c:if test="${ report.reportPunishCheck == 2 }">처리 보류</c:if>
-<c:if test="${ report.reportPunishCheck == 3 }">처리 완료</c:if>
+			<c:if test="${ report.reportPunishCheck == 0 }">처리 대기</c:if>
+			<c:if test="${ report.reportPunishCheck == 1 }">처리 중</c:if>
+			<c:if test="${ report.reportPunishCheck == 2 }">처리 보류</c:if>
+			<c:if test="${ report.reportPunishCheck == 3 }">처리 완료</c:if>
 		</textarea>
 	</div>
 	<br>

@@ -37,35 +37,40 @@
 	</div>
 
 <!-- 		(일반글)keyword == '' and not empty reportList -->
-		<c:if test="${ keyword == '' and not empty reportList }">
-		<div class="divTable">
-		<div class="divTableRow row">
-				<div class="divTableHead text-center col-2">분류</div>
-				<div class="divTableHead text-center col-4">신고 제목</div>
-				<div class="divTableHead text-center col-2">처리결과<br>categoryNo</div>
-				<div class="divTableHead text-center col-2">신고자</div>
-				<div class="divTableHead text-center col-2">작성일</div>
-		</div>
+	<c:if test="${ keyword == '' and not empty reportList }">
+<!-- 	table start -->
+	<table class="row m-0 text-center" style="border-collapse: collapse;">
+		<tr class="col-12 bg-gray">
+			<th class="col-2">분류</th>
+			<th class="col-5">신고 제목</th>
+			<th class="col-1">처리<br>결과</th>
+			<th class="col-2">신고자</th>
+			<th class="col-2">작성일</th>
+		</tr>
 		<c:forEach var="re" items="${reportList}">
-		<div class="divTableRow border-">
-			<div class="divTableCell">${re.reportType }</div>
-			<div class="divTableCell"><a href="reportDetail?reportNo=${ re.reportNo }" >${re.reportTitle}/${ re.reportTarget }</a></div>
-			<div class="divTableCell">${re.reportPunishCheck}</div>
-			<div class="divTableCell">${re.memberId}</div>
-			<div class="divTableCell"><fmt:formatDate value="${ re.reportDate }" pattern="yyyy-MM-dd" />
-			</div>
-		</div>
+		<tr class="col-12">
+			<td class="col">${re.reportType }</td>
+			<td class="col"><a href="reportDetail?reportNo=${ re.reportNo }" >${re.reportTitle}/${ re.reportTarget }</a></td>
+			<td class="col">
+				<c:if test="${ re.reportPunishCheck == 0 }">처리 대기</c:if>
+				<c:if test="${ re.reportPunishCheck == 1 }">처리 중</c:if>
+				<c:if test="${ re.reportPunishCheck == 2 }">처리 보류</c:if>
+				<c:if test="${ re.reportPunishCheck == 3 }">처리 완료</c:if>
+			</td>
+			<td class="col">${re.memberId}</td>
+			<td class="col"><fmt:formatDate value="${ re.reportDate }" pattern="yyyy-MM-dd" /></td>
+		</tr>
 		</c:forEach>
-		</div>
+	</table>
 <!-- 	페이지그룹 시작 -->
-		<div class="row text-end">
-		<div class="col-12 pe-4">
+	<div class="col-12 text-end my-2">
+		<div class="col pe-4">
 			<c:if test="${ startPage > pageGroup }">
-				<div class="previousPage text-secondery d-inline-block">
+				<span class="previousPage text-secondery">
 					<a href="reportList?pageNum=${ startPage - pageGroup }"><</a>
-				</div>
+				</span>
 			</c:if>
-			<div class="pageNumber text-secondery d-inline-block">
+			<span class="pageNumber text-secondery">
 			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
 				<c:if test="${ i == currentPage }">
 					<div class=" d-inline-block fw-bold" style="color: #F58500;">&nbsp;${ i }&nbsp;</div>
@@ -76,42 +81,46 @@
 					</div>
 				</c:if>
 			</c:forEach>
-			</div>						
+			</span>						
 			<c:if test="${ endPage < pageCount }">
-				<div class="nextPage text-secondery d-inline-block">
+				<span class="nextPage text-secondery">
 					<a href="reportList?pageNum=${ startPage + pageGroup }">></a>
-				</div>
+				</span>
 			</c:if>
 		</div>
-		</div>
+	</div>
 <!-- 	페이지그룹 끝 -->
-		</c:if>
+	</c:if>
 <!-- 		(빈 일반글)keyword == '' and empty reportList -->
-		<c:if test="${ keyword == '' and empty reportList }">작성된 신고글이 없습니다.</c:if>
-		
+	<c:if test="${ keyword == '' and empty reportList }">작성된 신고글이 없습니다.</c:if>
 <!-- 		(검색글)keyword != '' and not empty reportList -->
-		<c:if test="${ keyword != '' and not empty reportList }">
-		<div class="divTable">
-		<div class="divTableRow row">
-				<div class="divTableHead text-center col-2">분류</div>
-				<div class="divTableHead text-center col-4">신고 제목</div>
-				<div class="divTableHead text-center col-2">처리결과<br>categoryNo</div>
-				<div class="divTableHead text-center col-2">신고자</div>
-				<div class="divTableHead text-center col-2">작성일</div>
-		</div>
+	<c:if test="${ keyword != '' and not empty reportList }">
+	<table class="row m-0 text-center" style="border-collapse: collapse;">
+		<tr class="col-12 bg-gray">
+			<th class="col-2">분류</th>
+			<th class="col-5">신고 제목</th>
+			<th class="col-1">처리<br>결과</th>
+			<th class="col-2">신고자</th>
+			<th class="col-2">작성일</th>
+		</tr>
 		<c:forEach var="re" items="${reportList}">
-			<div class="divTableRow">
-				<div class="divTableCell">${re.reportType }</div>
-				<div class="divTableCell"><a href="reportDetail?reportNo=${ re.reportNo }" >${re.reportTitle }</a></div>
-				<div class="divTableCell">${re.reportPunishCheck}/(임시)${re.categoryNo}</div>
-				<div class="divTableCell">${re.memberId}임시reportNo(${ re.reportNo })</div>
-				<div class="divTableCell">${re.reportDate }</div>
-			</div>
+		<tr class="col-12">
+			<td class="col">${re.reportType }</td>
+			<td class="col"><a href="reportDetail?reportNo=${ re.reportNo }" >${re.reportTitle}/${ re.reportTarget }</a></td>
+			<td class="col">
+				<c:if test="${ re.reportPunishCheck == 0 }">처리 대기</c:if>
+				<c:if test="${ re.reportPunishCheck == 1 }">처리 중</c:if>
+				<c:if test="${ re.reportPunishCheck == 2 }">처리 보류</c:if>
+				<c:if test="${ re.reportPunishCheck == 3 }">처리 완료</c:if>
+			</td>
+			<td class="col">${re.memberId}</td>
+			<td class="col"><fmt:formatDate value="${ re.reportDate }" pattern="yyyy-MM-dd" /></td>
+		</tr>
 		</c:forEach>
-		</div>
-<!-- 					페이지그룹 시작 -->
-		<div class="row text-end">
-		<div class="col-12 pe-4">
+	</table>
+<!-- 	페이지그룹 시작 -->
+	<div class="col-12 text-end my-2">
+		<div class="col pe-4">
 			<c:if test="${ startPage > pageGroup }">
 				<div class="previousPage text-secondery d-inline-block">
 					<a href="reportList?pageNum=${ startPage - pageGroup }&type=${type}&keyword=${keyword}"><</a>
@@ -135,12 +144,11 @@
 				</div>
 			</c:if>
 		</div>
-		</div>
+	</div>
 <!-- 					페이지그룹 끝 -->
-		</c:if>
+	</c:if>
 <!-- 		(빈 검색글)keyword != '' and empty reportList -->
 		<c:if test="${ keyword != '' and empty reportList }">
 			"${ keyword }"로 작성된 신고글이 없습니다.
-		</c:if>
-	
+		</c:if>			
 </article>

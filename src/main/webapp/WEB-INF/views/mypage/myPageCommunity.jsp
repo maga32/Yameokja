@@ -16,9 +16,15 @@
 	<div class="row py-2 px-0">
 		<div class="row p-0 m-0 border border-3 rounded-3">
 			<div class="col-3 p-4">
-				<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-					src="resources/IMG/mypage/likeIMG.PNG">
-			</div>
+					<c:if test="${ sessionScope.member.memberPhoto != null }">
+						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
+						src="/yameokja/resources/upload/userProfil/${ sessionScope.member.memberPhoto }">
+					</c:if>
+					<c:if test="${ sessionScope.member.memberPhoto == null }">
+						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
+						src="/yameokja/resources/IMG/LOGOsquareIMG.png">
+					</c:if>					
+				</div>
 			<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 				<div class="col-12">
 					<div class="fw-bold fs-2">${ user.memberNickname }님</div>
@@ -38,7 +44,7 @@
 					</div>
 					<div class="buttons_">
 						<a href="#"
-							onclick='window.open("userProfile?userId=${ sessionScope.memberId }","프로필","width=500, height=600")'>나
+							onclick='window.open("userProfile?userId=${ sessionScope.memberId }","프로필","width=520, height=600")'>나
 							의 프 로 필</a>
 					</div>
 					<div class="buttons_">

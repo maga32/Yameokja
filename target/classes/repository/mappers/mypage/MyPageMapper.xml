@@ -106,6 +106,14 @@
 		DELETE FROM community WHERE community_no = #{ communityNo }
 	</delete>
 	
+	<select id="sumPostUpCount" resultType="int">
+		SELECT sum(post_up_count) FROM post WHERE member_id = #{userId}
+	</select>
+	
+	<select id="getStore" resultType="Store" resultMap="StoreResultMap">
+		SELECT * FROM store WHERE store_no = #{storeNo} AND member_id = #{userId}
+	</select>
+	
 	<resultMap id="CommunityResultMap" type="Community">
 		<id property="communityNo" column="community_no" />
 		<result property="memberId" column="member_id" />
@@ -124,5 +132,25 @@
 		<result property="partyMemberIds" column="party_member_ids" />
 		<result property="partyDDay" column="party_d_day" />
 		<result property="partyPlace" column="party_place" />
+	</resultMap>
+	
+	<resultMap id="StoreResultMap" type="Store">
+		<id property="storeNo" column="store_no" />
+		<result property="memberId" column="member_id" />
+		<result property="storeName" column="store_name" />
+		<result property="storePhone" column="store_phone" />
+		<result property="storeLatitude" column="store_latitude" />
+		<result property="storeLongitude" column="store_longitude" />
+		<result property="storeReadCount" column="store_read_count" />
+		<result property="storeFileMain" column="store_file_main" />
+		<result property="storeFileMenu" column="store_file_menu" />
+		<result property="storeAddress" column="store_address" />
+		<result property="categoryNo" column="category_no" />
+		<result property="storeReviewCount" column="store_review_count" />
+		<result property="storeStar" column="store_star" />
+		<result property="storeBookmarks" column="store_bookmarks" />
+		<result property="storeTime" column="store_time" />
+		<result property="storeDayOff" column="store_day_off" />
+		<result property="storeParking" column="store_parking" />
 	</resultMap>
 </mapper>

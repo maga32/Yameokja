@@ -25,11 +25,6 @@ public class MyPageDaoImpl implements MyPageDao {
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-
-	@Override
-	public Member getMember(String userId) {
-		return sqlSession.selectOne(NAME_SPACE+".getMember", userId);
-	}
 	
 	@Override
 	public List<Post> myPagePost(String userId, int startRow, int num) {
@@ -88,6 +83,19 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Override
 	public void deleteMyPageCommunity(int communityNo) {
 		sqlSession.delete(NAME_SPACE+ ".deleteMyPageCommunity", communityNo);
+	}
+
+	@Override
+	public int sumPostUpCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+ ".sumPostUpCount", userId);
+	}
+
+	@Override
+	public Store getStore(String storeNo, String userId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
+		params.put("storeNo", storeNo);
+		return sqlSession.selectOne(NAME_SPACE + ".getStore", params);
 	}
 
 }

@@ -141,6 +141,7 @@ public class ReportController {
 		//회원이 작성한 신고글만 가져오기
 		model.addAllAttributes(reportList);
 		model.addAttribute("reportType", reportType);
+		model.addAttribute("keyword", keyword);
 
 		return "report/reportList";
 	}
