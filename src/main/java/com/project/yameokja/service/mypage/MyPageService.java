@@ -16,6 +16,8 @@ public interface MyPageService {
 	
 	void deleteMyPagePost(int postNo);
 	
+	public Map<String, Object> myPageReply(String userId, int pageNum);
+	
 	public Map<String, Object> myPageCommunity(String userId, int pageNum);
 	
 	void deleteMyPageCommunity(int communityNo);

@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
+
 	<form name="storeDetailForm" id="storeDetailForm">
 		<input type="hidden" name="storeNo" value="${store.storeNo }">
 	</form>
@@ -31,8 +32,8 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
 			</div>
 			</div>
@@ -79,102 +80,105 @@
 		</div>
 	</div>
 	<!-- 	store info end -->
-						
-						<div class="text-center col-12 mt-3">
-							<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetail?storeNo=${ store.storeNo }">맛집 리뷰</a></span>
-							<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
-						</div>
-						
-						<div class="row justify-content-center border rounded mt-1">
-						
-							<div class="row justify-content-center">
-
-								<div class="col-md-12 border ">
-									<h5>별점리뷰 작성</h5>
-									<p>별 별 별 별 별</p>
-									<div class="row">
-									
-										<div class="col-md-12 border">
-										
-										</div>
-										
-									</div>
-									
-									<div class="row justify-content-center">
-									
-										<div class="col-md-10 border">
-											<input type="text">
-										</div>
-										
-										<div class="col-md-2 border d-block">
-											<button type="submit" class="btn justify-content-center btn-outline-secondary">입력</button>
-										</div>
-										
-									</div>
-									
-									
-									<div class="row border justify-content-center my-1">
-										<c:forEach var="r" items="${ rList }">
-											<div class="row">
-											
-												<div class="col-3 align-self-center">
-												
-													<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
-												
-												</div>
-												
-												<div class="col-9">
-												
-													<div class="row">
-													
-													<div class="col-2 align-self-center">
-														<img src="https://picsum.photos/55" class="img-fluid rounded-circle float-start" alt="...">
-													</div>
-													
-													<div class="col-10">
-													
-														<div class="row">
-															<div class="col-9 align-self-center"><span>${ r.memberNickname }</p></div>
-															<div class="col-3 text-end"><p><a href="#">delete</a></p></div>
-														</div>
-														<span><fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/></span>
-													</div>
-													
-													<div class="row">
-													<span>${ r.postStar }</span>
-													<p>${ r.postContent }내용확인용 내용확인용내용확인용내용확인용내용확인용내용확인용</p>
-														</div>
-													</div>
-											
-													</div>
-												</div>
-											</c:forEach>
-										
-											</div>
-											</div>
-										
-									
-									
-									
-									</div>
-									
-								</div>
-							</div>
-		
-
-						</div>		
-						
-					</div>
-				
+<!-- 	storeDetailHeader start -->
+	<div class="text-center col-12 mt-3">
+		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetail?storeNo=${ store.storeNo }">맛집 리뷰</a></span>
+		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
+	</div>
+<!-- 	storeDetailHeader end -->						
+<!-- 			postList 시작 -->
+			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
+			
+			<form class="row m-0 d-flex align-items-center border text-center py-2 rounded mb-2" action="storeDatailReplyForm"
+			 id="storeDatailReplyForm" name="storeDatailReplyForm" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="storeNo" value="${store.storeNo }">
+				<div class="col-12 text-secondary fw-bold text-start">별점 리뷰 작성</div>
+				<div class="col-12 text-secondary fw-bold text-start py-2">post_star
+				<input type="text" name="postStar" id="postStar" value="${postStar}">
+				 | <input type="file" name="postFile2" size="70" id="postFile2" maxlength="50" />
 				</div>
-				
-				
+				<div class="row border m-0 p-0">
+					<textarea class="col-10 p-2" name="postContent" placeholder="댓글을 입력하는 곳입니다">${ postContent }</textarea>
+					<button class="col-2 p-2" type="submit">입력</button>
 				</div>
 			
+			</form>
+
+				<c:if test="${ not empty postListReply }">
+					<c:forEach var="p" items="${ postListReply }">
+						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
+							<div class="col-3 px-2">
+								<a href="#"> <img src="resources/IMG/LOGOtemporaryIMG.PNG"
+									class="img-thumbnail rounded" alt="...">
+								</a>
+							</div>
+
+							<div class="postTitle text-start col-6 px-2">
+								<input type="hidden" name="storeNo" value="${ p.storeNo }" />
+								<input type="hidden" name="postNo" value="${ p.postNo }" />
+								<a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">
+									<div class="fs-3 fw-bold">${ p.postTitle }</div>
+									<div class="">
+										<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										<fmt:formatDate value="${ p.postRegDate }"
+											pattern="yyyy-MM-dd" />
+									</div>
+									<div class="">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</div>
+									<div class="">
+										 ${ p.postContent }
+									</div>
+								</a>
+							</div>
+
+							<div class="col-3 text-end pe-3">
+								<div class="deleteButton" id="deleteButton">
+									<a href="deleteMyPagePost?postNo=${p.postNo}">
+										<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+					<!-- 					페이지그룹 시작 -->
+					<div class="row text-end">
+						<div class="col-12 pe-4">
+							<c:if test="${ startPage > pageGroup }">
+								<div class="previousPage text-secondery d-inline-block">
+									<a href="myPagePost?pageNum=${ startPage - pageGroup }"><</a>
+								</div>
+							</c:if>
+							<div class="pageNumber text-secondery d-inline-block">
+								<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+									<c:if test="${ i == currentPage }">
+										<div class=" d-inline-block fw-bold" style="color: #F58500;">&nbsp;${ i }&nbsp;</div>
+									</c:if>
+									<c:if test="${ i != currentPage }">
+										<div class=" d-inline-block">
+											<a href="myPagePost?pageNum=${ i }">&nbsp;${ i }&nbsp;</a>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+							<c:if test="${ endPage < pageCount }">
+								<div class="nextPage text-secondery d-inline-block">
+									<a href="myPagePost?pageNum=${ startPage + pageGroup }">></a>
+								</div>
+							</c:if>
+						</div>
+					</div>
+					<!-- 					페이지그룹 끝 -->
+				</c:if>
+				<c:if test="${ empty postListReply }">
+					<div class="col-12 text-center"> 작성한 글이 없습니다.</div>
+				</c:if>
 			</div>
-    
-			</div>
+<!-- 			postList 끝 -->
 		</div>
-</div>
-	
+</div>	
 </article>

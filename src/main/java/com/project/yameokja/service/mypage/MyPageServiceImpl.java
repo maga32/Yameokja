@@ -38,7 +38,7 @@ public class MyPageServiceImpl implements MyPageService {
 		int listCount = myPageDao.myPagePostCount(userId);
 		
 		if(listCount > 0) {
-			List<Post> postList = myPageDao.myPagePost(userId, startRow, PAGE_SIZE);
+			List<Post> myPagePost = myPageDao.myPagePost(userId, startRow, PAGE_SIZE);
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
 			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP
 									- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0) + 1;
@@ -46,14 +46,13 @@ public class MyPageServiceImpl implements MyPageService {
 			if(endPage > pageCount) endPage = pageCount;
 			
 			Map<String, Object> postMap = new HashMap<String, Object>();
-			postMap.put("postList", postList);
+			postMap.put("myPagePost", myPagePost);
 			postMap.put("currentPage", currentPage);
 			postMap.put("listCount", listCount);
 			postMap.put("pageCount", pageCount);
 			postMap.put("startPage", startPage);
 			postMap.put("endPage", endPage);			
 			postMap.put("pageGroup", PAGE_GROUP);
-			postMap.put("userId", userId);
 			
 			return postMap;
 		}	
@@ -61,12 +60,44 @@ public class MyPageServiceImpl implements MyPageService {
 		Map<String, Object> postMap = new HashMap<String, Object>();
 		postMap.put("userId", userId);
 			
-		return postMap;		
+		return postMap;
 	}
 
 	@Override
 	public void deleteMyPagePost(int postNo) {
 		myPageDao.deleteMyPagePost(postNo);
+	}
+
+	@Override
+	public Map<String, Object> myPageReply(String userId, int pageNum) {
+		int currentPage = pageNum;		
+		int startRow = (currentPage -1) * PAGE_SIZE;
+		int listCount = myPageDao.myPagePostCount(userId);
+		
+		if(listCount > 0) {
+			List<Post> myPageReply = myPageDao.myPageReply(userId, startRow, PAGE_SIZE);
+			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
+			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP
+									- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0) + 1;
+			int endPage = startPage + PAGE_GROUP - 1;
+			if(endPage > pageCount) endPage = pageCount;
+			
+			Map<String, Object> postMap = new HashMap<String, Object>();
+			postMap.put("myPageReply", myPageReply);
+			postMap.put("currentPage", currentPage);
+			postMap.put("listCount", listCount);
+			postMap.put("pageCount", pageCount);
+			postMap.put("startPage", startPage);
+			postMap.put("endPage", endPage);			
+			postMap.put("pageGroup", PAGE_GROUP);
+			
+			return postMap;
+		}	
+			
+		Map<String, Object> postMap = new HashMap<String, Object>();
+		postMap.put("userId", userId);
+			
+		return postMap;
 	}
 
 	@Override

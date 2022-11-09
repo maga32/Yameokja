@@ -54,6 +54,22 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 
 	@Override
+	public List<Post> myPageReply(String userId, int startRow, int num) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
+		params.put("startRow", startRow);
+		params.put("num", num);
+		
+		return sqlSession.selectList(NAME_SPACE+".myPageReply", params);
+	}
+
+	@Override
+	public int myPageReplyCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+".myPageReplyCount", userId);
+	}
+
+	@Override
 	public List<Community> myPageCommunity(String userId, int startRow, int num) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();

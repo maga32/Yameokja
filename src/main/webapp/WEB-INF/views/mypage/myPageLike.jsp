@@ -67,9 +67,9 @@
 			</div>
 			<!--내정보틀 끝 -->
 			<div class="text-center p-0 mt-3">
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPagePost">맛집 리뷰</a></span>
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageReply">댓글 리뷰</a></span>
-				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageCommunity">동네글</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPagePost?userId=${ user.memberId }">맛집 리뷰</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageReply?userId=${ user.memberId }">댓글 리뷰</a></span>
+				<span class="otherPage border border-secondery border-2 text-secondery fw-bold px-3 py-2"><a href="myPageCommunity?userId=${ user.memberId }">동네글</a></span>
 				<span class="currentPage fw-bold px-3 py-2">찜 목록</span>
 			</div>
 <!-- 			postListHeader 끝 -->

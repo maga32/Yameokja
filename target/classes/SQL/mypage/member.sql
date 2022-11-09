@@ -34,7 +34,22 @@ CREATE TABLE IF NOT EXISTS member(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ###############################################################################################################################################################################################member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids
 
-INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId01', 'name01', null, 'nickname01', '1234', 'email01@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 10, null);
+INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('hayoung', '정하영', 'hy.png', '하영이', '1234', 'ha016595@naver.com', '서울,관악구', '010-4998-9579', "1,7", '2017-12-01 05:44:32', null, '1,3,12', 1, null);
+ INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('admin', '정하영', null, '관리자_하영', '1234', 'ha016595@naver.com', '서울,관악구', '010-4998-9579', "1,7", '2017-12-01 05:44:32', null, '1,3,12', 10, null);
+ INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('yejin', '박예진', 'yj.png', '예진이', '1234', 'yejin@naver.com', '서울,관악구', '010-3928-1009', "2,3", '2022-10-03 02:14:02', null, '2,5,8', 1, null);
+ INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('seonghwa', '백승화', 'sh.png', '승화', '1234', 'seonghwa@naver.com', '서울,관악구', '010-9192-3321', "5,11", '2021-11-21 23:04:08', null, '5,6,9', 1, null);
+ INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('sangyong', '이상용', 'sy.png', '상용', '1234', 'map@naver.com', '서울,관악구', '010-6721-8011', "9,10", '2021-07-21 18:02:56', null, '7,9,11', 1, null);
+ INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('hyunjae', '백현제', 'hj.png', '현제', '1234', 'hyunjae@naver.com', '서울,관악구', '010-2091-7391', "1,6", '2022-06-13 01:08:32', null, '5,6,10', 1, null);
+ INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('hansol', '이한솔', 'hs.png', '한솔', '1234', 'hansol@naver.com', '서울,관악구', '010-2801-2099', "2,6", '2017-12-01 11:32:16', null, '7,9,11', 1, null);
+ INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
+ VALUES ('sangyong', '이상용', 'sy.png', '상용', '1234', 'map@naver.com', '서울,관악구', '010-6721-8011', "9,10", '2017-12-01 11:32:16', null, '7,9,11', 1, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId02', 'name02', null, 'nickname02', '1234', 'email02@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId03', 'name03', null, 'nickname03', '1234', 'email03@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids) VALUES ('memberId04', 'name04', null, 'nickname04', '1234', 'email04@yameokja.com', '관악구', '01099999999', null, '2017-12-01 05:44:32', null, null, 1, null);
@@ -58,4 +73,9 @@ INSERT INTO member (member_id, member_name, member_photo, member_nickname, membe
 COMMIT;
 
 
-SELECT * FROM member;
+SELECT * FROM member ;
+
+UPDATE member
+	SET member_bookmarks =
+		CONCAT(member_bookmarks, ',10')
+	WHERE member_id = "memberId01";

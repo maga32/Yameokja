@@ -1,6 +1,8 @@
 package com.project.yameokja.service.store;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,37 +14,85 @@ import com.project.yameokja.domain.Store;
 public class StoreServiceImpl implements StoreService {
 	
 	@Autowired
-	private StoreDao StoreDao;
+	private StoreDao storeDao;
 
-	public void setStoreDao(StoreDao storeDao) {
-		this.StoreDao = storeDao;
-	}
+	
+	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_GROUP = 10;
 
 	@Override
-	public List<Store> storeList(int categoryNo) {
-		return StoreDao.StoreList(categoryNo);
-	}
-	
-	public List<Store> storeListAll() {
-		return StoreDao.StoreListAll();
+	public Map<String, Object> storeList(int categoryNo, int pageNum, String type, String keyword, String orderBy) {
+		
+		int currentPage = pageNum;
+		
+		int startRow = (currentPage - 1) * PAGE_SIZE;
+		int listCount = 0;
+		
+		listCount = storeDao.getStoreCount(type, keyword, categoryNo);
+		
+		System.out.println(listCount + type + keyword);
+		
+		Map<String, Object> sMap =  new HashMap<String, Object>();
+		
+		if(listCount > 0) {
+			
+			List<Store> sList = storeDao.StoreList(startRow, categoryNo, PAGE_SIZE, keyword, type, orderBy);
+			
+			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
+			
+			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP - 
+					(currentPage % PAGE_GROUP == 0? PAGE_GROUP : 0) + 1;
+			
+			
+			int endPage = startPage + 9;
+			
+				if(endPage > pageCount) endPage = pageCount;
+				
+				sMap.put("sList", sList);
+				
+				sMap.put("pageCount", pageCount);
+				sMap.put("startPage", startPage);
+				sMap.put("endPage", endPage);
+				
+				sMap.put("currentPage", currentPage);
+				sMap.put("listCount", listCount);
+				sMap.put("pageGroup", PAGE_GROUP);
+				
+				System.out.println("시작페이지 - 카테고리 번호 - 현재 페이지 : " + startPage+" - " + categoryNo + " - " + currentPage);
+				
+				return sMap;
+		}
+		
+		return sMap;
 	}
 
 	@Override
 	public Store getStore(int storeNo) {
-		return StoreDao.getStore(storeNo);
+		return storeDao.getStore(storeNo);
 	}
 	
 
 	@Override
 	public void insertStore(Store store) {
-		StoreDao.insertStore(store);
+		storeDao.insertStore(store);
 	}
 
 	@Override
 	public void updateStore(Store store) {
-		StoreDao.updateStore(store);
+		storeDao.updateStore(store);
 		
 	}
-
+	
+	// 가게 즐겨찾기 추가
+	@Override
+	public void addBookmarks(int storeNo) {
+		storeDao.addBookmarks(storeNo);
+	}
+	
+	// 가게 즐겨찾기 삭제
+	@Override
+	public void deleteBookmarks(int storeNo) {
+		storeDao.deleteBookmarks(storeNo);
+	}
 	
 }

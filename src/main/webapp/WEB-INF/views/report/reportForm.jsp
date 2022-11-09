@@ -12,20 +12,20 @@
 <article>
 	<div class="row yellowBar"></div>
 	<div class="row m-0 p-3">
-	<div class="row justify-content-left">
-		<h1 class="border-3 border-bottom center">신고하기</h1>
+	<div class="row justify-content-left m-0 p-0">
+		<div class=" fs-1 border-3 border-bottom center p-0">신고하기</div>
 	</div>
 	
 	<form id="reportForm" name="reportForm" action="reportAdd" method="post" enctype="multipart/form-data">
-		<div class="row px-2">
-			<div class="row my-1">
+		<div class="row m-0 p-0">
+			<div class="row my-1 m-0 p-0">
 				<div class="col-3 ps bold">신고 대상<br>신고자</div>
 				<div class="col-3 border-start">
 					<input type="text" class=" border-0" id="reportTarget" name="reportTarget" value="${reportTarget}" readonly><br>
 					<input type="text" class=" border-0" id="memberId" name="memberId" value="${sessionScope.memberId}" readonly>
 				</div>
 			</div>
-			<div class="row mx-2 my-1 w-auto">
+			<div class="col-12 m-0 p-2">
 				<select id="reportType" name="reportType">
 					<c:if test="${categoryNo == '301'}">
 						<option value="위치이전 및 폐업">위치이전 및 폐업</option>
@@ -49,18 +49,18 @@
 						<option value="불건전한 사용자">불건전한 사용자</option>
 						<option value="기타(사용자)">기타(사용자)</option>
 					</c:if>
-				</select>
+				</select><br>
 			</div>
-			<div class="col-12 mx-2 my-1">
+			<div class="col-12 p-2">
 				<input type="text" name="reportTitle" id="reportTitle" placeholder="제목을 입력하세요">
 			</div>
-			<div class="col-12 mx-2 my-1">
-				<textarea class="col-11" id="reportContent" name="reportContent" placeholder="내용을 입력하세요"></textarea>
+			<div class="col-12 p-2">
+				<textarea id="reportContent" name="reportContent" placeholder="내용을 입력하세요"></textarea>
 			</div>
-			<div class="row col-12 m-1 ps-1 w-auto">
+			<div class="col-12 p-2">
 				<input type="file" name="reportFile" size="70" id="reportFile" maxlength="50" />
 			</div>
-			<div class="col-12 mx-2 my-1">
+			<div class="col-12 p-2">
 				<button type="reset">취소</button>
 				<button type="submit">작성완료</button>
 			</div>

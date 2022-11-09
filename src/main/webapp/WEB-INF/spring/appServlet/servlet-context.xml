@@ -14,6 +14,7 @@
 <annotation-driven />
 
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**" />
 	
 	<context:component-scan base-package="com.project.yameokja" />
 
@@ -40,6 +41,7 @@
 	    <mapping path="/memberDelete" />
    	    <mapping path="/chat/**" />
    	    <mapping path="/report*" />
+   	    <mapping path="/bookmarks*" />
 	    <beans:ref bean="LoginCheckInterceptor" />
 	   </interceptor>
 	</interceptors>
