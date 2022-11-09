@@ -56,8 +56,7 @@
 			모집일 : ${ co.partyDDay }<br>
 			모집 장소 : ${ co.partyPlace }<br>
 			모집 인원 : ${countPartyMembers} / ${ co.partyMembers }
-			
-			<c:if test="${sessionScope.member.memberId != co.memberId || result} ">
+			<c:if test="${ (sessionScope.memberId != co.memberId) && result}">
 				<button type="button" onClick="location.href='btn102PartyJoin?communityNo=${co.communityNo}'">참가</button>
 			</c:if>
 			<br>
@@ -67,7 +66,7 @@
 						onclick='window.open("userProfile?userId=${u.memberId}","LoginForm","width=500, height=600")'/>
 				</c:if>
 				<c:if test="${u.memberNickname != co.memberNickname }">
-					<img class="rounded-circle" style="height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"
+					<img class="rounded-circle" style="border:1px solid gray; height:50px; width:50px;"alt="${u.memberNickname }" src="resources/IMG/member/${u.memberPhoto }"
 						onclick='window.open("userProfile?userId=${u.memberId}","LoginForm","width=500, height=600")'/>
 				</c:if>
 			</c:forEach>

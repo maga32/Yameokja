@@ -177,6 +177,12 @@ public class CommunityController {
 		return "redirect:/communityList";
 	}
 	
+	// 모집글 작성폼
+	@RequestMapping("/community102WriteForm")
+	public String community102WriteForm() {
+
+		return "community/community102WriteForm";
+	}
 	
 	// 모집글 수정 폼
 	@RequestMapping(value="community102UpdateForm", method=RequestMethod.POST)
@@ -370,7 +376,9 @@ public class CommunityController {
 	// 커뮤니티 글 상세보기
 	@RequestMapping("/communityDetail")
 	public String communityDetail(Model model, int communityNo,
-			HttpServletRequest request, HttpSession session) {
+			HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
 		System.out.println("codetail start");
 		
@@ -419,6 +427,20 @@ public class CommunityController {
 		System.out.println("codetail mid");
 		
 		// 모집글.
+		// 모집 참여 - timestamp 확인 및 비교 메서드(partyDDayCheck)사용
+		if(co.getPartyDDay() != null) {
+			boolean result = partyDDayCheck(co);
+			model.addAttribute("result", result);
+			
+			if(!result) {
+				out.println("<script>");
+				out.println("alert('모집기간이 초과되었습니다.');");
+				out.println("</script>");
+				
+				return "redirect:communityDetail?communityNo="+communityNo;
+			}
+		}
+		
 		// 해당 글 모집 참가인원 조회
 		int countPartyMembers = 0;
 		List<Member> memberPhotoList = new ArrayList<Member>();
