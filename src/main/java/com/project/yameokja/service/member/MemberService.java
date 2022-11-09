@@ -98,8 +98,8 @@ public class MemberService {
 	}
 	
 	// 회원 즐겨찾기 가게 추가
-	public void addMemberBookmarks(String memberId, int storeNo) {
-		memberDao.addMemberBookmarks(memberId, storeNo);
+	public void addMemberBookmarks(String memberId, String strStoreNo) {
+		memberDao.addMemberBookmarks(memberId, strStoreNo);
 	}
 	
 	// 회원 즐겨찾기 가게 삭제

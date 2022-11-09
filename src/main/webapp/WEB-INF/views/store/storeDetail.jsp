@@ -13,7 +13,7 @@
 		<!-- 히든 영역 -->
 		<input type="hidden" id="detailCheck" value="true">
 		<input type="hidden" id="memberId" value="${sessionScope.memberId}">
-		<input type="hidden" id="storeNo" value="${ store.storeNo }">
+		<input type="hidden" id="storeNo" name="storeNo" value="${ store.storeNo }">
 		<input type="hidden" id="categoryNo" value="${ store.categoryNo }">
 		<!-- 히든 영역 end-->
 		
@@ -89,19 +89,20 @@
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
 					
-					<!-- d -->
+					<!-- 11.10 머지날 삭제 DIV -->
 						<div>
 							${userBookmarks}
 							<br>
 							${store.storeNo}
 						</div>
+					<!--  -->
 					<c:if test = "${fn:contains(userBookmarks, store.storeNo)}">
 						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=memberId01&storeNo=385' "></button>
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 					<c:if test = "${!fn:contains(userBookmarks, store.storeNo)}">
 						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=memberId01&storeNo=385' "></button>
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 						
 						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>

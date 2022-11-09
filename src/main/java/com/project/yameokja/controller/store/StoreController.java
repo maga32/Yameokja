@@ -279,15 +279,20 @@ public class StoreController {
 				
 				return "redirect:storeDetail?storeNo=" + storeNo;
 			}
+			
+			String strStoreNo = Integer.toString(storeNo);
+			
+			System.out.println("strStorNo : " + strStoreNo);
+			// member > member_bookmarks 추가
+			memberSerivce.addMemberBookmarks(memberId, strStoreNo);
+			
+			System.out.println("con-AddBookmarks end");
+			
+			// store > store_bookmarks 추가
+			storeService.addBookmarks(storeNo);
 		}
 		
-		// member > member_bookmarks 추가
-		memberSerivce.addMemberBookmarks(memberId, storeNo);
 		
-		System.out.println("con-AddBookmarks end");
-		
-		// store > store_bookmarks 추가
-		storeService.addBookmarks(storeNo);
 		
 		return "redirect:storeDetail?storeNo=" + storeNo;
 	}
@@ -320,9 +325,9 @@ public class StoreController {
 			String strStoreNo = "";
 			
 			if(!userBookmarks.contains(",")) {
-				strStoreNo =  Integer.toString(storeNo);
+				strStoreNo =  Integer.toString(storeNo) + ".";
 			}else {
-				strStoreNo = "," + storeNo;
+				strStoreNo = "," + storeNo + ".";
 			}
 			
 			memberSerivce.deleteMemberBookmarks(memberId, strStoreNo);
