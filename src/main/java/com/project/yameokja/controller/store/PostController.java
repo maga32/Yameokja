@@ -93,4 +93,64 @@ public class PostController {
 		return "redirect:storeDetailContent?storeNo="+ post.getStoreNo() + "&postNo=" + post.getPostNo();
 	}
 	
+	
+	// 포스트 수정하기
+	@RequestMapping("/postUpdateForm")
+	public String postUpdateForm(Model model, HttpServletResponse response, HttpSession session, int postNo) throws IOException {
+		Post post = postService.getPost(postNo);
+		Store store = storeService.getStore(post.getStoreNo());
+		
+		if(!post.getMemberId().equals(session.getAttribute("memberId"))) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('본인의 리뷰만 수정할 수 있습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+		}
+		
+		model.addAttribute("post", post);
+		model.addAttribute("store", store);
+
+		return "store/postUpdateForm";
+	}
+	
+	// 포스트 수정
+	@RequestMapping("/postUpdateProcess")
+	public String postUpdateProcess(HttpSession session, HttpServletResponse response, Post post) throws IOException {
+		Post oldPost= postService.getPost(post.getPostNo());
+		
+		if(!oldPost.getMemberId().equals(session.getAttribute("memberId"))) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('본인의 리뷰만 수정할 수 있습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+		}
+		
+		post.setMemberNickname((String) session.getAttribute("memberNickname"));
+		postService.postUpdate(post);
+		
+		return "redirect:storeDetailContent?storeNo="+ oldPost.getStoreNo() + "&postNo=" + oldPost.getPostNo();
+	}
+	
+	// 포스트 삭제
+	@RequestMapping("/postDelete")
+	public String postDelete(HttpSession session, HttpServletResponse response, int postNo) throws IOException {
+		Post post= postService.getPost(postNo);
+		
+		if(!post.getMemberId().equals(session.getAttribute("memberId"))) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('본인의 리뷰만 삭제할 수 있습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+		}
+
+		postService.postDelete(postNo);
+		
+		return "redirect:storeDetailList?storeNo="+ post.getStoreNo();
+	}
 }

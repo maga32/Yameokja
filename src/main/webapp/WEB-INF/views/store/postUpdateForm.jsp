@@ -7,11 +7,11 @@
 <script src="/yameokja/ckeditor/ckeditor.js"></script>
 <script src="/yameokja/resources/js/post.js"></script>
 
-<form action="postWriteProcess" method="post" encType="multipart/form-data">
+<form action="postUpdateProcess" method="post" encType="multipart/form-data">
 	<div class="row p-4">
-		<input type="hidden" name="storeNo" value="${ store.storeNo }">
+		<input type="hidden" name="postNo" value="${ post.postNo }">
 		<div class="col-12 pb-3">
-			<h1 class="text-secondary">맛집 리뷰 등록</h1>
+			<h1 class="text-secondary">맛집 리뷰 수정</h1>
 			<div class="border-bottom border-secondary border-4"></div>
 		</div>
 		
@@ -31,15 +31,15 @@
 			제목
 		</div>
 		<div class="col-8 col-md-9 pb-3">
-			<input class="form-control form-control-sm" id="postTitle" name="postTitle" type="text" placeholder="제목을 입력해주세요">
+			<input class="form-control form-control-sm" id="postTitle" name="postTitle" type="text" placeholder="제목을 입력해주세요" value="${ post.postTitle }">
 		</div>
 		
 		<div class="col-12 mb-4">
-			<textarea id="postContent" name="postContent" class="col-12"></textarea>
+			<textarea id="postContent" name="postContent" class="col-12">${ post.postContent }</textarea>
 		</div>
 		
 		<div class="col-6">
-			<a href="storeDetail?storeNo=${ store.storeNo }" class="col-12 btn btn-secondary">
+			<a href="storeDetailContent?storeNo=${ store.storeNo }&postNo=${ post.postNo }" class="col-12 btn btn-secondary">
 				취소
 			</a>
 		</div>

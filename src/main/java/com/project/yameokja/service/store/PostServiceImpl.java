@@ -191,6 +191,33 @@ public class PostServiceImpl implements PostService {
 		return postDao.postWrite(post);
 	}
 
-	
 
-}
+	// 포스트 업데이트
+	@Override
+	public void postUpdate(Post post) {
+		String file[] = new String[5];
+		int matchNum = 0;
+		Pattern src = Pattern.compile("(<img[^>]*src\\s*=\\s*[\\\"']?([^>\\\"']+)[\\\"']?[^>]*>)");
+		Matcher match = src.matcher(post.getPostContent());
+		
+		while(match.find()) {
+			file[matchNum] = match.group(2).trim().split("/IMG/post/")[1];
+    		matchNum++;
+    		if(matchNum == 4) break;
+		}
+
+		post.setPostFile1(file[0]);
+		post.setPostFile2(file[1]);
+		post.setPostFile3(file[2]);
+		post.setPostFile4(file[3]);
+		post.setPostFile5(file[4]);
+		
+		postDao.postUpdate(post);
+	}
+
+	@Override
+	public void postDelete(int postNo) {
+		postDao.postDelete(postNo);
+	}
+
+} 
