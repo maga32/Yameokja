@@ -81,7 +81,7 @@
 			<div class="d-flex align-items-center row">
 				<div class="col-3 col-md-3 col-sm-3">
 					<img alt="communityFile" class="img-thumbnail rounded" 
-						src="/yameokja/resources/IMG/community/${ p.postFile1 }">
+						src="/yameokja/resources/IMG/community/${ c.communityFile }">
 				</div>
 			<div class="col-6 col-md-7 col-sm-6 text-start">
 			<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
