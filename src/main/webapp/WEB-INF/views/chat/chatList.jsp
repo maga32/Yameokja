@@ -16,7 +16,6 @@
 	</head>
 	<body>
 		<div class="fixed-top fs-1 d-flex justify-content-between">
-				<!-- 헤더 생기면 대체 -->
 			<div class="col-12 bg-warning py-4 mb-2"></div>
 		</div>
 		<div class="fixed-top text-end fs-1">
@@ -35,9 +34,10 @@
 						<div class="row">
 						
 							<div class="col-4">
-								<a href=""><!-- 추후 memberId로 프로필 보는 링크 삽입 ${ members[ i-1 ].memberId } -->
-									<!--  추후 src를 memberPhoto 링크로 변경필요 ${ members[ i-1 ].memberPhoto } -->
-									<img class="border rounded-circle" src="https://picsum.photos/100/100">
+								<a href="chatDetail?targetId=${ members[ i-1 ].memberId }">
+									<div class="border rounded-circle d-flex align-items-center" style="width:100px; height:100px; overflow:hidden;">
+										<img src="/yameokja/resources/IMG/member/${ members[ i-1 ].memberPhoto }" style="width:100px;">
+									</div>
 								</a>
 							</div>
 							

@@ -44,12 +44,13 @@
 				<hr>
 				<div class="row">
 					<div class="col-4">
-						<!--  추후 src를 memberPhoto 링크로 변경필요 ${ target.memberPhoto } -->
-						<img class="border rounded-circle" src="https://picsum.photos/120/120">
+						<div class="border rounded-circle d-flex align-items-center" style="width:120px; height:120px; overflow:hidden;">
+							<img src="/yameokja/resources/IMG/member/${ target.memberPhoto }" style="width:120px;">
+						</div>
 					</div>
 					<div class="col-8">
 						<div class="col-12">
-							<h1>${ target.memberNickname }</h1>
+							<button class="btn memberInfo" data-memberId="${ target.memberId }"><h1>${ target.memberNickname }</h1></button>
 						</div>
 						<div class="col-12 pt-5 text-end">
 							<button onclick="chatLeave('${ chatIds }')" class="btn text-large">채팅방나가기</button>
