@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(function() {	
 
 	$("#translateAddress2").on("click", function(){

@@ -1,10 +1,6 @@
 package com.project.yameokja.controller.store;
 
-<<<<<<< HEAD
-import java.io.File; 
-=======
-import java.io.File;
->>>>>>> store
+import java.io.File;  
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -12,13 +8,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-<<<<<<< HEAD
-import javax.servlet.http.HttpSession;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-=======
->>>>>>> store
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -42,19 +31,13 @@ import com.project.yameokja.service.store.StoreService;
 public class StoreController {
 
 	@Autowired
-	private MemberService memberService;
-	
-	@Autowired
 	private StoreService storeService;
 	
 	@Autowired
 	private PostService postService;
 	
 	@Autowired
-	private MemberService memberSerivce;
-	
-	@Autowired
-	private final static String DEFAULT_PATH = "/resources/upload/";
+	private MemberService memberService;
 	
 	private final static String DEFAULT_PATH = "/resources/IMG/store";
 	
@@ -97,7 +80,7 @@ public class StoreController {
 		String memberId = (String) session.getAttribute("memberId");
 		
 		if(memberId != null) {
-			Member user = (Member) memberSerivce.getMember(memberId);
+			Member user = (Member) memberService.getMember(memberId);
 			model.addAttribute("userBookmarks", user.getMemberBookmarks());
 		}
 		
@@ -263,7 +246,7 @@ public class StoreController {
 		PrintWriter out = response.getWriter();
 		
 		// 가게 즐겨찾기 확인
-		Member user = memberSerivce.getMember(memberId);
+		Member user = memberService.getMember(memberId);
 		
 		if(user != null) {
 			String userBookmarks = user.getMemberBookmarks();
@@ -282,7 +265,7 @@ public class StoreController {
 			
 			System.out.println("strStorNo : " + strStoreNo);
 			// member > member_bookmarks 추가
-			memberSerivce.addMemberBookmarks(memberId, strStoreNo);
+			memberService.addMemberBookmarks(memberId, strStoreNo);
 			
 			System.out.println("con-AddBookmarks end");
 			
@@ -304,7 +287,7 @@ public class StoreController {
 		PrintWriter out = response.getWriter();
 
 		// member > member_bookmarks 삭제, 가게 즐겨찾기 확인
-		Member user = memberSerivce.getMember(memberId);
+		Member user = memberService.getMember(memberId);
 		
 		if(user != null) {
 			
@@ -328,7 +311,7 @@ public class StoreController {
 				strStoreNo = "," + storeNo + ".";
 			}
 			
-			memberSerivce.deleteMemberBookmarks(memberId, strStoreNo);
+			memberService.deleteMemberBookmarks(memberId, strStoreNo);
 		}
 		
 		// store > store_bookmarks 삭제

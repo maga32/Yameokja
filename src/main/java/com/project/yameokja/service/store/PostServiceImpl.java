@@ -1,16 +1,10 @@
 package com.project.yameokja.service.store;
 
-<<<<<<< HEAD
-import java.util.HashMap; 
+import java.util.HashMap;  
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-=======
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
->>>>>>> store
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,13 +22,6 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	private PostDao postDao;
 	
-	public void setPostDao(PostDao postDao) {
-		this.postDao = postDao;
-	}
-	
-	private static final int PAGE_SIZE = 10;
-	private static final int PAGE_GROUP = 10;
-
 	@Override
 	public Map<String, Object> postList(int storeNo, int pageNum, String detailOrderBy) {
 		
