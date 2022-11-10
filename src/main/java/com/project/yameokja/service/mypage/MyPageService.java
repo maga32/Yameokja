@@ -12,11 +12,15 @@ public interface MyPageService {
 	
 	public Member getMember(String userId);
 	
-	public List<Post> myPagePost();
+	public Map<String, Object> myPagePost(String userId, int pageNum);
 	
-	public Map<String, Object> myPagePost(int pageNum, String userId);
+	void deleteMyPagePost(int postNo);
 	
-	public Map<String, Object> myPageCommunity(String memberId, int pageNum, String status);
+	public Map<String, Object> myPageReply(String userId, int pageNum);
+	
+	public Map<String, Object> myPageCommunity(String userId, int pageNum);
+	
+	void deleteMyPageCommunity(int communityNo);
 	
 	public List<Store> myPageStore(String memberId);
 

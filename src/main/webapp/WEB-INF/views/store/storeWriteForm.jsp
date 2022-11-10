@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>					
 <script src="resources/js/store.js"></script>
 <meta charset="UTF-8">
 <article>
@@ -30,7 +32,7 @@
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>가게 이름</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
-		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
+		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example" id="storeName"></div>
 		            				<div class="col-3"><button class="col-12">중복 확인</button>
 		            				</div>
 	            				</div>
@@ -79,12 +81,20 @@
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>주소</h3></div>
 	            			<div class="row mb-4">
 	            				<div class="col-9">
-		            				<input class="col-12 form-control-sm mb-1" type="text" aria-label=".form-control-sm example"></div>
-		            				<div class="col-3"><button class="col-12">주소 확인</button>
+		            				<input class="col-12 form-control-sm mb-1" type="text" aria-label=".form-control-sm example" id="address"></div>
+		            				<div class="col-3"><button type="button" class="col-12" id="translateAddress2">주소 확인</button>
 		            				</div>
 		            				<div class="col-9">
-		            				<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example"></div>
+		            					<div class="col-2">* 위도</div>	
+		            					<input type="text" class="col-4 inlineBlock" id="latitude" readonly value="">
+		            					<div class="col-2">* 경도</div>	
+		            					<input type="text" class="col-4 inlineBlock" id="longitude" readonly value="">
 	            				</div>
+	            				<div class="row justify-content-center p-4" style="display:none;" id="mapArea">
+	            					<div class="mx-2 border" id="map" style="height:300px;"></div>
+	            				</div>
+								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services"></script>
+								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>
 	            				
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>맛집 종류</h3></div>
 	            			<div class="row mb-4">
@@ -139,10 +149,8 @@
 			            				<input class="form-check-input" type="radio" name="foodCheck">
 			            					<label class="form-check-label" for="foodCheck">중식</label>
 		            				</div>
-
 		            			</div>
-		            			
-	            			</div>
+		            		</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">대표 사진</h3></div>
 	            				<div class="row mb-4">
@@ -167,8 +175,7 @@
 	            					</div>
 	            					<div class="col-6 border border-2">
 	            						<div class="col-12 border border-1 my-2">닫는 시간</div>
-	            					</div>
-		            				
+	            					</div>	
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">휴무일</h3></div>
@@ -179,10 +186,7 @@
 	            				<div class="col-12"><h3 class="text-start">주차가능 유무</h3></div>
 	            						<div class="row mb-4">
 		            					<input class="col-12 form-control-sm" type="text" aria-label=".form-control-sm example">
-	            					</div>
-	            				
-	            				
-	            			
+	            					</div>	
 	            			</div>
 	            			
 	            			<div class="row border-top border-4 d-flex justify-content-end my-5">
@@ -200,12 +204,7 @@
 							</div>
 	            			</div>
 	            		</div>
-	            		
-	            		
-	            		
-	            		
-	            	</div>
-	            	
+	            	</div>	
 	            </div>
 	          
         </div>

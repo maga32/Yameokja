@@ -14,6 +14,7 @@
 <annotation-driven />
 
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**" />
 	
 	<context:component-scan base-package="com.project.yameokja" />
 
@@ -25,6 +26,7 @@
 	<view-controller path="/" view-name="redirect:main" />
 	
 	<beans:bean id="AdminCheckInterceptor" class="com.project.yameokja.interceptor.AdminCheckInterceptor" />
+	<beans:bean id="LoginCheckInterceptor" class="com.project.yameokja.interceptor.LoginCheckInterceptor" />
 	
 	<interceptors>
 	   <interceptor>
@@ -33,4 +35,15 @@
 	   </interceptor>
 	</interceptors>
 
+	<interceptors>
+	   <interceptor>
+	    <mapping path="/memberUpdate*" />
+	    <mapping path="/memberDelete" />
+   	    <mapping path="/chat/**" />
+   	    <mapping path="/report*" />
+   	    <mapping path="/bookmarks*" />
+	    <beans:ref bean="LoginCheckInterceptor" />
+	   </interceptor>
+	</interceptors>
+	
 </beans:beans>

@@ -56,6 +56,34 @@
 			</div>
 		</div>
 		</c:forEach>
+<!-- 	페이지그룹 시작 -->
+		<div class="row text-end">
+		<div class="col-12 pe-4">
+			<c:if test="${ startPage > pageGroup }">
+				<div class="previousPage text-secondery d-inline-block">
+					<a href="reportList?pageNum=${ startPage - pageGroup }&categoryNo=${ categoryNo }"><</a>
+				</div>
+			</c:if>
+			<div class="pageNumber text-secondery d-inline-block">
+			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+				<c:if test="${ i == currentPage }">
+					<div class=" d-inline-block fw-bold" style="color: #F58500;">&nbsp;${ i }&nbsp;</div>
+				</c:if>
+				<c:if test="${ i != currentPage }">
+					<div class=" d-inline-block">
+						<a href="reportList?pageNum=${ i }&categoryNo=${ categoryNo }">&nbsp;${ i }&nbsp;</a>
+					</div>
+				</c:if>
+			</c:forEach>
+			</div>						
+			<c:if test="${ endPage < pageCount }">
+				<div class="nextPage text-secondery d-inline-block">
+					<a href="reportList?pageNum=${ startPage + pageGroup }&categoryNo=${ categoryNo }">></a>
+				</div>
+			</c:if>
+		</div>
+		</div>
+<!-- 	페이지그룹 끝 -->
 		</c:if>
 <!-- 		(빈 일반글)keyword == '' and empty reportList -->
 		<c:if test="${ keyword == '' and empty reportList }">작성된 신고글이 없습니다.</c:if>
@@ -71,6 +99,34 @@
 				<div class="divTableCell">${re.reportDate }</div>
 			</div>
 		</c:forEach>
+<!-- 					페이지그룹 시작 -->
+		<div class="row text-end">
+		<div class="col-12 pe-4">
+			<c:if test="${ startPage > pageGroup }">
+				<div class="previousPage text-secondery d-inline-block">
+					<a href="reportList?pageNum=${ startPage - pageGroup }&categoryNo=${ categoryNo }&type=${type}&keyword=${keyword}"><</a>
+				</div>
+			</c:if>
+			<div class="pageNumber text-secondery d-inline-block">
+			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+				<c:if test="${ i == currentPage }">
+					<div class=" d-inline-block fw-bold" style="color: #F58500;">&nbsp;${ i }&nbsp;</div>
+				</c:if>
+				<c:if test="${ i != currentPage }">
+					<div class=" d-inline-block">
+						<a href="reportList?pageNum=${ i }&categoryNo=${ categoryNo }&type=${type}&keyword=${keyword}">&nbsp;${ i }&nbsp;</a>
+					</div>
+				</c:if>
+			</c:forEach>
+			</div>						
+			<c:if test="${ endPage < pageCount }">
+				<div class="nextPage text-secondery d-inline-block">
+					<a href="reportList?pageNum=${ startPage + pageGroup }&categoryNo=${ categoryNo }&type=${type}&keyword=${keyword}">></a>
+				</div>
+			</c:if>
+		</div>
+		</div>
+<!-- 					페이지그룹 끝 -->
 		</c:if>
 		</div>
 <!-- 					페이지그룹 시작 -->
@@ -106,6 +162,5 @@
 		<c:if test="${ keyword != '' and empty reportList }">
 			"${ keyword }"로 작성된 신고글이 없습니다.
 		</c:if>
-	
-	
+
 </article>

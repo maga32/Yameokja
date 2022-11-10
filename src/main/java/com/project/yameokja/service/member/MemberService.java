@@ -96,5 +96,15 @@ public class MemberService {
 	public void deleteMember(String memberId) {
 		memberDao.deleteMember(memberId);
 	}
+	
+	// 회원 즐겨찾기 가게 추가
+	public void addMemberBookmarks(String memberId, String strStoreNo) {
+		memberDao.addMemberBookmarks(memberId, strStoreNo);
+	}
+	
+	// 회원 즐겨찾기 가게 삭제
+	public void deleteMemberBookmarks(String memberId, String strStoreNo) {
+		memberDao.deleteMemberBookmarks(memberId, strStoreNo);
+	}
 
 }

@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS post(
   post_no INTEGER AUTO_INCREMENT PRIMARY KEY,
   post_title VARCHAR(40) NULL,
   post_content VARCHAR(2000) NOT NULL,
-  post_read_count INTEGER(10) NULL,
+  post_read_count INTEGER(10) NULL DEFAULT 0,
   post_file1 VARCHAR(100) NOT NULL,  
   post_file2 VARCHAR(100) NULL,
   post_file3 VARCHAR(100) NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS post(
   post_reg_date TIMESTAMP NOT NULL,
   post_is_post VARCHAR(5) NOT NULL,
   post_star INTEGER(10) NULL,
-  post_up_count INTEGER(10) NULL,
+  post_up_count INTEGER(10) NULL DEFAULT 0,
   post_up_list VARCHAR(2000) NULL,
   store_no INTEGER(50) NOT NULL,
   member_id VARCHAR(20) NOT NULL,
@@ -32,6 +32,9 @@ CREATE TABLE IF NOT EXISTS post(
   CONSTRAINT post_member_fk2 FOREIGN KEY(member_nickname) REFERENCES member(member_nickname)
   
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE post CHANGE post_read_count post_read_count integer(10) NULL default '0';
+ALTER TABLE post CHANGE post_up_count post_up_count integer(10) NULL default '0';
 
 desc post;
 

@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.yameokja.dao.mypage.MyPageDao;
 import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.service.mypage.MyPageService;
-
-import jdk.nashorn.internal.objects.annotations.Getter;
-
 //스프링 MVC의 컨트롤러임을 선언하고 있다.
 @Controller
 public class MyPageController {
@@ -29,17 +27,11 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 	
+	@Autowired
+	private MyPageDao myPageDao;
+	
 	@RequestMapping(value="/mainmain", method=RequestMethod.GET)
-	public String main(
-//			Model model,@RequestParam(value = "pageNum" ,required = false, 
-//			defaultValue = "1")int pageNum
-//			 
-//			HttpSession session,
-//			@RequestParam(value="memberId", defaultValue = "memberId01")String memberId
-			) {
-//		session.getAttribute(memberId);
-		
-//		model.addAttribute("pageNum", pageNum);
+	public String main() {
 		return "mypage/mainmain";
 	}
 
@@ -47,38 +39,72 @@ public class MyPageController {
 	// 로그인 상태에서 동작
 	@RequestMapping(value="/myPagePost")
 	public String myPagePost(
-//			HttpSession session,
 			Model model, 
-			@RequestParam(value = "pageNum" ,required = false, defaultValue = "1")int pageNum,
-			@RequestParam(value = "userId", required = true, defaultValue = "memberId01")String userId) 
-	{
+			@RequestParam(value = "userId", required = true, defaultValue = "")String userId,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 		
 //		 회원정보 하나 
 		Member user = myPageService.getMember(userId);
 		
 //		 회원이 쓴 글 리스트
-		Map<String, Object> modelMap = myPageService.myPagePost(pageNum, userId);
-		model.addAllAttributes(modelMap);
+		Map<String, Object> myPagePost = myPageService.myPagePost(userId, pageNum);
+		model.addAllAttributes(myPagePost);
 		model.addAttribute("user", user);
 		model.addAttribute("pageNum", pageNum);
 		
 		return "mypage/myPagePost";
 	}
 	
+	@RequestMapping(value="/myPageReply")
+	public String myPageReply(
+			Model model, 
+			@RequestParam(value = "userId", required = true, defaultValue = "")String userId,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
+		
+//		 회원정보 하나 
+		Member user = myPageService.getMember(userId);
+		
+//		 회원이 쓴 글 리스트
+		Map<String, Object> myPageReply = myPageService.myPageReply(userId, pageNum);
+		model.addAllAttributes(myPageReply);
+		model.addAttribute("user", user);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "mypage/myPageReply";
+	}
+	
+	@RequestMapping(value="/deleteMyPagePost")
+	public String deleteMyPagePost(
+			RedirectAttributes reAttrs,
+			@RequestParam(value="postNo", required=false, defaultValue="0")int postNo) {
+		myPageService.deleteMyPagePost(postNo);
+//		reAttrs.addAttribute("pageNum", pageNum);
+		return "redirect:myPagePost";
+	}
+	
 	@RequestMapping(value="/myPageCommunity")
 	public String myPageCommunity(
 			Model model, 
-			@RequestParam(value="communityStatus", required=false, defaultValue="all") String status, 
-			@RequestParam(value = "memberId", required = false, defaultValue = "memberId01")String memberId, 
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 
-		Member member = myPageService.getMember(memberId);
+		Member user = myPageService.getMember(userId);
 
-		Map<String, Object> myPageCommunityList = myPageService.myPageCommunity(memberId, pageNum, status);
+		Map<String, Object> myPageCommunityList = myPageService.myPageCommunity(userId, pageNum);
 		model.addAllAttributes(myPageCommunityList);
-		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		model.addAttribute("pageNum", pageNum);
 		
 		return "mypage/myPageCommunity";
+	}
+	
+	@RequestMapping(value="/deleteMyPageCommunit")
+	public String deleteMyPageCommunit(
+			RedirectAttributes reAttrs,
+			@RequestParam(value="communityNo", required=false, defaultValue="0")int communityNo) {
+		myPageService.deleteMyPagePost(communityNo);
+//		reAttrs.addAttribute("pageNum", pageNum);
+		return "redirect:myPagePost";
 	}
 	
 	@RequestMapping("/blockList")
@@ -92,17 +118,14 @@ public class MyPageController {
 	
 	@RequestMapping("/userProfile")
 	public String userProfile(Model model, 
-//			@RequestParam(value = "userId", required = false, defaultValue = "memberId02")String userId,
-			@RequestParam(value = "userId", required = false, defaultValue = "null")String userId) {
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId) {
 		Member user = myPageService.getMember(userId);
+		int myPagePostCount = myPageDao.myPagePostCount(userId);
+		int myPageCommunityCount = myPageDao.myPageCommunityCount(userId);
 		model.addAttribute("user", user);
+		model.addAttribute("myPagePostCount", myPagePostCount);
+		model.addAttribute("myPageCommunityCount", myPageCommunityCount);
 		return "forward:WEB-INF/views/mypage/userProfile.jsp";
-	}
-	
-	@RequestMapping("/wing")
-	public String wing() {
-		
-		return "wing";
 	}
 
 }

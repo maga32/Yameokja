@@ -24,7 +24,7 @@
 		WHERE member_id = #{userId}
 	</select>
 	
-	<select id="myPostList" resultType="Post" >
+	<select id="myPagePost" resultType="Post" >
 		SELECT
 					post_no as postNo,
 					post_title as postTitle,
@@ -40,15 +40,54 @@
 					post_star as postStar,
 					post_up_count as postUpCount,
 					post_up_list as postUpList,
-					member_id as memberId
+					member_id as memberId,
+					store_no as storeNo
 		FROM post
 		WHERE member_id = #{userId}
+		AND post_is_post = 1
 		ORDER BY post_no DESC
 		LIMIT #{startRow}, #{num}
 	</select>
 	
-	<select id="getPostListCount" resultType="int">
-		SELECT count(post_no) FROM post WHERE member_id = #{userId}
+	<select id="myPagePostCount" resultType="int">
+		SELECT count(post_no) FROM post 
+		WHERE member_id = #{userId}
+		AND post_is_post = 1
+	</select>
+	
+	<delete id="deleteMyPagePost">
+		DELETE FROM post WHERE post_no = #{ postNo }
+	</delete>
+	
+	<select id="myPageReply" resultType="Post" >
+		SELECT
+					post_no as postNo,
+					post_title as postTitle,
+					post_content as postContent,
+					post_read_count as postReadCount,
+					post_file1 as postFile1,
+					post_file2 as postFile2,
+					post_file3 as postFile3,
+					post_file4 as postFile4,
+					post_file5 as postFile5,
+					post_reg_date as postRegDate,
+					post_is_post as postIsPost,
+					post_star as postStar,
+					post_up_count as postUpCount,
+					post_up_list as postUpList,
+					member_id as memberId,
+					store_no as storeNo
+		FROM post
+		WHERE member_id = #{userId}
+		AND post_is_post = 0
+		ORDER BY post_no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<select id="myPageReplyCount" resultType="int">
+		SELECT count(post_no) FROM post 
+		WHERE member_id = #{userId}
+		AND post_is_post = 0
 	</select>
 
 	<select id="myPageCommunity" resultType="Community" resultMap="CommunityResultMap">
@@ -56,19 +95,18 @@
 		FROM community
 		WHERE member_id = #{userId}
 		ORDER BY community_no DESC
-		LIMIT #{startRow}, #{num}
-		
+		LIMIT #{startRow}, #{num}		
 	</select>
 	
-	<select id="getCommunityListCount" resultType="int">
-		SELECT count(community_no) FROM community WHERE member_id = #{memberId}
+	<select id="myPageCommunityCount" resultType="int">
+		SELECT count(community_no) FROM community WHERE member_id = #{userId}
 	</select>
 	
-	<delete id="deletePost">
-		DELETE FROM post WHERE post_no = #{ postNo }
+	<delete id="deleteMyPageCommunity">
+		DELETE FROM community WHERE community_no = #{ communityNo }
 	</delete>
 	
-<resultMap id="CommunityResultMap" type="Community">
+	<resultMap id="CommunityResultMap" type="Community">
 		<id property="communityNo" column="community_no" />
 		<result property="memberId" column="member_id" />
 		<result property="memberNickname" column="member_nickname" />

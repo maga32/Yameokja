@@ -1,6 +1,5 @@
 package com.project.yameokja.dao.report;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ public class ReportDaoImpl implements ReportDao {
 	// 신고 목록 조회
 	@Override
 
-	public List<Report> reportList(int categoryNo, String reportPunishCheck, String type, String keyword) {
+	public List<Report> reportList(String userId, int categoryNo, String reportPunishCheck, String type, String keyword, int startRow, int num) {
 
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -36,9 +35,11 @@ public class ReportDaoImpl implements ReportDao {
 		map.put("reportPunishCheck", reportPunishCheck);
 		map.put("type", type);
 		map.put("keyword", keyword);
-		//map.put("pageNum", pageNum);
+		map.put("startRow", startRow);
+		map.put("num", num);
+		map.put("userId", userId);
 		
-		System.out.println("dao - categoryNo : " + categoryNo + ", reportPunishCheck : " + reportPunishCheck + ", type : " + type + ", keyword : " + keyword);
+		System.out.println("dao - userId : " + userId +"categoryNo : " + categoryNo + ", reportPunishCheck : " + reportPunishCheck + ", type : " + type + ", keyword : " + keyword);
 		
 		return sqlSession.selectList(NAME_SPACE + ".reportList", map);
 	}
@@ -46,13 +47,14 @@ public class ReportDaoImpl implements ReportDao {
 	
 	// 신고목록 수 조회
 	@Override
-	public int reportCount(int categoryNo, String reportPunishCheck, String type, String keyword) {
+	public int reportCount(String userId, int categoryNo, String reportPunishCheck, String type, String keyword) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("categoryNo", categoryNo);
 		map.put("reportPunishCheck", reportPunishCheck);
 		map.put("type", type);
 		map.put("keyword", keyword);
+		map.put("userId", userId);
 		
 		return sqlSession.selectOne(NAME_SPACE + ".reportCount", map);
 	}
@@ -64,8 +66,13 @@ public class ReportDaoImpl implements ReportDao {
 	}
 
 	@Override
-	public void reportUpdate(int reportNo) {
-		sqlSession.update(NAME_SPACE+ ".reportUpdate", reportNo);
+	public void reportUpdate(Report report) {
+		sqlSession.update(NAME_SPACE+ ".reportUpdate", report);
+	}
+
+	@Override
+	public void deleteReport(int reportNo) {
+		sqlSession.delete(NAME_SPACE+ ".deleteReport", reportNo);
 	}
 	
 }

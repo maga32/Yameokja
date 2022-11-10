@@ -83,7 +83,7 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate"><fmt:formatDate value="${ p.communityRegDate }" pattern="yyyy-MM-dd" /></div>
 							</div>
 							<div class="col-3">
 								<div class="row  alignIitems height">

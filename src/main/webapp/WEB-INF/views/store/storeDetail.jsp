@@ -1,21 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
+<script src="resources/js/store.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>	
 <article>
+
 <div class="row py-3">
-	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${ store.storeNo }">
-		<input type="hidden" name="categoryNo" value="${ store.categoryNo }">
-	</form>
+		<!-- 히든 영역 -->
+		<input type="hidden" id="detailCheck" value="true">
+		<input type="hidden" id="memberId" value="${sessionScope.memberId}">
+		<input type="hidden" id="storeNo" name="storeNo" value="${ store.storeNo }">
+		<input type="hidden" id="categoryNo" value="${ store.categoryNo }">
+		<!-- 히든 영역 end-->
+		
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
+	
 <!-- 	store info start -->
 	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
-				<div class="col-12 fs-3 fw-semibold text-secondary">${store.storeName }</div>
+				<div class="col-12 fs-4 fw-semibold text-secondary" id="storeName">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
@@ -30,9 +39,19 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
+				
+				
+				<input type="hidden" id="storeLatitude" value="${store.storeLatitude }">
+				<input type="hidden" id="storeLongitude" value="${store.storeLongitude }">
+							
+				
+				<!-- 지도 영역 -->
+				<div class="col border rounded-3 p-1 m-1">
+					<div id="map" style="height:100%;"></div>
+				</div>	
+				<!-- 지도 영역 end-->	
 			</div>
 			</div>
 		</div>
@@ -69,8 +88,24 @@
 				<div class="row">
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-						<i class="fa fa-link" aria-hidden="true"></i>
+					
+					<!-- 11.10 머지날 삭제 DIV -->
+						<div>
+							${userBookmarks}
+							<br>
+							${store.storeNo}
+						</div>
+					<!--  -->
+					<c:if test = "${fn:contains(userBookmarks, store.storeNo)}">
+						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+					</c:if>
+					<c:if test = "${!fn:contains(userBookmarks, store.storeNo)}">
+						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+					</c:if>
+						
+						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>
 						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
 					</div>
 				</div>
@@ -78,9 +113,10 @@
 		</div>
 	</div>
 <!-- 	store info end -->
+
 	<div class="text-center col-12 mt-3">
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2">맛집 리뷰</span>
-		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="#">별점 리뷰</a></span> 
+		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
 	</div>
 
 <!-- 	review start -->	
@@ -99,9 +135,8 @@
 					<div class="col">${ p.postRegDate }</div>
 				</div>
 				<div class="col-5 p-0 m-0">
-					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }postReadCount?</div>
-					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }postUpCount?</div>
-					<div class="col text-end"><i class="fa fa-bell" aria-hidden="true"></i></div>
+					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }</div>
+					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }</div>
 				</div>
 			</div>
 			<div class="row border-top py-4 m-1">
@@ -136,12 +171,12 @@
 				<div class="col-3 mx-2">
 					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
 				</div>
-				<div class="col-6 postContent text-start mx-2">
+				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
 						<a href="#">${ p.postTitle }</a>
 					</div>
-					<div class="" id="postNo">
-						<a href="#">postNo=${ p.postNo }</a>
+					<div class="">
+						<a href="#">${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -152,14 +187,6 @@
 					</div>
 					<div class="">
 						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
-					</div>
-				</div>
-				<div class="upAndDel col-3">
-					<div class="updateButton">
-						프사
-					</div>
-					<div class="deleteButton" id="deleteButton">
-						${ p.memberNickname }
 					</div>
 				</div>
 			</div>
@@ -170,14 +197,15 @@
 	<c:forEach var="p" items="${ bestThreePost }">
 			<div class="postFrame border text-center py-2 rounded col-12 mb-2">
 				<div class="col-3 mx-2">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+					<a href="#"><img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+					</a>
 				</div>
-				<div class="col-6 postContent text-start mx-2">
+				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
 						<a href="#">${ p.postTitle }</a>
 					</div>
-					<div class="" id="postNo">
-						<a href="#">postNo=${ p.postNo }</a>
+					<div class="">
+						<a href="#">${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -190,14 +218,6 @@
 						<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }
 					</div>
 				</div>
-				<div class="upAndDel col-3">
-					<div class="updateButton">
-						프사
-					</div>
-					<div class="deleteButton" id="deleteButton">
-						${ p.memberNickname }
-					</div>
-				</div>
 			</div>
 	</c:forEach>
 	</c:if>					
@@ -205,8 +225,8 @@
 	</div>
 	<div class="row text-end">
 		<div class="col-12 py-3">
-			<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
-			<div class="d-inline-block storeDetailPostButton text-end"><a href="#" class="py-1 px-3">리뷰 전체보기</a></div>
+			<div class="d-inline-block storeWhiteFormButton text-start"><a href="postWriteForm?storeNo=${ store.storeNo }" class="py-1 px-3">글 쓰기</a></div>
+			<div class="d-inline-block storeDetailPostButton text-end"><a href="storeDetailList?storeNo=${ store.storeNo }" class="py-1 px-3">리뷰 전체보기</a></div>
 			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
 		</div>
 	</div>

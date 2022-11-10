@@ -68,6 +68,11 @@
 						</div>
 					</div>
 				</c:forEach>
+				<c:if test="${ empty chats }">
+					<div class="p-5 fs-3 text-center">
+						채팅목록이 없습니다.
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</body>

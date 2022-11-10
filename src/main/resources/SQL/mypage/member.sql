@@ -77,4 +77,9 @@ INSERT INTO member (member_id, member_name, member_photo, member_nickname, membe
 COMMIT;
 
 
-SELECT * FROM member;
+SELECT * FROM member ;
+
+UPDATE member
+	SET member_bookmarks =
+		CONCAT(member_bookmarks, ',10')
+	WHERE member_id = "memberId01";
