@@ -64,6 +64,7 @@
 				<!-- 지도 영역 end-->
 	
 			</div>
+			
 			</div>
 		</div>
 		<div class="row text-start">
@@ -117,35 +118,33 @@
 <!-- 	review start -->	
 	<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 	<c:if test="${ not empty bestOnePost }">
-	<c:forEach var="p" items="${ bestOnePost }">	
 		<div class="border text-start p-2 rounded col-12 mb-2">
 			<div class="col-12 fw-bold fs-5 text-secondary">${ store.storeName }</div>
-			<div class="col-12 fw-bold fs-3 text-secondary"><a href="#">[BEST]${ p.postTitle }</a></div>
+			<div class="col-12 fw-bold fs-3 text-secondary"><a href="storeDetailContent?storeNo=${ store.storeNo}&postNo=${ bestOnePost.postNo }">[BEST] ${ bestOnePost.postTitle }</a></div>
 			<div class="row my-2 mx-0 justify-content-center">
 				<div class="col-2 p-0 m-0">
-					<img src="https://picsum.photos/200" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
+					<img src="/yameokja/resources/IMG/member/${ bestMemberPhoto }" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
 				</div>
 				<div class="col-5 p-2 m-0">
-					<div class="col">${ p.memberNickname }</div>
-					<div class="col">${ p.postRegDate }</div>
+					<div class="col">${ bestOnePost.memberNickname }</div>
+					<div class="col">${ bestOnePost.postRegDate }</div>
 				</div>
 				<div class="col-5 p-0 m-0">
-					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postUpCount }</div>
-					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ p.postReadCount }</div>
+					<div class="col"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;&nbsp;${ bestOnePost.postUpCount }</div>
+					<div class="col"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ bestOnePost.postReadCount }</div>
 				</div>
 			</div>
 			<div class="row border-top py-4 m-1">
 				<div class="col-5">
-					<img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="...">
+					<img src="/yameokja/resources/IMG/post/${ bestOnePost.postFile1 }" class="img-thumbnail rounded float-start" alt="...">
 				</div>
-				<div class="col-7">${ p.postContent }</div>
+				<div class="col-7">${ bestOnePost.postContent }</div>
 			</div>
 			<div class="col-12 text-end">
 				<input type="button" class="updateButton text-secondary bg-white" value="수정">
 				<input type="button" class="deleteButton text-secondary border-start border-3 bg-white" value="삭제">
 			</div>
 		</div>
-		</c:forEach>
 	</c:if>
 	<c:if test="${ empty bestOnePost }">
 		<div class="col-12 text-center">아직 작성된 글이 없습니다.</div>
@@ -159,11 +158,12 @@
 	<c:forEach var="p" items="${ bestTwoPost }">
 			<div class="postFrame border text-center py-2 rounded col-12 mb-2">
 				<div class="col-3 mx-2">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+						<a href="#"><img src="/yameokja/resources/IMG/post/${ p.postFile1 }" class="img-thumbnail rounded float-start" alt="...">
+					</a>
 				</div>
 				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
-						<a href="#">${ p.postTitle }</a>
+						<a href="storeDetailContent?storeNo=${ store.storeNo}&postNo=${ p.postNo }">${ p.postTitle }</a>
 					</div>
 					<div class="">
 						<a href="#">${ p.memberNickname }</a>
@@ -187,12 +187,12 @@
 	<c:forEach var="p" items="${ bestThreePost }">
 			<div class="postFrame border text-center py-2 rounded col-12 mb-2">
 				<div class="col-3 mx-2">
-					<a href="#"><img src="resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
+					<a href="#"><img src="/yameokja/resources/IMG/post/${ p.postFile1 }" class="img-thumbnail rounded float-start" alt="...">
 					</a>
 				</div>
 				<div class="col-9 postContent text-start mx-2">
 					<div class="fs-3 fw-bold">
-						<a href="#">${ p.postTitle }</a>
+						<a href="storeDetailContent?storeNo=${ store.storeNo}&postNo=${ p.postNo }">${ p.postTitle }</a>
 					</div>
 					<div class="">
 						<a href="#">${ p.memberNickname }</a>

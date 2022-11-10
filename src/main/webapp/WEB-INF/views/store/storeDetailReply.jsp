@@ -4,11 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="resources/js/store.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
 
-	<form name="storeDetailForm" id="storeDetailForm">
+	<form name="storeDetailReply" id="storeDetailReply" action="storeDetailReply">
 		<input type="hidden" name="storeNo" value="${store.storeNo }">
 	</form>
 	
@@ -35,20 +36,21 @@
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1">
-				<!-- 지도 영역 -->
+				
+					<!-- 지도 영역 -->
 					<div id="map" style="height:100%;"></div>
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
 						<script>
 							var container = document.getElementById('map');
 							var options = {
-								center: new kakao.maps.LatLng(35.1388113, 129.061905),
+								center: new kakao.maps.LatLng(35.8189345, 128.516267),
 								level: 2
 							};
 					
 							var map = new kakao.maps.Map(container, options);
 							
 							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(35.1388113, 129.061905), // 마커의 좌표
+							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
 							    map: map // 마커를 표시할 지도 객체
 							});
 							
@@ -59,8 +61,14 @@
 								window.open('https://map.kakao.com/link/search/스테이블모먼트')
 							});
 						</script>
-				<!-- 지도 영역 end-->	
+				<!-- 지도 영역 end-->
+	
 			</div>
+				
+				</div>
+						
+			</div>
+			
 			</div>
 		</div>
 		<div class="row text-start">
@@ -105,125 +113,170 @@
 		</div>
 	</div>
 	<!-- 	store info end -->
-						
-						<div class="text-center col-12 mt-3">
-							<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetail?storeNo=${ store.storeNo }">맛집 리뷰</a></span>
-							<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
-						</div>
-						
-						<div class="row justify-content-center border rounded mt-1">
-						
-							<div class="row justify-content-center">
+<!-- 	storeDetailHeader start -->
+	<div class="text-center col-12 mt-3">
+		<span class="starListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetail?storeNo=${ store.storeNo }">맛집 리뷰</a></span>
+		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
+	</div>
+<!-- 	storeDetailHeader end -->	
+					
+					
+<!-- 	postList 시작 -->
+			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
+			
+			<form class="row m-0 d-flex align-items-center border text-center py-2 rounded mb-2" action="storeDetailReplyProcess"
+			 id="storeDatailReply" name="storeDatailReply" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="storeNo" value="${ store.storeNo }">
+				<input type="hidden" id="postStar" name="postStar" value="">
+				
+				<div class="col-12 text-secondary text-start">
+				        <div class="fs-3 fw-bold text-start m-0 p-0" id="postStarSelect" style="direction:rtl;">별점 리뷰 작성
+				        <br>
+					        <input type="radio" name="rating" value="5" id="rate5">
+					        <label for="rate5"><i class="fa fa-star" aria-hidden="true"></i></label>
+					        
+					        <input type="radio" name="rating" value="4" id="rate4">
+					        <label for="rate4"><i class="fa fa-star" aria-hidden="true"></i></label>
+					        
+					        <input type="radio" name="rating" value="3" id="rate3">
+					        <label for="rate3"><i class="fa fa-star" aria-hidden="true"></i></label>
+					        
+					         <input type="radio" name="rating" value="2" id="rate2">
+					         <label for="rate2"><i class="fa fa-star" aria-hidden="true"></i></label>
+					       
+					        <input type="radio" name="rating" value="1" id="rate1">
+					        <label for="rate1"><i class="fa fa-star" aria-hidden="true"></i></label>
+					        
+				    </div>
+					| <input type="file" name="postFile1" size="70" id="postFile1" maxlength="50" />
+				
+				
+				</div>
+				
+				<div class="row m-0 p-0">
+					<div class="col-10 border-end">
+						<textarea class="form-control" name="postContent" placeholder="댓글을 입력하는 곳입니다">${ postContent }</textarea>
+					</div>
+					<div class="col-2 border-start d-flex">
+						<button class="col-12 btn btn-outline-secondary" type="submit">입력</button>
+					</div>
+				</div>
+			</form>
 
-								<div class="col-md-12">
-									<form name="replyWriteForm" id="replyWriteForm">
-										<input type="hidden" name="bbsNo" value="${ post.postNo }"/>
-										<input type="hidden" name="replyWriter" value="${ sessionScope.member.id }" />
-									<h5 class="text-start">별점리뷰 작성</h5>	
-									<div class="row">
-									
-										<div class="col-md-10">
-											<textarea style="width:100%; height:100%;"
-											name="postReply" id="postReply"></textarea>
-										</div>
+				<c:if test="${ not empty rList }">
+					<c:forEach var="p" items="${ rList }">
+						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
+							<div class="col-3 px-2">
+								<a href="#"> <img src="resources/IMG/post/${ p.postFile1 }"
+									class="img-thumbnail rounded" alt="...">
+								</a>
+							</div>
+
+							<div class="postTitle text-start col-6 px-2">
+								<input type="hidden" name="storeNo" value="${ p.storeNo }" />
+								<input type="hidden" name="postNo" value="${ p.postNo }" />
+
+									<div class="fs-6">
 										
-										<div class="col-md-2">
-											<button class="btn btn-outline-secondary" 
-											style="width:100%; height:100%;" name="postReplyBtn" id="postReplyBtn">작성</button>
-										</div>
+										<span class="py-2">${ p.memberNickname }</span><br>
+										<span class="py-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										<fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd" /></span>
 									</div>
-									</form>
-									
-									<div class="row border justify-content-center my-3">
-									<c:if test="${not empty rList }">
-										<c:forEach var="r" items="${ rList }">
-											<div class="row">
-											
-												<div class="col-3 align-self-center">
-												
-													<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
-												
-												</div>
-												
-												<div class="col-9">
-												
-													<div class="row">
-													
-													<div class="col-2 align-self-center">
-														<img src="https://picsum.photos/55" class="img-fluid rounded-circle float-start" alt="...">
-													</div>
-													
-													<div class="col-10 text-center">
-													
-														<div class="row">
-															<div class="col-9 align-self-center"><span>${ r.memberNickname }</span></div>
-															<div class="col-3 text-end"><p><a href="#">delete</a></p></div>
-														</div>
-														<span class=""><fmt:formatDate value="${ r.postRegDate }" pattern="yyyy-MM-dd"/></span>
-													</div>
-													
-													<div class="row">
-													<span class="text-start">
-														<c:if test="${ r.postStar == 5 }">
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-														</c:if>
-														<c:if test="${ r.postStar == 4 }">
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-														</c:if>
-														<c:if test="${ r.postStar == 3 }">
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-														</c:if>
-														<c:if test="${ r.postStar == 2 }">
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-														</c:if>
-														<c:if test="${ r.postStar == 1 }">
-															<i class="fa fa-star text-warning" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-															<i class="fa fa-star-o" aria-hidden="true"></i>
-														</c:if>
-													</span>
-													<p class="text-start">${ r.postContent }</p>
-														</div>
-													</div>
-											
-													</div>
-													</div>
-												</c:forEach>
-											</c:if>
-											<c:if test="${empty rList }">
-												<div class="row align-self-center border-none">
-													<p class="text-center">작성된 댓글이 없습니다.</p>
-												</div>
-											</c:if>
-											</div>
-											
-											</div>	
-											
-																
+									<div class="fs-5 my-2">
+										<c:if test="${p.postStar == 5 }">
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${p.postStar == 4}">
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${p.postStar == 3 }">
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${p.postStar == 2 }">
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+										</c:if>
+										<c:if test="${p.postStar == 1 }">
+											<i class="fa fa-star text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+											<i class="fa fa-star-o text-warning" aria-hidden="true"></i>
+										</c:if>
+										
 									</div>
-									
+									<div class="fs-5 text-secondary mt-3">
+										 ${ p.postContent }
+									</div>
+							</div>
+
+							<div class="col-3 text-end pe-3">
+								<div class="deleteButton" id="deleteButton">
+									<a href="deleteMyPagePost?postNo=${p.postNo}">
+										<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+									</a>
 								</div>
 							</div>
-		
-
-						</div>		
-	
+						</div>
+					</c:forEach>
+					
+					<!-- 페이징 -->
+		       	<div class="row text-end justify-content-center px-3 my-2">
+		       		<div class="col-12">
+		       			<c:if test="${ listCount > 0 }">
+		       				<c:if test="${ startPage > 10 }">
+		       					<div class="previousPage inlineBlock">
+									<a href="storeDetailReply?storeNo=${ storeNo }&pageNum=${i}">이전</a>
+								</div>
+		       				</c:if>
+		       				<div class="pageNumber inlineBlock">
+							<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+								<c:if test="${ i == currentPage }">
+									<div class=" inlineBlock" style="color: #F58500; font-weight: 600">&nbsp;${ i }&nbsp;</div>
+								</c:if>
+								<c:if test="${ i != currentPage }">
+									<div class="inlineBlock">
+										<a href="storeDetailReply?storeNo=${ storeNo }&pageNum=${i}"
+										class="text-decoration-none text-secondary">&nbsp;${ i }&nbsp;</a>
+									</div>
+								</c:if>
+							</c:forEach>
+							</div>
+		       					<c:if test="${ endPage < pageCount }">
+									<div class="nextPage inlineBlock=">
+										<a href="storeDetailReply?storeNo=${ storeNo }&pageNum=${i}">다음</a>
+									</div>
+							</c:if>
+		       			</c:if>
+		       		</div>
+		       	</div>
+	       		<!-- 페이징 끝 -->
+	       		
+	       		</c:if>
+	       		<!-- 댓글 리스트 0 -->
+				
+				<!-- 댓글 리스트 X -->
+				<c:if test="${ empty rList }">
+					<div class="col-12 text-center"> 작성된 댓글이 없습니다.</div>
+				</c:if>
+			</div>
+			
+<!-- 	postList 끝 -->
+		</div>
+</div>	
 </article>

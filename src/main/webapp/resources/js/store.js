@@ -17,7 +17,23 @@ $(function(){
 		}
 			
 	});
-
+	
+	// 별점입력 시작-----------------------------------------
+	$("#rate5").click(function(){
+		$("#postStar").val("5");
+	});
+	$("#rate4").click(function(){
+		$("#postStar").val("4");
+	});
+	$("#rate3").click(function(){
+		$("#postStar").val("3");
+	});
+	$("#rate2").click(function(){
+		$("#postStar").val("2");
+	});
+	$("#rate1").click(function(){
+		$("#postStar").val("1");
+	});
 
 // 가게 정보 작성할 때 회원이 아닐 시
 	$("#storeWriteForm").click(function() {

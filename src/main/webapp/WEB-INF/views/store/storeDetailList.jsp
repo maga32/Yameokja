@@ -7,9 +7,9 @@
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
-	<form name="storeDetailForm" id="storeDetailForm">
+	<form name="storeDetailForm" id="storeDetailForm" action="storeDetailList">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
-	</form>
+	
 	
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
@@ -119,11 +119,12 @@
 		<div class="col-2"></div>
 		<div class="col-2"></div>
 		<div class="col-6 text-end px-2 m-0">
-			<button class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pNo">기본순</button>
-			<button class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pRegDate">최신순</button>
-			<button class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pUpCount">추천순</button>
+			<button type="submit" class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pNo">기본순</button>
+			<button type="submit" class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pRegDate">최신순</button>
+			<button type="submit" class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pUpCount">추천순</button>
 		</div>
 	</div>
+	
 	<c:if test="${ not empty pList }">
 		
 		<c:forEach var="p" items="${ pList }">
@@ -153,6 +154,41 @@
 					</div>
 			</div>
 		</c:forEach>
+			
+		<!-- 페이징 -->
+		       	<div class="row text-end justify-content-center px-3 my-2">
+		       		<div class="col-12">
+		       			<c:if test="${ listCount > 0 }">
+		       				<c:if test="${ startPage > 10 }">
+		       					<div class="previousPage inlineBlock">
+									<a href="storeDetailList?storeNo=${ storeNo }&pageNum=${i}">이전</a>
+								</div>
+		       				</c:if>
+		       				<div class="pageNumber inlineBlock">
+							<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+								<c:if test="${ i == currentPage }">
+									<div class=" inlineBlock" style="color: #F58500; font-weight: 600">&nbsp;${ i }&nbsp;</div>
+								</c:if>
+								<c:if test="${ i != currentPage }">
+									<div class="inlineBlock">
+										<a href="storeDetailList?storeNo=${ storeNo }&pageNum=${i}"
+										class="text-decoration-none text-secondary">&nbsp;${ i }&nbsp;</a>
+									</div>
+								</c:if>
+							</c:forEach>
+							</div>
+		       					<c:if test="${ endPage < pageCount }">
+									<div class="nextPage inlineBlock=">
+										<a href="storeDetailList?storeNo=${ storeNo }&pageNum=${i}">다음</a>
+									</div>
+							</c:if>
+		       			</c:if>
+		       		</div>
+		       	</div>
+	       		<!-- 페이징 끝 -->
+		
+		
+		
 	</c:if>
 	<c:if test="${ empty pList }">
 		<div class="row rounded-1 m-1 p-1">
@@ -172,5 +208,6 @@
 
 <!-- 	fullFrame end-->			
 	</div>
+	</form>
 </div>
 </article>

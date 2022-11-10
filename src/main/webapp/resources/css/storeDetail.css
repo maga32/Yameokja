@@ -136,6 +136,38 @@ a:active {color: 4aa5ff;}
 	color: #ffffff;
 	background-color: #FFB966;
 }
+
+.postStar fieldset {
+	display: inline-block;
+    border: 0;
+}
+
+#postStarSelect fieldset {
+	display: inline-block;
+    border: 0;
+    direction: rtl;
+}
+
+#storeDatailReply input[type=radio]{
+    display: none;
+}
+
+#storeDatailReply label{
+    font-size: 24px; /* 크기 */
+    color: transparent; /* 기존 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /*미선택시 색상 */ 
+}
+
+#storeDatailReply label:hover{
+    text-shadow: 0 0 0 #ffc107; /* 마우스 호버 */
+}
+#storeDatailReply label:hover ~ label{
+    text-shadow: 0 0 0 #ffc107; /* 마우스 호버 뒤에 따라오는 별 */
+}
+#storeDatailReply input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 #ffc107; /* 마우스 클릭 체크 */
+}
+
 .starListbutton a:link {color: gray;}
 .starListbutton a:visited {color: gray;}
 .starListbutton a:hover {color: #4aa5ff;}

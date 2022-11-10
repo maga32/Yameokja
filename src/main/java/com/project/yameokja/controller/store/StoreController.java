@@ -20,14 +20,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
+import com.project.yameokja.service.member.MemberService;
 import com.project.yameokja.service.store.PostService;
 import com.project.yameokja.service.store.StoreService;
 
 @Controller
 public class StoreController {
 
+	@Autowired
+	private MemberService memberService;
+	
 	@Autowired
 	private StoreService storeService;
 	
@@ -42,6 +47,8 @@ public class StoreController {
 	}
 	
 	private final static String DEFAULT_PATH = "/resources/IMG/store";
+	
+	private final static String DEFAULT_PATH2 = "/resources/IMG/post";
 	
 	// 가게 리스트
 	@RequestMapping("/storeList")
@@ -74,14 +81,21 @@ public class StoreController {
 	// 가게 상세 and 리뷰 리스트
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo,
+			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 			@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
 
 		Store store = storeService.getStore(storeNo);
-		List<Post> bestOnePost = postService.bestOnePost(storeNo);
+		Post bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
 		
-		List<Post> pList = postService.postList(storeNo, detailOrderBy);
+		if(bestOnePost != null) {
+			Member member = memberService.getMember(bestOnePost.getMemberId());
+			String bestMemberPhoto = member.getMemberPhoto();
+			model.addAttribute("bestMemberPhoto", bestMemberPhoto);
+		}
+		
+		Map<String,Object> pList = postService.postList(storeNo,pageNum, detailOrderBy); 
 
 		model.addAttribute("store", store);
 		model.addAttribute("bestOnePost", bestOnePost);
@@ -96,26 +110,32 @@ public class StoreController {
 	// 가게 상세 and 리뷰리스트
 		@RequestMapping("/storeDetailList")
 		public String storeDetailList(Model model, int storeNo,
+				@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 				@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
 			
 			Store store = storeService.getStore(storeNo);
 			model.addAttribute("store", store);
 			
-			List<Post> pList = postService.postList(storeNo, detailOrderBy); 
-			model.addAttribute("pList", pList);
+			Map<String,Object> list = postService.postList(storeNo, pageNum, detailOrderBy); 
+			
+			model.addAllAttributes(list);
+			model.addAttribute("pageNum", pageNum);
+			model.addAttribute("detailOrderBy", detailOrderBy);
 			
 			return "store/storeDetailList";
 		}
 	
 	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
-	public String StoreDetailReply(Model model, int storeNo) {
+	public String StoreDetailReply(Model model, int storeNo,
+			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
 		
 		Store store = storeService.getStore(storeNo);
 		model.addAttribute("store", store);
 		
-		List<Post> rList = postService.postListReply(storeNo); 
-		model.addAttribute("rList", rList);
+		Map<String, Object> rList = postService.postListReply(storeNo, pageNum); 
+		model.addAllAttributes(rList);
+		
 		
 		return "store/storeDetailReply";
 	}
@@ -130,6 +150,11 @@ public class StoreController {
 		Post post = postService.getPost(postNo);
 		model.addAttribute("post", post);
 		
+		Member member = memberService.getMember(post.getMemberId());
+		String memberPhoto = member.getMemberPhoto();
+		model.addAttribute("memberPhoto", memberPhoto);
+		
+		
 		return "store/storeDetailContent";
 	}
 	
@@ -141,10 +166,9 @@ public class StoreController {
 		return "store/storeWriteForm";
 	}
 
-	
 	 // 가게 정보 글쓰기 프로세스
 	@RequestMapping(value="/storeWriteProcess", method=RequestMethod.POST)
-	public String insertStoreProcess(String memberId, String storeName, 
+	public String insertStoreProcess(String memberId,String memberNickname, String storeName, 
 			String phone1, String phone2, String phone3, String storeLatitude,
 			String storeLongitude,String address2, String address1, String storeTime,
 			String storeBookmarks, String storeDayOff, String storeParking, int categoryNo,
@@ -161,6 +185,7 @@ public class StoreController {
 		Store store =  new Store();
 		
 		memberId = (String)session.getAttribute("memberId");
+		memberNickname = (String)session.getAttribute("memberNickname");
 		
 		store.setMemberId(memberId);
 		store.setStoreName(storeName);
@@ -174,6 +199,7 @@ public class StoreController {
 		store.setStoreParking(storeParking);
 		
 		System.out.println("store_name :" + storeName);
+		
 		System.out.println("글작성하는 친구 : " + memberId);
 		
 		if(!multipartFile.isEmpty()) {
@@ -210,6 +236,52 @@ public class StoreController {
 		
 		return "redirect:storeList"; 
 	 }
+	
+	
+	@RequestMapping(value="/storeDetailReplyProcess", method=RequestMethod.POST)
+	public String addReply(String postContent, int postStar, int storeNo,
+			@RequestParam(value="postFile1", required=false) MultipartFile multipartFile,
+			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
+		
+		System.out.println("댓글 작성 확인용");
+		
+		Post post =  new Post();
+		
+		String memberId = (String)session.getAttribute("memberId");
+		String memberNickname = (String)session.getAttribute("memberNickname");
+		
+		System.out.println("댓글 작성하는 아이디 / 닉네임 : " + memberId + " / " + memberNickname);
+		
+		post.setMemberId(memberId);
+		post.setMemberNickname(memberNickname);
+		post.setPostContent(postContent);
+		post.setPostStar(postStar);
+		post.setStoreNo(storeNo);
+		
+		if(!multipartFile.isEmpty()) {
+			
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH2);
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
 
+			multipartFile.transferTo(file);
+			post.setPostFile1(saveName);
+			
+			System.out.println("댓글 이미지 :" + saveName);
+		}
+		
+		postService.addReply(post);
+		
+		return "redirect:/storeDetailReply?storeNo="+storeNo;
+	}
+	
+	@RequestMapping(value="/deleteReplyProcess")
+	public String deleteReply() {
+	
+		return null;
+	}
 	
 }
