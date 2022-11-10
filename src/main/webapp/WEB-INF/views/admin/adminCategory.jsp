@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<article>
+<article class="p-sm-2 px-4">
 	<%@ include file="adminWing.jsp" %>
 	<div class="btn-group btn-group-sm py-2">
 		<a href="adminCategory?type=store" class="btn btn${ type eq 'store' ? '' : '-outline'}-secondary" aria-current="page">스토어</a>

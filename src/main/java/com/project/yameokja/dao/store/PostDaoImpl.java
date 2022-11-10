@@ -119,7 +119,6 @@ public class PostDaoImpl implements PostDao {
 		sqlSession.delete(NAME_SPACE + ".deleteReply", postNo);
 	}
 
-
 	@Override
 	public Post bestOnePost(int storeNo) {
 		return sqlSession.selectOne(NAME_SPACE + ".bestOnePost", storeNo);

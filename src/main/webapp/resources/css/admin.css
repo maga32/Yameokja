@@ -92,7 +92,6 @@ li {
 	width: 45px;
 	height: auto;
 	right: 0;
-	z-index: 9
 }
 
 .navButton {
@@ -116,7 +115,7 @@ li {
     top: 0;
     bottom: 0;
     right: 0;
-    z-index: 500;
+    z-index: 40;
     transition: 0.3s all ease;
     transition: 0.2s all;
     padding: 0 0;
@@ -131,6 +130,7 @@ li {
 
 #rWingMask {
 	position: fixed;
+	z-index: 30;
 	top: 0;
     bottom: 0;
     right: 300px;
