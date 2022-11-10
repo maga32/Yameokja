@@ -10,15 +10,15 @@
 	<form name="postListForm" id="postListForm">
 		<input type="hidden" name="userId" value="${ user.memberId }" />
 		<input type="hidden" name="pageNum" value="${ pageNum }" />
-		<input type="hidden" name="postNo" value="${ postNo }" />
+		<input type="hidden" name="communityNo" value="${ communityNo }" />
 	</form>
 	
 	<div class="row py-2 px-0">
 		<div class="row p-0 m-0 border border-3 rounded-3">
 			<div class="col-3 p-4">				
 				<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-					src="/yameokja/resources/IMG/member/${ user.memberPhoto }">				
-				</div>
+					src="/yameokja/resources/IMG/member/${ user.memberPhoto }">
+			</div>
 			<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 				<div class="col-12">
 					<div class="fw-bold fs-2">${ user.memberNickname }님</div>
@@ -83,24 +83,34 @@
 					<img alt="communityFile" class="img-thumbnail rounded" 
 						src="/yameokja/resources/IMG/community/${ c.communityFile }">
 				</div>
-			<div class="col-6 col-md-7 col-sm-6 text-start">
-			<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
-				<a href="communityDetail?communityNo=${ c.communityNo }"> 
-					<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
-					<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
-					${ c.communityTitle }(${ c.communityReadCount })
-				</a>
-			</div>
-			<p class="text-secondary" id="communityMemberNickname">${ c.memberNickname }</p>
-			<div class="text-secondary" id="communityRegDate"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><fmt:formatDate value="${ c.communityRegDate }" pattern="yyyy-MM-dd" /></div>
-			</div>
-			<div class="col-3 col-md-2 col-sm-3 border-start border-1">
-				<div class="row">
-					<div class="col d-flex-column text-secondary">
-						<i class="fa fa-eye fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReplyCount }
+				<div class="col-6 col-md-7 col-sm-6 text-start">
+					<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
+						<a href="communityDetail?communityNo=${ c.communityNo }"> 
+							<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
+							<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
+							${ c.communityTitle }(${ c.communityReadCount })/${ c.communityNo }
+						</a>
 					</div>
+					<div class="text-secondary"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReplyCount }</div>
+					<div class="text-secondary" id="communityRegDate">
+						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						<fmt:formatDate value="${ c.communityRegDate }" pattern="yyyy-MM-dd" />
 					</div>
 				</div>
+				<c:if test="${ sessionScope.memberId == user.memberId }">
+				<div class="col-3 col-md-2 col-sm-3 text-end pe-3">
+					<div class="updateButton">
+						<a href=""><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
+					</div>
+					<div class="deleteButton" id="deleteButton">
+						<a href="deleteMyPageCommunity?communityNo=${c.communityNo}"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				</c:if>
+				<c:if test="${ sessionScope.memberId != user.memberId }">
+					<div class="col-3 col-md-2 col-sm-3 pe-3">
+					</div>
+				</c:if>
 			</div>
 		</div>
 		</c:forEach>

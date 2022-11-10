@@ -33,7 +33,6 @@ public class ReportController {
 	@Autowired
 	private MemberService memberService;
 
-	@Autowired
 	private final static String DEFAULT_PATH = "/resources/IMG/report";
 	
 	// 신고 팝업창

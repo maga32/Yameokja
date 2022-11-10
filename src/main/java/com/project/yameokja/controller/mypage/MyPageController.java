@@ -1,9 +1,6 @@
 package com.project.yameokja.controller.mypage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,25 +12,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.yameokja.dao.mypage.MyPageDao;
-import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
-import com.project.yameokja.domain.Store;
 import com.project.yameokja.service.member.MemberService;
 import com.project.yameokja.service.mypage.MyPageService;
-import com.project.yameokja.service.store.StoreService;
 
 @Controller
 public class MyPageController {
-	private static final int PAGE_SIZE = 10;
-	private static final int PAGE_GROUP = 10;
+
 	@Autowired
 	private MyPageService myPageService;
 	@Autowired
 	private MyPageDao myPageDao;
 	@Autowired
 	private MemberService memberService;
-	@Autowired
-	private StoreService storeService;
 	
 	@RequestMapping(value="/mainmain", method=RequestMethod.GET)
 	public String main() {
@@ -80,12 +71,22 @@ public class MyPageController {
 	
 	@RequestMapping(value="/deleteMyPagePost")
 	public String deleteMyPagePost(
-			RedirectAttributes reAttrs,
-			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
+			RedirectAttributes reAttrs, HttpSession session,
 			@RequestParam(value="postNo", required=false, defaultValue="0")int postNo) {
+		String memberId = (String) session.getAttribute("memberId");
 		myPageService.deleteMyPagePost(postNo);
-		reAttrs.addAttribute("userId", userId);
+		reAttrs.addAttribute("userId", memberId);
 		return "redirect:myPagePost";
+	}
+	
+	@RequestMapping(value="/deleteMyPageReply")
+	public String deleteMyPageReply(
+			RedirectAttributes reAttrs, HttpSession session,
+			@RequestParam(value="postNo", required=false, defaultValue="0")int postNo) {
+		String memberId = (String) session.getAttribute("memberId");
+		myPageService.deleteMyPagePost(postNo);
+		reAttrs.addAttribute("userId", memberId);
+		return "redirect:myPageReply";
 	}
 	
 	@RequestMapping(value="/myPageCommunity")
@@ -104,14 +105,14 @@ public class MyPageController {
 		return "mypage/myPageCommunity";
 	}
 	
-	@RequestMapping(value="/deleteMyPageCommunit")
+	@RequestMapping(value="/deleteMyPageCommunity")
 	public String deleteMyPageCommunit(
-			RedirectAttributes reAttrs,
-			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
+			RedirectAttributes reAttrs, HttpSession session,
 			@RequestParam(value="communityNo", required=false, defaultValue="0")int communityNo) {
-		myPageService.deleteMyPagePost(communityNo);
-		reAttrs.addAttribute("userId", userId);
-		return "redirect:myPagePost";
+		String memberId = (String) session.getAttribute("memberId");
+		myPageService.deleteMyPageCommunity(communityNo);
+		reAttrs.addAttribute("userId", memberId);
+		return "redirect:myPageCommunity";
 	}
 	
 	@RequestMapping("/userProfile")
