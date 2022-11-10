@@ -63,6 +63,15 @@ $(document).ready(function() {
 		$("#wing").removeClass("open");
 		$(this).css("display", "none");
 	});
+
+	$("#memberPermanenSuspension").click(function(){
+		var memberPermanenSuspensionConfirm = confirm("영구 정지 하시겠습니까?");
+		if(memberPermanenSuspensionConfirm){		
+		}else{
+		return false;
+		}
+		
+	});
 });
 
 

@@ -10,8 +10,6 @@ import com.project.yameokja.domain.Store;
 
 public interface MyPageService {
 	
-	public Member getMember(String userId);
-	
 	public Map<String, Object> myPagePost(String userId, int pageNum);
 	
 	void deleteMyPagePost(int postNo);
@@ -22,7 +20,7 @@ public interface MyPageService {
 	
 	void deleteMyPageCommunity(int communityNo);
 	
-	public List<Store> myPageStore(String memberId);
+	public Map<String, Object> myPageLike(String userId, int pageNum);
 
 }
 

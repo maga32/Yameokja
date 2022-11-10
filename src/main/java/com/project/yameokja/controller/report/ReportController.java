@@ -20,21 +20,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Report;
+import com.project.yameokja.service.member.MemberService;
 import com.project.yameokja.service.report.ReportService;
 
 @Controller
 public class ReportController {
 	
 	@Autowired
-	private ReportService reportService;
-	
-	public void setReportService(ReportService reportService) {
-		this.reportService = reportService;
-	}
+	private ReportService reportService;	
+	@Autowired
+	private MemberService memberService;
 
 	@Autowired
-	private final static String DEFAULT_PATH = "/resources/upload/";
+	private final static String DEFAULT_PATH = "/resources/IMG/report";
 	
 	// 신고 팝업창
 	@RequestMapping(value = "/reportForm")
@@ -87,9 +87,8 @@ public class ReportController {
 	@RequestMapping(value="/reportAdd", method=RequestMethod.POST)
 	public String addReport(Model model, HttpSession session, HttpServletRequest request,
 			String reportType, String reportTarget, int categoryNo, String reportContent, String reportTitle,
-			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile )
-					throws IllegalStateException, IOException 
-	{
+			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile,
+			PrintWriter out) throws IllegalStateException, IOException {
 		
 		Report report = new Report();
 		String memberId = (String) session.getAttribute("memberId");
@@ -115,7 +114,12 @@ public class ReportController {
 		}	
 		reportService.addReport(report);
 		
-		return "report/reportResultForm";
+		out.println("<script>");
+		out.println("opener.location.href='reportList';");
+		out.println("window.close();");
+		out.println("</script>");
+		
+		return null;
 	}
 	
 	@RequestMapping("/report/reportResultForm")
@@ -141,6 +145,9 @@ public class ReportController {
 		//회원이 작성한 신고글만 가져오기
 		model.addAllAttributes(reportList);
 		model.addAttribute("reportType", reportType);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("userId", userId);
 
 		return "report/reportList";
 	}
@@ -150,13 +157,13 @@ public class ReportController {
 	public String reportDetail(
 			Model model, 
 			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo
-//			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
 		Report report = reportService.getReport(reportNo);
+		Member member= memberService.getMember(report.getReportTarget());
 
 		model.addAttribute("report", report);
 		model.addAttribute("reportNo", reportNo);
-//		System.out.println(reportType);
+		model.addAttribute("member", member);
 		
 		return "report/reportDetail";
 	}
@@ -174,43 +181,51 @@ public class ReportController {
 	
 	@RequestMapping(value="/reportUpdate", method=RequestMethod.POST)
 	public String reportUpdate(
-			Model model, 
+			Model model, RedirectAttributes reAttrs, HttpSession session,
 			@RequestParam(value="reportTitle", required=false, defaultValue="")String reportTitle,
 			@RequestParam(value="reportContent", required=false, defaultValue="")String reportContent,
 			@RequestParam(value="reportTarget", required=false, defaultValue="")String reportTarget,
 			@RequestParam(value="reportType", required=false, defaultValue="")String reportType,
-//			@RequestParam(value="reportFile", required=false, defaultValue="")String reportFile,
+			@RequestParam(value="reportFile", required=false, defaultValue="")String reportFile,
 			@RequestParam(value="reportPunishContent", required=false, defaultValue="")String reportPunishContent,
 			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
 			) {
+		String memberId = (String) session.getAttribute("memberId");
 		Report report = reportService.getReport(reportNo);
 		report.setReportTitle(reportTitle);
 		report.setReportContent(reportContent);
 		report.setReportTarget(reportTarget);
 		report.setReportType(reportType);
-//		report.setReportFile(reportFile);
+		report.setReportFile(reportFile);
 		report.setReportPunishContent(reportPunishContent);
-		System.out.println("reportTitle"+reportTitle);
-		System.out.println("reportContent"+reportContent);
-		System.out.println("reportTarget"+reportTarget);
-		System.out.println("reportType"+reportType);
-		System.out.println("reportPunishContent"+reportPunishContent);
 
 		reportService.reportUpdate(report);
+		reAttrs.addAttribute("userId", memberId);
 
 		return "redirect:reportList";
 	}
 	
 	@RequestMapping(value="/deleteReport")
 	public String deleteReport(
-//			Model model, 
-			RedirectAttributes reAttrs,
+			RedirectAttributes reAttrs, HttpSession session,
 			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
-			
 			) {
+		String memberId = (String) session.getAttribute("memberId");
 		reportService.deleteReport(reportNo);
-//		reAttrs.addAttribute("pageNum", pageNum);
+		reAttrs.addAttribute("userId", memberId);
 		return "redirect:reportList";
+	}
+	
+	@RequestMapping(value="/memberPermanenSuspension")
+	public String memberPermanenSuspension(
+			RedirectAttributes reAttrs,
+			@RequestParam(value="reportNo", required=false, defaultValue="")int reportNo,
+			@RequestParam(value="reportTarget", required=false, defaultValue="")String memberId) {
+		
+		reportService.memberPermanenSuspension(memberId);
+		
+		reAttrs.addAttribute("reportNo", reportNo);
+		return "redirect:reportDetail";
 	}
 
 }

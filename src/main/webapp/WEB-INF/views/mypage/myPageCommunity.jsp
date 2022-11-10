@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/myPage.css" />
-<script type="text/javascript" src="resources/js/mypage.js"></script>
+<script type="text/javascript" src="/yameokja/resources/js/mypage.js"></script>
 <article>
 <div class="row m-0 bg-white justify-content-center">
 	<form name="postListForm" id="postListForm">
@@ -15,10 +15,10 @@
 	
 	<div class="row py-2 px-0">
 		<div class="row p-0 m-0 border border-3 rounded-3">
-			<div class="col-3 p-4">
+			<div class="col-3 p-4">				
 				<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-					src="resources/IMG/mypage/likeIMG.PNG">
-			</div>
+					src="/yameokja/resources/IMG/member/${ user.memberPhoto }">				
+				</div>
 			<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 				<div class="col-12">
 					<div class="fw-bold fs-2">${ user.memberNickname }님</div>
@@ -31,14 +31,14 @@
 			<div class="col-3 p-0 d-flex align-items-center">
 				<div class="row text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
-						<a href="#">회원정보수정</a>
+						<a href="memberUpdateForm?memberId=${ sessionScope.memberId }">회원정보수정</a>
 					</div>
 					<div class="buttons_">
-						<a href="#">회 원 탈 퇴</a>
+						<a href="memberDelete">회 원 탈 퇴</a>
 					</div>
 					<div class="buttons_">
 						<a href="#"
-							onclick='window.open("userProfile?userId=${ sessionScope.memberId }","프로필","width=500, height=600")'>나
+							onclick='window.open("userProfile?userId=${ sessionScope.memberId }","프로필","width=520, height=600")'>나
 							의 프 로 필</a>
 					</div>
 					<div class="buttons_">
@@ -57,8 +57,8 @@
 				<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
 						<a href="#"
-							onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>
-							${ user.memberNickname }의 프 로 필</a>
+							onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=520, height=600")'>
+							${ user.memberNickname }의<br>프로필 보기</a>
 					</div>
 				</div>
 			</div>
@@ -79,33 +79,25 @@
 		<c:forEach var="c" items="${ communityList }">
 		<div class=" border border-2 rounded col-12 p-2 col-md-12">
 			<div class="d-flex align-items-center row">
-			<c:if test="${ empty c.communityFile }">
 				<div class="col-3 col-md-3 col-sm-3">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG"
-						class="img-thumbnail rounded" alt="기본이미지">
+					<img alt="communityFile" class="img-thumbnail rounded" 
+						src="/yameokja/resources/IMG/community/${ p.postFile1 }">
 				</div>
-			</c:if>
-			<c:if test="${ not empty c.communityFile }">
-				<div class="col-3 col-md-3 col-sm-3">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG"
-						class="img-thumbnail rounded float-start" alt="유저가 올린 이미지">
-				</div>
-			</c:if>
 			<div class="col-6 col-md-7 col-sm-6 text-start">
 			<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
-				<a href="#"> 
+				<a href="communityDetail?communityNo=${ c.communityNo }"> 
 					<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
 					<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
-					${ c.communityTitle }제목(댓글 수)
+					${ c.communityTitle }(${ c.communityReadCount })
 				</a>
 			</div>
-			<p class="text-secondary" id="communityMemberNickname">${ c.memberNickname }<br>[임시communityNo]${ c.communityNo}</p>
+			<p class="text-secondary" id="communityMemberNickname">${ c.memberNickname }</p>
 			<div class="text-secondary" id="communityRegDate"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><fmt:formatDate value="${ c.communityRegDate }" pattern="yyyy-MM-dd" /></div>
 			</div>
 			<div class="col-3 col-md-2 col-sm-3 border-start border-1">
 				<div class="row">
 					<div class="col d-flex-column text-secondary">
-						<i class="fa fa-eye fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReadCount }
+						<i class="fa fa-eye fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReplyCount }
 					</div>
 					</div>
 				</div>
@@ -117,7 +109,7 @@
 			<div class="col-12 pe-4">
 				<c:if test="${ startPage > pageGroup }">
 					<div class="previousPage text-secondery d-inline-block">
-						<a href="myPagePost?pageNum=${ startPage - pageGroup }"><</a>
+						<a href="myPageCommunity?pageNum=${ startPage - pageGroup }&userId=${ user.memberId }"><</a>
 					</div>
 				</c:if>
 				<div class="pageNumber text-secondery d-inline-block">
@@ -127,14 +119,14 @@
 						</c:if>
 						<c:if test="${ i != currentPage }">
 							<div class=" d-inline-block">
-								<a href="myPagePost?pageNum=${ i }">&nbsp;${ i }&nbsp;</a>
+								<a href="myPageCommunity?pageNum=${ i }&userId=${ user.memberId }">&nbsp;${ i }&nbsp;</a>
 							</div>
 						</c:if>
 					</c:forEach>
 				</div>						
 				<c:if test="${ endPage < pageCount }">
 					<div class="nextPage text-secondery d-inline-block">
-						<a href="myPagePost?pageNum=${ startPage + pageGroup }">></a>
+						<a href="myPageCommunity?pageNum=${ startPage + pageGroup }&userId=${ user.memberId }">></a>
 					</div>
 				</c:if>
 			</div>
