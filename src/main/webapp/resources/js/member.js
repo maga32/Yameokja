@@ -1,7 +1,7 @@
 $(function(){
 
 	// 회원가입 필수 입력값 검사
-	$("#memberJoinForm").on("submit", function(){
+	$("#memberJoinForm").on("submit", function(){	
 		
 		var isIdCheck = $("#isIdCheck").val();
 		var passCheck = $("#passCheck").val();
@@ -9,6 +9,8 @@ $(function(){
 		var pass2 = $("#pass2").val();
 		
 		if(isIdCheck == "false"){
+			console.log('??');
+			console.log('기본');
 			alert("아이디 중복확인을 해주세요");
 			return false;
 		}
@@ -276,12 +278,12 @@ function joinFormCheck(){
 	var phone1 = $("#phone1").val();
 	var phone2 = $("#phone2").val();
 	var phone3 = $("#phone3").val();
-	var address1 = $("#address1").val();
-	var address2 = $("#address2").val();
+	var address1 = $(".address1").val();
+	var address2 = $(".address2").val();
 	var memberFavoriteCategoryCount = $("#memberFavoriteCategoryCount").val();
 	
 	var oldPass = $("#oldPass").val();
-	
+
 	if(name.length == 0){
 		alert("이름을 입력해주세요");
 		return false;
@@ -320,10 +322,3 @@ function joinFormCheck(){
 	}
 	
 }
-
-
-
-
-
-
-

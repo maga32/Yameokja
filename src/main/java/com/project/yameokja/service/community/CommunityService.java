@@ -20,21 +20,21 @@ public class CommunityService {
 	private static final int PAGE_GROUP = 10;
 	
 	// 커뮤니티 글 목록
-	public Map<String, Object> getCommunity(String type, String keyword, int pageNum, String categoryNo){
+	public Map<String, Object> getCommunity(String type, String keyword, int pageNum, String categoryNo, String location){
 		
 		int currentPage = pageNum;
 		
 		int startRow = (currentPage -1) * PAGE_SIZE;
 		int listCount = 0;
 		
-		listCount = communityListDao.getCommunityCount(type, keyword, categoryNo);
+		listCount = communityListDao.getCommunityCount(type, keyword, categoryNo, location);
 		
 		System.out.println("listCount : " + listCount + ", type : " 
 				+ type + ", keyword : " + keyword);
 		
 		if(listCount > 0) {
 			
-			List<Community> coList = communityListDao.getCommunity(startRow, PAGE_SIZE, type, keyword, categoryNo);
+			List<Community> coList = communityListDao.getCommunity(startRow, PAGE_SIZE, type, keyword, categoryNo, location);
 			
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
 			

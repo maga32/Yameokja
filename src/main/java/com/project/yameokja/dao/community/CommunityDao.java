@@ -12,10 +12,10 @@ import com.project.yameokja.domain.Community;
 public interface CommunityDao {
 	
 	// 커뮤니티 글 목록
-	public List<Community> getCommunity(int startRow, int num, String type, String keyword, String categoryNo);
+	public List<Community> getCommunity(int startRow, int num, String type, String keyword, String categoryNo, String location);
 	
 	// 커뮤니티 글 개수
-	public int getCommunityCount(String type, String keyword, String categoryNo);
+	public int getCommunityCount(String type, String keyword, String categoryNo, String location);
 	
 	// 커뮤니티 수다글 작성
 	public void addCommunity101(Community co);

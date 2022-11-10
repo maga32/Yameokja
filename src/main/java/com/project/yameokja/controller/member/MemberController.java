@@ -170,7 +170,7 @@ public class MemberController {
 		member.setMemberNickname(memberNickname);
 		member.setMemberEmail(email + "@" + domain);
 		member.setMemberMobile(phone1 + "-" + phone2 + "-" +phone3);
-		member.setMemberAddress(address1 + " " + address2);
+		member.setMemberAddress(address1 + "," + address2);
 		member.setMemberFavoriteCategory(memberFavoriteCategory);
 		
 		if(!multipartFile.isEmpty()) {

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="resources/js/formcheck.js"></script>
 <script src="resources/js/member.js"></script>
 <article>
 	<h1 class="fw-bold mt-3">회원가입</h1>
@@ -66,7 +65,7 @@
 		</div>
 		<div>
 			<div class="mt-2">* 우리동네 위치</div>
-			<select name="address1" id="address1"
+			<select name="address1" id="address1" class="address1"
 				onchange="addressChange(this)">
 				<option>선택</option>
 				<option value="서울">서울</option>
@@ -87,7 +86,7 @@
 				<option value="전남">전남</option>
 				<option value="제주">제주</option>
 				
-			</select> <select name="address2" id="address2">
+			</select> <select name="address2" id="address2" class="address2">
 				<option>선택</option>
 			</select>
 

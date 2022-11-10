@@ -13,7 +13,7 @@
 				<c:if test="${ co.categoryNo == 101 }">[수다]</c:if>
 				<c:if test="${ co.categoryNo == 102 }">[모집]</c:if>
 				 ${ co.communityTitle }
-				 (${ co.communityReplyCount })
+				 (${ co.communityReplyCount })${co.memberPhoto }
 			</div>
 		 </div>
 		 <div class=" row my-3">
