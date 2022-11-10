@@ -30,10 +30,11 @@
 		</div>	
 <!-- 			profileHeader end -->
 <!-- 			profileFrame1 start -->
-		<div class="profileFrame1  border-2 border-top border-dark row m-0">
+		<div class="profileFrame1  border-2 border-top border-dark row m-0 pt-3">
 			<div class=" d-table-cell col-4 p-0">
-				<img alt="프로필 사진" class="col-8 m-0 p-0" src="resources/IMG/mypage/likeIMG.PNG">
-			</div><div class="col-8 p-0">
+				<img alt="프로필 사진" class="col-8 m-0 p-0" src="/yameokja/resources/IMG/member/${ user.memberPhoto }">
+			</div>
+			<div class="col-8 p-0">
 				<div class="row m-0">
 					<div class="border-2 border-bottom border-dark fw-bold fs-5 col-12">좋아하는 음식 종류 BEST 3</div>
 					<div class="row pt-2 m-0 text-center">

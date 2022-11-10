@@ -87,7 +87,7 @@
 				<a href="javascript:;" class="wing" onclick="window.open('/yameokja/chat/chatList','채팅목록','width=500, height=810')">채팅 목록</a>
 			</div>
 			<div class="col-12 fs-5 fw-semibold p-1">
-				<a href="/yameokja/myPageLike" class="wing">내가 찜한 가게</a>
+				<a href="/yameokja/myPageLike?userId=${ sessionScope.memberId }" class="wing">내가 찜한 가게</a>
 			</div>
 			
 			<div class="col-12 fs-6 text-white fw-semibold mt-4 p-1">

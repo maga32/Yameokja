@@ -15,15 +15,9 @@
 	
 	<div class="row py-2 px-0">
 		<div class="row p-0 m-0 border border-3 rounded-3">
-			<div class="col-3 p-4">
-					<c:if test="${ sessionScope.member.memberPhoto != null }">
-						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-						src="/yameokja/resources/upload/userProfil/${ sessionScope.member.memberPhoto }">
-					</c:if>
-					<c:if test="${ sessionScope.member.memberPhoto == null }">
-						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-						src="/yameokja/resources/IMG/LOGOsquareIMG.png">
-					</c:if>					
+			<div class="col-3 p-4">				
+				<img alt="프로필 사진" class=" rounded-circle text-center col-12"
+					src="/yameokja/resources/IMG/member/${ user.memberPhoto }">				
 				</div>
 			<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 				<div class="col-12">
@@ -63,8 +57,8 @@
 				<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
 						<a href="#"
-							onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>
-							${ user.memberNickname }의 프 로 필</a>
+							onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=520, height=600")'>
+							${ user.memberNickname }의<br>프로필 보기</a>
 					</div>
 				</div>
 			</div>
@@ -85,21 +79,13 @@
 		<c:forEach var="c" items="${ communityList }">
 		<div class=" border border-2 rounded col-12 p-2 col-md-12">
 			<div class="d-flex align-items-center row">
-			<c:if test="${ empty c.communityFile }">
 				<div class="col-3 col-md-3 col-sm-3">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG"
-						class="img-thumbnail rounded" alt="기본이미지">
+					<img alt="communityFile" class="img-thumbnail rounded" 
+						src="/yameokja/resources/IMG/community/${ p.postFile1 }">
 				</div>
-			</c:if>
-			<c:if test="${ not empty c.communityFile }">
-				<div class="col-3 col-md-3 col-sm-3">
-					<img src="resources/IMG/LOGOtemporaryIMG.PNG"
-						class="img-thumbnail rounded float-start" alt="유저가 올린 이미지">
-				</div>
-			</c:if>
 			<div class="col-6 col-md-7 col-sm-6 text-start">
 			<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
-				<a href="#"> 
+				<a href="communityDetail?communityNo=${ c.communityNo }"> 
 					<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
 					<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
 					${ c.communityTitle }(${ c.communityReadCount })

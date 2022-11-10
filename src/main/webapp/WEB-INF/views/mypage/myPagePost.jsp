@@ -14,16 +14,15 @@
 	
 		<div class="row py-2 px-0">
 			<div class="row p-0 m-0 pb-2 border border-3 rounded-3">
-
 				<div class="col-3 p-4">
-					<c:if test="${ sessionScope.member.memberPhoto != null }">
+					<c:if test="${ user.memberPhoto != null }">
 						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-						src="/yameokja/resources/upload/userProfil/${ sessionScope.member.memberPhoto }">
+						src="/yameokja/resources/IMG/member/${ user.memberPhoto }">
 					</c:if>
-					<c:if test="${ sessionScope.member.memberPhoto == null }">
+					<c:if test="${ user.memberPhoto == null }">
 						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-						src="/yameokja/resources/IMG/LOGOsquareIMG.png">
-					</c:if>					
+						src="/yameokja/resources/IMG/member/memberDefault.png">
+					</c:if>
 				</div>
 				<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 					<div class="col-12">
@@ -58,13 +57,13 @@
 					</div>
 				</div>
 				</c:if>
-				<c:if test="${ sessionScope.memberId != user.memberId}">
+				<c:if test="${ sessionScope.memberId != user.memberId }">
 					<div class="col-3 p-0 d-flex align-items-center">
 					<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 						<div class="buttons_">
 							<a href="#"
 								onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>
-								${ user.memberNickname }의 프 로 필</a>
+								${ user.memberNickname }의<br>프로필 보기</a>
 						</div>
 					</div>
 				</div>
@@ -86,10 +85,9 @@
 					<c:forEach var="p" items="${ myPagePost }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
-								<a href="#">
-									<img src="/yameokja/resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
-								</a>
-							</div>
+								<img alt="postFile1" class=" img-thumbnail rounded"
+									src="/yameokja/resources/IMG/post/${ p.postFile1 }">
+							</div>							
 							<div class="postTitle text-start col-6 px-2">
 							<a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">
 								<div class="fs-2 fw-bold">${ p.postTitle }</div>
@@ -107,6 +105,10 @@
 									<a href="deleteMyPagePost?postNo=${p.postNo}&userId=${ member.memberId }"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 								</div>
 							</div>
+							</c:if>
+							<c:if test="${ sessionScope.memberId != user.memberId }">
+								<div class="col-3 text-end pe-3">
+								</div>
 							</c:if>
 						</div>
 					</c:forEach>

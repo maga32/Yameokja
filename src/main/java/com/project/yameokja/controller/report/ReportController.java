@@ -34,7 +34,7 @@ public class ReportController {
 	private MemberService memberService;
 
 	@Autowired
-	private final static String DEFAULT_PATH = "/resources/upload/";
+	private final static String DEFAULT_PATH = "/resources/IMG/report";
 	
 	// 신고 팝업창
 	@RequestMapping(value = "/reportForm")
@@ -87,9 +87,8 @@ public class ReportController {
 	@RequestMapping(value="/reportAdd", method=RequestMethod.POST)
 	public String addReport(Model model, HttpSession session, HttpServletRequest request,
 			String reportType, String reportTarget, int categoryNo, String reportContent, String reportTitle,
-			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile )
-					throws IllegalStateException, IOException 
-	{
+			@RequestParam(value="reportFile", required=false) MultipartFile multipartFile,
+			PrintWriter out) throws IllegalStateException, IOException {
 		
 		Report report = new Report();
 		String memberId = (String) session.getAttribute("memberId");
@@ -115,7 +114,12 @@ public class ReportController {
 		}	
 		reportService.addReport(report);
 		
-		return "report/reportResultForm";
+		out.println("<script>");
+		out.println("opener.location.href='reportList';");
+		out.println("window.close();");
+		out.println("</script>");
+		
+		return null;
 	}
 	
 	@RequestMapping("/report/reportResultForm")
