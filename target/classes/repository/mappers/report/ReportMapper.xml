@@ -61,6 +61,9 @@
 		SELECT COUNT(report_no) FROM report
 			<where>
 			
+				<if test='userId != "" '>
+					AND member_id = #{userId}
+				</if>
 				<if test='reportPunishCheck == "1" '>
 					AND report_punish_check = #{reportPunishCheck}
 				</if>

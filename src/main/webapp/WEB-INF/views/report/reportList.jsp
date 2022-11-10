@@ -8,7 +8,7 @@
 		<h1 class="col-6 border-3 border-bottom fw-bold pb-1">신고 목록</h1>
 	</div>
 	<div class="row p-1">
-		<form name="reportSearchForm" id="reportSearchForm" action="reportList">
+		<form name="reportSearchForm" id="reportSearchForm" action="reportList?">
 			<div class="col-12">
 			<select class="col-3 rounded-pill m-1 p-1 w-auto" id="categoryNo" name="categoryNo">
 				<option value=300>분류 전체</option>
@@ -35,7 +35,7 @@
 			</div>
 		</form>
 	</div>
-
+<c:if test=""></c:if>
 <!-- 		(일반글)keyword == '' and not empty reportList -->
 	<c:if test="${ keyword == '' and not empty reportList }">
 <!-- 	table start -->
@@ -50,7 +50,7 @@
 		<c:forEach var="re" items="${reportList}">
 		<tr class="col-12">
 			<td class="col">${re.reportType }</td>
-			<td class="col"><a href="reportDetail?reportNo=${ re.reportNo }" >${re.reportTitle}/${ re.reportTarget }</a></td>
+			<td class="col"><a href="reportDetail?reportNo=${ re.reportNo }&userId=${ userId }" >${re.reportTitle}</a></td>
 			<td class="col">
 				<c:if test="${ re.reportPunishCheck == 0 }">처리 대기</c:if>
 				<c:if test="${ re.reportPunishCheck == 1 }">처리 중</c:if>
@@ -67,7 +67,7 @@
 		<div class="col pe-4">
 			<c:if test="${ startPage > pageGroup }">
 				<span class="previousPage text-secondery">
-					<a href="reportList?pageNum=${ startPage - pageGroup }"><</a>
+					<a href="reportList?pageNum=${ startPage - pageGroup }&userId=${ userId }"><</a>
 				</span>
 			</c:if>
 			<span class="pageNumber text-secondery">
@@ -77,14 +77,14 @@
 				</c:if>
 				<c:if test="${ i != currentPage }">
 					<div class=" d-inline-block">
-						<a href="reportList?pageNum=${ i }">&nbsp;${ i }&nbsp;</a>
+						<a href="reportList?pageNum=${ i }&userId=${ userId }">&nbsp;${ i }&nbsp;</a>
 					</div>
 				</c:if>
 			</c:forEach>
 			</span>						
 			<c:if test="${ endPage < pageCount }">
 				<span class="nextPage text-secondery">
-					<a href="reportList?pageNum=${ startPage + pageGroup }">></a>
+					<a href="reportList?pageNum=${ startPage + pageGroup }&userId=${ userId }">></a>
 				</span>
 			</c:if>
 		</div>
@@ -123,7 +123,7 @@
 		<div class="col pe-4">
 			<c:if test="${ startPage > pageGroup }">
 				<div class="previousPage text-secondery d-inline-block">
-					<a href="reportList?pageNum=${ startPage - pageGroup }&type=${type}&keyword=${keyword}"><</a>
+					<a href="reportList?pageNum=${ startPage - pageGroup }&type=${type}&keyword=${keyword}&userId=${ user.memberId }"><</a>
 				</div>
 			</c:if>
 			<div class="pageNumber text-secondery d-inline-block">

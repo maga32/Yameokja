@@ -142,6 +142,8 @@ public class ReportController {
 		model.addAllAttributes(reportList);
 		model.addAttribute("reportType", reportType);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("userId", userId);
 
 		return "report/reportList";
 	}
@@ -175,7 +177,7 @@ public class ReportController {
 	
 	@RequestMapping(value="/reportUpdate", method=RequestMethod.POST)
 	public String reportUpdate(
-			Model model, 
+			Model model, RedirectAttributes reAttrs, HttpSession session,
 			@RequestParam(value="reportTitle", required=false, defaultValue="")String reportTitle,
 			@RequestParam(value="reportContent", required=false, defaultValue="")String reportContent,
 			@RequestParam(value="reportTarget", required=false, defaultValue="")String reportTarget,
@@ -184,6 +186,7 @@ public class ReportController {
 			@RequestParam(value="reportPunishContent", required=false, defaultValue="")String reportPunishContent,
 			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
 			) {
+		String memberId = (String) session.getAttribute("memberId");
 		Report report = reportService.getReport(reportNo);
 		report.setReportTitle(reportTitle);
 		report.setReportContent(reportContent);
@@ -193,17 +196,19 @@ public class ReportController {
 		report.setReportPunishContent(reportPunishContent);
 
 		reportService.reportUpdate(report);
+		reAttrs.addAttribute("userId", memberId);
 
 		return "redirect:reportList";
 	}
 	
 	@RequestMapping(value="/deleteReport")
 	public String deleteReport(
-			RedirectAttributes reAttrs,
+			RedirectAttributes reAttrs, HttpSession session,
 			@RequestParam(value="reportNo", required=false, defaultValue="0")int reportNo
-			
 			) {
+		String memberId = (String) session.getAttribute("memberId");
 		reportService.deleteReport(reportNo);
+		reAttrs.addAttribute("userId", memberId);
 		return "redirect:reportList";
 	}
 	

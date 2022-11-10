@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css" href="resources/css/myPage.css" />
-<script type="text/javascript" src="resources/js/mypage.js"></script>
+<link rel="stylesheet" type="text/css" href="/yameokja/resources/css/myPage.css" />
+<script type="text/javascript" src="/yameokja/resources/js/mypage.js"></script>
 <article>
 <div class="row m-0 bg-white justify-content-center">
 	<form name="postListForm" id="postListForm">
@@ -98,7 +98,7 @@
 								<div><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }</div>
 							</a>
 							</div>
-							
+							<c:if test="${ sessionScope.memberId == user.memberId }">
 							<div class="col-3  text-end pe-3">
 								<div class="updateButton">
 									<a href=""><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
@@ -107,6 +107,7 @@
 									<a href="deleteMyPagePost?postNo=${p.postNo}&userId=${ member.memberId }"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 								</div>
 							</div>
+							</c:if>
 						</div>
 					</c:forEach>
 <!-- 					페이지그룹 시작 -->
@@ -114,7 +115,7 @@
 					<div class="col-12 pe-4">
 						<c:if test="${ startPage > pageGroup }">
 							<div class="previousPage text-secondery d-inline-block">
-								<a href="myPagePost?pageNum=${ startPage - pageGroup }"><</a>
+								<a href="myPagePost?pageNum=${ startPage - pageGroup }&userId=${ user.memberId }"><</a>
 							</div>
 						</c:if>
 						<div class="pageNumber text-secondery d-inline-block">
@@ -124,14 +125,14 @@
 								</c:if>
 								<c:if test="${ i != currentPage }">
 									<div class=" d-inline-block">
-										<a href="myPagePost?pageNum=${ i }">&nbsp;${ i }&nbsp;</a>
+										<a href="myPagePost?pageNum=${ i }&userId=${ user.memberId }">&nbsp;${ i }&nbsp;</a>
 									</div>
 								</c:if>
 							</c:forEach>
 						</div>						
 						<c:if test="${ endPage < pageCount }">
 							<div class="nextPage text-secondery d-inline-block">
-								<a href="myPagePost?pageNum=${ startPage + pageGroup }">></a>
+								<a href="myPagePost?pageNum=${ startPage + pageGroup }&userId=${ user.memberId }">></a>
 							</div>
 						</c:if>
 					</div>

@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/myPage.css" />
-<script type="text/javascript" src="resources/js/mypage.js"></script>
+<link rel="stylesheet" type="text/css" href="/yameokja/resources/css/myPage.css" />
+<script type="text/javascript" src="/yameokja/resources/js/mypage.js"></script>
 <article>
 <div class="row m-0 bg-white justify-content-center">
 	<form name="postListForm" id="postListForm">
@@ -82,21 +81,21 @@
 <!-- 			postList 시작 -->
 			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 
-				<c:if test="${ not empty store }">
-					<c:forEach var="p" items="">
+				<c:if test="${ not empty storeList }">
+					<c:forEach var="p" items="${ storeList }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
 								<a href="#">
 									<img src="/yameokja/resources/IMG/LOGOtemporaryIMG.PNG" class="img-thumbnail rounded" alt="...">
 								</a>
 							</div>
-							<div class="storeName text-start col-6 px-2">
+							<div class="postTitle text-start col-6 px-2">
 							<a href="storeDetail?storeNo=${ p.storeNo }">
 								<div class="fs-2 fw-bold">${ p.storeAddress }</div>
-								<div><i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.store_star }</div>
+								<div><i class="fa fa-eye" aria-hidden="true"></i> ${ p.storeStar }</div>
 							</a>
 							</div>
-							
+							<c:if test="${ sessionScope.memberId == user.memberId }">
 							<div class="col-3  text-end pe-3">
 								<div class="deleteButton" id="deleteButton">
 									<a href="#
@@ -104,39 +103,40 @@
 									"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 								</div>
 							</div>
+							</c:if>
 						</div>
 					</c:forEach>
 <!-- 					페이지그룹 시작 -->
-<!-- 					<div class="row text-end"> -->
-<!-- 					<div class="col-12 pe-4"> -->
-<%-- 						<c:if test="${ startPage > pageGroup }"> --%>
-<!-- 							<div class="previousPage text-secondery d-inline-block"> -->
-<%-- 								<a href="myPagePost?pageNum=${ startPage - pageGroup }"><</a> --%>
-<!-- 							</div> -->
-<%-- 						</c:if> --%>
-<!-- 						<div class="pageNumber text-secondery d-inline-block"> -->
-<%-- 							<c:forEach var="i" begin="${ startPage }" end="${ endPage }"> --%>
-<%-- 								<c:if test="${ i == currentPage }"> --%>
-<%-- 									<div class=" d-inline-block fw-bold" style="color: #F58500;">&nbsp;${ i }&nbsp;</div> --%>
-<%-- 								</c:if> --%>
-<%-- 								<c:if test="${ i != currentPage }"> --%>
-<!-- 									<div class=" d-inline-block"> -->
-<%-- 										<a href="myPagePost?pageNum=${ i }">&nbsp;${ i }&nbsp;</a> --%>
-<!-- 									</div> -->
-<%-- 								</c:if> --%>
-<%-- 							</c:forEach> --%>
-<!-- 						</div>						 -->
-<%-- 						<c:if test="${ endPage < pageCount }"> --%>
-<!-- 							<div class="nextPage text-secondery d-inline-block"> -->
-<%-- 								<a href="myPagePost?pageNum=${ startPage + pageGroup }">></a> --%>
-<!-- 							</div> -->
-<%-- 						</c:if> --%>
-<!-- 					</div> -->
-<!-- 					</div> -->
+					<div class="row text-end">
+					<div class="col-12 pe-4">
+						<c:if test="${ startPage > pageGroup }">
+							<div class="previousPage text-secondery d-inline-block">
+								<a href="myPageLike?pageNum=${ startPage - pageGroup }&userId=${ user.memberId }"><</a>
+							</div>
+						</c:if>
+						<div class="pageNumber text-secondery d-inline-block">
+							<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+								<c:if test="${ i == currentPage }">
+									<div class=" d-inline-block fw-bold" style="color: #F58500;">&nbsp;${ i }&nbsp;</div>
+								</c:if>
+								<c:if test="${ i != currentPage }">
+									<div class=" d-inline-block">
+										<a href="myPageLike?pageNum=${ i }&userId=${ user.memberId }">&nbsp;${ i }&nbsp;</a>
+									</div>
+								</c:if>
+							</c:forEach>
+						</div>						
+						<c:if test="${ endPage < pageCount }">
+							<div class="nextPage text-secondery d-inline-block">
+								<a href="myPageLike?pageNum=${ startPage + pageGroup }&userId=${ user.memberId }">></a>
+							</div>
+						</c:if>
+					</div>
+					</div>
 <!-- 					페이지그룹 끝 -->
 				</c:if>
-				<c:if test="${ empty myPagePost }">
-					<div class="col-12 text-center"> 작성한 글이 없습니다.</div>
+				<c:if test="${ empty storeList }">
+					<div class="col-12 text-center"> 찜한 가게가 없습니다.</div>
 				</c:if>
 			</div>
 <!-- 			postList 끝 -->

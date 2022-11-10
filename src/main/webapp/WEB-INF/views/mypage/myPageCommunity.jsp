@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/myPage.css" />
-<script type="text/javascript" src="resources/js/mypage.js"></script>
+<script type="text/javascript" src="/yameokja/resources/js/mypage.js"></script>
 <article>
 <div class="row m-0 bg-white justify-content-center">
 	<form name="postListForm" id="postListForm">
@@ -123,7 +123,7 @@
 			<div class="col-12 pe-4">
 				<c:if test="${ startPage > pageGroup }">
 					<div class="previousPage text-secondery d-inline-block">
-						<a href="myPagePost?pageNum=${ startPage - pageGroup }"><</a>
+						<a href="myPageCommunity?pageNum=${ startPage - pageGroup }&userId=${ user.memberId }"><</a>
 					</div>
 				</c:if>
 				<div class="pageNumber text-secondery d-inline-block">
@@ -133,14 +133,14 @@
 						</c:if>
 						<c:if test="${ i != currentPage }">
 							<div class=" d-inline-block">
-								<a href="myPagePost?pageNum=${ i }">&nbsp;${ i }&nbsp;</a>
+								<a href="myPageCommunity?pageNum=${ i }&userId=${ user.memberId }">&nbsp;${ i }&nbsp;</a>
 							</div>
 						</c:if>
 					</c:forEach>
 				</div>						
 				<c:if test="${ endPage < pageCount }">
 					<div class="nextPage text-secondery d-inline-block">
-						<a href="myPagePost?pageNum=${ startPage + pageGroup }">></a>
+						<a href="myPageCommunity?pageNum=${ startPage + pageGroup }&userId=${ user.memberId }">></a>
 					</div>
 				</c:if>
 			</div>

@@ -1,6 +1,8 @@
 package com.project.yameokja.controller.mypage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.yameokja.dao.mypage.MyPageDao;
+import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Store;
 import com.project.yameokja.service.member.MemberService;
@@ -21,7 +24,8 @@ import com.project.yameokja.service.store.StoreService;
 
 @Controller
 public class MyPageController {
-
+	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_GROUP = 10;
 	@Autowired
 	private MyPageService myPageService;
 	@Autowired
@@ -144,31 +148,15 @@ public class MyPageController {
 	@RequestMapping(value="/myPageLike")
 	public String myPageLike(
 			Model model, 
-			@RequestParam(value = "userId", required = false, defaultValue = "")String userId
-//			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum, 
-			) {
-		Member user = memberService.getMember(userId);
-		String memberBookmarks = memberService.getMember(userId).getMemberBookmarks();
-		memberBookmarks = memberBookmarks.replace("9999.", "");
-		if(memberBookmarks != "") {
-			memberBookmarks = memberBookmarks.replace(".", "");
-			System.out.println("memberBookmarks : "+memberBookmarks);
-			String[] memberBookmarksList = memberBookmarks.split(",");
-			System.out.println("memberBookmarksList : "+memberBookmarksList);
-			System.out.println("memberBookmarksList[0] : "+memberBookmarksList[0]);
-			System.out.println("memberBookmarksList[1] : "+memberBookmarksList[1]);
-			List<Store> store;
-			for (int i = 1; i < memberBookmarksList.length; i++) {
-				 store = (List<Store>) myPageService.getStore(memberBookmarksList[i], userId);
-				 System.out.println("store : "+store);
-				 model.addAllAttributes(store);
-			}
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum ) {
+			Member user = memberService.getMember(userId);
 			
-		}
-		model.addAttribute("user", user);
-		
-		
+			Map<String, Object> myPageLikeList = myPageService.myPageLike(userId, pageNum);
+			model.addAllAttributes(myPageLikeList);
+			model.addAttribute("user", user);
+			model.addAttribute("pageNum", pageNum);
 		return "mypage/myPageLike";
+		
 	}
-
 }

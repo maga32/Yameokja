@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.yameokja.domain.Community;
-import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
-import com.project.yameokja.domain.Store;
 
 // 이 클래스가 데이터 액세스(데이터 저장소) 계층의 컴포넌트(Bean) 임을 선언한다.
 @Repository
@@ -88,14 +86,6 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Override
 	public int sumPostUpCount(String userId) {
 		return sqlSession.selectOne(NAME_SPACE+ ".sumPostUpCount", userId);
-	}
-
-	@Override
-	public Store getStore(String storeNo, String userId) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("userId", userId);
-		params.put("storeNo", storeNo);
-		return sqlSession.selectOne(NAME_SPACE + ".getStore", params);
 	}
 
 }

@@ -20,7 +20,7 @@
 			<div class="col-3 border-end fw-bold">신고대상</div>
 			<div class="col-9"><input type="text" name="reportTarget" class="border-0" value="${ report.reportTarget }" readonly="readonly"></div>
 			<div class="col-3 border-end fw-bold">신고 작성일</div>
-			<div class="col-9"></div><input type="text" name="reportDate" class="border-0" value="${ report.reportDate }" readonly="readonly"></div>
+			<div class="col-9"><input type="text" name="reportDate" class="border-0" value="${ report.reportDate }" readonly="readonly"></div>
 		</div>
 		<div class="col-4 d-flex align-items-center">
 			<img alt="신고첨부이미지" width="100%"
@@ -68,8 +68,13 @@
 	</c:if>
 	
 <div class="row m-0 justify-content-end px-3 py-2">
-	<input type="button" onclick="location.href='reportList'" class="col-2 w-auto btn btn-secondary" value="목록으로">
-	<input type="submit" class="col-2 w-auto btn btn-secondary mx-2 " value="처리완료">
+	<input type="button" onclick="location.href='reportList?userId=${ sessionScope.memberId }'" class="col-2 w-auto btn btn-secondary" value="목록으로">
+	<c:if test="${ sessionScope.member.memberLevel > 6 }">
+		<input type="submit" class="col-2 w-auto btn btn-secondary mx-2 " value="처리완료">
+	</c:if>
+	<c:if test="${ sessionScope.member.memberLevel <= 6 }">
+		<input type="submit" class="col-2 w-auto btn btn-secondary mx-2 " value="수정완료">
+	</c:if>
 </div>
 </form>
 </article>

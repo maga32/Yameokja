@@ -50,11 +50,7 @@
 		<div class="col-12 bold ps-1">
 			<h3>신고 처리 결과</h3>
 		</div>
-		<textarea class="col-12" name="reportPunishCheck" readonly="readonly">
-			<c:if test="${ report.reportPunishCheck == 0 }">처리 대기</c:if>
-			<c:if test="${ report.reportPunishCheck == 1 }">처리 중</c:if>
-			<c:if test="${ report.reportPunishCheck == 2 }">처리 보류</c:if>
-			<c:if test="${ report.reportPunishCheck == 3 }">처리 완료</c:if>
+		<textarea class="col-12" name="reportPunishCheck" readonly="readonly"><c:if test="${ report.reportPunishCheck == 0 }">처리 대기</c:if><c:if test="${ report.reportPunishCheck == 1 }">처리 중</c:if><c:if test="${ report.reportPunishCheck == 2 }">처리 보류</c:if><c:if test="${ report.reportPunishCheck == 3 }">처리 완료</c:if>
 		</textarea>
 	</div>
 	<br>
@@ -80,7 +76,7 @@
 	</c:if>
 
 <div class="row m-0 justify-content-end px-3 py-2">
-	<input type="button" onclick="location.href='reportList'" class="col-2 w-auto btn btn-secondary" value="목록으로">
+	<input type="button" onclick="location.href='reportList?userId=${ userId }'" class="col-2 w-auto btn btn-secondary" value="목록으로">
 	<input type="button" onclick="location.href='reportUpdateForm?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary mx-2 " value="수정하기">
 	<input type="button" onclick="location.href='deleteReport?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary" value="삭제하기">
 </div>

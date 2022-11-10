@@ -20,7 +20,7 @@ public interface MyPageService {
 	
 	void deleteMyPageCommunity(int communityNo);
 	
-	public Store getStore(String storeNo, String userId);
+	public Map<String, Object> myPageLike(String userId, int pageNum);
 
 }
 

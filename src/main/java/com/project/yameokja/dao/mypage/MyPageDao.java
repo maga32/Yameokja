@@ -3,9 +3,7 @@ package com.project.yameokja.dao.mypage;
 import java.util.List;   
 
 import com.project.yameokja.domain.Community;
-import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
-import com.project.yameokja.domain.Store;
 
 public interface MyPageDao {
 
@@ -27,7 +25,5 @@ public interface MyPageDao {
 	void deleteMyPageCommunity(int communityNo);
 	
 	int sumPostUpCount(String userId);
-	
-	public Store getStore(String storeNo, String userId);
 	
 }
