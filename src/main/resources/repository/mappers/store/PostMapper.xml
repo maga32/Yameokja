@@ -8,8 +8,29 @@
 	<select id="postList" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post 
 			WHERE store_no = #{storeNo} AND post_is_post = 1 
-		ORDER BY post_no DESC;
+		<trim prefix="ORDER BY">
+					<choose>
+                        <when test="detailOrderBy == 'pRegDate' "> post_reg_date ASC </when>
+                        <when test="detailOrderBy == 'pUpCount' "> post_up_count DESC </when>
+                        <otherwise>post_no DESC</otherwise>
+                     </choose>
+                </trim>
+         LIMIT #{startRow}, #{num}
 	</select>
+	
+	<!-- 가게 리뷰글 카운트 -->
+	<select id="getPostCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*) FROM post 
+			WHERE store_no = #{storeNo} AND post_is_post = 1 
+		<trim prefix="ORDER BY">
+					<choose>
+                        <when test="detailOrderBy == 'pRegDate' "> post_reg_date ASC </when>
+                        <when test="detailOrderBy == 'pUpCount' "> post_up_count DESC </when>
+                        <otherwise>post_no DESC</otherwise>
+                     </choose>
+                </trim>
+	</select>
+	
 	
 	<select id="bestOnePost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
@@ -35,7 +56,7 @@
 	<!-- 가게 댓글 리스트를 불러온다 -->
 	<select id="postListReply" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post 
-		WHERE store_no = #{storeNo} AND post_is_post = 0
+			WHERE store_no = #{storeNo} AND post_is_post = 0
 		ORDER BY post_no DESC
 		LIMIT #{startRow}, #{num}
 	</select>
@@ -45,6 +66,12 @@
 		WHERE store_no = #{storeNo}
 		AND post_is_post = 0
 	</select>
+
+	<!-- 가게 댓글 리스트 갯수 -->
+	<select id="getReplyCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*) FROM post 
+			WHERE store_no = #{storeNo} AND post_is_post = 0
+	</select>
 	
 	<!-- 가게 리뷰 디테일을 불러온다 -->
 	<select id="getPost" resultType="Post" resultMap="postResultMap">
@@ -53,7 +80,6 @@
 		ORDER BY post_no DESC
 	</select>
 	
-
 	<insert id="postReplyAdd" parameterType="Post">
 		INSERT INTO post
 			(post_content, post_reg_date, post_is_post, post_star, store_no, member_id, member_nickname, post_file1, post_file2)
@@ -64,6 +90,19 @@
 		INSERT INTO post (store_no, post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_up_count, member_id, member_nickname)
 			VALUE(#{storeNo}, #{postTitle}, #{postContent}, 0, #{postFile1}, #{postFile2}, #{postFile3}, #{postFile4}, #{postFile5}, SYSDATE(), '1', 0, #{memberId}, #{memberNickname})
 	</insert>
+
+	<!-- 댓글을 작성한다 -->
+	<insert id="addReply" parameterType="Post" useGeneratedKeys="true" keyProperty="postNo">
+		INSERT INTO 
+		post (post_content, post_file1, post_reg_date, post_is_post, post_star, store_no, member_id, member_nickname)
+		 VALUE  (#{postContent}, #{postFile1}, sysdate(), '0', #{postStar}, #{storeNo}, #{memberId}, #{memberNickname})
+	</insert>
+	
+	<!-- 댓글을 삭제한다 -->
+	<update id="deleteReply">
+		DELETE FROM post 
+		WHERE post_no = #{postNo} AND post_is_post = 0
+	</update>
 
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />

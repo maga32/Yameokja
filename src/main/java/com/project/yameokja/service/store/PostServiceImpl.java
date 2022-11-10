@@ -1,16 +1,23 @@
 package com.project.yameokja.service.store;
 
+<<<<<<< HEAD
 import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+=======
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+>>>>>>> store
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.yameokja.dao.store.PostDao;
 import com.project.yameokja.domain.Post;
+import com.project.yameokja.domain.Store;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -24,42 +31,101 @@ public class PostServiceImpl implements PostService {
 	public void setPostDao(PostDao postDao) {
 		this.postDao = postDao;
 	}
+	
+	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_GROUP = 10;
 
 	@Override
-	public List<Post> postList(int storeNo) {
-		return postDao.postList(storeNo);
+	public Map<String, Object> postList(int storeNo, int pageNum, String detailOrderBy) {
+		
+		int currentPage = pageNum;
+		
+		int startRow = (currentPage - 1) * PAGE_SIZE;
+		int listCount = 0;
+			
+		listCount = postDao.getPostCount(storeNo);
+		
+		System.out.println("리뷰글 리스트 확인용 storeNo : "  + storeNo);
+		System.out.println("리뷰 listCount : " + listCount);
+		
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		
+		if(listCount > 0) {
+			
+			List<Post> pList = postDao.postList(storeNo,PAGE_SIZE, startRow, detailOrderBy);
+
+			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
+			
+			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP - 
+					(currentPage % PAGE_GROUP == 0? PAGE_GROUP : 0) + 1;
+			
+			
+			int endPage = startPage + 9;
+			
+				if(endPage > pageCount) endPage = pageCount;
+				
+				pMap.put("pList", pList);
+				
+				pMap.put("storeNo", storeNo);
+				pMap.put("pageCount", pageCount);
+				pMap.put("startPage", startPage);
+				pMap.put("endPage", endPage);
+				
+				pMap.put("currentPage", currentPage);
+				pMap.put("listCount", listCount);
+				pMap.put("pageGroup", PAGE_GROUP);
+				
+				System.out.println("가게의 시작페이지 - 가게 번호 - 현재 페이지 : " + startPage +" - " + storeNo + " - " + currentPage);
+				
+				return pMap;
+		}
+		return pMap;
 	}
 	
 	@Override
 	public Map<String, Object> postListReply(int storeNo, int pageNum) {
-		int currentPage = pageNum;		
-		int startRow = (currentPage -1) * PAGE_SIZE;
-		int listCount = postDao.myPageReplyCount(storeNo);
+		int currentPage = pageNum;
+		
+		int startRow = (currentPage - 1) * PAGE_SIZE;
+		int listCount = 0;
+		
+		listCount = postDao.getReplyCount(storeNo);
+		
+		System.out.println("댓글갯수 확인용 storeNo : "  + storeNo);
+		System.out.println("listCount : " + listCount);
+		Map<String, Object> rMap = new HashMap<String, Object>();
 		
 		if(listCount > 0) {
-			List<Post> postListReply = postDao.postListReply(storeNo, startRow, PAGE_SIZE);
+			
+			List<Post> rList = postDao.postListReply(startRow, storeNo, PAGE_SIZE);
+			
+			System.out.println("rList : " + rList.get(0).getPostContent());
+			
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
-			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP
-									- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0) + 1;
-			int endPage = startPage + PAGE_GROUP - 1;
-			if(endPage > pageCount) endPage = pageCount;
 			
-			Map<String, Object> postMap = new HashMap<String, Object>();
-			postMap.put("postListReply", postListReply);
-			postMap.put("currentPage", currentPage);
-			postMap.put("listCount", listCount);
-			postMap.put("pageCount", pageCount);
-			postMap.put("startPage", startPage);
-			postMap.put("endPage", endPage);			
-			postMap.put("pageGroup", PAGE_GROUP);
+			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP - 
+					(currentPage % PAGE_GROUP == 0? PAGE_GROUP : 0) + 1;
 			
-			return postMap;
-		}	
 			
-		Map<String, Object> postMap = new HashMap<String, Object>();
-		postMap.put("storeNo", storeNo);
+			int endPage = startPage + 9;
 			
-		return postMap;
+				if(endPage > pageCount) endPage = pageCount;
+				
+				rMap.put("rList", rList);
+				
+				rMap.put("storeNo", storeNo);
+				rMap.put("pageCount", pageCount);
+				rMap.put("startPage", startPage);
+				rMap.put("endPage", endPage);
+				
+				rMap.put("currentPage", currentPage);
+				rMap.put("listCount", listCount);
+				rMap.put("pageGroup", PAGE_GROUP);
+				
+				return rMap;
+		}
+		
+		return rMap;
 	}
 
 	@Override
@@ -69,8 +135,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public void insertPost(Post post) {
-		// TODO Auto-generated method stub
-
+		postDao.insertPost(post);
 	}
 
 	@Override
@@ -78,19 +143,26 @@ public class PostServiceImpl implements PostService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	@Override
 	public void deletePost(int postNo) {
 		postDao.deletePost(postNo);
 	}
-
+	
+	// 별점댓글 작성
+	@Override
+	public void addReply(Post post) {
+		postDao.addReply(post);
+	}
+	
+	// 별점댓글 삭제
 	@Override
 	public void deleteReply(int postNo) {
 		postDao.deleteReply(postNo);
 	}
 	
 	@Override
-	public List<Post> bestOnePost(int storeNo) {
+	public Post bestOnePost(int storeNo) {
 		return postDao.bestOnePost(storeNo);
 	}
 
@@ -131,5 +203,7 @@ public class PostServiceImpl implements PostService {
 		
 		return postDao.postWrite(post);
 	}
+
+	
 
 }

@@ -35,9 +35,37 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ s.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1">
+					
+					<!-- 지도 영역 -->
+					<div id="map" style="height:100%;"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
+						<script>
+							var container = document.getElementById('map');
+							var options = {
+								center: new kakao.maps.LatLng(35.8189345, 128.516267),
+								level: 2
+							};
+					
+							var map = new kakao.maps.Map(container, options);
+							
+							var marker = new kakao.maps.Marker({
+							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
+							    map: map // 마커를 표시할 지도 객체
+							});
+							
+							var items = ${store.storeName}
+
+							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+							kakao.maps.event.addListener(marker, 'click', function() {
+								window.open('https://map.kakao.com/link/search/스테이블모먼트')
+							});
+						</script>
+				<!-- 지도 영역 end-->
+
+				</div>		
 			</div>
 			</div>
 		</div>
@@ -99,7 +127,8 @@
 		
 			<div class="col-6 border-bottom justify-content-center">
 				<div class="row border-end ps-1">
-					<div class="col-3 align-self-center"><img src="https://picsum.photos/100" class="img-thumbnail rounded-circle float-start" alt="..."></div>
+					<div class="col-3 align-self-center">
+					<img src="resources/IMG/member/${ memberPhoto }" class="img-thumbnail rounded-circle float-start" alt="..."></div>
 					<div class="col-9 text-start text-secondary">
 						<p class="fs-6">
 							${ post.memberNickname }</p>

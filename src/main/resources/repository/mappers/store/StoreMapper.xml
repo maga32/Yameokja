@@ -12,11 +12,8 @@
 			<if test="categoryNo != 99">
 				category_no = #{ categoryNo }	
 			</if>
-			<if test="categoryNo == 99">
-				category_no = #{ categoryNo }	
-			</if>
 			<if test="keyword != 'null' ">
-				AND store_address LIKE CONCAT('%',#{type},'%') AND store_name LIKE CONCAT('%',#{keyword},'%')
+				AND store_address LIKE CONCAT('%',#{ type }, '%') AND store_name LIKE CONCAT('%',#{ keyword },'%')
 			</if>
 		</where>
 				<trim prefix="ORDER BY">
@@ -38,9 +35,6 @@
 			<if test="categoryNo != 99">
 				category_no = #{ categoryNo }	
 			</if>
-			<if test="categoryNo == 99">
-				category_no = #{ categoryNo }	
-			</if>
 			<if test="keyword != 'null' ">
 				AND store_address = #{type} AND store_name LIKE CONCAT('%',#{keyword},'%')
 			</if>
@@ -57,13 +51,13 @@
 	<insert id="insertStore" parameterType="Store"
 	useGeneratedKeys="true" keyProperty="storeNo">
 	INSERT INTO 
-		store(store_name,	store_phone, store_latitude, store_longitude, store_file_main, 
-				store_file_menu, store_address, store_time, store_bookmarks,store_day_off, 
-				store_parking, category_no)
+		store(store_name, member_id, store_phone, store_latitude, store_longitude, store_file_main, 
+				store_file_menu, store_address, store_time, store_bookmarks, store_day_off, 
+				store_parking, category_no, store_read_count)
 				
-    VALUES(#{storeName}, #{storePhone}, #{storeLatitude}, #{storeLongitude},
+    VALUES(#{storeName},#{memberId}, #{storePhone}, #{storeLatitude}, #{storeLongitude},
     			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, null,
-    			#{storeDayOff}, #{storeParking}, #{categoryNo})
+    			#{storeDayOff}, #{storeParking}, #{categoryNo}, null)
 	</insert>
 	
 	<!-- 가게 즐겨찾기 추가 -->

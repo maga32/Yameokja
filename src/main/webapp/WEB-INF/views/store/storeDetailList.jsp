@@ -7,9 +7,9 @@
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
-	<form name="storeDetailForm" id="storeDetailForm">
+	<form name="storeDetailForm" id="storeDetailForm" action="storeDetailList">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
-	</form>
+	
 	
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
@@ -33,9 +33,34 @@
 			</div>
 			<div class="col-8">
 			<div class="row">
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1"><img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="..."></div>		
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
+				<div class="col border rounded-3 p-1 m-1">
+				
+				<div id="map" style="width:150px;height:150px;"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
+						<script>
+							var container = document.getElementById('map');
+							var options = {
+								center: new kakao.maps.LatLng(35.8189345, 128.516267),
+								level: 2
+							};
+					
+							var map = new kakao.maps.Map(container, options);
+							
+							var marker = new kakao.maps.Marker({
+							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
+							    map: map // 마커를 표시할 지도 객체
+							});
+							
+							var items = ${store.storeName}
+
+							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+							kakao.maps.event.addListener(marker, 'click', function() {
+								window.open('https://map.kakao.com/link/search/스테이블모먼트')
+							});
+						</script>
+					</div>
 			</div>
 			</div>
 		</div>
@@ -89,11 +114,23 @@
 
 <!-- 	review start -->	
 	<div class="rounded-end rounded-bottom d-inline-block border col-12 p-2">
+	<div class="row">
+		<div class="col-2"></div>
+		<div class="col-2"></div>
+		<div class="col-2"></div>
+		<div class="col-6 text-end px-2 m-0">
+			<button type="submit" class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pNo">기본순</button>
+			<button type="submit" class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pRegDate">최신순</button>
+			<button type="submit" class="btn btn-sm btn-outline-warning" name="detailOrderBy" value="pUpCount">추천순</button>
+		</div>
+	</div>
+	
 	<c:if test="${ not empty pList }">
+		
 		<c:forEach var="p" items="${ pList }">
 			<div class="row border rounded-1 m-1 p-1">
 					<div class="col-3 align-self-center">
-						<img src="https://picsum.photos/200" class="img-thumbnail rounded float-start" alt="...">
+						<img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="...">
 					</div>
 					<div class="col-9">
 						<div class="row py-1">
@@ -117,10 +154,45 @@
 					</div>
 			</div>
 		</c:forEach>
+			
+		<!-- 페이징 -->
+		       	<div class="row text-end justify-content-center px-3 my-2">
+		       		<div class="col-12">
+		       			<c:if test="${ listCount > 0 }">
+		       				<c:if test="${ startPage > 10 }">
+		       					<div class="previousPage inlineBlock">
+									<a href="storeDetailList?storeNo=${ storeNo }&pageNum=${i}">이전</a>
+								</div>
+		       				</c:if>
+		       				<div class="pageNumber inlineBlock">
+							<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+								<c:if test="${ i == currentPage }">
+									<div class=" inlineBlock" style="color: #F58500; font-weight: 600">&nbsp;${ i }&nbsp;</div>
+								</c:if>
+								<c:if test="${ i != currentPage }">
+									<div class="inlineBlock">
+										<a href="storeDetailList?storeNo=${ storeNo }&pageNum=${i}"
+										class="text-decoration-none text-secondary">&nbsp;${ i }&nbsp;</a>
+									</div>
+								</c:if>
+							</c:forEach>
+							</div>
+		       					<c:if test="${ endPage < pageCount }">
+									<div class="nextPage inlineBlock=">
+										<a href="storeDetailList?storeNo=${ storeNo }&pageNum=${i}">다음</a>
+									</div>
+							</c:if>
+		       			</c:if>
+		       		</div>
+		       	</div>
+	       		<!-- 페이징 끝 -->
+		
+		
+		
 	</c:if>
 	<c:if test="${ empty pList }">
 		<div class="row rounded-1 m-1 p-1">
-			<p class="text-center">아직 작성된 글이 없습니다.</p>
+			<p class="text-center">작성된 글이 없습니다.</p>
 		</div>
 	</c:if>			
 	
@@ -134,5 +206,6 @@
 	</div>
 <!-- 	fullFrame end-->			
 	</div>
+	</form>
 </div>
 </article>

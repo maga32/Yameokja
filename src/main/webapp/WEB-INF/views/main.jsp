@@ -49,7 +49,7 @@
 <!-- category IMG start -->
 	<div class="row my-3 p-0">
 		<div class="col-6 py-2 col-md-3">
-			<a href="storeListAll">
+			<a href="storeList?">
 				<img width="100%" class="rounded" alt="전체" src="/yameokja/resources/IMG/categoryIMG/All.png">
 			</a>
 		</div>

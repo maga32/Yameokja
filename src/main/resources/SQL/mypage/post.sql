@@ -56,11 +56,11 @@ COMMIT;
 SELECT * FROM post order by post_no DESC;
 SELECT count(post_no) FROM post;
 
-INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title11', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1231', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
-INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_titl112', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1234', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
-INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title13', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '45616', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
-INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title14', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '6124', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
-INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title15', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '4163', '1', '1', 'post_upost_list', '1', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title11', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1', '1', '5', 'post_upost_list', '7', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_titl112', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1', '1', '4', 'post_upost_list', '7', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title13', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1', '1', '3', 'post_upost_list', '7', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title14', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1', '1', '2', 'post_upost_list', '7', 'memberId01', 'nickname01');
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES ('post_title15', 'post_content01', null, 'mainImg', null, null, null, null, sysdate(), '1', '1', '1', 'post_upost_list', '7', 'memberId01', 'nickname01');
 
 SELECT
 					post_no as postNo,
@@ -87,3 +87,12 @@ SELECT
         
 INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES 
 	('post_title10', 'post_content10', null, 'mainImg', null, null, null, null, sysdate(), '0', '1', '0', 'post_up_list', '10', 'memberId10', 'nickname10');
+    
+select * from store where store_no = 60;
+
+INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES
+	('post_title10', '그럭저럭이네요', 13, 'mainImg', null, null, null, null, sysdate(), '1', '0', '25', 'post_up_list', '104', 'memberId03', 'nickname08');
+    INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES
+	('post_title10', '맛있었습니다!', 23, 'mainImg', null, null, null, null, sysdate(), '1', '0', '78', 'post_up_list', '104', 'memberId04', 'nickname07');
+    INSERT INTO post (post_title, post_content, post_read_count, post_file1, post_file2, post_file3, post_file4, post_file5, post_reg_date, post_is_post, post_star, post_up_count, post_up_list, store_no, member_id, member_nickname) VALUES
+	('post_title10', '괜찮아요 :)', 56, 'mainImg', null, null, null, null, sysdate(), '1', '0', '85', 'post_up_list', '104', 'memberId08', 'nickname02');

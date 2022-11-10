@@ -8,8 +8,29 @@
 	<select id="postList" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post 
 			WHERE store_no = #{storeNo} AND post_is_post = 1 
-		ORDER BY post_no DESC;
+		<trim prefix="ORDER BY">
+					<choose>
+                        <when test="detailOrderBy == 'pRegDate' "> post_reg_date ASC </when>
+                        <when test="detailOrderBy == 'pUpCount' "> post_up_count DESC </when>
+                        <otherwise>post_no DESC</otherwise>
+                     </choose>
+                </trim>
+         LIMIT #{startRow}, #{num}
 	</select>
+	
+	<!-- 가게 리뷰글 카운트 -->
+	<select id="getPostCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*) FROM post 
+			WHERE store_no = #{storeNo} AND post_is_post = 1 
+		<trim prefix="ORDER BY">
+					<choose>
+                        <when test="detailOrderBy == 'pRegDate' "> post_reg_date ASC </when>
+                        <when test="detailOrderBy == 'pUpCount' "> post_up_count DESC </when>
+                        <otherwise>post_no DESC</otherwise>
+                     </choose>
+                </trim>
+	</select>
+	
 	
 	<select id="bestOnePost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
@@ -42,8 +63,14 @@
 	
 	<select id="myPageReplyCount" resultType="int">
 		SELECT count(post_no) FROM post 
-		WHERE store_no = #{storeNo}
+			WHERE store_no = #{storeNo}
 		AND post_is_post = 0
+	</select>
+
+	<!-- 가게 댓글 리스트 갯수 -->
+	<select id="getReplyCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*) FROM post 
+			WHERE store_no = #{storeNo} AND post_is_post = 0
 	</select>
 	
 	<!-- 가게 리뷰 디테일을 불러온다 -->
@@ -52,6 +79,19 @@
 			WHERE post_no = #{ postNo } 
 		ORDER BY post_no DESC
 	</select>
+	
+	<!-- 댓글을 작성한다 -->
+	<insert id="addReply" parameterType="Post" useGeneratedKeys="true" keyProperty="postNo">
+		INSERT INTO 
+		post (post_content, post_file1, post_reg_date, post_is_post, post_star, store_no, member_id, member_nickname)
+		 VALUE  (#{postContent}, #{postFile1}, sysdate(), '0', #{postStar}, #{storeNo}, #{memberId}, #{memberNickname})
+	</insert>
+	
+	<!-- 댓글을 삭제한다 -->
+	<update id="deleteReply">
+		DELETE FROM post 
+		WHERE post_no = #{postNo} AND post_is_post = 0
+	</update>
 	
 
 	<insert id="postReplyAdd" parameterType="Post">

@@ -71,7 +71,7 @@ public class StoreServiceImpl implements StoreService {
 		return storeDao.getStore(storeNo);
 	}
 	
-
+	// 글쓰기 서비스
 	@Override
 	public void insertStore(Store store) {
 		storeDao.insertStore(store);
