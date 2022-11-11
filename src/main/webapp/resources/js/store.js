@@ -134,3 +134,8 @@ $(function() {
 	});
 	
 });
+
+$(document).ready(function() {
+	$("#storeDetailContentContent img").css("width","100%").css("height","auto");
+	$("#storeDetailBestOneContent img").remove();
+});

@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="/yameokja/resources/js/post.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="resources/js/store.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 
@@ -149,9 +148,9 @@
 			</div>
 			
 			<div class="row border-top py-4 m-1">
-				<pre>
+				<div id="storeDetailContentContent">
 					${ post.postContent }
-				</pre>
+				</div>
 			</div>
 			<c:if test="${ sessionScope.memberId eq post.memberId }">
 				<div class="col-12 text-end">
