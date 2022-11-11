@@ -97,8 +97,16 @@ public class StoreDaoImpl implements StoreDao {
 		
 	}
 
+	// 가게 즐겨찾기 추가
+	@Override
+	public void addBookmarks(int storeNo) {
+		sqlSession.update(NAME_SPACE+".addBookmarks", storeNo);
+	}
 	
-
-	
+	// 가게 즐겨찾기 삭제
+	@Override
+	public void deleteBookmarks(int storeNo) {
+		sqlSession.update(NAME_SPACE+".deleteBookmarks", storeNo);
+	}
 	
 }

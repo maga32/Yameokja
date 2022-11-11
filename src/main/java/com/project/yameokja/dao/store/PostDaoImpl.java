@@ -13,7 +13,7 @@ import com.project.yameokja.domain.Post;
 @Repository
 public class PostDaoImpl implements PostDao {
 
-	private final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
+	private static final String NAME_SPACE = "com.project.yameokja.mappers.PostMapper";
 	
 	private SqlSessionTemplate sqlSession;
 	
@@ -67,6 +67,11 @@ public class PostDaoImpl implements PostDao {
 	}
 	
 	// 가게 리뷰글 상세보기
+	@Override
+	public int myPageReplyCount(int storeNo) {
+		return sqlSession.selectOne(NAME_SPACE+".myPageReplyCount", storeNo);
+		}
+
 	@Override
 	public Post getPost(int postNo) {
 		
@@ -139,7 +144,16 @@ public class PostDaoImpl implements PostDao {
 	
 
 
-	
+	@Override
+	public void postReplyAdd(Post post) {
+		sqlSession.insert(NAME_SPACE + ".postReplyAdd", post);
+	}	
+		
+	//포스트 작성
+	@Override
+	public int postWrite(Post post) {
+		return sqlSession.insert(NAME_SPACE + ".postWrite", post);
+	}
 
 
 }

@@ -1,8 +1,10 @@
 package com.project.yameokja.service.store;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ import com.project.yameokja.domain.Store;
 
 @Service
 public class PostServiceImpl implements PostService {
+	
+	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_GROUP = 10;
 	
 	@Autowired
 	private PostDao postDao;
@@ -166,7 +171,33 @@ public class PostServiceImpl implements PostService {
 		return postDao.bestThreePost(storeNo);
 	}
 
-	
+	@Override
+	public void postReplyAdd(Post post) {
+		postDao.postReplyAdd(post);
+	}
+		
+	//포스트 작성
+	@Override
+	public int postWrite(Post post) {
+		String file[] = new String[5];
+		int matchNum = 0;
+		Pattern src = Pattern.compile("(<img[^>]*src\\s*=\\s*[\\\"']?([^>\\\"']+)[\\\"']?[^>]*>)");
+		Matcher match = src.matcher(post.getPostContent());
+		
+		while(match.find()) {
+			file[matchNum] = match.group(2).trim().split("/IMG/post/")[1];
+    		matchNum++;
+    		if(matchNum == 4) break;
+		}
+
+		post.setPostFile1(file[0]);
+		post.setPostFile2(file[1]);
+		post.setPostFile3(file[2]);
+		post.setPostFile4(file[3]);
+		post.setPostFile5(file[4]);
+		
+		return postDao.postWrite(post);
+	}
 
 	
 

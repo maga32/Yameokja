@@ -50,16 +50,34 @@ public class CommunityDaoImpl implements CommunityDao {
 		sqlSession.insert(NAME_SPACE + ".addCommunity101", co);
 	}
 	
+	// 커뮤니티 수다글 수정
+	@Override
+	public void updateCommunity101(Community co) {
+		sqlSession.update(NAME_SPACE + ".updateCommunity101", co);
+	}
+		
 	// 커뮤니티 모집글 작성
 	@Override
 	public void addCommunity102(Community co) {
 		sqlSession.insert(NAME_SPACE + ".addCommunity102", co);
 	}
 
+	// 커뮤니티 모집글 수정
+	@Override
+	public void updateCommunity102(Community co) {
+		sqlSession.update(NAME_SPACE + ".updateCommunity102", co);
+	}
+
 	// 커뮤니티 글 상세보기
 	@Override
 	public Community getCommunityOne(int coNo) {
 		return sqlSession.selectOne(NAME_SPACE + ".getCommunityOne", coNo);
+	}
+
+	// 커뮤니티 글 삭제
+	@Override
+	public void deleteCommunity(int coNo) {
+		sqlSession.delete(NAME_SPACE + "deleteCommunity", coNo);
 	}
 
 	// 커뮤니티 글 조회수 증가
@@ -71,7 +89,8 @@ public class CommunityDaoImpl implements CommunityDao {
 	// 커뮤니티 댓글 입력
 	@Override
 	public void addCommunityReply(Community co) {
-		sqlSession.insert(NAME_SPACE + ".addCommunityReply", co);  
+		sqlSession.insert(NAME_SPACE + ".addCommunityReply", co);
+		sqlSession.update(NAME_SPACE + ".addCommunityReplyCount", co.getCommunityParentNo());
 	}
 	
 	//커뮤니티 댓글 수정
@@ -88,12 +107,13 @@ public class CommunityDaoImpl implements CommunityDao {
 
 	// 커뮤니티 댓글 삭제
 	@Override
-	public void delCommunityReply(int no) {
+	public void delCommunityReply(int no,  int communityParentNo) {
 		
 		int reReplyCount = sqlSession.selectOne(NAME_SPACE + ".countCommunityReReply", no); 
 		if( reReplyCount < 1) {
 			System.out.println("답글 없음, 답글 갯수 : " + reReplyCount);
 			sqlSession.delete(NAME_SPACE + ".delCommunityReply", no);
+			sqlSession.update(NAME_SPACE + ".deleteCommunityReplyCount", communityParentNo);
 			
 		}else {
 			System.out.println("답글 있음, 답글 갯수 : " + reReplyCount);
@@ -118,6 +138,5 @@ public class CommunityDaoImpl implements CommunityDao {
 		sqlSession.update(NAME_SPACE + ".update102PartyMemberIds", params);
 	}
 
-	
 }
 

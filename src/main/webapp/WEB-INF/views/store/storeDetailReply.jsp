@@ -119,8 +119,7 @@
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
 	</div>
 <!-- 	storeDetailHeader end -->	
-					
-					
+									
 <!-- 	postList 시작 -->
 			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 			
@@ -274,9 +273,9 @@
 				<c:if test="${ empty rList }">
 					<div class="col-12 text-center"> 작성된 댓글이 없습니다.</div>
 				</c:if>
-			</div>
-			
+			</div>		
 <!-- 	postList 끝 -->
+
 		</div>
 </div>	
 </article>

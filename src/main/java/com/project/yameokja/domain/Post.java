@@ -183,6 +183,5 @@ public class Post {
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
 	}
-
 	
 }

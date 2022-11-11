@@ -37,5 +37,9 @@ public interface PostService {
 	public List<Post> bestTwoPost(int storeNo);
 	
 	public List<Post> bestThreePost(int storeNo);
+	
+	public void postReplyAdd(Post post);
 
+	// 포스트 작성
+	int postWrite(Post post);
 }

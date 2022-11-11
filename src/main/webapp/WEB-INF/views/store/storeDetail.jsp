@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
+<script src="resources/js/store.js"></script>
 <article>
 
 <div class="row py-3">
-	<form name="storeDetailForm" id="storeDetailForm">
-		<input type="hidden" name="storeNo" value="${ store.storeNo }">
-		<input type="hidden" name="categoryNo" value="${ store.categoryNo }">
-	</form>
-	
+		<!-- 히든 영역 -->
+		<input type="hidden" id="memberId" value="${sessionScope.memberId}">
+		<input type="hidden" id="storeNo" value="${ store.storeNo }">
+		<input type="hidden" id="categoryNo" value="${ store.categoryNo }">
+		<!-- 히든 영역 end-->
+		
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
 	
@@ -100,8 +103,23 @@
 				<div class="row">
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-						<i class="fa fa-link" aria-hidden="true"></i>
+					
+					<!-- d -->
+						<div>
+							${userBookmarks}
+							<br>
+							${store.storeNo}
+						</div>
+					<c:if test = "${fn:contains(userBookmarks, store.storeNo)}">
+						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=memberId01&storeNo=385' "></button>
+					</c:if>
+					<c:if test = "${!fn:contains(userBookmarks, store.storeNo)}">
+						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=memberId01&storeNo=385' "></button>
+					</c:if>
+						
+						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>
 						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
 					</div>
 				</div>
@@ -215,7 +233,7 @@
 	</div>
 	<div class="row text-end">
 		<div class="col-12 py-3">
-			<div class="d-inline-block storeWhiteFormButton text-start"><a href="storeWrite" class="py-1 px-3">글 쓰기</a></div>
+			<div class="d-inline-block storeWhiteFormButton text-start"><a href="postWriteForm?storeNo=${ store.storeNo }" class="py-1 px-3">글 쓰기</a></div>
 			<div class="d-inline-block storeDetailPostButton text-end"><a href="storeDetailList?storeNo=${ store.storeNo }" class="py-1 px-3">리뷰 전체보기</a></div>
 			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
 		</div>

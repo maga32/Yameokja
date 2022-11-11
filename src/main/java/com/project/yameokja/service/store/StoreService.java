@@ -18,5 +18,11 @@ public interface StoreService {
 	
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);
+
+	// 가게 즐겨찾기 추가
+	public void addBookmarks(int storeNo);
 	
+	// 가게 즐겨찾기 삭제
+	public void deleteBookmarks(int storeNo);
+
 }

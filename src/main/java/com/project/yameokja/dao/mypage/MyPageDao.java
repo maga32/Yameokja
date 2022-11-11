@@ -10,18 +10,23 @@ import com.project.yameokja.domain.Store;
 public interface MyPageDao {
 	//회원의 정보
 	public Member getMember(String userId);
-	//작성글 리스트
+	//포스트(post) 리스트
 	public List<Post> myPagePost(String userId, int startRow, int num);
 	//작성글 갯수
 	public int myPagePostCount(String userId);
 	//작성글 삭제
 	void deleteMyPagePost(int postNo);
-	//동네글 리스트 겸 별점 댓글 리스트
+	//별점댓글(reply)  리스트
+	public List<Post> myPageReply(String userId, int startRow, int num);
+	//별점댓글 갯수
+	public int myPageReplyCount(String userId);
+	//동네글 리스트
 	public List<Community> myPageCommunity(String userId, int startRow, int num);
 	//작성글 갯수
 	public int myPageCommunityCount(String userId);
-	//동네글 삭제S
+	//동네글 삭제
 	void deleteMyPageCommunity(int communityNo);
+	
 	//찜 리스트
 	public List<Store> myPageStore(String memberId);
 	

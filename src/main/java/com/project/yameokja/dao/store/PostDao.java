@@ -3,6 +3,7 @@ package com.project.yameokja.dao.store;
 import java.util.List;
 
 import com.project.yameokja.domain.Post;
+import com.project.yameokja.domain.Report;
 
 public interface PostDao {
 	
@@ -10,7 +11,10 @@ public interface PostDao {
 	public abstract List<Post> postList(int storeNo,int num, int startRow, String detailOrderBy);
 	
 	// 가게 정보 별점리뷰 리스트
+
 	public abstract List<Post> postListReply(int startRow, int storeNo, int num);
+	
+	public int myPageReplyCount(int storeNo);
 	
 	// 가게 정보 포스트 상세
 	public abstract Post getPost(int postNo);
@@ -42,5 +46,10 @@ public interface PostDao {
 	public List<Post> bestTwoPost(int storeNo);
 	
 	public List<Post> bestThreePost(int storeNo);
+
+	//포스트 작성
+	int postWrite(Post post);
+	
+	public void postReplyAdd(Post post);
 	
 }

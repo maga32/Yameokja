@@ -261,4 +261,18 @@ public class MemberController {
 		return map;
 	}
 
+	// 멤버 주소변경 ajax
+	@RequestMapping("/memberChangeAddress.ajax")
+	@ResponseBody
+	public int memberChangeAddress(HttpSession session, String memberAddress) {
+		int result = 0;
+		Member member = (Member) session.getAttribute("member");
+		
+		if(member.getMemberId() != null) {
+			member.setMemberAddress(memberAddress);
+			memberService.updateMember(member);
+			result = 1;
+		}
+		return result;
+	}
 }

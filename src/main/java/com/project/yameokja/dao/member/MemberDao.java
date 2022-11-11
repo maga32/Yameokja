@@ -41,5 +41,11 @@ public interface MemberDao {
 	
 	// 회원 탈퇴
 	public void deleteMember(String memberId);
+	
+	// 회원 즐겨찾기 가게 추가
+	public void addMemberBookmarks(String memberId, int storeNo);
+	
+	// 회원 즐겨찾기 가게 삭제
+	public void deleteMemberBookmarks(String memberId, String strStoreNo);
 
 }
