@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Post {
 
 	private int postNo;
-	private int storetNo;
+	private int storeNo;
 	private String postTitle;
 	private String postContent;
 	private int postReadCount; 
@@ -24,13 +24,13 @@ public class Post {
 	
 	public Post() {}
 
-	public Post(int postNo, int storetNo, String postTitle, String postContent, int postReadCount, String postFile1,
+	public Post(int postNo, int storeNo, String postTitle, String postContent, int postReadCount, String postFile1,
 			String postFile2, String postFile3, String postFile4, String postFile5, Timestamp postRegDate,
 			String postIsPost, int postStar, int postUpCount, String postUpList, String memberId,
 			String memberNickname) {
 		
 		this.postNo = postNo;
-		this.storetNo = storetNo;
+		this.storeNo = storeNo;
 		this.postTitle = postTitle;
 		this.postContent = postContent;
 		this.postReadCount = postReadCount;
@@ -56,12 +56,12 @@ public class Post {
 		this.postNo = postNo;
 	}
 
-	public int getStoretNo() {
-		return storetNo;
+	public int getStoreNo() {
+		return storeNo;
 	}
 
-	public void setStoretNo(int storetNo) {
-		this.storetNo = storetNo;
+	public void setStoreNo(int storeNo) {
+		this.storeNo = storeNo;
 	}
 
 	public String getPostTitle() {
@@ -183,6 +183,5 @@ public class Post {
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
 	}
-
 	
 }

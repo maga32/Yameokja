@@ -5,6 +5,7 @@
 
 header { 
 	text-align: center;
+	background-color: #FCD147;
 }
 
 
@@ -13,7 +14,104 @@ footer {
 	text-align: right;
 	color: white;
 }
+
 .LogoIMGSize{
-	width: 120px;
 	height: 35px;
+}
+
+.inlineBlock{
+	display: inline-block;
+}
+
+.headerBackgroundColor{
+	background-color: #FCD147;
+}
+
+.headerFontColor{
+	background-color: #F58500;
+}
+
+.headerColor{
+	color: #F58500;
+}
+
+.text-small {
+	font-size: 13px;
+	color: Grey;
+}
+
+.text-middle {
+	font-size: 14px;
+	color: Grey;
+}
+
+.text-large {
+	font-size: 15px;
+	color: Grey;
+}
+
+/*---------------- wing 시작 ----------------*/
+/* a 태그 */
+#wing a {text-decoration: none;}
+#wing a:link {color: white;}
+#wing a:visited {color: white;}
+#wing a:hover {color: #white;}
+#wing a:active {color: white;}
+
+#wing {
+	position: fixed;
+	z-index: 20;
+	top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+	display:block;
+	background: #F58500;
+	transform: translateX(0px);
+	transition: 0.3s all ease;
+    transition: 0.2s all;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+}
+
+#wing::-webkit-scrollbar {
+	display: none;
+	width: 0 !important;
+}
+
+@media (max-width: 991px){
+	#wing {
+		width: 300px;
+		transform: translateX(-300px);
+	}
+	
+	#wing.open {
+	    transform: translateX(0px);
+	}
+	
+	#wingMask {
+		position: fixed;
+		top: 0;
+	    bottom: 0;
+	    left: 300px;
+		width: 100%;
+		background: black;
+		height: 100vh;
+		opacity: 0.3;
+	}
+}
+
+@media (min-width: 992px){
+	#wing {
+		width: 23%;
+	}
+}
+
+#wingButton {
+	position: fixed;
+	z-index: 10;
+	top: 2%;
+    left: 0;
+    width:70px;
 }

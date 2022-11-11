@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.yameokja.domain.Community;
-import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
-import com.project.yameokja.domain.Store;
 
 // 이 클래스가 데이터 액세스(데이터 저장소) 계층의 컴포넌트(Bean) 임을 선언한다.
 @Repository
@@ -25,50 +23,69 @@ public class MyPageDaoImpl implements MyPageDao {
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-
-	@Override
-	public Member getMember(String memberId) {
-		return sqlSession.selectOne(NAME_SPACE+".getMember", memberId);
-	}
 	
 	@Override
-	public List<Post> myPagePost(String memberId, int startRow, int num) {
+	public List<Post> myPagePost(String userId, int startRow, int num) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("memberId", memberId);
+		params.put("userId", userId);
 		params.put("startRow", startRow);
 		params.put("num", num);
 		
-		return sqlSession.selectList(NAME_SPACE+".myPostList", params);
+		return sqlSession.selectList(NAME_SPACE+".myPagePost", params);
 		
 	}
 
 	@Override
-	public List<Community> myPageCommunity(String memberId, int startRow, int num, String status) {
+	public int myPagePostCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+".myPagePostCount", userId);
+	}
+
+	@Override
+	public void deleteMyPagePost(int postNo) {
+		sqlSession.delete(NAME_SPACE+ ".deleteMyPagePost", postNo);
+	}
+
+	@Override
+	public List<Post> myPageReply(String userId, int startRow, int num) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("memberId", memberId);
+		params.put("userId", userId);
 		params.put("startRow", startRow);
 		params.put("num", num);
-		params.put("status", status);
+		
+		return sqlSession.selectList(NAME_SPACE+".myPageReply", params);
+	}
+
+	@Override
+	public int myPageReplyCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+".myPageReplyCount", userId);
+	}
+
+	@Override
+	public List<Community> myPageCommunity(String userId, int startRow, int num) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
+		params.put("startRow", startRow);
+		params.put("num", num);
 		
 		return sqlSession.selectList(NAME_SPACE+".myPageCommunity", params);
 	}
 
 	@Override
-	public List<Store> myPageStore(String memberId) {
-		return sqlSession.selectList(NAME_SPACE+".myPageStore", memberId);
+	public int myPageCommunityCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+".myPageCommunityCount", userId);
 	}
 
 	@Override
-	public int getPostListCount(String memberId) {
-		return sqlSession.selectOne(NAME_SPACE+".getPostListCount", memberId);
+	public void deleteMyPageCommunity(int communityNo) {
+		sqlSession.delete(NAME_SPACE+ ".deleteMyPageCommunity", communityNo);
 	}
 
 	@Override
-	public int getCommunityListCount(String memberId) {
-		return sqlSession.selectOne(NAME_SPACE+".getCommunityListCount", memberId);
+	public int sumPostUpCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+ ".sumPostUpCount", userId);
 	}
-
 
 }

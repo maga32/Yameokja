@@ -10,15 +10,17 @@ import com.project.yameokja.domain.Store;
 
 public interface MyPageService {
 	
-	public Member getMember(String memberId);
+	public Map<String, Object> myPagePost(String userId, int pageNum);
 	
-	public List<Post> myPagePost();
+	void deleteMyPagePost(int postNo);
 	
-	public Map<String, Object> myPagePost(String memberId, int pageNum);
+	public Map<String, Object> myPageReply(String userId, int pageNum);
 	
-	public Map<String, Object> myPageCommunity(String memberId, int pageNum, String status);
+	public Map<String, Object> myPageCommunity(String userId, int pageNum);
 	
-	public List<Store> myPageStore(String memberId);
+	void deleteMyPageCommunity(int communityNo);
+	
+	public Map<String, Object> myPageLike(String userId, int pageNum);
 
 }
 

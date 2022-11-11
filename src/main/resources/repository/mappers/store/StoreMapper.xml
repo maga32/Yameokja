@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.yameokja.mappers.StoreMapper">
+	
+	<!-- 가게 특정 카테고리 -->
+ 	<select id="storeList" resultType="Store" resultMap="storeResultMap" parameterType="HashMap">
+		SELECT *
+		 FROM store
+		<where>
+			<if test="categoryNo != 99">
+				category_no = #{ categoryNo }	
+			</if>
+			<if test="keyword != 'null' ">
+				AND store_address LIKE CONCAT('%',#{ type }, '%') AND store_name LIKE CONCAT('%',#{ keyword },'%')
+			</if>
+		</where>
+				<trim prefix="ORDER BY">
+					<choose>
+                        <when test="orderBy == 'sName' "> store_name ASC </when>
+                        <when test="orderBy == 'sReviewCount' "> store_review_count DESC </when>
+                        <when test="orderBy == 'sBookmarks' "> store_bookmarks DESC </when>
+                        <otherwise>store_no DESC</otherwise>
+                     </choose>
+                </trim>       
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<!-- 가게 글 갯수 -->
+	<select id="getStoreCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(store_no)
+		 FROM store
+		<where>
+			<if test="categoryNo != 99">
+				category_no = #{ categoryNo }	
+			</if>
+			<if test="keyword != 'null' ">
+				AND store_address = #{type} AND store_name LIKE CONCAT('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 가게 조회수 증가 -->
+	<update id="addStoreReadCount">
+		UPDATE store
+			set store_read_count = if (store_read_count = "0", "1", store_read_count + "1")
+		WHERE store_no =#{storeNo}
+	</update>
+	
+	<!-- 가게 작성된 별점리뷰 카운트 -->
+	<update id="addStoreReviewCount">
+		update store
+			set store_review_count = (select count(post_content) from post where store_no = #{storeNo} and post_is_post = 0)
+		where store_no = #{storeNo}
+	</update>
+	
+	<!-- 가게 상세 -->
+	<select id="getStore" resultType="Store" resultMap="storeResultMap">
+		SELECT * FROM store 
+			WHERE store_no = #{store_no}
+	</select>
+	
+	<!-- 가게 정보 입력 -->
+	<insert id="insertStore" parameterType="Store"
+	useGeneratedKeys="true" keyProperty="storeNo">
+	INSERT INTO 
+		store(store_name, member_id, store_phone, store_latitude, store_longitude, store_file_main, 
+				store_file_menu, store_address, store_time, store_bookmarks, store_day_off, 
+				store_parking, category_no, store_read_count)
+				
+    VALUES(#{storeName},#{memberId}, #{storePhone}, #{storeLatitude}, #{storeLongitude},
+    			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, 0,
+    			#{storeDayOff}, #{storeParking}, #{categoryNo}, 0)
+	</insert>
+	
+	<!-- 가게 업데이트 -->
+	<update id="updateStore">
+		UPDATE store
+			SET store_name = #{storeName}, store_phone = #{store_phone}, store_latitude = #{storeLatitude}, store_longitude = ${storeLongitude}
+				store_file_main = #{storeFileMain} , store_file_menu = #{storeFileMenu}, store_address = #{storeAddress}, store_time = #{storeTime}, 
+				store_day_off = #{storeDayOff}, store_parking = #{storeParking}, category_no = #{categoryNo}
+		WHERE  store_no = #{storeNo};
+	</update>
+	
+	<!-- 가게 삭제 -->
+	<delete id="deleteStore">
+		DELETE FROM store
+			WHERE store_no = #{storeNo}
+	</delete>
+	
+	
+	<!-- 가게 즐겨찾기 추가 -->
+	<update id="addBookmarks">
+		UPDATE store
+			SET store_bookmarks = store_bookmarks + "1"
+		WHERE store_no = #{storeNo}
+	</update>
+	
+	<!-- 가게 즐겨찾기 삭제 -->
+	<update id="deleteBookmarks">
+		UPDATE store
+			SET store_bookmarks = IF(store_bookmarks <![CDATA[<]]> "1", "0", store_bookmarks - "1")
+		WHERE store_no = #{storeNo}
+	</update>
+
+	<resultMap id="storeResultMap" type="Store">
+		<id property="storeNo" column="store_no" />
+		<result property="memberId" column="member_id" />
+		<result property="storeName" column="store_name" />
+		<result property="storePhone" column="store_phone" />
+		<result property="storeLatitude" column="store_latitude" />
+		<result property="storeLongitude" column="store_longitude" />
+		<result property="storeReadCount" column="store_read_count" />
+		<result property="storeFileMain" column="store_file_main" />
+		<result property="storeFileMenu" column="store_file_menu" />
+		<result property="storeAddress" column="store_address" />
+		<result property="categoryNo" column="category_no" />
+		<result property="storeReviewCount" column="store_review_count" />
+		<result property="storeStar" column="store_star" />
+		<result property="storeBookmarks" column="store_bookmarks" />
+		<result property="storeTime" column="store_time" />
+		<result property="storeDayOff" column="store_day_off" />
+		<result property="storeParking" column="store_parking" />
+	</resultMap>
+	
+</mapper>

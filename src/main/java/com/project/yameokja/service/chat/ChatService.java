@@ -21,5 +21,7 @@ public interface ChatService {
 	void chatDelete(int chatNo);
 
 	void chatLeave(int chatNo, String orderCheck);
+
+	void chatLeave(String chatIds, String orderCheck);
 	
 }

@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+/* reportList */
+
+.bg-gray{
+	background-color:#c0c0c0;
+}
+
+ th, td {
+	border: 1px solid black;
+}
+/* a */
+a { text-decoration: none; }
+
+.pageNum a{ color: gray; }
+.previousPage a:link {color: gray;}
+.previousPage a:visited {color: gray;}
+.previousPage a:hover {color: #4aa5ff;}
+.previousPage a:active {color: 4aa5ff;}
+
+.pageNumber a:link {color: gray;}
+.pageNumber a:visited {color: gray;}
+.pageNumber a:hover {color: #4aa5ff;}
+.pageNumber a:active {color: 4aa5ff;}
+
+.nextPage a:link {color: gray;}
+.nextPage a:visited {color: gray;}
+.nextPage a:hover {color: #4aa5ff;}
+.nextPage a:active {color: 4aa5ff;}
+
+.divTableCell a:link {color: black;}
+.divTableCell a:visited {color: black;}
+.divTableCell a:hover {color: #4aa5ff;}
+.divTableCell a:active {color: 4aa5ff;}
+
+/* reportDetail */
+
+textarea{
+	height: 200px;
+}
+.reportContent{
+	height: 200px;
+}
+
+/* reportForm */
+
+.borderZero{
+	border: 0 solid black;
+}
+.yellowBar{
+	background-color: rgba(252, 209, 71);
+	height:40px
+}

@@ -1,0 +1,200 @@
+@charset "UTF-8";
+
+/* 리스트 별로 이동하는 버튼 */
+.currentPage, .otherPage {
+	border-radius: 20px 0 0 0;
+	display: table-cell;
+}
+.currentPage {
+    color: #F58500;
+    background: #FCD147;	
+}
+.bookmarks-on, .bookmarks-off{
+	border: 0px;
+	background: transparent;
+}
+
+.fs-7{
+	font-size: 13px;
+}
+.postListbutton {
+	border-radius: 20px 0 0 0;
+	border: 1px solid #FCD147;
+    color: #F58500;
+    background: #FCD147;
+}
+.starListbutton {
+	border-radius: 20px 0 0 0;
+    border: 1px solid #dee2e6;
+    color: gray;
+}
+.postContent {
+	width: 60%;
+}
+.postFrame{
+	display: flex;
+    align-items: center;
+}
+.upAndDel {
+	width: 10%;
+	display: inline-block;
+}
+.updateButton{
+	border: none;
+}
+.deleteButton{
+	border: none;
+}
+.profileIMG{
+	height: 65px;
+	width: 65px;
+}
+/* a 태그 */
+a {text-decoration: none;}
+
+a:link {color: #6a6767;}
+a:visited {color: #6a6767;}
+a:hover {color: #4aa5ff;}
+a:active {color: 4aa5ff;}
+
+.postListbutton a:link {color: gray;}
+.postListbutton a:visited {color: gray;}
+.postListbutton a:hover {color: #4aa5ff;}
+.postListbutton a:active {color: 4aa5ff;}
+
+.updateButton a:link {color: black;}
+.updateButton a:visited {color: black;}
+.updateButton a:hover {color: #4aa5ff;}
+.updateButton a:active {color: 4aa5ff;}
+
+.deleteButton a:link {color: black;}
+.deleteButton a:visited {color: black;}
+.deleteButton a:hover {color: #4aa5ff;}
+.deleteButton a:active {color: 4aa5ff;}
+
+.currentPage a:link {color: gray;}
+.currentPage a:visited {color: gray;}
+.currentPage a:hover {color: #4aa5ff;}
+.currentPage a:active {color: 4aa5ff;}
+
+.otherPage a:link {color: gray;}
+.otherPage a:visited {color: gray;}
+.otherPage a:hover {color: #4aa5ff;}
+.otherPage a:active {color: #4aa5ff;}
+.postTitle a:link {color: #6a6767;}
+.postTitle a:visited {color: #6a6767;}
+.postTitle a:hover {color: #4aa5ff;}
+.postTitle a:active {color: #4aa5ff;}
+
+/* storeWhiteFormButton */
+.storeWhiteFormButton a:link {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeWhiteFormButton a:visited {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeWhiteFormButton a:hover {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+.storeWhiteFormButton a:active {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+
+/* storeDetailPostButton */
+.storeDetailPostButton a:link {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeDetailPostButton a:visited {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeDetailPostButton a:hover {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+.storeDetailPostButton a:active {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+
+/* storeListButton */
+.storeListButton a:link {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeListButton a:visited {
+	border: 1px solid #E3E5E9;
+	border-radius: 7px;
+	color: #7A7A80;
+}
+.storeListButton a:hover {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+.storeListButton a:active {
+	border: 1px solid #FCD147;
+	border-radius: 7px;
+	color: #ffffff;
+	background-color: #FFB966;
+}
+
+.postStar fieldset {
+	display: inline-block;
+    border: 0;
+}
+
+#postStarSelect fieldset {
+	display: inline-block;
+    border: 0;
+    direction: rtl;
+}
+
+#storeDatailReply input[type=radio]{
+    display: none;
+}
+
+#storeDatailReply label{
+    font-size: 24px; /* 크기 */
+    color: transparent; /* 기존 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /*미선택시 색상 */ 
+}
+
+#storeDatailReply label:hover{
+    text-shadow: 0 0 0 #ffc107; /* 마우스 호버 */
+}
+#storeDatailReply label:hover ~ label{
+    text-shadow: 0 0 0 #ffc107; /* 마우스 호버 뒤에 따라오는 별 */
+}
+#storeDatailReply input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 #ffc107; /* 마우스 클릭 체크 */
+}
+
+.starListbutton a:link {color: gray;}
+.starListbutton a:visited {color: gray;}
+.starListbutton a:hover {color: #4aa5ff;}
+.starListbutton a:active {color: #4aa5ff;}
+
+.storeDetailContentContent {
+	max-height: 300px;
+	overflow: hidden;
+}

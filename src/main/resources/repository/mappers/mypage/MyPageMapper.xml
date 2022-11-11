@@ -21,10 +21,10 @@
 					member_level as memberLevel,
 					member_block_ids as memberBlockIds
 		FROM member 
-		WHERE member_id = #{memberId}
+		WHERE member_id = #{userId}
 	</select>
 	
-	<select id="myPostList" resultType="Post" >
+	<select id="myPagePost" resultType="Post" >
 		SELECT
 					post_no as postNo,
 					post_title as postTitle,
@@ -40,32 +40,81 @@
 					post_star as postStar,
 					post_up_count as postUpCount,
 					post_up_list as postUpList,
-					member_id as memberId
+					member_id as memberId,
+					store_no as storeNo
 		FROM post
-		WHERE member_id = #{memberId}
+		WHERE member_id = #{userId}
+		AND post_is_post = 1
 		ORDER BY post_no DESC
 		LIMIT #{startRow}, #{num}
 	</select>
 	
-	<select id="getPostListCount" resultType="int">
-		SELECT count(post_no) FROM post WHERE member_id = #{memberId}
+	<select id="myPagePostCount" resultType="int">
+		SELECT count(post_no) FROM post 
+		WHERE member_id = #{userId}
+		AND post_is_post = 1
+	</select>
+	
+	<delete id="deleteMyPagePost">
+		DELETE FROM post WHERE post_no = #{ postNo }
+	</delete>
+	
+	<select id="myPageReply" resultType="Post" >
+		SELECT
+					post_no as postNo,
+					post_title as postTitle,
+					post_content as postContent,
+					post_read_count as postReadCount,
+					post_file1 as postFile1,
+					post_file2 as postFile2,
+					post_file3 as postFile3,
+					post_file4 as postFile4,
+					post_file5 as postFile5,
+					post_reg_date as postRegDate,
+					post_is_post as postIsPost,
+					post_star as postStar,
+					post_up_count as postUpCount,
+					post_up_list as postUpList,
+					member_id as memberId,
+					store_no as storeNo
+		FROM post
+		WHERE member_id = #{userId}
+		AND post_is_post = 0
+		ORDER BY post_no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<select id="myPageReplyCount" resultType="int">
+		SELECT count(post_no) FROM post 
+		WHERE member_id = #{userId}
+		AND post_is_post = 0
 	</select>
 
 	<select id="myPageCommunity" resultType="Community" resultMap="CommunityResultMap">
 		SELECT *
 		FROM community
-		WHERE member_id = #{memberId}
+		WHERE member_id = #{userId}
 		ORDER BY community_no DESC
-		LIMIT #{startRow}, #{num}
-		
+		LIMIT #{startRow}, #{num}		
 	</select>
 	
-	<select id="getCommunityListCount" resultType="int">
-		SELECT count(community_no) FROM community WHERE member_id = #{memberId}
+	<select id="myPageCommunityCount" resultType="int">
+		SELECT count(community_no) FROM community WHERE member_id = #{userId}
 	</select>
-
-
-<resultMap id="CommunityResultMap" type="Community">
+	
+	<delete id="deleteMyPageCommunity">
+		DELETE FROM community WHERE community_no = #{ communityNo }
+	</delete>
+	
+	<select id="sumPostUpCount" resultType="int">
+		SELECT sum(post_up_count) FROM post WHERE member_id = #{userId}
+	</select>
+	
+	<select id="getStore" resultType="Store" resultMap="StoreResultMap">
+		SELECT * FROM store WHERE store_no = #{storeNo} AND member_id = #{userId}
+	</select>
+	
+	<resultMap id="CommunityResultMap" type="Community">
 		<id property="communityNo" column="community_no" />
 		<result property="memberId" column="member_id" />
 		<result property="memberNickname" column="member_nickname" />
@@ -83,5 +132,25 @@
 		<result property="partyMemberIds" column="party_member_ids" />
 		<result property="partyDDay" column="party_d_day" />
 		<result property="partyPlace" column="party_place" />
+	</resultMap>
+	
+	<resultMap id="StoreResultMap" type="Store">
+		<id property="storeNo" column="store_no" />
+		<result property="memberId" column="member_id" />
+		<result property="storeName" column="store_name" />
+		<result property="storePhone" column="store_phone" />
+		<result property="storeLatitude" column="store_latitude" />
+		<result property="storeLongitude" column="store_longitude" />
+		<result property="storeReadCount" column="store_read_count" />
+		<result property="storeFileMain" column="store_file_main" />
+		<result property="storeFileMenu" column="store_file_menu" />
+		<result property="storeAddress" column="store_address" />
+		<result property="categoryNo" column="category_no" />
+		<result property="storeReviewCount" column="store_review_count" />
+		<result property="storeStar" column="store_star" />
+		<result property="storeBookmarks" column="store_bookmarks" />
+		<result property="storeTime" column="store_time" />
+		<result property="storeDayOff" column="store_day_off" />
+		<result property="storeParking" column="store_parking" />
 	</resultMap>
 </mapper>

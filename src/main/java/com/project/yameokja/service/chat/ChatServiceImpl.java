@@ -8,7 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.yameokja.dao.member.MemberLoginDao;
+
+import com.project.yameokja.dao.member.MemberDao;
 import com.project.yameokja.dao.chat.ChatDao;
 import com.project.yameokja.domain.Chat;
 import com.project.yameokja.domain.Member;
@@ -17,7 +18,7 @@ import com.project.yameokja.domain.Member;
 public class ChatServiceImpl implements ChatService {
 	
 	ChatDao chatDao;
-	MemberLoginDao memberLoginDao;
+	MemberDao memberDao;
 	
 	@Autowired
 	public void setChatDao(ChatDao chatDao) {
@@ -25,8 +26,8 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Autowired
-	public void setMemberLoginDao(MemberLoginDao memberLoginDao) {
-		this.memberLoginDao = memberLoginDao;
+	public void setMemberLoginDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
 	}
 
 
@@ -51,7 +52,7 @@ public class ChatServiceImpl implements ChatService {
 			chats.add(chatDao.chatLists(chatIds.get(i)));
 			
 			tempId = chats.get(i).getChatSender().equals(memberId) ? chats.get(i).getChatReceiver() : chats.get(i).getChatSender(); 			
-			members.add(memberLoginDao.getMember(tempId));
+			members.add(memberDao.getMember(tempId));
 		}
 		
 		
@@ -85,6 +86,11 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public void chatLeave(int chatNo, String orderCheck) {
 		chatDao.chatLeave(chatNo, orderCheck);
+	}
+
+	@Override
+	public void chatLeave(String chatIds, String orderCheck) {
+		chatDao.chatLeave(chatIds, orderCheck);
 	}
 
 }
