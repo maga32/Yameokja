@@ -15,10 +15,6 @@
 	<select id="reportList" resultType="Report" parameterType="hashmap" resultMap="ReportResultMap">
 		SELECT * FROM report
 			<where>
-			
-				<if test='userId != "" '>
-					AND member_id = #{userId}
-				</if>
 				<if test='reportPunishCheck == "1" '>
 					AND report_punish_check = #{reportPunishCheck}
 				</if>
@@ -29,18 +25,18 @@
 					AND report_punish_check =  #{reportPunishCheck}
 				</if>
 				
-				<if test='categoryNo == "301" '>
+				<if test='categoryNo != "300" '>
 					 AND category_no = #{categoryNo}
 				</if>
-				<if test='categoryNo == "302" '>
-					 AND category_no = #{categoryNo}
-				</if>
-				<if test='categoryNo == "303" '>
-					AND category_no = #{categoryNo}
-				</if>
-				<if test='categoryNo == "304" '>
-					AND category_no = #{categoryNo}
-				</if>
+<!-- 				<if test='categoryNo == "302" '> -->
+<!-- 					 AND category_no = #{categoryNo} -->
+<!-- 				</if> -->
+<!-- 				<if test='categoryNo == "303" '> -->
+<!-- 					AND category_no = #{categoryNo} -->
+<!-- 				</if> -->
+<!-- 				<if test='categoryNo == "304" '> -->
+<!-- 					AND category_no = #{categoryNo} -->
+<!-- 				</if> -->
 				
 				<if test='type == "all" '>
 					AND (report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%'))
@@ -50,6 +46,10 @@
 				</if>
 				<if test='type == "memberId" '>
 					AND member_id LIKE CONCAT('%', #{keyword}, '%')
+				</if>
+				
+				<if test='memberLevel lt 7'>
+					AND member_id = #{memberId}
 				</if>
 				
 			</where>
@@ -61,9 +61,6 @@
 		SELECT COUNT(report_no) FROM report
 			<where>
 			
-				<if test='userId != "" '>
-					AND member_id = #{userId}
-				</if>
 				<if test='reportPunishCheck == "1" '>
 					AND report_punish_check = #{reportPunishCheck}
 				</if>
@@ -74,18 +71,21 @@
 					AND report_punish_check =  #{reportPunishCheck}
 				</if>
 				
-				<if test='categoryNo == "301" '>
+				<if test='categoryNo != "300" '>
 					 AND category_no = #{categoryNo}
 				</if>
-				<if test='categoryNo == "302" '>
-					 AND category_no = #{categoryNo}
-				</if>
-				<if test='categoryNo == "303" '>
-					AND category_no = #{categoryNo}
-				</if>
-				<if test='categoryNo == "304" '>
-					AND category_no = #{categoryNo}
-				</if>
+<!-- 				<if test='categoryNo == "301" '> -->
+<!-- 					 AND category_no = #{categoryNo} -->
+<!-- 				</if> -->
+<!-- 				<if test='categoryNo == "302" '> -->
+<!-- 					 AND category_no = #{categoryNo} -->
+<!-- 				</if> -->
+<!-- 				<if test='categoryNo == "303" '> -->
+<!-- 					AND category_no = #{categoryNo} -->
+<!-- 				</if> -->
+<!-- 				<if test='categoryNo == "304" '> -->
+<!-- 					AND category_no = #{categoryNo} -->
+<!-- 				</if> -->
 				
 				<if test='type == "all" '>
 					AND (report_title LIKE CONCAT('%', #{keyword}, '%') OR member_id LIKE CONCAT('%', #{keyword}, '%'))
@@ -95,7 +95,11 @@
 				</if>
 				<if test='type == "memberId" '>
 					AND member_id LIKE CONCAT('%', #{keyword}, '%')
-				</if>	
+				</if>				
+				
+				<if test='memberLevel lt 7'>
+					AND member_id = #{memberId}
+				</if>
 				
 			</where>
 	</select>

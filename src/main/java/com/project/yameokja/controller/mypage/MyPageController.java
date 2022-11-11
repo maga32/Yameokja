@@ -26,12 +26,6 @@ public class MyPageController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping(value="/mainmain", method=RequestMethod.GET)
-	public String main() {
-		return "mypage/mainmain";
-	}
-
-
 	// 로그인 상태에서 동작
 	@RequestMapping(value="/myPagePost")
 	public String myPagePost(

@@ -129,24 +129,36 @@ public class ReportController {
 	
 	// 신고 리스트 조회
 	@RequestMapping("/reportList")
-	public String reportList(Model model, HttpServletResponse response, HttpServletRequest request,
+	public String reportList(Model model, HttpSession session,
 			@RequestParam(value="reportType", required=false, defaultValue="null")String reportType,
 			@RequestParam(value="categoryNo", required=false, defaultValue="300")int categoryNo,
 			@RequestParam(value="reportPunishCheck", required=false, defaultValue="0")String reportPunishCheck,
 			@RequestParam(value="type", required=false, defaultValue="all")String type,
 			@RequestParam(value="keyword", required=false, defaultValue="")String keyword,
-			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum,
-			@RequestParam(value="userId", required=false, defaultValue="")String userId
+			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
+		Member member = (Member) session.getAttribute("member");
+		int memberLevel = 0;
+		if(member != null) {
+			memberLevel = member.getMemberLevel();
+		}
+
+		String memberId = (String) session.getAttribute("memberId");
+		Map<String, Object> reportList = reportService.reportList(memberLevel, memberId, categoryNo, reportPunishCheck, type, keyword, pageNum);
 		
-		Map<String, Object> reportList = reportService.reportList(userId, categoryNo, reportPunishCheck, type, keyword, pageNum);
 
 		//회원이 작성한 신고글만 가져오기
 		model.addAllAttributes(reportList);
 		model.addAttribute("reportType", reportType);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("userId", userId);
+		model.addAttribute("member", member);
+		model.addAttribute("memberLevel", memberLevel);
+		model.addAttribute("categoryNo", categoryNo);
+		model.addAttribute("reportPunishCheck", reportPunishCheck);
+		model.addAttribute("type", type);
+		model.addAttribute("keyword", keyword);
+		System.out.println(pageNum);
 
 		return "report/reportList";
 	}
@@ -155,7 +167,8 @@ public class ReportController {
 	@RequestMapping("/reportDetail")
 	public String reportDetail(
 			Model model, 
-			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo
+			@RequestParam(value="reportNo", required=false, defaultValue="1")int reportNo,
+			@RequestParam(value="pageNum", required=false, defaultValue="1")int pageNum
 			) {
 		Report report = reportService.getReport(reportNo);
 		Member member= memberService.getMember(report.getReportTarget());
@@ -163,6 +176,7 @@ public class ReportController {
 		model.addAttribute("report", report);
 		model.addAttribute("reportNo", reportNo);
 		model.addAttribute("member", member);
+		model.addAttribute("pageNum", pageNum);
 		
 		return "report/reportDetail";
 	}

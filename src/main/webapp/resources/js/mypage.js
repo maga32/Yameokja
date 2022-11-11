@@ -14,8 +14,11 @@ $(function() {
 		}		 */
 	 });
 	 $("#deleteButton").click(function(){
-	 	confilm("삭제하시겠습니까?");
-	 	var postNo = $("#postNo").val();
-	 	
+	 	var con = confirm("삭제하시겠습니까?");
+	 	if(!con){
+	 	return false;
+	 	}else{
+	 	return true;
+	 	}
 	 });
 });
