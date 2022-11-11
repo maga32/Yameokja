@@ -43,7 +43,7 @@ public interface MemberDao {
 	public void deleteMember(String memberId);
 	
 	// 회원 즐겨찾기 가게 추가
-	public void addMemberBookmarks(String memberId, int storeNo);
+	public void addMemberBookmarks(String memberId, String strStoreNo);
 	
 	// 회원 즐겨찾기 가게 삭제
 	public void deleteMemberBookmarks(String memberId, String strStoreNo);

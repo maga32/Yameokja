@@ -28,26 +28,15 @@ CREATE TABLE IF NOT EXISTS community(
   category_no INTEGER(10) NOT NULL default '0',
   member_id VARCHAR(10) NOT NULL,
   member_nickname VARCHAR(20) NOT NULL,
-  member_photo VARCHAR(1000) null,
+  member_address VARCHAR(20) NOT NULL,
   
   CONSTRAINT community_category_fk FOREIGN KEY(category_no) REFERENCES category(category_no),
   CONSTRAINT community_member_fk FOREIGN KEY(member_id) REFERENCES member(member_id),
   CONSTRAINT community_member_fk2 FOREIGN KEY(member_nickname) REFERENCES member(member_nickname)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE community CHANGE community_parent_no community_parent_no integer(10) NOT NULL default '0';
-ALTER TABLE community CHANGE community_re_reply community_re_reply integer(10) NOT NULL default '0';
-ALTER TABLE community CHANGE community_read_count community_read_count integer(10) default '0';
-ALTER TABLE community CHANGE community_file community_file VARCHAR(1000) NULL;
-ALTER TABLE community CHANGE member_photo member_photo varchar(100) NULL ;
-ALTER TABLE community CHANGE community_reply_count community_reply_count INTEGER(10) NULL default '0' ;
-
-ALTER TABLE community ADD member_photo VARCHAR(1000) null;
-ALTER TABLE community ADD CONSTRAINT community_member_fk3 FOREIGN KEY(member_photo) REFERENCES member(member_photo)  ON UPDATE CASCADE;
-
 desc community;
-
-
+TRUNCATE community;
 
 #######################################################################################################################################################################################################################################community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname
 
@@ -72,23 +61,3 @@ INSERT INTO community
 				  "MEM", "101", 'memberId02', 'nickname02');
 COMMIT;
 
-SELECT * FROM community order by community_no DESC;
-SELECT * FROM community where community_no = 1 AND category_no > '100' order by community_no DESC;
-UPDATE community
-			SET community_read_count = IF (community_read_count = "0", '1', community_read_count + '1')
-		WHERE community_no = 278;      
-select community_read_count FROM community where community_no = 278;
-select * from community order by community_no DESC;
-
-
-SELECT * FROM community
-WHERE community_parent_no = 287 AND category_no = '0';
-
-DELETE FRom community WHERE community_no = 291;
-
-SELECT * FROM community WHERE community_no = 287;
-SELECT * FROM community WHERE category_no = 0 AND community_parent_no = 287;
-
-UPDATE community
-			SET community_reply_count = community_reply_count + 1
-			WHERE community_no = 287;

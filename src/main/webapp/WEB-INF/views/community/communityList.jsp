@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" 	href="resources/css/communityList.css" />
 <script src="resources/js/community.js"></script>
 <article>
-	<div class="row">
+	<div class="row m-0">
 		<div class="row col-12 py-2 pt-4">
 			<div class="col-4">
 				<div class="inlineBlock ${ categoryNo == 'all' ? 'categoryNoButtonOnClick':'categoryNoButton'}">
@@ -20,7 +20,8 @@
 			</div>
 			<div class="col-8">
 				<form id="communitySearchForm" name="communitySearchForm"
-					action="communityList?categoryNo=${ categoryNo }" method="post">
+					action="communityList">
+					<input type="hidden" name="categoryNo" value="${categoryNo }">
 					<div class="row">
 						<div class="col-2">
 							<select class="form-select-sm rounded-pill"
@@ -55,7 +56,7 @@
 		</div>
 
 
-
+		${location}
 		<!-- 동네글 시작지점 / 분류 전체 -->
 		<div class="row">
 			<c:if test="${ categoryNo == 'all' }">
@@ -70,8 +71,7 @@
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
 								<div class="col-3">
-									<img src="upload/community/${ p.communityFile }"
-										class="img-thumbnail rounded float-start" alt="...">
+									<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${p.communityFile }">
 								</div>
 							</c:if>
 							<div class="col-6">
@@ -90,7 +90,7 @@
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
-											<i class="fa fa-eye" aria-hidden="true"></i>
+											<i class="fa fa-eye colorGray" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
@@ -118,8 +118,7 @@
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
 								<div class="col-3">
-									<img src="upload/community/${ p.communityFile }"
-										class="img-thumbnail rounded float-start" alt="...">
+									<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${p.communityFile }">
 								</div>
 							</c:if>
 							<div class="col-6">
@@ -132,13 +131,13 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate"><fmt:formatDate value="${ p.communityRegDate }" pattern="yyyy-MM-dd" /></div>
 							</div>
 							<div class="col-3">
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
-											<i class="fa fa-eye" aria-hidden="true"></i>
+											<i class="fa fa-eye colorGray" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
@@ -166,8 +165,7 @@
 							</c:if>
 							<c:if test="${ not empty p.communityFile }">
 								<div class="col-3">
-									<img src="upload/community/${ p.communityFile }"
-										class="img-thumbnail rounded float-start" alt="...">
+									<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${p.communityFile }">
 								</div>
 							</c:if>
 							<div class="col-6 ">
@@ -180,13 +178,13 @@
 									</h4>
 								</div>
 								<div class="text-secondary" id="communityMemberNickname">${ p.memberId }</div>
-								<div class="text-secondary fs-6" id="communityRegDate">${ p.communityRegDate }</div>
+								<div class="text-secondary fs-6" id="communityRegDate"><fmt:formatDate value="${ p.communityRegDate }" pattern="yyyy-MM-dd" /></div>
 							</div>
 							<div class="col-3">
 								<div class="row  alignIitems height">
 									<div class="col-6 d-flex-column">
 										<div class="col-12">
-											<i class="fa fa-eye" aria-hidden="true"></i>
+											<i class="fa fa-eye colorGray" aria-hidden="true"></i>
 										</div>
 									</div>
 									<div class="col-6 d-flex-column">
@@ -212,7 +210,7 @@
 				<c:if test="${listCount > 0 }">
 						<c:if test="${ startPage > '10' }">
 							<div class="previousPage inlineBlock">
-								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage - pageGroup}&type=${type}&keyword=${keyword}"><</a>
+								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage - pageGroup}&communitySearchType=${type}&communitySearchKeyword=${keyword}"><</a>
 							</div>
 						</c:if>
 						<div class="pageNumber inlineBlock">
@@ -222,14 +220,14 @@
 							</c:if>
 							<c:if test="${ i != currentPage }">
 								<div class="inlineBlock">
-									<a href="communityList?categoryNo=${ categoryNo }&pageNum=${i}&type=${type}&keyword=${keyword}">&nbsp;${ i }&nbsp;</a>
+									<a href="communityList?categoryNo=${ categoryNo }&pageNum=${i}&communitySearchType=${type}&communitySearchKeyword=${keyword}">&nbsp;${ i }&nbsp;</a>
 								</div>
 							</c:if>
 						</c:forEach>
 						</div>
 						<c:if test="${ endPage < pageCount }">
 							<div class="nextPage inlineBlock">
-								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage + pageGroup}&type=${type}&keyword=${keyword}">></a>
+								<a href="communityList?categoryNo=${ categoryNo }&pageNum=${startPage + pageGroup}&communitySearchType=${type}&communitySearchKeyword=${keyword}">></a>
 							</div>
 						</c:if>
 				</c:if>
@@ -241,7 +239,6 @@
 					<div class="inlineBlock whiteFormButton"><a href="community102WriteForm" class="py-1 px-3">모집글 쓰기</a></div>
 				</div>
 			</div>
-			<div class="col-12 bg-primary">가게 리스트 들어갈 곳</div>
 		</div>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 package com.project.yameokja.controller.community;
 
-import java.io.File; 
+import java.io.File;  
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
@@ -41,7 +41,7 @@ public class CommunityController {
 	@Autowired
 	MemberService memberService;
 	
-	private final static String DEFAULT_PATH = "/resources/upload/";
+	private final static String DEFAULT_PATH = "/resources/IMG/community";
 
 	// 커뮤니티 리스트 출력
 	@RequestMapping("/communityList")
@@ -50,11 +50,14 @@ public class CommunityController {
 			@RequestParam(value="categoryNo", required=false, defaultValue="all") String categoryNo,
 			@RequestParam(value="communitySearchType", required=false, defaultValue="null") String type,			
 			@RequestParam(value="communitySearchKeyword", required=false, defaultValue="null") String keyword,
-			HttpServletResponse response, HttpServletRequest request) {
+			HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 	
-		Map<String, Object> coMap = communityListService.getCommunity(type, keyword, pageNum, categoryNo); 
+		String location = memberService.getMember((String)session.getAttribute("memberId")).getMemberAddress(); 
+		
+		Map<String, Object> coMap = communityListService.getCommunity(type, keyword, pageNum, categoryNo, location); 
 		
 		model.addAllAttributes(coMap);
+		model.addAttribute("location", location);
 		model.addAttribute("categoryNo", categoryNo);
 		model.addAttribute("type", type);
 		model.addAttribute("keyword", keyword);
@@ -117,7 +120,7 @@ public class CommunityController {
 	// 수다글 작성 프로세스
 	@RequestMapping(value="/community101WriteProcess", method=RequestMethod.POST)
 	public String community101WriteProcess(String co101Id, String co101Nickname,
-			String co101Title, String co101Content, HttpServletRequest request,
+			String co101Title, String co101Content, HttpServletRequest request,  HttpSession session,
 			@RequestParam(value="co101File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
 		
 		Community co = new Community();
@@ -127,6 +130,7 @@ public class CommunityController {
 		co.setMemberId(co101Id);
 		co.setMemberNickname(co101Nickname);
 		co.setCategoryNo(101);
+		co.setMemberAddress(memberService.getMember((String) session.getAttribute("memberId")).getMemberAddress());
 		
 		if( !multipartFile.isEmpty()) {
 			
@@ -149,8 +153,8 @@ public class CommunityController {
 	
 	// 수다글 수정 프로세스
 	@RequestMapping(value="community101UpdateProcess", method=RequestMethod.POST)
-	public String community102UpdateProcess(String co101Id, String co101Nickname,
-			String co101Title, String co101Content, HttpServletRequest request, int communityNo,
+	public String community102UpdateProcess(String co101Id, String co101Nickname,  int communityNo,
+			String co101Title, String co101Content, HttpServletRequest request,
 			@RequestParam(value="co101File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
 		
 		Community co = new Community();
@@ -177,6 +181,12 @@ public class CommunityController {
 		return "redirect:/communityList";
 	}
 	
+	// 모집글 작성폼
+	@RequestMapping("/community102WriteForm")
+	public String community102WriteForm() {
+
+		return "community/community102WriteForm";
+	}
 	
 	// 모집글 수정 폼
 	@RequestMapping(value="community102UpdateForm", method=RequestMethod.POST)
@@ -208,7 +218,7 @@ public class CommunityController {
 	@RequestMapping(value="community102WriteProcess", method=RequestMethod.POST)
 	public String community102WriteProcess(String co102Id, String co102Nickname,
 			String co102Title, String co102Content, String co102PartyDDay,
-			String co102PartyPlace, int co102PartyMembers, HttpServletRequest request,
+			String co102PartyPlace, int co102PartyMembers, HttpServletRequest request, HttpSession session,
 			@RequestParam(value="co102File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
 		
 		String[] splitDDay = co102PartyDDay.split("T");
@@ -226,6 +236,7 @@ public class CommunityController {
 		co.setPartyPlace(co102PartyPlace);
 		co.setPartyDDay(co102PartyDDayResult);
 		co.setpartyMemberIds(co102Id);
+		co.setMemberAddress(memberService.getMember((String) session.getAttribute("memberId")).getMemberAddress());
 
 	
 		if( !multipartFile.isEmpty()) {
@@ -247,43 +258,43 @@ public class CommunityController {
 	}
 	
 	// 모집글 수정 프로세스
-		@RequestMapping(value="community102UpdateProcess", method=RequestMethod.POST)
-		public String community102UpdateProcess(String co102Id, String co102Nickname,
-				String co102Title, String co102Content, int communityNo, String co102PartyDDay,
-				String co102PartyPlace, int co102PartyMembers, HttpServletRequest request,
-				@RequestParam(value="co102File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
-			
-			String[] splitDDay = co102PartyDDay.split("T");
-			String sumDDay = splitDDay[0] + " " +splitDDay[1] + ":00";
-			Timestamp co102PartyDDayResult = Timestamp.valueOf(sumDDay);
-			
-			Community co = new Community();
-			
-			co.setCommunityNo(communityNo);
-			co.setCommunityContent(co102Content);
-			co.setCommunityTitle(co102Title);
-			co.setPartyMembers(co102PartyMembers);
-			co.setPartyPlace(co102PartyPlace);
-			co.setPartyDDay(co102PartyDDayResult);
-
+	@RequestMapping(value="community102UpdateProcess", method=RequestMethod.POST)
+	public String community102UpdateProcess(String co102Id, String co102Nickname,
+			String co102Title, String co102Content, int communityNo, String co102PartyDDay,
+			String co102PartyPlace, int co102PartyMembers, HttpServletRequest request,
+			@RequestParam(value="co102File", required=false) MultipartFile multipartFile ) throws IllegalStateException, IOException {
 		
-			if( !multipartFile.isEmpty()) {
-				
-				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
-				UUID uid  = UUID.randomUUID();
-				String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
-				
-				File file = new File(filePath, saveName);
-				System.out.println("file : " + file.getName());
-
-				multipartFile.transferTo(file);
-				co.setCommunityFile(saveName);
-			}
+		String[] splitDDay = co102PartyDDay.split("T");
+		String sumDDay = splitDDay[0] + " " +splitDDay[1] + ":00";
+		Timestamp co102PartyDDayResult = Timestamp.valueOf(sumDDay);
 		
-			communityListService.updateCommunity102(co);
+		Community co = new Community();
+		
+		co.setCommunityNo(communityNo);
+		co.setCommunityContent(co102Content);
+		co.setCommunityTitle(co102Title);
+		co.setPartyMembers(co102PartyMembers);
+		co.setPartyPlace(co102PartyPlace);
+		co.setPartyDDay(co102PartyDDayResult);
+
+	
+		if( !multipartFile.isEmpty()) {
 			
-			return "redirect:/communityList";
+			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+			UUID uid  = UUID.randomUUID();
+			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("file : " + file.getName());
+
+			multipartFile.transferTo(file);
+			co.setCommunityFile(saveName);
 		}
+	
+		communityListService.updateCommunity102(co);
+		
+		return "redirect:/communityList";
+	}
 	
 	
 	// 모집 참여 및 참여취소
@@ -370,7 +381,9 @@ public class CommunityController {
 	// 커뮤니티 글 상세보기
 	@RequestMapping("/communityDetail")
 	public String communityDetail(Model model, int communityNo,
-			HttpServletRequest request, HttpSession session) {
+			HttpServletRequest request, HttpSession session, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
 		System.out.println("codetail start");
 		
@@ -400,12 +413,7 @@ public class CommunityController {
 		
 		Community co = communityListService.getCommunityOne(communityNo);
 		model.addAttribute("co", co);
-		
-		// 해당 동네글이 비어있을 경우
-		if(co == null) {
-			System.out.println("co가 비었거나, 로그인 상태가 아닙니다.");
-			return "redirect:communityDetail?communityNo="+communityNo;
-		}
+		System.out.println("con-coMemberPhoto : " + co.getMemberPhoto() );	
 		
 		// 댓글 출력. 불러온 글의 coNo를 부모글 번호로 가지는 댓글들을 불러옴.
 		if( co != null) {
@@ -419,6 +427,20 @@ public class CommunityController {
 		System.out.println("codetail mid");
 		
 		// 모집글.
+		// 모집 참여 - timestamp 확인 및 비교 메서드(partyDDayCheck)사용
+		if(co.getPartyDDay() != null) {
+			boolean result = partyDDayCheck(co);
+			model.addAttribute("result", result);
+			
+			if(!result) {
+				out.println("<script>");
+				out.println("alert('모집기간이 초과되었습니다.');");
+				out.println("</script>");
+				
+				return "redirect:communityDetail?communityNo="+communityNo;
+			}
+		}
+		
 		// 해당 글 모집 참가인원 조회
 		int countPartyMembers = 0;
 		List<Member> memberPhotoList = new ArrayList<Member>();

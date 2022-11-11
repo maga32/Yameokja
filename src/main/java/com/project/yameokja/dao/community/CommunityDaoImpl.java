@@ -20,7 +20,7 @@ public class CommunityDaoImpl implements CommunityDao {
 	
 	// 커뮤니티 글 목록
 	@Override
-	public List<Community> getCommunity(int startRow, int num, String type, String keyword, String categoryNo) {
+	public List<Community> getCommunity(int startRow, int num, String type, String keyword, String categoryNo, String location) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("type", type);
@@ -28,18 +28,22 @@ public class CommunityDaoImpl implements CommunityDao {
 		params.put("startRow", startRow);
 		params.put("num", num);
 		params.put("cNo", categoryNo);
+		params.put("location", location);
+		
+		System.out.println("dao - cNo : " + categoryNo);
 		
 		return sqlSession.selectList(NAME_SPACE+".getCommunity", params);
 	}
 
 	// 커뮤니티 글 개수
 	@Override
-	public int getCommunityCount(String type, String keyword, String categoryNo) {
+	public int getCommunityCount(String type, String keyword, String categoryNo, String location) {
 		
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("type", type);
 		param.put("keyword", keyword);
 		param.put("cNo", categoryNo);
+		param.put("location", location);
 		
 		return sqlSession.selectOne(NAME_SPACE + ".getCommunityCount", param);
 	}
@@ -77,7 +81,7 @@ public class CommunityDaoImpl implements CommunityDao {
 	// 커뮤니티 글 삭제
 	@Override
 	public void deleteCommunity(int coNo) {
-		sqlSession.delete(NAME_SPACE + "deleteCommunity", coNo);
+		sqlSession.delete(NAME_SPACE + ".deleteCommunity", coNo);
 	}
 
 	// 커뮤니티 글 조회수 증가

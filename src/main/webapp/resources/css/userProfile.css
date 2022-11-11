@@ -3,16 +3,11 @@
 	padding: 10px;
 	box-sizing: border-box;
 }
-.profileHeaderFrame{
-	text-align: center;
-	
-}
 .profileheader{
-	font-size: 23px;
-	font-weight: 600;
+/* 	font-size: 23px; */
 	border-bottom: 2px solid black;
-	display: flex;
-    flex-direction: column
+/* 	display: flex; */
+/*     flex-direction: column */
 }
 .profileheaderHr{
 	color: black;
@@ -25,15 +20,6 @@
 }
 .profileIMG{
 	border: 1px dotted black;
-}
-.profileCategoryFrame{
-/* 	border: 1px dotted black; */
-	margin-left: 10px;
-	text-align: left;
-}
-.profileCategoryIMG{
-	width: 50%;
-	height: 50%;
 }
 
 .myLocationTh{

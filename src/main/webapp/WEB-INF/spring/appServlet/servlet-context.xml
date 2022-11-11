@@ -40,10 +40,11 @@
 	    <mapping path="/memberUpdate*" />
 	    <mapping path="/memberDelete" />
    	    <mapping path="/chat/**" />
-   	    <mapping path="/report*" />
+<!--    	    <mapping path="/report*" /> -->
    	    <mapping path="/bookmarks*" />
    	    <mapping path="/storeWrite*"/>
    	    <mapping path="/deleteReplyProcess"/>
+   	    <mapping path="/community*" />
 	    <beans:ref bean="LoginCheckInterceptor" />
 	   </interceptor>
 	</interceptors>

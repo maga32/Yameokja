@@ -11,7 +11,6 @@ public interface PostDao {
 	public abstract List<Post> postList(int storeNo,int num, int startRow, String detailOrderBy);
 	
 	// 가게 정보 별점리뷰 리스트
-
 	public abstract List<Post> postListReply(int startRow, int storeNo, int num);
 	
 	public int myPageReplyCount(int storeNo);
@@ -47,8 +46,14 @@ public interface PostDao {
 	
 	public List<Post> bestThreePost(int storeNo);
 
-	//포스트 작성
+	// 포스트 작성
 	int postWrite(Post post);
+	
+	// 포스트 업데이트
+	void postUpdate(Post post);
+	
+	// 포스트 삭제
+	void postDelete(int postNo);
 	
 	public void postReplyAdd(Post post);
 	

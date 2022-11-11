@@ -18,5 +18,7 @@ public interface ReportService {
 	public void reportUpdate(Report report);
 	
 	public void deleteReport(int reportNo);
+	
+	void memberPermanenSuspension(String memberId);
 
 }

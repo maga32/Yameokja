@@ -1,14 +1,21 @@
 $(function(){
 
 	// 회원가입 필수 입력값 검사
-	$("#memberJoinForm").on("submit", function(){
+	$("#memberJoinForm").on("submit", function(){	
 		
 		var isIdCheck = $("#isIdCheck").val();
+		var passCheck = $("#passCheck").val();
 		var pass1 = $("#pass1").val();
 		var pass2 = $("#pass2").val();
-	
+		
 		if(isIdCheck == "false"){
+			console.log('??');
+			console.log('기본');
 			alert("아이디 중복확인을 해주세요");
+			return false;
+		}
+		if(passCheck == "false"){
+			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		}
 		if(pass1.length == 0 || pass2.length == 0){
@@ -18,6 +25,16 @@ $(function(){
 
 		return joinFormCheck();
 	});
+	
+	// 회원가입 및 회원수정. 아이디 중복확인 후 값 변경시 check false
+	$("#memberId").on("change", function(){
+			$("#isIdCheck").val(false);
+	});
+	
+	// 회원가입 및 회원수정. 닉네임 중복확인 후 값 변경시 check false
+	$("#memberNickname").on("change", function(){
+			$("#isNicknameCheck").val(false);
+		});
 	
 	// 회원수정 필수 입력값 검사
 	$("#memberUpdateForm").on("submit", function(){
@@ -110,11 +127,15 @@ $(function(){
 		if(pass1 != "" || pass2 != ""){
 			if(pass1 == pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치합니다');
-			
+				$("#passCheck").val(true);
 			}else if(pass1 != pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치하지 않습니다');
+				$("#passCheck").val(false);
 			}
-		}else{$("#memberPasswordWarning").text('비밀번호를 입력해주세요');}
+		}else{
+			$("#memberPasswordWarning").text('비밀번호를 입력해주세요');
+			$("#passCheck").val(false);
+		}
 	});
 	
 	// 비밀번호 일치 확인2
@@ -126,9 +147,10 @@ $(function(){
 		if(pass1 != "" || pass2 != ""){
 			if(pass1 == pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치합니다');
-			
+				$("#passCheck").val(true);
 			}else if(pass1 != pass2){
 				$("#memberPasswordWarning").text('비밀번호가 일치하지 않습니다');
+				$("#passCheck").val(false);
 			}
 		}
 	});
@@ -256,12 +278,12 @@ function joinFormCheck(){
 	var phone1 = $("#phone1").val();
 	var phone2 = $("#phone2").val();
 	var phone3 = $("#phone3").val();
-	var address1 = $("#address1").val();
-	var address2 = $("#address2").val();
+	var address1 = $(".address1").val();
+	var address2 = $(".address2").val();
 	var memberFavoriteCategoryCount = $("#memberFavoriteCategoryCount").val();
 	
 	var oldPass = $("#oldPass").val();
-	
+
 	if(name.length == 0){
 		alert("이름을 입력해주세요");
 		return false;
@@ -294,16 +316,9 @@ function joinFormCheck(){
 		alert("세부 주소를 선택해주세요");
 		return false;
 	}
-	if(memberFavoriteCategoryCount < 3){
-		alert("선호 음식 종류를 3가지 이상 입력해주세요.");
+	if(memberFavoriteCategoryCount != 3){
+		alert("선호 음식을 3종류 선택해 주세요.");
 		return false;
 	}
 	
 }
-
-
-
-
-
-
-

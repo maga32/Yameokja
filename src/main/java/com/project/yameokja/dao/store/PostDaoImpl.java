@@ -119,7 +119,6 @@ public class PostDaoImpl implements PostDao {
 		sqlSession.delete(NAME_SPACE + ".deleteReply", postNo);
 	}
 
-
 	@Override
 	public Post bestOnePost(int storeNo) {
 		return sqlSession.selectOne(NAME_SPACE + ".bestOnePost", storeNo);
@@ -149,10 +148,22 @@ public class PostDaoImpl implements PostDao {
 		sqlSession.insert(NAME_SPACE + ".postReplyAdd", post);
 	}	
 		
-	//포스트 작성
+	// 포스트 작성
 	@Override
 	public int postWrite(Post post) {
 		return sqlSession.insert(NAME_SPACE + ".postWrite", post);
+	}
+
+	// 포스트 업데이트
+	@Override
+	public void postUpdate(Post post) {
+		sqlSession.update(NAME_SPACE + ".postUpdate", post);
+	}
+
+	// 포스트 삭제
+	@Override
+	public void postDelete(int postNo) {
+		sqlSession.delete(NAME_SPACE + ".postDelete", postNo);
 	}
 
 

@@ -5,12 +5,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <script src="resources/js/store.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>	
 <article>
 
 <div class="row py-3">
 		<!-- 히든 영역 -->
+		<input type="hidden" id="detailCheck" value="true">
 		<input type="hidden" id="memberId" value="${sessionScope.memberId}">
-		<input type="hidden" id="storeNo" value="${ store.storeNo }">
+		<input type="hidden" id="storeNo" name="storeNo" value="${ store.storeNo }">
 		<input type="hidden" id="categoryNo" value="${ store.categoryNo }">
 		<!-- 히든 영역 end-->
 		
@@ -21,7 +24,7 @@
 	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
-				<div class="col-12 fs-4 fw-semibold text-secondary">${store.storeName }</div>
+				<div class="col-12 fs-4 fw-semibold text-secondary" id="storeName">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
@@ -38,36 +41,17 @@
 			<div class="row">
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1">
-				
-					<!-- 지도 영역 -->
-					<div id="map" style="height:100%;"></div>
-						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
-						<script>
-							var container = document.getElementById('map');
-							var options = {
-								center: new kakao.maps.LatLng(35.8189345, 128.516267),
-								level: 2
-							};
-					
-							var map = new kakao.maps.Map(container, options);
-							
-							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
-							    map: map // 마커를 표시할 지도 객체
-							});
-							
-							var items = ${store.storeName}
 
-							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
-							kakao.maps.event.addListener(marker, 'click', function() {
-								window.open('https://map.kakao.com/link/search/스테이블모먼트')
-							});
-						</script>
-				<!-- 지도 영역 end-->
-	
+				<input type="hidden" id="storeLatitude" value="${store.storeLatitude }">
+				<input type="hidden" id="storeLongitude" value="${store.storeLongitude }">
+							
+				<!-- 지도 영역 -->
+				<div class="col border rounded-3 p-1 m-1">
+					<div id="map" style="height:100%;"></div>
+				</div>	
+				<!-- 지도 영역 end-->	
+
 			</div>
-			
 			</div>
 		</div>
 		<div class="row text-start">
@@ -104,19 +88,20 @@
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
 					
-					<!-- d -->
+					<!-- 11.10 머지날 삭제 DIV -->
 						<div>
 							${userBookmarks}
 							<br>
 							${store.storeNo}
 						</div>
+					<!--  -->
 					<c:if test = "${fn:contains(userBookmarks, store.storeNo)}">
 						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=memberId01&storeNo=385' "></button>
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 					<c:if test = "${!fn:contains(userBookmarks, store.storeNo)}">
 						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=memberId01&storeNo=385' "></button>
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 						
 						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>

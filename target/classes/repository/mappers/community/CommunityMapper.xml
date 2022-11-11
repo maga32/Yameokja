@@ -9,24 +9,24 @@
 		SELECT *
 		FROM community
 		<where>
-				<if test="type == '전체' ">
-					community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_content LIKE CONCAT('%',#{ keyword } , '%') 
-				</if>
-				<if test="type == '제목' ">	
-					community_title LIKE CONCAT('%',#{ keyword } , '%')
-				</if>
-				<if test="type == '닉네임' ">
-					member_id LIKE CONCAT('%',#{ keyword } , '%')
-				</if>
-				<if test="type == '내용' ">
-					community_content LIKE CONCAT('%',#{ keyword } , '%')
-				</if>
-				<if test="cNo == 'all' ">
-					AND category_no > '100'
-				</if>
-				<if test="cNo != 'all' ">
-					AND category_no = ${cNo}
-				</if>
+			<if test="cNo == 'all' ">
+				 category_no <![CDATA[>]]> '100' AND member_address = #{location}
+			</if>
+			<if test="cNo != 'all' ">
+				 category_no = #{cNo} AND member_address = #{location}
+			</if>
+			<if test="type == '전체' ">
+				AND (community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_content LIKE CONCAT('%',#{ keyword } , '%')) 
+			</if>
+			<if test="type == '제목' ">	
+				AND community_title LIKE CONCAT('%',#{ keyword } , '%')
+			</if>
+			<if test="type == '닉네임' ">
+				AND member_id LIKE CONCAT('%',#{ keyword } , '%')
+			</if>
+			<if test="type == '내용' ">
+				AND community_content LIKE CONCAT('%',#{ keyword } , '%')
+			</if>
 		</where>
 		ORDER BY community_no DESC
 		LIMIT #{startRow}, #{num}
@@ -38,24 +38,25 @@
 		SELECT COUNT(community_no)
 		FROM community
 		<where>
-			<if test="type == '전체' ">
-				community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_content LIKE CONCAT('%',#{ keyword } , '%') 
-			</if>
-			<if test="type == '제목' ">	
-				community_title LIKE CONCAT('%',#{ keyword } , '%')
-			</if>
-			<if test="type == '닉네임' ">
-				member_id LIKE CONCAT('%',#{ keyword } , '%')
-			</if>
-			<if test="type == '내용' ">
-				community_content LIKE CONCAT('%',#{ keyword } , '%')
-			</if>
 			<if test="cNo == 'all' ">
-					AND category_no > '100'
+				 category_no <![CDATA[>]]> '100' AND member_address = #{location}
 			</if>
 			<if test="cNo != 'all' ">
-				AND category_no = ${cNo}
+				 category_no = #{cNo} AND member_address = #{location}
 			</if>
+			<if test="type == '전체' ">
+				AND community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_title LIKE CONCAT('%',#{ keyword } , '%') OR community_content LIKE CONCAT('%',#{ keyword } , '%') 
+			</if>
+			<if test="type == '제목' ">	
+				AND community_title LIKE CONCAT('%',#{ keyword } , '%')
+			</if>
+			<if test="type == '닉네임' ">
+				AND member_id LIKE CONCAT('%',#{ keyword } , '%')
+			</if>
+			<if test="type == '내용' ">
+				AND community_content LIKE CONCAT('%',#{ keyword } , '%')
+			</if>
+			
 		</where>
 	</select>
 	
@@ -63,9 +64,9 @@
 	<insert id="addCommunity101" parameterType="Community">
 		INSERT INTO community
 			(community_title, community_reg_date, community_content, 
-					community_file, category_no, member_id, member_nickname)
+					community_file, category_no, member_id, member_nickname, member_address)
 			 VALUES (#{communityTitle}, SYSDATE(), #{communityContent},
-				  #{communityFile}, #{categoryNo}, #{memberId}, #{memberNickname})
+				  #{communityFile}, #{categoryNo}, #{memberId}, #{memberNickname}, #{memberAddress})
 	</insert>
 	
 <!-- 커뮤니티 수다글 수정  -->
@@ -82,10 +83,10 @@
 		INSERT INTO community
 			(community_title, community_reg_date, community_content, 
 					community_file, category_no, member_id, member_nickname,
-					party_members, party_d_day, party_place, party_member_ids)
+					party_members, party_d_day, party_place, party_member_ids, member_address)
 			 VALUES (#{communityTitle}, SYSDATE(), #{communityContent},
 				  #{communityFile}, #{categoryNo}, #{memberId}, #{memberNickname},
-				  #{partyMembers}, #{partyDDay}, #{partyPlace}, #{partyMemberIds})
+				  #{partyMembers}, #{partyDDay}, #{partyPlace}, #{partyMemberIds}, #{memberAddress})
 	</insert>
 
 <!-- 커뮤니티 모집글 수정  -->

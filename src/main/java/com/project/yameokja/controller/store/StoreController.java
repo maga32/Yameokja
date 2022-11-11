@@ -1,7 +1,7 @@
 package com.project.yameokja.controller.store;
 
-import java.io.File;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
@@ -31,9 +30,6 @@ import com.project.yameokja.service.store.StoreService;
 @Controller
 public class StoreController {
 
-	@Autowired
-	private MemberService memberService;
-	
 	@Autowired
 	private StoreService storeService;
 	
@@ -84,7 +80,7 @@ public class StoreController {
 		String memberId = (String) session.getAttribute("memberId");
 		
 		if(memberId != null) {
-			Member user = (Member) memberSerivce.getMember(memberId);
+			Member user = (Member) memberService.getMember(memberId);
 			model.addAttribute("userBookmarks", user.getMemberBookmarks());
 		}
 		
@@ -170,7 +166,7 @@ public class StoreController {
 
 	 // 가게 정보 글쓰기 프로세스
 	@RequestMapping(value="/storeWriteProcess", method=RequestMethod.POST)
-	public String insertStoreProcess(String memberId,String memberNickname, String storeName, 
+	public String insertStoreProcess(String memberId, String memberNickname, String storeName, 
 			String phone1, String phone2, String phone3, String storeLatitude,
 			String storeLongitude,String address2, String address1, String storeTime,
 			String storeBookmarks, String storeDayOff, String storeParking, int categoryNo,
@@ -236,13 +232,96 @@ public class StoreController {
 		return "redirect:storeList"; 
 	 }
 	
+	// 스토어 즐겨찾기 추가
+	@RequestMapping("/bookmarksAdd")
+	public String addBookmarks(String memberId, int storeNo,
+			HttpServletResponse response, Model model) throws IOException {
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		// 가게 즐겨찾기 확인
+		Member user = memberService.getMember(memberId);
+		
+		if(user != null) {
+			String userBookmarks = user.getMemberBookmarks();
+			
+			if(userBookmarks.contains(Integer.toString(storeNo))) {
+				out.print("<script>");
+				out.print("alert('이미 찜한 가게입니다');");
+				out.print("</script>");
+				
+				System.out.println("con - 이미 찜한 가게입니다.");
+				
+				return "redirect:storeDetail?storeNo=" + storeNo;
+			}
+			
+			String strStoreNo = Integer.toString(storeNo);
+			
+			System.out.println("strStorNo : " + strStoreNo);
+			// member > member_bookmarks 추가
+			memberService.addMemberBookmarks(memberId, strStoreNo);
+			
+			System.out.println("con-AddBookmarks end");
+			
+			// store > store_bookmarks 추가
+			storeService.addBookmarks(storeNo);
+		}
+		
+		
+		
+		return "redirect:storeDetail?storeNo=" + storeNo;
+	}
+	
+	// 스토어 즐겨찾기 삭제
+	@RequestMapping("/bookmarksDelete")
+	public String deleteBookmarks(String memberId, int storeNo,
+			HttpServletResponse response) throws IOException {
+
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+
+		// member > member_bookmarks 삭제, 가게 즐겨찾기 확인
+		Member user = memberService.getMember(memberId);
+		
+		if(user != null) {
+			
+			String userBookmarks = user.getMemberBookmarks();
+			
+			if(!userBookmarks.contains(Integer.toString(storeNo))) {
+				out.print("<script>");
+				out.print("alert('찜하지 않은 가게입니다');");
+				out.print("</script>");
+				
+				System.out.println("con - 찜하지 않은 가게입니다.");
+				
+				return "redirect:storeDetail?storeNo=" + storeNo;
+			}
+			
+			String strStoreNo = "";
+			
+			if(!userBookmarks.contains(",")) {
+				strStoreNo =  Integer.toString(storeNo) + ".";
+			}else {
+				strStoreNo = "," + storeNo + ".";
+			}
+			
+			memberService.deleteMemberBookmarks(memberId, strStoreNo);
+		}
+		
+		// store > store_bookmarks 삭제
+		storeService.deleteBookmarks(storeNo);
+		
+		System.out.println("con-deleteBookmarks end");
+		
+		return "redirect:storeDetail?storeNo=" + storeNo;
+	}
+	 
 	
 	@RequestMapping(value="/storeDetailReplyProcess", method=RequestMethod.POST)
 	public String addReply(String postContent, int postStar, int storeNo,
 			@RequestParam(value="postFile1", required=false) MultipartFile multipartFile,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
-		
-		
 		
 		Post post =  new Post();
 		
@@ -259,7 +338,7 @@ public class StoreController {
 			
 			return null;
 		}
-		
+
 		System.out.println("댓글 작성하는 아이디 / 닉네임 : " + memberId + " / " + memberNickname);
 		
 		post.setMemberId(memberId);

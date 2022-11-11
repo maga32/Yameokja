@@ -32,10 +32,13 @@
 	border : 1px solid gray;
 }
 .coContent{
-	min-height: 300px;
+	min-height: 150px;
+	white-space:pre;
+}
+.replyContent{
+	white-space:pre;
 }
 .btnCommunityDetail{
-	border: 1px solid gray;
 	font-weight: bold;
 	color: white;
 }

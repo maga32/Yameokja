@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS member(
   member_email VARCHAR(20) NOT NULL,
   member_address VARCHAR(20) NOT NULL,
   member_mobile VARCHAR(20) NOT NULL,
-  member_bookmarks VARCHAR(1000) NULL,
+  member_bookmarks VARCHAR(1000) NULL default '9999.',
   member_join_date TIMESTAMP NOT NULL,
   member_del_date TIMESTAMP NULL,
   member_favorite_category VARCHAR(40) NULL,

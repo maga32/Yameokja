@@ -7,6 +7,7 @@ public class Community {
 	private String memberId;
 	private String memberNickname;
 	private String memberPhoto;
+	private String memberAddress;
 	private int communityNo;
 	private int categoryNo;
 	private String communityTitle;
@@ -25,7 +26,7 @@ public class Community {
 	
 	public Community() {}
 
-	public Community(String memberId, String memberNickname, String memberPhoto, int communityNo, int categoryNo, String communityTitle,
+	public Community(String memberId, String memberNickname, String memberPhoto,String memberAddress, int communityNo, int categoryNo, String communityTitle,
 			Timestamp communityRegDate, int communityReplyCount, int communityReadCount, String communityContent,
 			String communityFile, int communityParentNo, int communityReReply, String communityReplyTarget,
 			int partyMembers, String partyMemberIds, Timestamp partyDDay, String partyPlace) {
@@ -33,6 +34,7 @@ public class Community {
 		this.memberId = memberId;
 		this.memberNickname = memberNickname;
 		this.memberPhoto = memberPhoto;
+		this.memberAddress = memberAddress;
 		this.communityNo = communityNo;
 		this.categoryNo = categoryNo;
 		this.communityTitle = communityTitle;
@@ -73,7 +75,15 @@ public class Community {
 	public void setMemberPhoto(String memberPhoto) {
 		this.memberPhoto = memberPhoto;
 	}
+	
+	public String getMemberAddress() {
+		return memberAddress;
+	}
 
+	public void setMemberAddress(String memberAddress) {
+		this.memberAddress = memberAddress;
+	}
+	
 	public int getCommunityNo() {
 		return communityNo;
 	}

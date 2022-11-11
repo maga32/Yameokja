@@ -1,12 +1,12 @@
 package com.project.yameokja.controller.mypage;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,21 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.project.yameokja.dao.mypage.MyPageDao;
 import com.project.yameokja.domain.Community;
 import com.project.yameokja.domain.Member;
-import com.project.yameokja.domain.Post;
+import com.project.yameokja.domain.Store;
+import com.project.yameokja.service.member.MemberService;
 import com.project.yameokja.service.mypage.MyPageService;
-//스프링 MVC의 컨트롤러임을 선언하고 있다.
+import com.project.yameokja.service.store.StoreService;
+
 @Controller
 public class MyPageController {
-
+	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_GROUP = 10;
 	@Autowired
 	private MyPageService myPageService;
-	
 	@Autowired
 	private MyPageDao myPageDao;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private StoreService storeService;
 	
 	@RequestMapping(value="/mainmain", method=RequestMethod.GET)
 	public String main() {
@@ -44,7 +49,7 @@ public class MyPageController {
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 		
 //		 회원정보 하나 
-		Member user = myPageService.getMember(userId);
+		Member user = memberService.getMember(userId);
 		
 //		 회원이 쓴 글 리스트
 		Map<String, Object> myPagePost = myPageService.myPagePost(userId, pageNum);
@@ -62,7 +67,7 @@ public class MyPageController {
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 		
 //		 회원정보 하나 
-		Member user = myPageService.getMember(userId);
+		Member user = memberService.getMember(userId);
 		
 //		 회원이 쓴 글 리스트
 		Map<String, Object> myPageReply = myPageService.myPageReply(userId, pageNum);
@@ -76,9 +81,10 @@ public class MyPageController {
 	@RequestMapping(value="/deleteMyPagePost")
 	public String deleteMyPagePost(
 			RedirectAttributes reAttrs,
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value="postNo", required=false, defaultValue="0")int postNo) {
 		myPageService.deleteMyPagePost(postNo);
-//		reAttrs.addAttribute("pageNum", pageNum);
+		reAttrs.addAttribute("userId", userId);
 		return "redirect:myPagePost";
 	}
 	
@@ -88,7 +94,7 @@ public class MyPageController {
 			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum) {
 
-		Member user = myPageService.getMember(userId);
+		Member user = memberService.getMember(userId);
 
 		Map<String, Object> myPageCommunityList = myPageService.myPageCommunity(userId, pageNum);
 		model.addAllAttributes(myPageCommunityList);
@@ -101,31 +107,56 @@ public class MyPageController {
 	@RequestMapping(value="/deleteMyPageCommunit")
 	public String deleteMyPageCommunit(
 			RedirectAttributes reAttrs,
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value="communityNo", required=false, defaultValue="0")int communityNo) {
 		myPageService.deleteMyPagePost(communityNo);
-//		reAttrs.addAttribute("pageNum", pageNum);
+		reAttrs.addAttribute("userId", userId);
 		return "redirect:myPagePost";
-	}
-	
-	@RequestMapping("/blockList")
-	public String blockList(Model model, 
-			@RequestParam(value = "memberId", required = false, 
-			defaultValue = "memberId01")String memberId) {
-		
-		model.addAttribute("memberId", memberId);
-		return "forward:WEB-INF/views/mypage/blockList.jsp";
 	}
 	
 	@RequestMapping("/userProfile")
 	public String userProfile(Model model, 
-			@RequestParam(value = "userId", required = false, defaultValue = "")String userId) {
-		Member user = myPageService.getMember(userId);
+			@RequestParam(value = "userId", required = false, defaultValue = "memberId02")String userId) {
+		Member user = memberService.getMember(userId);
+		String memberFavoriteCategory = null;
+		if(user.getMemberFavoriteCategory() != null) {
+			memberFavoriteCategory = user.getMemberFavoriteCategory();
+			model.addAttribute("memberFavoriteCategory", memberFavoriteCategory);
+		} 
+		
 		int myPagePostCount = myPageDao.myPagePostCount(userId);
 		int myPageCommunityCount = myPageDao.myPageCommunityCount(userId);
+		int sumPostUpCount = myPageDao.sumPostUpCount(userId);
 		model.addAttribute("user", user);
 		model.addAttribute("myPagePostCount", myPagePostCount);
 		model.addAttribute("myPageCommunityCount", myPageCommunityCount);
+		model.addAttribute("sumPostUpCount", sumPostUpCount);
 		return "forward:WEB-INF/views/mypage/userProfile.jsp";
 	}
-
+	
+	@RequestMapping("/blockList")
+	public String blockList(Model model, HttpSession session, 
+			HttpServletResponse response) throws IOException {
+		
+		String memberBlockIds = memberService.getMember((String)session.getAttribute("memberId")).getMemberBlockIds();
+		System.out.println("memberBlockIds : "+memberBlockIds);
+		model.addAttribute("memberBlockIds", memberBlockIds);
+		
+		return "forward:WEB-INF/views/mypage/blockList.jsp";
+	}
+	
+	@RequestMapping(value="/myPageLike")
+	public String myPageLike(
+			Model model, 
+			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum ) {
+			Member user = memberService.getMember(userId);
+			
+			Map<String, Object> myPageLikeList = myPageService.myPageLike(userId, pageNum);
+			model.addAllAttributes(myPageLikeList);
+			model.addAttribute("user", user);
+			model.addAttribute("pageNum", pageNum);
+		return "mypage/myPageLike";
+		
+	}
 }

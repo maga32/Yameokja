@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.yameokja.domain.Community;
-import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
-import com.project.yameokja.domain.Store;
 
 // 이 클래스가 데이터 액세스(데이터 저장소) 계층의 컴포넌트(Bean) 임을 선언한다.
 @Repository
@@ -24,11 +22,6 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Autowired
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
-	}
-
-	@Override
-	public Member getMember(String userId) {
-		return sqlSession.selectOne(NAME_SPACE+".getMember", userId);
 	}
 	
 	@Override
@@ -91,8 +84,8 @@ public class MyPageDaoImpl implements MyPageDao {
 	}
 
 	@Override
-	public List<Store> myPageStore(String memberId) {
-		return sqlSession.selectList(NAME_SPACE+".myPageStore", memberId);
+	public int sumPostUpCount(String userId) {
+		return sqlSession.selectOne(NAME_SPACE+ ".sumPostUpCount", userId);
 	}
 
 }

@@ -148,15 +148,16 @@ public class MemberDaoImpl implements MemberDao {
 	// 회원탈퇴
 	@Override
 	public void deleteMember(String memberId) {
-		sqlSession.delete(NAME_SPACE + ".delMember", memberId);
+		sqlSession.delete(NAME_SPACE + ".deleteMember", memberId);
 
 	}
 	// 회원 즐겨찾기 가게 추가
 	@Override
-	public void addMemberBookmarks(String memberId, int storeNo) {
+	public void addMemberBookmarks(String memberId, String strStoreNo) {
 		Map<String, Object>param = new HashMap<String, Object>();
 		param.put("memberId", memberId);
-		param.put("storeNo", storeNo);
+		param.put("strStoreNo", strStoreNo);
+		System.out.println("dao strStoreNo : " + strStoreNo);
 		
 		sqlSession.update(NAME_SPACE+".addMemberBookmarks", param);
 	}
