@@ -141,7 +141,7 @@
 				<div class="col-5">
 					<img src="/yameokja/resources/IMG/post/${ bestOnePost.postFile1 }" class="img-thumbnail rounded float-start" alt="...">
 				</div>
-				<div class="col-7">${ bestOnePost.postContent }</div>
+				<div id="storeDetailBestOneContent" class="col-7">${ bestOnePost.postContent }</div>
 			</div>
 			<div class="col-12 text-end">
 				<input type="button" class="updateButton text-secondary bg-white" value="수정">
