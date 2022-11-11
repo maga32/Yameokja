@@ -23,6 +23,9 @@ public interface StoreDao {
 	
 	// 가게에 작성된 별점리뷰 카운트 증가
 	public void addStoreReviewCount(int storeNo);
+	
+	// 가게 별점리뷰 카운트 감소
+	public void deleteStoreReviewCount(int storeNo);
 		
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);

@@ -48,4 +48,5 @@ public interface PostService {
 	
 	// 포스트 삭제
 	void postDelete(int postNo);
+
 }

@@ -82,7 +82,7 @@
 	<!-- 가게 리뷰 디테일을 불러온다 -->
 	<select id="getPost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
-			WHERE post_no = #{ postNo } AND post_is_post = 1
+			WHERE post_no = #{ postNo }
 		ORDER BY post_no DESC
 	</select>
 	
@@ -100,10 +100,10 @@
 	</insert>
 	
 	<!-- 댓글을 삭제한다 -->
-	<update id="deleteReply">
+	<delete id="deleteReply">
 		DELETE FROM post 
 		WHERE post_no = #{postNo} AND post_is_post = 0
-	</update>
+	</delete>
 	
 	<insert id="postReplyAdd" parameterType="Post">
 		INSERT INTO post

@@ -46,7 +46,9 @@
 				<!-- 지도 영역 -->
 					<div class="col border rounded-3 p-1 m-1">
 						<div id="map" style="height:100%;"></div>
-					</div>	
+					</div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>	
 				<!-- 지도 영역 end-->	
 
 				</div>		
