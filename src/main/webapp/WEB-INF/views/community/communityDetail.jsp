@@ -45,9 +45,7 @@
 				<img style="max-width: 100%; height: auto;" src="resources/IMG/community/${co.communityFile }">	
 			</div>
 		</c:if>
-		<div class="p-1 coContent ">
-			${ co.communityContent }"
-		</div>
+		<div class="p-1 coContent ">${ co.communityContent }</div>
 	</div>
 	
 <!-- if 모집글 / 모집 정보 출력 -->
