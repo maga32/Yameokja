@@ -164,7 +164,7 @@
 					<c:forEach var="p" items="${ rList }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
-								<img src="resources/IMG/post/${ p.postFile1 }">
+								<img src="resources/IMG/post/${ p.postFile1 }" class="img-thumbnail">
 							</div>
 
 							<div class="postTitle text-start col-6 px-2">
@@ -221,20 +221,15 @@
 
 							<div class="col-3 text-end pe-3">
 								<div class="deleteButton" id="deleteButton">
-									<a href="deleteMyPagePost?postNo=${p.postNo}">
+									<a href="deleteReplyProcess?postNo=${p.postNo}">
 										<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
-<<<<<<< HEAD
 					
 					<!-- 페이징 -->
-=======
-
-				<!-- 페이징 -->
->>>>>>> 842f4df2617a26b0c38ff16ff1bced0b4cbecea2
 		       	<div class="row text-end justify-content-center px-3 my-2">
 		       		<div class="col-12">
 		       			<c:if test="${ listCount > 0 }">
@@ -273,14 +268,8 @@
 				<c:if test="${ empty rList }">
 					<div class="col-12 text-center"> 작성된 댓글이 없습니다.</div>
 				</c:if>
-<<<<<<< HEAD
 			</div>		
 <!-- 	postList 끝 -->
 
-=======
 			</div>
-<!-- 	postList 끝 -->
->>>>>>> 842f4df2617a26b0c38ff16ff1bced0b4cbecea2
-		</div>
-</div>	
 </article>
