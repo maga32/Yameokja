@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/reportDetail.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/reportDetail.css" />
+<script type="text/javascript" src="/yameokja/resources/js/report.js"></script>
 <article>
+<input type="hidden" name="pageNum" value="${ pageNum }">
 <div class="row m-0">
 	<div class="row justify-content-center pt-4">
 		<h1 class="col-6 border-3 border-bottom center bold pb-1">신고 상세보기</h1>
@@ -76,9 +77,9 @@
 	</c:if>
 
 <div class="row m-0 justify-content-end px-3 py-2">
-	<input type="button" onclick="location.href='reportList?userId=${ userId }'" class="col-2 w-auto btn btn-secondary" value="목록으로">
+	<input type="button" onclick="location.href='reportList?pageNum=${ pageNum }'" class="col-2 w-auto btn btn-secondary" value="목록으로">
 	<input type="button" onclick="location.href='reportUpdateForm?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary mx-2 " value="수정하기">
-	<input type="button" onclick="location.href='deleteReport?reportNo=${ report.reportNo }'" class="col-2 w-auto btn btn-secondary" value="삭제하기">
+	<a type="button" href="deleteReport?reportNo=${ report.reportNo }" class="col-2 w-auto btn btn-secondary" id="deleteButton">삭제하기</a>
 </div>
 </div>
 </article>

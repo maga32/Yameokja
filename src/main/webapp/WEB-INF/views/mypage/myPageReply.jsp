@@ -14,15 +14,9 @@
 	
 		<div class="row py-2 px-0">
 			<div class="row p-0 m-0 pb-2 border border-3 rounded-3">
-				<div class="col-3 p-4">
-					<c:if test="${ user.memberPhoto != null }">
-						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
+				<div class="col-3 p-4">				
+					<img alt="프로필 사진" class=" rounded-circle text-center col-12"
 						src="/yameokja/resources/IMG/member/${ user.memberPhoto }">
-					</c:if>
-					<c:if test="${ user.memberPhoto == null }">
-						<img alt="프로필 사진" class=" rounded-circle text-center col-12"
-						src="/yameokja/resources/IMG/member/memberDefault.png">
-					</c:if>					
 				</div>
 				<div class="text-start col-6 ps-3 p-0 d-flex align-items-center">
 					<div class="col-12">
@@ -134,7 +128,7 @@
 							<c:if test="${ sessionScope.memberId == user.memberId }">
 								<div class="col-3 text-end pe-3">
 									<div class="deleteButton" id="deleteButton">
-										<a href="deleteMyPagePost?postNo=${p.postNo}&userId=${ member.memberId }">
+										<a href="deleteMyPageReply?postNo=${p.postNo}">
 											<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
 										</a>
 									</div>

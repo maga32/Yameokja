@@ -20,13 +20,14 @@ public class ReportServiceImpl implements ReportService {
 	private static final int PAGE_GROUP = 10;
 
 	@Override
-	public Map<String, Object> reportList(String userId, int categoryNo, String reportPunishCheck,String type, String keyword, int pageNum) {
+	public Map<String, Object> reportList(int memberLevel, String memberId, int categoryNo, String reportPunishCheck,String type, String keyword, int pageNum) {
+		
 		int currentPage = pageNum;		
 		int startRow = (currentPage -1) * PAGE_SIZE;
-		int listCount = reportDao.reportCount(userId, categoryNo, reportPunishCheck, type, keyword);
+		int listCount = reportDao.reportCount(memberLevel, memberId, categoryNo, reportPunishCheck, type, keyword);
 		
 		if(listCount > 0) {
-			List<Report> reportList = reportDao.reportList(userId, categoryNo, reportPunishCheck, type, keyword, startRow, PAGE_SIZE);
+			List<Report> reportList = reportDao.reportList(memberLevel, memberId, categoryNo, reportPunishCheck, type, keyword, startRow, PAGE_SIZE);
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
 			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP
 									- (currentPage % PAGE_GROUP == 0 ? PAGE_GROUP : 0) + 1;
@@ -41,15 +42,13 @@ public class ReportServiceImpl implements ReportService {
 			reportMap.put("startPage", startPage);
 			reportMap.put("endPage", endPage);			
 			reportMap.put("pageGroup", PAGE_GROUP);
-			reportMap.put("categoryNo", categoryNo);
-			reportMap.put("reportPunishCheck", reportPunishCheck);
-			reportMap.put("type", type);
-			reportMap.put("keyword", keyword);
+
+			System.out.println(listCount);
 			
 			return reportMap;
 		}	
 			
-		return null;		
+		return null;
 	}
 	
 	@Override

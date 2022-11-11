@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.project.yameokja.dao.mypage.MyPageDao;
 import com.project.yameokja.domain.Community;
-import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
 import com.project.yameokja.service.member.MemberService;
@@ -92,7 +91,7 @@ public class MyPageServiceImpl implements MyPageService {
 			replyMap.put("startPage", startPage);
 			replyMap.put("endPage", endPage);			
 			replyMap.put("pageGroup", PAGE_GROUP);
-			System.out.println("listCount"+listCount);
+			replyMap.put("userId", userId);
 			
 			return replyMap;
 		}	
