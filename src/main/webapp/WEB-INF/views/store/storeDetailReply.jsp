@@ -202,7 +202,7 @@
 										 ${ p.postContent }
 									</div>
 							</div>
-
+							
 							<div class="col-3 text-end pe-3">
 								<div class="deleteButton" id="deleteButton">
 									<a href="deleteReplyProcess?postNo=${p.postNo}">

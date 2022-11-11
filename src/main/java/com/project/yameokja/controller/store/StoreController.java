@@ -38,7 +38,7 @@ public class StoreController {
 	private PostService postService;
 	
 	@Autowired
-	private MemberService memberSerivce;
+	private MemberService memberService;
 	
 	private final static String DEFAULT_PATH = "/resources/IMG/store";
 	
@@ -95,7 +95,7 @@ public class StoreController {
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
 		
 		if(bestOnePost != null) {
-			Member member = memberSerivce.getMember(bestOnePost.getMemberId());
+			Member member = memberService.getMember(bestOnePost.getMemberId());
 			String bestMemberPhoto = member.getMemberPhoto();
 			model.addAttribute("bestMemberPhoto", bestMemberPhoto);
 		}
@@ -153,7 +153,7 @@ public class StoreController {
 		Post post = postService.getPost(postNo);
 		model.addAttribute("post", post);
 		
-		Member member = memberSerivce.getMember(post.getMemberId());
+		Member member = memberService.getMember(post.getMemberId());
 		String memberPhoto = member.getMemberPhoto();
 		model.addAttribute("memberPhoto", memberPhoto);
 		

@@ -67,8 +67,7 @@
 	INSERT INTO 
 		store(store_name, member_id, store_phone, store_latitude, store_longitude, store_file_main, 
 				store_file_menu, store_address, store_time, store_bookmarks, store_day_off, 
-				store_parking, category_no, store_read_count)
-				
+				store_parking, category_no, store_read_count)		
     VALUES(#{storeName},#{memberId}, #{storePhone}, #{storeLatitude}, #{storeLongitude},
     			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, 0,
     			#{storeDayOff}, #{storeParking}, #{categoryNo}, 0)
@@ -88,7 +87,6 @@
 		DELETE FROM store
 			WHERE store_no = #{storeNo}
 	</delete>
-	
 	
 	<!-- 가게 즐겨찾기 추가 -->
 	<update id="addBookmarks">

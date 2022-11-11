@@ -34,27 +34,27 @@
 	<!-- 별점 평균 -->
 	<select id="getStarAvg" resultType="int" parameterType="HashMap">
 		select round(AVG(post_star),1) from post
-			where store_no = #{storeNo} and post_is_post = 1
+			where store_no = #{storeNo} and post_is_post = 0
 	</select>
 	
 	
 	<select id="bestOnePost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
-		WHERE store_no = #{storeNo}
+		WHERE store_no = #{storeNo} AND post_is_post = 1
 		ORDER BY post_up_count DESC
 		LIMIT 0, 1
 	</select>
 	
 	<select id="bestTwoPost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
-		WHERE store_no = #{storeNo}
+		WHERE store_no = #{storeNo} AND post_is_post = 1
 		ORDER BY post_up_count DESC
 		LIMIT 1, 1
 	</select>
 	
 	<select id="bestThreePost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
-		WHERE store_no = #{storeNo}
+		WHERE store_no = #{storeNo} AND post_is_post = 1
 		ORDER BY post_up_count DESC
 		LIMIT 2, 1
 	</select>
@@ -82,7 +82,7 @@
 	<!-- 가게 리뷰 디테일을 불러온다 -->
 	<select id="getPost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
-			WHERE post_no = #{ postNo } 
+			WHERE post_no = #{ postNo } AND post_is_post = 1
 		ORDER BY post_no DESC
 	</select>
 	
