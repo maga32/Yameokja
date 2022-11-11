@@ -34,8 +34,6 @@ public class PostDaoImpl implements PostDao {
 		param.put("num", num);
 		param.put("startRow", startRow);
 		
-		System.out.println("detailOrderBy : " + detailOrderBy);
-		
 		return sqlSession.selectList(NAME_SPACE + ".postList", param); 
 	}
 	
@@ -50,8 +48,6 @@ public class PostDaoImpl implements PostDao {
 		
 		// 페이지 사이즈
 		param.put("num", num);
-		
-		System.out.println("댓글 startRow, storeNo, num : " + startRow +", " +  storeNo +", " + num);
 		
 		return sqlSession.selectList(NAME_SPACE + ".postListReply", param); 
 	}

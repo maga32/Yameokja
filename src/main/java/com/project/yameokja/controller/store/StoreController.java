@@ -85,6 +85,10 @@ public class StoreController {
 		}
 		
 		Store store = storeService.getStore(storeNo);
+		
+		storeService.addStoreReadCount(storeNo);
+		storeService.addStoreReviewCount(storeNo);
+		
 		Post bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
@@ -169,7 +173,7 @@ public class StoreController {
 	public String insertStoreProcess(String memberId, String memberNickname, String storeName, 
 			String phone1, String phone2, String phone3, String storeLatitude,
 			String storeLongitude,String address2, String address1, String storeTime,
-			String storeBookmarks, String storeDayOff, String storeParking, int categoryNo,
+			String storeDayOff, String storeParking, int categoryNo,
 			@RequestParam(value="fileMain", required=false) MultipartFile multipartFile,
 			@RequestParam(value="fileMenu", required=false) MultipartFile multipartFile2,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) 
@@ -194,7 +198,7 @@ public class StoreController {
 		store.setMemberId(memberId);
 		store.setStoreName(storeName);
 		store.setStorePhone(phone1 + "-" + phone2 + "-" +phone3);
-		store.setStoreAddress(address1 + " " + address2);
+		store.setStoreAddress(address1 + "," + address2);
 		store.setStoreLatitude(storeLatitude);
 		store.setStoreLongitude(storeLongitude);
 		store.setStoreTime(storeTime);
@@ -203,6 +207,9 @@ public class StoreController {
 		store.setStoreParking(storeParking);
 		
 		System.out.println("store_name :" + storeName);
+		
+		System.out.println("위도 : " + storeLatitude);
+		System.out.println("경도 : " + storeLongitude);
 		
 		System.out.println("글작성하는 친구 : " + memberId);
 		
@@ -241,6 +248,97 @@ public class StoreController {
 		return "redirect:storeList"; 
 	 }
 	
+	// 가게글 수정
+	@RequestMapping("/storeUpdateForm")
+	public String storeUpdateForm(Model model,HttpServletResponse response, HttpSession session, int storeNo)
+			throws IOException {
+		
+		Store store = storeService.getStore(storeNo);
+
+		Member member = (Member) session.getAttribute("member");
+		
+		if(member == null || member.getMemberLevel() < 7) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('가게정보 수정은 관리자만 가능합니다!');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
+		
+		String phone = store.getStorePhone();
+		String phone1, phone2, phone3;
+		
+		String[] sArray = phone.split("-");
+		
+		phone1 = sArray[0];
+		phone2 = sArray[1];
+		phone3 = sArray[2];
+		
+		System.out.println("번호 나눠진거 확인 : " + phone1 + "/" + phone2 + "/" + phone3);
+		
+		model.addAttribute("store", store);
+		model.addAttribute("phone1", phone1);
+		model.addAttribute("phone2", phone2);
+		model.addAttribute("phone3", phone3);
+		
+		return "store/storeUpdateForm";
+	}
+	
+	// 가게 수정
+		@RequestMapping("/storeUpdateProcess")
+		public String storeUpdateProcess( Store store, String phone1, String phone2, String phone3,
+				@RequestParam(value="storeFileMain", required=false)MultipartFile multipartFile,
+				@RequestParam(value="storeFileMenu", required=false)MultipartFile multipartFile2,
+				HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException {
+			
+			System.out.println("store.storeNo" + store.getStoreName() + store.getStoreLatitude() + store.getStoreLongitude() + store.getStoreAddress());
+			
+			Store oldStore = storeService.getStore(store.getStoreNo());
+			store.setStorePhone(phone1 + "-" + phone2 + "-" +phone3);
+			
+			if(!multipartFile.isEmpty()) {
+				
+				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+				UUID uid  = UUID.randomUUID();
+				String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+				
+				File file = new File(filePath, saveName);
+				System.out.println("file : " + file.getName());
+
+				multipartFile.transferTo(file);
+				store.setStoreFileMain(saveName);
+				
+				System.out.println(saveName);
+			} else {
+				store.setStoreFileMain(oldStore.getStoreFileMain() );
+			}
+			
+			if(!multipartFile2.isEmpty()) {
+				
+				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+				UUID uid  = UUID.randomUUID();
+				String saveName = uid.toString() + "_" + multipartFile2.getOriginalFilename();
+				
+				File file = new File(filePath, saveName);
+				System.out.println("file : " + file.getName());
+
+				multipartFile2.transferTo(file);
+				store.setStoreFileMenu(saveName);
+				
+				System.out.println(saveName);
+			} else {
+				store.setStoreFileMenu(oldStore.getStoreFileMenu() );
+			}
+
+			storeService.updateStore(store);
+			
+			return "redirect:storeDetail?storeNo=" + oldStore.getStoreNo();
+		}
+	
+	
 	// 스토어 즐겨찾기 추가
 	@RequestMapping("/bookmarksAdd")
 	public String addBookmarks(String memberId, int storeNo,
@@ -276,8 +374,6 @@ public class StoreController {
 			// store > store_bookmarks 추가
 			storeService.addBookmarks(storeNo);
 		}
-		
-		
 		
 		return "redirect:storeDetail?storeNo=" + storeNo;
 	}
@@ -327,6 +423,7 @@ public class StoreController {
 	}
 	 
 	
+	// 가게 별점댓글 추가
 	@RequestMapping(value="/storeDetailReplyProcess", method=RequestMethod.POST)
 	public String addReply(String postContent, int postStar, int storeNo,
 			@RequestParam(value="postFile1", required=false) MultipartFile multipartFile,
@@ -347,8 +444,6 @@ public class StoreController {
 			
 			return null;
 		}
-
-		System.out.println("댓글 작성하는 아이디 / 닉네임 : " + memberId + " / " + memberNickname);
 		
 		post.setMemberId(memberId);
 		post.setMemberNickname(memberNickname);
@@ -398,6 +493,7 @@ public class StoreController {
 		return "redirect:/storeDetailReply?storeNo="+storeNo;
 	}
 	
+	// 가게 별점댓글 삭제
 	@RequestMapping(value="/deleteReplyProcess")
 	public String deleteReply(HttpSession session, HttpServletResponse response, int postNo) 
 		throws IOException{	
@@ -420,7 +516,7 @@ public class StoreController {
 		
 		return "redirect:storeDetailReply?storeNo=" + post.getStoreNo();
 	 }
-	
+
 		/*
 		 * @RequestMapping(value="/storeDatailReplyForm", method=RequestMethod.POST)
 		 * public String insertStoreProcess( RedirectAttributes reAttr, int storeNo,

@@ -34,14 +34,9 @@ public class StoreDaoImpl implements StoreDao {
 		param.put("keyword", keyword);
 		param.put("orderBy", orderBy);
 		
-		System.out.println("orderBy : " + orderBy);
-		
 		// 페이지 사이즈
 		param.put("num", num);
 		param.put("startRow", startRow);
-		
-		System.out.println("categoryNo / type / keyword / num / startRow  : " + categoryNo +" - " + type + " - " + keyword + 
-				" - " + num + " - " + startRow);
 		
 		return sqlSession.selectList(NAME_SPACE + ".storeList", param);
 	}
@@ -68,10 +63,6 @@ public class StoreDaoImpl implements StoreDao {
 	//가게 글쓰기
 	@Override
 	public void insertStore(Store store) {
-		if(store != null) {
-			
-			System.out.println("storeDao : " + store.getStoreName());
-		}
 		sqlSession.insert(NAME_SPACE + ".insertStore", store);
 	}
 	
@@ -79,7 +70,12 @@ public class StoreDaoImpl implements StoreDao {
 	@Override
 	public void addStoreReadCount(int storeNo) {
 		sqlSession.update(NAME_SPACE + ".addStoreReadCount", storeNo);
-		
+	}
+	
+	// 가게 별점댓글 카운트 증가
+	@Override
+	public void addStoreReviewCount(int storeNo) {
+		sqlSession.update(NAME_SPACE + ".addStoreReviewCount", storeNo);
 	}
 	
 	
@@ -108,5 +104,7 @@ public class StoreDaoImpl implements StoreDao {
 	public void deleteBookmarks(int storeNo) {
 		sqlSession.update(NAME_SPACE+".deleteBookmarks", storeNo);
 	}
+
+	
 	
 }

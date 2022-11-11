@@ -32,9 +32,6 @@ public class PostServiceImpl implements PostService {
 			
 		listCount = postDao.getPostCount(storeNo);
 		
-		System.out.println("리뷰글 리스트 확인용 storeNo : "  + storeNo);
-		System.out.println("리뷰 listCount : " + listCount);
-		
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		
 		if(listCount > 0) {
@@ -61,9 +58,7 @@ public class PostServiceImpl implements PostService {
 				pMap.put("currentPage", currentPage);
 				pMap.put("listCount", listCount);
 				pMap.put("pageGroup", PAGE_GROUP);
-				
-				System.out.println("가게의 시작페이지 - 가게 번호 - 현재 페이지 : " + startPage +" - " + storeNo + " - " + currentPage);
-				
+
 				return pMap;
 		}
 		return pMap;
@@ -78,9 +73,7 @@ public class PostServiceImpl implements PostService {
 		int listCount = 0;
 		
 		listCount = postDao.getReplyCount(storeNo);
-		
-		System.out.println("댓글갯수 확인용 storeNo : "  + storeNo);
-		System.out.println("listCount : " + listCount);
+
 		Map<String, Object> rMap = new HashMap<String, Object>();
 		
 		if(listCount > 0) {

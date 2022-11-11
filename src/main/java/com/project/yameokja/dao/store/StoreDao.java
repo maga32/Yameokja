@@ -20,6 +20,9 @@ public interface StoreDao {
 	
 	// 가게 조회수 증가
 	public void addStoreReadCount(int storeNo);
+	
+	// 가게에 작성된 별점리뷰 카운트 증가
+	public void addStoreReviewCount(int storeNo);
 		
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);

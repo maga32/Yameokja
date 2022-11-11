@@ -16,6 +16,12 @@ public interface StoreService {
 	// 가게 정보 글쓰기
 	public abstract void insertStore(Store store);
 	
+	// 가게 조회수 증가
+	public void addStoreReadCount(int storeNo);
+	
+	// 가게 별점댓글 카운트 증가
+	public void addStoreReviewCount(int storeNo);
+	
 	// 가게 정보 수정
 	public abstract void updateStore(Store store);
 
