@@ -12,7 +12,7 @@ use yameokja;
 DROP TABLE IF EXISTS community;
 CREATE TABLE IF NOT EXISTS community(
   community_no INTEGER AUTO_INCREMENT PRIMARY KEY,
-  community_title VARCHAR(10) NULL,
+  community_title VARCHAR(20) NULL,
   community_reg_date TIMESTAMP NOT NULL,  
   community_reply_count INTEGER(10) NULL default '0',
   community_read_count integer(10) default '0',
@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS community(
   CONSTRAINT community_member_fk2 FOREIGN KEY(member_nickname) REFERENCES member(member_nickname)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-desc community;
 TRUNCATE community;
 
 #######################################################################################################################################################################################################################################community_title, community_reg_date, community_reply_count, community_read_count, community_content, community_file, community_parent_no, community_re_reply, community_reply_target, party_members, party_member_ids, party_d_day, party_place, category_no, member_id, member_nickname

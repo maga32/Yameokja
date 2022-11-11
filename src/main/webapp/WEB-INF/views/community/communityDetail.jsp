@@ -138,8 +138,7 @@
 						<!-- 1105 수정 line1 -->
 						<input type="hidden" name="communityNo2" id="communityNo${re.communityNo }" value="">
 						<div class="row">
-							<textarea class="col-10 p-1" id="communityReplyContent" name="communityContent" placeholder="댓글을 입력해주세요">
-							</textarea>
+							<textarea class="col-10 p-1" id="communityReplyContent" name="communityContent" placeholder="댓글을 입력해주세요"></textarea>
 							<div class="col-2">
 								<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="입력">
 							</div>			

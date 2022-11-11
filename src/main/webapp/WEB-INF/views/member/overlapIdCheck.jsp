@@ -1,10 +1,7 @@
-<%--
-	회원 가입시 아이디 중복검사 요청에 대한 처리 결과를 출력할 View 페이지
-	이 페이지는 새창으로 실행되고 중복 아이디 체크를 할 수 있는 폼을 제공한다.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<script src="resources/js/member.js"></script>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +24,7 @@
 				method="post" id="idCheckForm">
 				<div class="memberInputText">
 					<span class="checkFormSpan">아이디 : </span>
-					<input type="text" name="memberId" id="checkId" size="15"/>
+					<input type="text" name="memberId" id="memberId" size="15"/>
 					<input type="submit" value="중복확인" />
 				</div>
 			</form>

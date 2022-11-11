@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.yameokja.dao.member.MemberDao;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
@@ -80,8 +81,10 @@ public class StoreController {
 		String memberId = (String) session.getAttribute("memberId");
 		
 		if(memberId != null) {
-			Member user = (Member) memberService.getMember(memberId);
-			model.addAttribute("userBookmarks", user.getMemberBookmarks());
+			System.out.println("storeCon - storeNo : " + storeNo);
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
+			System.out.println("storeCon - result : " + result);
 		}
 		
 		Store store = storeService.getStore(storeNo);
@@ -236,93 +239,19 @@ public class StoreController {
 		return "redirect:storeList"; 
 	 }
 	
-	// 스토어 즐겨찾기 추가
-	@RequestMapping("/bookmarksAdd")
-	public String addBookmarks(String memberId, int storeNo,
-			HttpServletResponse response, Model model) throws IOException {
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		// 가게 즐겨찾기 확인
-		Member user = memberService.getMember(memberId);
-		
-		if(user != null) {
-			String userBookmarks = user.getMemberBookmarks();
-			
-			if(userBookmarks.contains(Integer.toString(storeNo))) {
-				out.print("<script>");
-				out.print("alert('이미 찜한 가게입니다');");
-				out.print("</script>");
-				
-				System.out.println("con - 이미 찜한 가게입니다.");
-				
-				return "redirect:storeDetail?storeNo=" + storeNo;
-			}
-			
-			String strStoreNo = Integer.toString(storeNo);
-			
-			System.out.println("strStorNo : " + strStoreNo);
-			// member > member_bookmarks 추가
-			memberService.addMemberBookmarks(memberId, strStoreNo);
-			
-			System.out.println("con-AddBookmarks end");
-			
-			// store > store_bookmarks 추가
-			storeService.addBookmarks(storeNo);
-		}
-		
-		
-		
+	// 스토어 즐겨찾기 추가 or 삭제
+	@RequestMapping("/bookmarksUpdate")
+	public String addBookmarks(String memberId, int storeNo, Model model) {
+
+		boolean result = memberService.isBookmarks(memberId, storeNo);
+		memberService.updateMemberBookmarks(memberId, storeNo, result);
+
+		storeService.addBookmarks(storeNo);
+
 		return "redirect:storeDetail?storeNo=" + storeNo;
 	}
 	
-	// 스토어 즐겨찾기 삭제
-	@RequestMapping("/bookmarksDelete")
-	public String deleteBookmarks(String memberId, int storeNo,
-			HttpServletResponse response) throws IOException {
-
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-
-		// member > member_bookmarks 삭제, 가게 즐겨찾기 확인
-		Member user = memberService.getMember(memberId);
-		
-		if(user != null) {
-			
-			String userBookmarks = user.getMemberBookmarks();
-			
-			if(!userBookmarks.contains(Integer.toString(storeNo))) {
-				out.print("<script>");
-				out.print("alert('찜하지 않은 가게입니다');");
-				out.print("</script>");
-				
-				System.out.println("con - 찜하지 않은 가게입니다.");
-				
-				return "redirect:storeDetail?storeNo=" + storeNo;
-			}
-			
-			String strStoreNo = "";
-			
-			if(!userBookmarks.contains(",")) {
-				strStoreNo =  Integer.toString(storeNo) + ".";
-			}else {
-				strStoreNo = "," + storeNo + ".";
-			}
-			
-			memberService.deleteMemberBookmarks(memberId, strStoreNo);
-		}
-		
-		// store > store_bookmarks 삭제
-		storeService.deleteBookmarks(storeNo);
-		
-		System.out.println("con-deleteBookmarks end");
-		
-		return "redirect:storeDetail?storeNo=" + storeNo;
-	}
-	 
-	
-	
+	// 
 	@RequestMapping(value="/storeDetailReplyProcess", method=RequestMethod.POST)
 	public String addReply(String postContent, int postStar, int storeNo,
 			@RequestParam(value="postFile1", required=false) MultipartFile multipartFile,

@@ -88,20 +88,13 @@
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
 					
-					<!-- 11.10 머지날 삭제 DIV -->
-						<div>
-							${userBookmarks}
-							<br>
-							${store.storeNo}
-						</div>
-					<!--  -->
-					<c:if test = "${fn:contains(userBookmarks, store.storeNo)}">
+					<c:if test = "${result}">
 						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksDelete?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
-					<c:if test = "${!fn:contains(userBookmarks, store.storeNo)}">
+					<c:if test = "${!result}">
 						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksAdd?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 						
 						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>
