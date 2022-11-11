@@ -42,6 +42,8 @@
    	    <mapping path="/chat/**" />
 <!--    	    <mapping path="/report*" /> -->
    	    <mapping path="/bookmarks*" />
+   	    <mapping path="/deleteReplyProcess"/>
+   	    <mapping path="/storeWriteForm" />
    	    <mapping path="/community*" />
 	    <beans:ref bean="LoginCheckInterceptor" />
 	   </interceptor>

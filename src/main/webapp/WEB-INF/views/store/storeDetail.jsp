@@ -5,8 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <script src="resources/js/store.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>	
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>	
 <article>
 
 <div class="row py-3">
@@ -46,9 +46,9 @@
 				<input type="hidden" id="storeLongitude" value="${store.storeLongitude }">
 							
 				<!-- 지도 영역 -->
-				<div class="col border rounded-3 p-1 m-1">
-					<div id="map" style="height:100%;"></div>
-				</div>	
+					<div class="col border rounded-3 p-1 m-1">
+						<div id="map" style="height:100%;"></div>
+					</div>	
 				<!-- 지도 영역 end-->	
 
 			</div>
@@ -96,9 +96,14 @@
 						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
 								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
-						
+					
 						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>
 						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
+					<div>
+						<c:if test="${sessionScope.member.memberLevel >= 7 }">
+							<a href="storeUpdateForm?storeNo=${store.storeNo}" class="fs-7">관리자만 보이는 가게수정</a>
+						</c:if>	
+					</div>
 					</div>
 				</div>
 			</div>

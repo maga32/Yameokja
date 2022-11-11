@@ -41,6 +41,20 @@
 		</where>
 	</select>
 	
+	<!-- 가게 조회수 증가 -->
+	<update id="addStoreReadCount">
+		UPDATE store
+			set store_read_count = if (store_read_count = "0", "1", store_read_count + "1")
+		WHERE store_no =#{storeNo}
+	</update>
+	
+	<!-- 가게 작성된 별점리뷰 카운트 -->
+	<update id="addStoreReviewCount">
+		update store
+			set store_review_count = (select count(post_content) from post where store_no = #{storeNo} and post_is_post = 0)
+		where store_no = #{storeNo}
+	</update>
+	
 	<!-- 가게 상세 -->
 	<select id="getStore" resultType="Store" resultMap="storeResultMap">
 		SELECT * FROM store 
@@ -56,9 +70,25 @@
 				store_parking, category_no, store_read_count)
 				
     VALUES(#{storeName},#{memberId}, #{storePhone}, #{storeLatitude}, #{storeLongitude},
-    			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, null,
-    			#{storeDayOff}, #{storeParking}, #{categoryNo}, null)
+    			#{storeFileMain}, #{storeFileMenu}, #{storeAddress}, #{storeTime}, 0,
+    			#{storeDayOff}, #{storeParking}, #{categoryNo}, 0)
 	</insert>
+	
+	<!-- 가게 업데이트 -->
+	<update id="updateStore">
+		UPDATE store
+			SET store_name = #{storeName}, store_phone = #{store_phone}, store_latitude = #{storeLatitude}, store_longitude = ${storeLongitude}
+				store_file_main = #{storeFileMain} , store_file_menu = #{storeFileMenu}, store_address = #{storeAddress}, store_time = #{storeTime}, 
+				store_day_off = #{storeDayOff}, store_parking = #{storeParking}, category_no = #{categoryNo}
+		WHERE  store_no = #{storeNo};
+	</update>
+	
+	<!-- 가게 삭제 -->
+	<delete id="deleteStore">
+		DELETE FROM store
+			WHERE store_no = #{storeNo}
+	</delete>
+	
 	
 	<!-- 가게 즐겨찾기 추가 -->
 	<update id="addBookmarks">

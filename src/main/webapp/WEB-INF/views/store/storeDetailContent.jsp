@@ -5,6 +5,8 @@
 <script src="/yameokja/resources/js/post.js"></script>
 <script src="resources/js/store.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>	
 <article>
 
 	<div class="row py-3">
@@ -37,33 +39,15 @@
 			<div class="row">
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1">
 					
-					<!-- 지도 영역 -->
-					<div id="map" style="height:100%;"></div>
-						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
-						<script>
-							var container = document.getElementById('map');
-							var options = {
-								center: new kakao.maps.LatLng(35.8189345, 128.516267),
-								level: 2
-							};
-					
-							var map = new kakao.maps.Map(container, options);
+					<input type="hidden" id="storeLatitude" value="${store.storeLatitude }">
+					<input type="hidden" id="storeLongitude" value="${store.storeLongitude }">
 							
-							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
-							    map: map // 마커를 표시할 지도 객체
-							});
-							
-							var items = ${store.storeName}
-
-							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
-							kakao.maps.event.addListener(marker, 'click', function() {
-								window.open('https://map.kakao.com/link/search/스테이블모먼트')
-							});
-						</script>
-				<!-- 지도 영역 end-->
+				<!-- 지도 영역 -->
+					<div class="col border rounded-3 p-1 m-1">
+						<div id="map" style="height:100%;"></div>
+					</div>	
+				<!-- 지도 영역 end-->	
 
 				</div>		
 			</div>

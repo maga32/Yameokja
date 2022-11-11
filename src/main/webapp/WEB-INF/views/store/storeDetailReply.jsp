@@ -5,6 +5,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="resources/js/store.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>	
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
@@ -35,33 +37,15 @@
 			<div class="row">
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1">
 				
-					<!-- 지도 영역 -->
-					<div id="map" style="height:100%;"></div>
-						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
-						<script>
-							var container = document.getElementById('map');
-							var options = {
-								center: new kakao.maps.LatLng(35.8189345, 128.516267),
-								level: 2
-							};
-					
-							var map = new kakao.maps.Map(container, options);
+				<input type="hidden" id="storeLatitude" value="${store.storeLatitude }">
+				<input type="hidden" id="storeLongitude" value="${store.storeLongitude }">
 							
-							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
-							    map: map // 마커를 표시할 지도 객체
-							});
-							
-							var items = ${store.storeName}
-
-							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
-							kakao.maps.event.addListener(marker, 'click', function() {
-								window.open('https://map.kakao.com/link/search/스테이블모먼트')
-							});
-						</script>
-				<!-- 지도 영역 end-->
+				<!-- 지도 영역 -->
+					<div class="col border rounded-3 p-1 m-1">
+						<div id="map" style="height:100%;"></div>
+					</div>	
+				<!-- 지도 영역 end-->	
 	
 			</div>
 				
@@ -119,15 +103,14 @@
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
 	</div>
 <!-- 	storeDetailHeader end -->	
-					
-					
+									
 <!-- 	postList 시작 -->
 			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 			
 			<form class="row m-0 d-flex align-items-center border text-center py-2 rounded mb-2" action="storeDetailReplyProcess"
 			 id="storeDatailReply" name="storeDatailReply" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="storeNo" value="${ store.storeNo }">
-				<input type="hidden" id="postStar" name="postStar" value="">
+				<input type="hidden" id="postStar" name="postStar" value="5">
 				
 				<div class="col-12 text-secondary text-start">
 				        <div class="fs-3 fw-bold text-start m-0 p-0" id="postStarSelect" style="direction:rtl;">별점 리뷰 작성
@@ -149,8 +132,6 @@
 					        
 				    </div>
 					| <input type="file" name="postFile1" size="70" id="postFile1" maxlength="50" />
-				
-				
 				</div>
 				
 				<div class="row m-0 p-0">
@@ -158,7 +139,7 @@
 						<textarea class="form-control" name="postContent" placeholder="댓글을 입력하는 곳입니다">${ postContent }</textarea>
 					</div>
 					<div class="col-2 border-start d-flex">
-						<button class="col-12 btn btn-outline-secondary" type="submit">입력</button>
+						<button class="col-12 btn btn-outline-secondary" type="submit" name="postReplyForm" id="postReplyForm">입력</button>
 					</div>
 				</div>
 			</form>
@@ -167,9 +148,7 @@
 					<c:forEach var="p" items="${ rList }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
-								<a href="#"> <img src="resources/IMG/post/${ p.postFile1 }"
-									class="img-thumbnail rounded" alt="...">
-								</a>
+								<img src="resources/IMG/post/${ p.postFile1 }" class="img-thumbnail">
 							</div>
 
 							<div class="postTitle text-start col-6 px-2">
@@ -226,15 +205,15 @@
 
 							<div class="col-3 text-end pe-3">
 								<div class="deleteButton" id="deleteButton">
-									<a href="deleteMyPagePost?postNo=${p.postNo}">
+									<a href="deleteReplyProcess?postNo=${p.postNo}">
 										<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
-
-				<!-- 페이징 -->
+					
+					<!-- 페이징 -->
 		       	<div class="row text-end justify-content-center px-3 my-2">
 		       		<div class="col-12">
 		       			<c:if test="${ listCount > 0 }">
@@ -273,8 +252,8 @@
 				<c:if test="${ empty rList }">
 					<div class="col-12 text-center"> 작성된 댓글이 없습니다.</div>
 				</c:if>
-			</div>
+			</div>		
 <!-- 	postList 끝 -->
-		</div>
-</div>	
+
+			</div>
 </article>

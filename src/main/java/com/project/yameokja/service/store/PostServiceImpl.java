@@ -1,6 +1,6 @@
 package com.project.yameokja.service.store;
 
-import java.util.HashMap;  
+import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -16,12 +16,12 @@ import com.project.yameokja.domain.Store;
 @Service
 public class PostServiceImpl implements PostService {
 	
-	private static final int PAGE_SIZE = 10;
-	private static final int PAGE_GROUP = 10;
-	
 	@Autowired
 	private PostDao postDao;
 	
+	private static final int PAGE_SIZE = 10;
+	private static final int PAGE_GROUP = 10;
+
 	@Override
 	public Map<String, Object> postList(int storeNo, int pageNum, String detailOrderBy) {
 		
@@ -31,9 +31,6 @@ public class PostServiceImpl implements PostService {
 		int listCount = 0;
 			
 		listCount = postDao.getPostCount(storeNo);
-		
-		System.out.println("리뷰글 리스트 확인용 storeNo : "  + storeNo);
-		System.out.println("리뷰 listCount : " + listCount);
 		
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		
@@ -61,9 +58,7 @@ public class PostServiceImpl implements PostService {
 				pMap.put("currentPage", currentPage);
 				pMap.put("listCount", listCount);
 				pMap.put("pageGroup", PAGE_GROUP);
-				
-				System.out.println("가게의 시작페이지 - 가게 번호 - 현재 페이지 : " + startPage +" - " + storeNo + " - " + currentPage);
-				
+
 				return pMap;
 		}
 		return pMap;
@@ -71,15 +66,14 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public Map<String, Object> postListReply(int storeNo, int pageNum) {
+
 		int currentPage = pageNum;
 		
 		int startRow = (currentPage - 1) * PAGE_SIZE;
 		int listCount = 0;
 		
 		listCount = postDao.getReplyCount(storeNo);
-		
-		System.out.println("댓글갯수 확인용 storeNo : "  + storeNo);
-		System.out.println("listCount : " + listCount);
+
 		Map<String, Object> rMap = new HashMap<String, Object>();
 		
 		if(listCount > 0) {

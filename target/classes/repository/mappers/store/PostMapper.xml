@@ -31,6 +31,12 @@
                 </trim>
 	</select>
 	
+	<!-- 별점 평균 -->
+	<select id="getStarAvg" resultType="int" parameterType="HashMap">
+		select round(AVG(post_star),1) from post
+			where store_no = #{storeNo} and post_is_post = 1
+	</select>
+	
 	
 	<select id="bestOnePost" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post
@@ -56,21 +62,21 @@
 	<!-- 가게 댓글 리스트를 불러온다 -->
 	<select id="postListReply" resultType="Post" resultMap="postResultMap">
 		SELECT * FROM post 
-			WHERE store_no = #{storeNo} AND post_is_post = 0
+		WHERE store_no = #{storeNo} AND post_is_post = 0
 		ORDER BY post_no DESC
 		LIMIT #{startRow}, #{num}
-	</select>
-	
-	<select id="myPageReplyCount" resultType="int">
-		SELECT count(post_no) FROM post 
-		WHERE store_no = #{storeNo}
-		AND post_is_post = 0
 	</select>
 
 	<!-- 가게 댓글 리스트 갯수 -->
 	<select id="getReplyCount" resultType="int" parameterType="HashMap">
 		SELECT COUNT(*) FROM post 
 			WHERE store_no = #{storeNo} AND post_is_post = 0
+	</select>
+
+	<select id="myPageReplyCount" resultType="int"  parameterType="HashMap">
+		SELECT count(post_no) FROM post 
+			WHERE store_no = #{storeNo}
+		AND post_is_post = 0
 	</select>
 	
 	<!-- 가게 리뷰 디테일을 불러온다 -->
@@ -79,12 +85,6 @@
 			WHERE post_no = #{ postNo } 
 		ORDER BY post_no DESC
 	</select>
-	
-	<insert id="postReplyAdd" parameterType="Post">
-		INSERT INTO post
-			(post_content, post_reg_date, post_is_post, post_star, store_no, member_id, member_nickname, post_file1, post_file2)
-		VALUES (#{postContent}, SYSDATE(), 0, #{postStar}, #{storeNo}, #{memberId}, #{memberNickname}, "이거일임", #{postFile2})
-	</insert>
 	
 	<!-- 포스트 작성 -->
 	<insert id="postWrite" parameterType="Post" useGeneratedKeys="true" keyProperty="postNo">
@@ -104,6 +104,12 @@
 		DELETE FROM post 
 		WHERE post_no = #{postNo} AND post_is_post = 0
 	</update>
+	
+	<insert id="postReplyAdd" parameterType="Post">
+		INSERT INTO post
+			(post_content, post_reg_date, post_is_post, post_star, store_no, member_id, member_nickname, post_file1, post_file2)
+		VALUES (#{postContent}, SYSDATE(), 0, #{postStar}, #{storeNo}, #{memberId}, #{memberNickname}, "이거일임", #{postFile2})
+	</insert>
 
 	<!-- 포스트 업데이트 -->
 	<update id="postUpdate">

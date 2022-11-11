@@ -11,7 +11,7 @@ public interface PostDao {
 	public abstract List<Post> postList(int storeNo,int num, int startRow, String detailOrderBy);
 	
 	// 가게 정보 별점리뷰 리스트
-	public abstract List<Post> postListReply(int storeNo, int startRow, int num);
+	public abstract List<Post> postListReply(int startRow, int storeNo, int num);
 	
 	public int myPageReplyCount(int storeNo);
 	
