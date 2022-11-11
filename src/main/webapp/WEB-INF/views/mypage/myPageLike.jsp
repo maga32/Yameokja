@@ -44,7 +44,12 @@
 								단 목 록</a>
 						</div>
 						<div class="buttons_">
-							<a href="reportList?userId=${ sessionScope.memberId }">신 고 목 록</a>
+							<c:if test="${ sessionScope.member.memberLevel > 6 }">
+							<a href="reportList?&type=memberId&keyword=${sessionScope.member.memberId}">신 고 목 록</a>
+						</c:if>
+						<c:if test="${ sessionScope.member.memberLevel <= 6 }">
+							<a href="reportList">신 고 목 록</a>
+						</c:if>
 						</div>
 					</div>
 				</div>
@@ -80,7 +85,7 @@
 								<img alt="storeFileMain" class=" img-thumbnail rounded"
 									src="/yameokja/resources/IMG/store/${ p.storeFileMain }">
 							</div>
-							<div class="postTitle text-start col-6 px-2">
+							<div class="buttons_ text-start col-6 px-2">
 							<a href="storeDetail?storeNo=${ p.storeNo }">
 								<div class="fs-2 fw-bold">${ p.storeAddress }</div>
 								<div><i class="fa fa-eye" aria-hidden="true"></i> ${ p.storeStar }</div>
@@ -89,9 +94,7 @@
 							<c:if test="${ sessionScope.memberId == user.memberId }">
 								<div class="col-3  text-end pe-3">
 									<div class="deleteButton" id="deleteButton">
-										<a href="#
-	<%-- 									deleteMyPagePost?postNo=${p.storeNo} --%>
-										"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
+										<a href="myPageBookmarksDelete?storeNo=${p.storeNo}"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>
 									</div>
 								</div>
 							</c:if>

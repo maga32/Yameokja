@@ -320,6 +320,49 @@ public class StoreController {
 		
 		return "redirect:storeDetail?storeNo=" + storeNo;
 	}
+	// myPage에서 스토어 즐겨찾기 삭제
+		@RequestMapping("/myPageBookmarksDelete")
+		public String myPageBookmarksDelete(String memberId, int storeNo,
+				HttpServletResponse response) throws IOException {
+
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+
+			// member > member_bookmarks 삭제, 가게 즐겨찾기 확인
+			Member user = memberService.getMember(memberId);
+			
+			if(user != null) {
+				
+				String userBookmarks = user.getMemberBookmarks();
+				
+				if(!userBookmarks.contains(Integer.toString(storeNo))) {
+					out.print("<script>");
+					out.print("alert('찜하지 않은 가게입니다');");
+					out.print("</script>");
+					
+					System.out.println("con - 찜하지 않은 가게입니다.");
+					
+					return "redirect:myPageLike";
+				}
+				
+				String strStoreNo = "";
+				
+				if(!userBookmarks.contains(",")) {
+					strStoreNo =  Integer.toString(storeNo) + ".";
+				}else {
+					strStoreNo = "," + storeNo + ".";
+				}
+				
+				memberService.deleteMemberBookmarks(memberId, strStoreNo);
+			}
+			
+			// store > store_bookmarks 삭제
+			storeService.deleteBookmarks(storeNo);
+			
+			System.out.println("con-deleteBookmarks end");
+			
+			return "redirect:myPageLike";
+		}
 	 
 	
 	

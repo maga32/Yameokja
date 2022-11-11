@@ -45,7 +45,12 @@
 							단 목 록</a>
 					</div>
 					<div class="buttons_">
-						<a href="reportList">신 고 목 록</a>
+						<c:if test="${ sessionScope.member.memberLevel > 6 }">
+							<a href="reportList?&type=memberId&keyword=${sessionScope.member.memberId}">신 고 목 록</a>
+						</c:if>
+						<c:if test="${ sessionScope.member.memberLevel <= 6 }">
+							<a href="reportList">신 고 목 록</a>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -55,7 +60,7 @@
 				<div class="col-12 text-center fs-6 text-secondary fw-semibold m-1">
 					<div class="buttons_">
 						<a href="#"
-							onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=500, height=600")'>
+							onclick='window.open("userProfile?userId=${ user.memberId }","프로필","width=520, height=600")'>
 							${ user.memberNickname }의<br>프로필 보기</a>
 					</div>
 				</div>
@@ -84,9 +89,9 @@
 						<div class="postTitle text-start col-6 px-2">
 						<a href="storeDetailContent?storeNo=${ p.storeNo }&postNo=${ p.postNo }">
 							<div class="fs-2 fw-bold">${ p.postTitle }</div>
-							<div><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i><fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd" /></div>
-							<div><i class="fa fa-eye fa-2x" aria-hidden="true"></i> ${ p.postUpCount }</div>
-							<div><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i> ${ p.postUpList }</div>
+							<div><i class="fa fa-pencil-square-o" aria-hidden="true"></i><fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd" /></div>
+							<div><i class="fa fa-eye" aria-hidden="true"></i> ${ p.postUpCount }</div>
+							<div><i class="fa fa-thumbs-up" aria-hidden="true"></i> ${ p.postUpList }</div>
 						</a>
 						</div>
 						<c:if test="${ sessionScope.memberId == user.memberId }">
