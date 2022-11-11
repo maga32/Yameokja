@@ -126,7 +126,7 @@
 			<form class="row m-0 d-flex align-items-center border text-center py-2 rounded mb-2" action="storeDetailReplyProcess"
 			 id="storeDatailReply" name="storeDatailReply" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="storeNo" value="${ store.storeNo }">
-				<input type="hidden" id="postStar" name="postStar" value="">
+				<input type="hidden" id="postStar" name="postStar" value="5">
 				
 				<div class="col-12 text-secondary text-start">
 				        <div class="fs-3 fw-bold text-start m-0 p-0" id="postStarSelect" style="direction:rtl;">별점 리뷰 작성
@@ -148,8 +148,6 @@
 					        
 				    </div>
 					| <input type="file" name="postFile1" size="70" id="postFile1" maxlength="50" />
-				
-				
 				</div>
 				
 				<div class="row m-0 p-0">
@@ -157,7 +155,7 @@
 						<textarea class="form-control" name="postContent" placeholder="댓글을 입력하는 곳입니다">${ postContent }</textarea>
 					</div>
 					<div class="col-2 border-start d-flex">
-						<button class="col-12 btn btn-outline-secondary" type="submit">입력</button>
+						<button class="col-12 btn btn-outline-secondary" type="submit" name="postReplyForm" id="postReplyForm">입력</button>
 					</div>
 				</div>
 			</form>
@@ -166,9 +164,8 @@
 					<c:forEach var="p" items="${ rList }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
-								<a href="#"> <img src="resources/IMG/post/${ p.postFile1 }"
+								<img src="resources/IMG/post/${ p.postFile1 }"
 									class="img-thumbnail rounded" alt="...">
-								</a>
 							</div>
 
 							<div class="postTitle text-start col-6 px-2">

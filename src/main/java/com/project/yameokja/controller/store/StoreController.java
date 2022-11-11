@@ -1,6 +1,5 @@
 package com.project.yameokja.controller.store;
 
-<<<<<<< HEAD
 import java.io.File;
 
 import java.io.IOException;
@@ -43,9 +42,6 @@ public class StoreController {
 	
 	@Autowired
 	private MemberService memberSerivce;
-	
-	@Autowired
-	private final static String DEFAULT_PATH = "/resources/upload/";
 	
 	private final static String DEFAULT_PATH = "/resources/IMG/store";
 	
@@ -133,7 +129,6 @@ public class StoreController {
 			return "store/storeDetailList";
 		}
 	
-<<<<<<< HEAD
 	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
 	public String StoreDetailReply(Model model, int storeNo,
@@ -247,12 +242,23 @@ public class StoreController {
 			@RequestParam(value="postFile1", required=false) MultipartFile multipartFile,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
 		
-		System.out.println("댓글 작성 확인용");
+		
 		
 		Post post =  new Post();
 		
 		String memberId = (String)session.getAttribute("memberId");
 		String memberNickname = (String)session.getAttribute("memberNickname");
+		
+		if(memberId == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('로그인이 필요한 서비스입니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
 		
 		System.out.println("댓글 작성하는 아이디 / 닉네임 : " + memberId + " / " + memberNickname);
 		
@@ -284,44 +290,42 @@ public class StoreController {
 	
 	@RequestMapping(value="/deleteReplyProcess")
 	public String deleteReply() {
-	
+		
 		return null;
 	 }
-
-	@RequestMapping(value="/storeDatailReplyForm", method=RequestMethod.POST)
-	public String insertStoreProcess(
-			RedirectAttributes reAttr, int storeNo, HttpSession session,
-			String postContent, int postStar, HttpServletRequest request,
-			@RequestParam(value="postFile2", required=false) MultipartFile multipartFile) 
-		throws IllegalStateException, IOException { 
-		
-		Post post =  new Post();
-		String memberId = (String) session.getAttribute("memberId");
-		String memberNickname = (String) session.getAttribute("memberNickname");
-		
-		post.setMemberId(memberId);
-		post.setMemberNickname(memberNickname);
-		post.setStoreNo(storeNo);
-		post.setPostContent(postContent);
-		post.setPostStar(postStar);
-		
-		if( !multipartFile.isEmpty()) {
-			
-			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
-			UUID uid  = UUID.randomUUID();
-			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
-			
-			File file = new File(filePath, saveName);
-			System.out.println("file : " + file.getName());
-			 
-			multipartFile.transferTo(file);
-			post.setPostFile1(saveName);
-		}	
-		postService.postReplyAdd(post);
-		reAttr.addAttribute("storeNo", storeNo);
-	 
-		return "redirect:store/postListReply"; 
-	 }
+	
+		/*
+		 * @RequestMapping(value="/storeDatailReplyForm", method=RequestMethod.POST)
+		 * public String insertStoreProcess( RedirectAttributes reAttr, int storeNo,
+		 * HttpSession session, String postContent, int postStar, HttpServletRequest
+		 * request,
+		 * 
+		 * @RequestParam(value="postFile2", required=false) MultipartFile multipartFile)
+		 * throws IllegalStateException, IOException {
+		 * 
+		 * Post post = new Post(); String memberId = (String)
+		 * session.getAttribute("memberId"); String memberNickname = (String)
+		 * session.getAttribute("memberNickname");
+		 * 
+		 * post.setMemberId(memberId); post.setMemberNickname(memberNickname);
+		 * post.setStoreNo(storeNo); post.setPostContent(postContent);
+		 * post.setPostStar(postStar);
+		 * 
+		 * if( !multipartFile.isEmpty()) {
+		 * 
+		 * String filePath = request.getServletContext().getRealPath(DEFAULT_PATH); UUID
+		 * uid = UUID.randomUUID(); String saveName = uid.toString() + "_" +
+		 * multipartFile.getOriginalFilename();
+		 * 
+		 * File file = new File(filePath, saveName); System.out.println("file : " +
+		 * file.getName());
+		 * 
+		 * multipartFile.transferTo(file); post.setPostFile1(saveName); }
+		 * 
+		 * postService.postReplyAdd(post); reAttr.addAttribute("storeNo", storeNo);
+		 * 
+		 * return "redirect:store/postListReply"; }
+		 */
 
 	
 	// 스토어 즐겨찾기 추가

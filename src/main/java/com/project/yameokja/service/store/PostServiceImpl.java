@@ -16,15 +16,8 @@ import com.project.yameokja.domain.Store;
 @Service
 public class PostServiceImpl implements PostService {
 	
-	private static final int PAGE_SIZE = 10;
-	private static final int PAGE_GROUP = 10;
-	
 	@Autowired
 	private PostDao postDao;
-	
-	public void setPostDao(PostDao postDao) {
-		this.postDao = postDao;
-	}
 	
 	private static final int PAGE_SIZE = 10;
 	private static final int PAGE_GROUP = 10;

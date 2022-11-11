@@ -15,8 +15,19 @@ $(function(){
 			alert("검색어를 한 글자 이상 입력해주세요");
 			return false;
 		}
-			
 	});
+	
+// 가게 댓글 작성 시 로그인 상태가 아닐 때
+$("#storeDatailReply").on("submit", function() {
+	
+		var id = $("#memberId").val();
+		
+		if(id.length == 0){
+			alert("댓글을 작성하려면 로그인해 주세요.");
+			return false;
+		}
+		return false;
+});
 	
 	// 별점입력 시작-----------------------------------------
 	$("#rate5").click(function(){
