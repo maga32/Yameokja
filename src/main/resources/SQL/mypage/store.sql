@@ -37,6 +37,12 @@ CREATE TABLE IF NOT EXISTS store(
 
 SELECT * FROM store order by store_no DESC;
 
+desc store;
+
+alter table store change store_latitude store_longitude1 VARCHAR(20) NOT NULL;
+alter table store change store_longitude store_latitude VARCHAR(20) NOT NULL;
+alter table store change store_longitude1 store_longitude VARCHAR(20) NOT NULL;
+
 #############하영############
 INSERT INTO store (store_name, store_phone, store_latitude, store_longitude, store_file_main, store_file_menu, store_address, store_time, store_day_off, store_parking, member_id, category_no)
 	VALUES ('조방낙지 범일직영점', "051-637-1001", '129.061905', '35.1388113', 'jobangMain.png', 'jobangMenu.png', '부산,동구', '11:00 ~ 23:00', null, NULL, 'memberId01', '1');
