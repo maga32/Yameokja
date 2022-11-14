@@ -80,7 +80,7 @@ $(document).ready(function() {
 // 프로필 보기 => <button class="btn viewProfile" data-userId=${ 대상아이디 }">프로필보기</button>
 $(document).on("click", ".viewProfile", function() {
 	var userId = $(this).attr("data-userId");
-	window.open("/yameokja/userProfile?userid="+ userId, "프로필", "width=500, height=800");
+	window.open("/yameokja/userProfile?userId="+ userId, "프로필", "width=500, height=800");
 });
 
 // 마이페이지 보기 => <button class="btn viewMyPage" data-userId=${ 대상아이디 }">활동내역</button>
