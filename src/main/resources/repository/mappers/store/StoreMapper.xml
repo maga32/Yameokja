@@ -48,7 +48,6 @@
 		WHERE store_no =#{storeNo}
 	</update>
 
-	
 	<!-- 가게 작성된 별점리뷰 카운트 -->
 	<update id="addStoreReviewCount">
 		update store

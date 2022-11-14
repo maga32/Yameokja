@@ -59,9 +59,7 @@ public class StoreController {
 		String type = "";
 		
 		type = type1+ "," + type2;
-		
-		
-		
+
 		Map<String, Object> sList = storeService.storeList(categoryNo, pageNum, type, keyword, orderBy);
 		
 		model.addAllAttributes(sList);
@@ -158,7 +156,6 @@ public class StoreController {
 		Member member = memberService.getMember(post.getMemberId());
 		String memberPhoto = member.getMemberPhoto();
 		model.addAttribute("memberPhoto", memberPhoto);
-		
 		
 		return "store/storeDetailContent";
 	}

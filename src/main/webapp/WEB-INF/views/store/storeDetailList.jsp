@@ -65,7 +65,42 @@
 				</div>
 				<div class="row">
 					<div class="col-4 text-secondary fs-7 fw-bold">음식종류</div>
-					<div class="col-8 text-secondary fs-7">${ store.categoryNo }</div>
+					<div class="col-8 text-secondary fs-7">
+						<c:if test="${ store.categoryNo == 1 }">
+						한식
+						</c:if>
+						<c:if test="${ store.categoryNo == 2 }">
+						양식
+						</c:if>
+						<c:if test="${ store.categoryNo == 3 }">
+						중식
+						</c:if>
+						<c:if test="${ store.categoryNo == 4 }">
+						일식
+						</c:if>
+						<c:if test="${ store.categoryNo == 5 }">
+						아시안
+						</c:if>
+						<c:if test="${ store.categoryNo == 6 }">
+						술집
+						</c:if>
+						<c:if test="${ store.categoryNo == 7 }">
+						카페, 디저트
+						</c:if>
+						<c:if test="${ store.categoryNo == 8 }">
+						분식
+						</c:if>
+						<c:if test="${ store.categoryNo == 9 }">
+						고기
+						</c:if>
+						<c:if test="${ store.categoryNo == 10 }">
+						채식
+						</c:if>
+						<c:if test="${ store.categoryNo == 11 }">
+						패스트푸드
+						</c:if>
+					
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-4 text-secondary fs-7 fw-bold">주차</div>
