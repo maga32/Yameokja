@@ -1,5 +1,4 @@
 $(function() {	
-
 	$("#translateAddress2").on("click", function(){
 		alert($("#address").val());
 		

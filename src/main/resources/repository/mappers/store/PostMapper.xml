@@ -125,6 +125,12 @@
 			WHERE post_no = #{postNo}
 	</delete>
 	
+	<!-- 별점 평균 -->
+	<select id="ReplyStarAvg"  resultType="int" parameterType="HashMap">
+		SELECT ROUND(AVG(post_star)) FROM post
+			WHERE store_no = #{storeNo} AND post_is_post = 0
+	</select>
+	
 	<resultMap id="postResultMap" type="Post">
 		<id property="postNo" column="post_no" />
 		<result property="postTitle" column="post_title"/>

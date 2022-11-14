@@ -58,7 +58,9 @@ public class StoreController {
 		
 		String type = "";
 		
-		type = type1+ "," + type2;		
+		type = type1+ "," + type2;
+		
+		
 		
 		Map<String, Object> sList = storeService.storeList(categoryNo, pageNum, type, keyword, orderBy);
 		
