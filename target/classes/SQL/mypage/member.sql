@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS member(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 desc member;
+select * from member;
 
 TRUNCATE member;
 ###############################################################################################################################################################################################member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids
@@ -43,7 +44,7 @@ VALUES ('hayoung', '정하영', 'hy.png', '하영이', '1234', 'ha016595@naver.c
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
 VALUES ('admin', '정하영', 'img01.png' , '관리자_하영', '1234', 'ha016595@naver.com', '서울,관악구', '010-4998-9579', "9999.,2.,7.", '2017-12-01 05:44:32', null, '1,3,12', 10, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
-VALUES ('yejin', '박예진', 'yj.png', '예진이', '1234', 'yejin@naver.com', '서울,관악구', '010-3928-1009', "9999.,5.,11.", '2022-10-03 02:14:02', null, '2,5,8', 1, null);
+VALUES ('yejin', '박예진', 'yj.png', '하영전용킬러 예진', '1234', 'yejin@naver.com', '서울,관악구', '010-3928-1009', "9999.,5.,11.", '2022-10-03 02:14:02', null, '2,5,8', 1, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
 VALUES ('seonghwa', '백승화', 'sh.png', '승화', '1234', 'seonghwa@naver.com', '서울,관악구', '010-9192-3321', "9999.,3.,6.", '2021-11-21 23:04:08', null, '5,6,9', 1, null);
 INSERT INTO member (member_id, member_name, member_photo, member_nickname, member_password, member_email, member_address, member_mobile, member_bookmarks, member_join_date, member_del_date, member_favorite_category, member_level, member_block_ids)
