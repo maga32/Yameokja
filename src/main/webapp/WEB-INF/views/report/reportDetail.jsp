@@ -4,6 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/reportDetail.css" />
 <script type="text/javascript" src="/yameokja/resources/js/report.js"></script>
+<c:if test="${ sessionScope.member.memberLevel >= 7 }">
+	<div class="p-sm-2 px-4">
+		<%@ include file="../admin/adminWing.jsp" %>
+	</div>
+</c:if>
 <article>
 <input type="hidden" name="pageNum" value="${ pageNum }">
 <div class="row m-0">
