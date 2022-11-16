@@ -87,8 +87,38 @@
 							</div>
 							<div class="buttons_ text-start col-6 px-2">
 							<a href="storeDetail?storeNo=${ p.storeNo }">
-								<div class="fs-2 fw-bold">${ p.storeAddress }</div>
-								<div><i class="fa fa-eye" aria-hidden="true"></i> ${ p.storeStar }</div>
+								<div class="fs-3 fw-bold">${ p.storeName }</div>
+								<div class="fs-6">${ p.storeAddress }</div>
+								<div>
+									<c:if test="${ p.storeStar == 5 }">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:if>
+									<c:if test="${ p.storeStar == 4 }">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:if>
+									<c:if test="${ p.storeStar == 3 }">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:if>
+									<c:if test="${ p.storeStar == 2 }">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:if>
+									<c:if test="${ p.storeStar == 1 }">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:if>
+									<c:if test="${ p.storeStar == 0 }">
+									</c:if>
+									(${ p.storeStar}.0)
+								</div>
 							</a>
 							</div>
 							<c:if test="${ sessionScope.memberId == user.memberId }">
