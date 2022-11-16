@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS community(
   category_no INTEGER NOT NULL default '0',
   member_id VARCHAR(20) NOT NULL,
   member_nickname VARCHAR(20) NOT NULL,
-  member_address VARCHAR(20) NOT NULL,
+  member_address VARCHAR(20) NOT NULL default"",
   
   CONSTRAINT community_category_fk FOREIGN KEY(category_no) REFERENCES category(category_no),
   CONSTRAINT community_member_fk FOREIGN KEY(member_id) REFERENCES member(member_id),

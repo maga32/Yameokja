@@ -221,7 +221,6 @@ function replyAjaxAction(u, d){
 				console.log(resultData);
 				
 				if(resultData== false) {
-					alert("작성자가 아닙니다.");
 					return false;
 				}else{
 					$("#communityReplyList").empty();				
