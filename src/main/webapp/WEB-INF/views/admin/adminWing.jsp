@@ -23,9 +23,9 @@
 
 <!-- 우측윙 -->
 <div id="rWing" class="bg-light">
-	<a href="adminMember"><div class="p-4 bg-warning"><h3>관리자모드</h3></div></a>
-	<a href="adminMember"><div class="rWingLink p-3">회원관리</div></a>
-   	<a href="adminCategory"><div class="rWingLink p-3">카테고리 관리</div></a>
+	<a href="/yameokja/admin/adminMember"><div class="p-4 bg-warning"><h3>관리자모드</h3></div></a>
+	<a href="/yameokja/admin/adminMember"><div class="rWingLink p-3">회원관리</div></a>
+   	<a href="/yameokja/admin/adminCategory"><div class="rWingLink p-3">카테고리 관리</div></a>
    	<a href="/yameokja/reportList"><div class="rWingLink p-3">신고글 관리</div></a>
 </div>
 <div id="rWingMask" style="display: none;"></div>

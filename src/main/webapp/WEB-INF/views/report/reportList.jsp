@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" type="text/css" href="resources/css/report.css" />
+<c:if test="${ sessionScope.member.memberLevel >= 7 }">
+	<div class="p-sm-2 px-4">
+		<%@ include file="../admin/adminWing.jsp" %>
+	</div>
+</c:if>
 <article class="text-center">
 	<div class="row justify-content-center pt-4">
 		<h1 class="col-6 border-3 border-bottom fw-bold pb-1">신고 목록</h1>
