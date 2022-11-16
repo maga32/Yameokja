@@ -173,6 +173,7 @@ public class MemberController {
 		member.setMemberMobile(phone1 + "-" + phone2 + "-" +phone3);
 		member.setMemberAddress(address1 + "," + address2);
 		member.setMemberFavoriteCategory(memberFavoriteCategory);
+		member.setMemberPhoto(memberService.getMember(memberId).getMemberPhoto());
 		
 		if(!multipartFile.isEmpty()) {
 			
