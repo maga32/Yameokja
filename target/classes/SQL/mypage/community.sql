@@ -12,12 +12,12 @@ use yameokja;
 DROP TABLE IF EXISTS community;
 CREATE TABLE IF NOT EXISTS community(
   community_no INTEGER AUTO_INCREMENT PRIMARY KEY,
-  community_title VARCHAR(20) NULL,
+  community_title VARCHAR(40) NULL,
   community_reg_date TIMESTAMP NOT NULL,  
   community_reply_count INTEGER(10) NULL default '0',
   community_read_count integer(10) default '0',
   community_content VARCHAR(1000) NOT NULL,
-  community_file VARCHAR(1000) NULL,
+  community_file VARCHAR(100) NULL,
   community_parent_no INTEGER(10) NOT NULL default '0',
   community_re_reply INTEGER(10) NOT NULL default '0',
   community_reply_target VARCHAR(20) NULL,
@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS community(
   party_member_ids VARCHAR(300) NULL,
   party_d_day TIMESTAMP NULL,
   party_place VARCHAR(40) NULL,
-  category_no INTEGER(10) NOT NULL default '0',
-  member_id VARCHAR(10) NOT NULL,
+  category_no INTEGER NOT NULL default '0',
+  member_id VARCHAR(20) NOT NULL,
   member_nickname VARCHAR(20) NOT NULL,
   member_address VARCHAR(20) NOT NULL,
   
