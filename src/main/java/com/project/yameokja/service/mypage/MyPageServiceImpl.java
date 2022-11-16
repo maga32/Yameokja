@@ -143,9 +143,7 @@ public class MyPageServiceImpl implements MyPageService {
 	public Map<String, Object> myPageLike(String userId, int pageNum) {
 		
 		String memberBookmarks = memberService.getMember(userId).getMemberBookmarks();
-		memberBookmarks = memberBookmarks.replace("9999.,", "");
-		if(!memberBookmarks.equals("9999.")) {
-			memberBookmarks = memberBookmarks.replace(".", "");
+		if( memberBookmarks !=null ) {
 			String[] memberBookmarksList = memberBookmarks.split(",");
 			//1 0~9
 			//2 10~19

@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/myPage.css" />
+<link rel="stylesheet" type="text/css" href="/yameokja/resources/css/myPage.css" />
 <script type="text/javascript" src="/yameokja/resources/js/mypage.js"></script>
 <article>
 <div class="row m-0 bg-white justify-content-center">
@@ -47,7 +46,12 @@
 							단 목 록</a>
 					</div>
 					<div class="buttons_">
-						<a href="reportList?userId=${ sessionScope.memberId }">신 고 목 록</a>
+						<c:if test="${ sessionScope.member.memberLevel > 6 }">
+							<a href="reportList?&type=memberId&keyword=${sessionScope.member.memberId}">신 고 목 록</a>
+						</c:if>
+						<c:if test="${ sessionScope.member.memberLevel <= 6 }">
+							<a href="reportList">신 고 목 록</a>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -83,24 +87,24 @@
 					<img alt="communityFile" class="img-thumbnail rounded" 
 						src="/yameokja/resources/IMG/community/${ c.communityFile }">
 				</div>
-				<div class="col-6 col-md-7 col-sm-6 text-start">
-					<div class="text-muted fw-bold fs-3 postTitle" tabindex="0">
-						<a href="communityDetail?communityNo=${ c.communityNo }"> 
-							<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
-							<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
-							${ c.communityTitle }(${ c.communityReadCount })/${ c.communityNo }
-						</a>
+				<div class="buttons_ col-6 col-md-7 col-sm-6 text-start">
+				<a href="communityDetail?communityNo=${ c.communityNo }">
+					<div class="fw-bold fs-3" tabindex="0">
+						<c:if test="${ c.categoryNo == 101 }">[수다]</c:if> 
+						<c:if test="${ c.categoryNo == 102 }">[모집]</c:if> 
+						${ c.communityTitle }(${ c.communityReadCount })
 					</div>
-					<div class="text-secondary"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReplyCount }</div>
-					<div class="text-secondary" id="communityRegDate">
+					<div><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${ c.communityReplyCount }</div>
+					<div>
 						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 						<fmt:formatDate value="${ c.communityRegDate }" pattern="yyyy-MM-dd" />
 					</div>
+				</a>
 				</div>
 				<c:if test="${ sessionScope.memberId == user.memberId }">
 				<div class="col-3 col-md-2 col-sm-3 text-end pe-3">
 					<div class="updateButton">
-						<a href=""><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
+						<a href="community${ c.categoryNo}UpdateForm?communityNo=${ c.communityNo}"><i class="fa fa-pencil fa-2x my-3" aria-hidden="true"></i></a>
 					</div>
 					<div class="deleteButton" id="deleteButton">
 						<a href="deleteMyPageCommunity?communityNo=${c.communityNo}"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>

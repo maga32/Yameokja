@@ -46,7 +46,12 @@
 								단 목 록</a>
 						</div>
 						<div class="buttons_">
-							<a href="reportList?userId=${ sessionScope.memberId }">신 고 목 록</a>
+							<c:if test="${ sessionScope.member.memberLevel > 6 }">
+							<a href="reportList?&type=memberId&keyword=${sessionScope.member.memberId}">신 고 목 록</a>
+						</c:if>
+						<c:if test="${ sessionScope.member.memberLevel <= 6 }">
+							<a href="reportList">신 고 목 록</a>
+						</c:if>
 						</div>
 					</div>
 				</div>
