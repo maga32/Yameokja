@@ -90,6 +90,7 @@
 		
 <!-- hidden 영역 -->
 		<input type="hidden" id="memberId" value="${sessionScope.member.memberId}">
+		<input type="hidden" id="communityNo" value="${co.communityNo}">
 <!-- hidden 영역 end-->	
 		
 <!-- 댓글 목록 -->
@@ -192,9 +193,9 @@
 	</div>
 </div>
 <div class="text-end my-1 m-0">
-	<form class=" inlineBlock" action="community102UpdateForm?communityNo=${co.communityNo}" method="post">
+	<form class=" inlineBlock" action="community${co.categoryNo}UpdateForm?communityNo=${co.communityNo}" method="post">
 	<button class="btn btn-warning shadow btnCommunityDetail">수정하기</button>
 	</form>
-	<button class="btn btn-warning shadow inlineBlock btnCommunityDetail" onclick="location.href='communityDelete?communityNo=${co.communityNo}' ">삭제하기</button>
+	<button class="btn btn-warning shadow inlineBlock btnCommunityDetail" id="btnCommunityDelete" onclick="">삭제하기</button>
 </div>
 </article>

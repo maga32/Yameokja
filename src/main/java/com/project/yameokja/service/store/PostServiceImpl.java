@@ -143,6 +143,11 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
+	public void ReplyStarAvg(int storeNo) {
+		postDao.ReplyStarAvg(storeNo);
+	}
+	
+	@Override
 	public Post bestOnePost(int storeNo) {
 		return postDao.bestOnePost(storeNo);
 	}
@@ -213,5 +218,4 @@ public class PostServiceImpl implements PostService {
 	public void postDelete(int postNo) {
 		postDao.postDelete(postNo);
 	}
-
 } 

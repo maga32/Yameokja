@@ -58,8 +58,8 @@ public class StoreController {
 		
 		String type = "";
 		
-		type = type1+ "," + type2;		
-		
+		type = type1+ "," + type2;
+
 		Map<String, Object> sList = storeService.storeList(categoryNo, pageNum, type, keyword, orderBy);
 		
 		model.addAllAttributes(sList);
@@ -114,9 +114,16 @@ public class StoreController {
 	
 	// 가게 상세 and 리뷰리스트
 		@RequestMapping("/storeDetailList")
-		public String storeDetailList(Model model, int storeNo,
+		public String storeDetailList(Model model, int storeNo, HttpSession session,
 				@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 				@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
+			
+			String memberId = (String) session.getAttribute("memberId");
+			
+			if(memberId != null) {
+				boolean result = memberService.isBookmarks(memberId, storeNo);
+				model.addAttribute("result", result);
+			}
 			
 			Store store = storeService.getStore(storeNo);
 			model.addAttribute("store", store);
@@ -132,8 +139,15 @@ public class StoreController {
 	
 	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
-	public String StoreDetailReply(Model model, int storeNo,
+	public String StoreDetailReply(Model model, int storeNo, HttpSession session,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		
+		if(memberId != null) {
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
+		}
 		
 		Store store = storeService.getStore(storeNo);	
 		Map<String, Object> rList = postService.postListReply(storeNo, pageNum); 
@@ -145,7 +159,14 @@ public class StoreController {
 	
 	// 가게 상세 and 포스트 글 상세
 	@RequestMapping("/storeDetailContent")
-	public String StoreDetailContent(Model model, int storeNo, int postNo)  {
+	public String StoreDetailContent(Model model, int storeNo, int postNo, HttpSession session)  {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		
+		if(memberId != null) {
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
+		}
 		
 		Store store = storeService.getStore(storeNo);
 		model.addAttribute("store", store);
@@ -157,7 +178,6 @@ public class StoreController {
 		String memberPhoto = member.getMemberPhoto();
 		model.addAttribute("memberPhoto", memberPhoto);
 		
-		
 		return "store/storeDetailContent";
 	}
 	
@@ -165,7 +185,6 @@ public class StoreController {
 	// 가게 정보 글쓰기 폼
 	@RequestMapping(value="/storeWriteForm")
 	public String insertStoreFrom() {
-		
 		return "store/storeWriteForm";
 	}
 
@@ -221,12 +240,9 @@ public class StoreController {
 			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("file : " + file.getName());
 
 			multipartFile.transferTo(file);
 			store.setStoreFileMain(saveName);
-			
-			System.out.println(saveName);
 		}
 		
 		if(!multipartFile2.isEmpty()) {
@@ -236,12 +252,9 @@ public class StoreController {
 			String saveName = uid.toString() + "_" + multipartFile2.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("file : " + file.getName());
 
 			multipartFile2.transferTo(file);
 			store.setStoreFileMenu(saveName);
-			
-			System.out.println(saveName);
 		}
 		
 		storeService.insertStore(store);
@@ -290,8 +303,6 @@ public class StoreController {
 		phone2 = sArray[1];
 		phone3 = sArray[2];
 		
-		System.out.println("번호 나눠진거 확인 : " + phone1 + "/" + phone2 + "/" + phone3);
-		
 		model.addAttribute("store", store);
 		model.addAttribute("phone1", phone1);
 		model.addAttribute("phone2", phone2);
@@ -303,25 +314,24 @@ public class StoreController {
 	// 가게 수정
 		@RequestMapping("/storeUpdateProcess")
 		public String storeUpdateProcess( Store store, String phone1, String phone2, String phone3,
-				@RequestParam(value="storeFileMain", required=false)MultipartFile multipartFile,
-				@RequestParam(value="storeFileMenu", required=false)MultipartFile multipartFile2,
+				@RequestParam(value="fileMain", required=false)MultipartFile multipartFile3,
+				@RequestParam(value="fileMenu", required=false)MultipartFile multipartFile4,
 				HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException {
 			
-			System.out.println("store.storeNo" + store.getStoreName() + store.getStoreLatitude() + store.getStoreLongitude() + store.getStoreAddress());
-			
 			Store oldStore = storeService.getStore(store.getStoreNo());
+			
 			store.setStorePhone(phone1 + "-" + phone2 + "-" +phone3);
 			
-			if(!multipartFile.isEmpty()) {
+			if(!multipartFile3.isEmpty()) {
 				
 				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
 				UUID uid  = UUID.randomUUID();
-				String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+				String saveName = uid.toString() + "_" + multipartFile3.getOriginalFilename();
 				
 				File file = new File(filePath, saveName);
 				System.out.println("file : " + file.getName());
 
-				multipartFile.transferTo(file);
+				multipartFile3.transferTo(file);
 				store.setStoreFileMain(saveName);
 				
 				System.out.println(saveName);
@@ -329,24 +339,31 @@ public class StoreController {
 				store.setStoreFileMain(oldStore.getStoreFileMain() );
 			}
 			
-			if(!multipartFile2.isEmpty()) {
+			if(!multipartFile4.isEmpty()) {
 				
 				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
 				UUID uid  = UUID.randomUUID();
-				String saveName = uid.toString() + "_" + multipartFile2.getOriginalFilename();
+				String saveName = uid.toString() + "_" + multipartFile4.getOriginalFilename();
 				
 				File file = new File(filePath, saveName);
 				System.out.println("file : " + file.getName());
 
-				multipartFile2.transferTo(file);
+				multipartFile4.transferTo(file);
 				store.setStoreFileMenu(saveName);
 				
 				System.out.println(saveName);
 			} else {
 				store.setStoreFileMenu(oldStore.getStoreFileMenu() );
 			}
-
+			
+			if(store.getStoreLatitude() == null) {
+				store.setStoreLatitude(oldStore.getStoreLatitude());
+				store.setStoreLongitude(oldStore.getStoreLongitude());
+			}
+			
 			storeService.updateStore(store);
+			
+			System.out.println("store.storeNo : " + store.getStoreName());
 			
 			return "redirect:storeDetail?storeNo=" + oldStore.getStoreNo();
 		}
@@ -417,6 +434,7 @@ public class StoreController {
 		}
 		
 		postService.addReply(post);
+		storeService.addStoreReviewCount(storeNo);
 		
 		return "redirect:/storeDetailReply?storeNo="+storeNo;
 	}
@@ -439,8 +457,9 @@ public class StoreController {
 			
 			return null;
 		}
-
 		postService.deleteReply(postNo);
+		
+		storeService.deleteStoreReviewCount(post.getStoreNo());
 		
 		return "redirect:storeDetailReply?storeNo=" + post.getStoreNo();
 	 }

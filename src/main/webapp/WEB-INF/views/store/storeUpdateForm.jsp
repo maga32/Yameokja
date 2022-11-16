@@ -5,15 +5,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>					
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>						
 <script src="resources/js/store.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <meta charset="UTF-8">
 <article>
 
-<form name="storeUpdateForm" action="storeUpdateProcess" 
-	id="storeUpdateForm" method="POST">
+<form action="storeUpdateProcess" encType="multipart/form-data" method="POST">
+	
 	<input type="hidden" name="storeNo" value="${ store.storeNo }">
 <div class="container-fluid">
 	
@@ -87,68 +87,66 @@
 		            				</div>
 		            				<div class="col-9">
 		            					<div class="col-2">* 위도</div>	
-		            					<input type="text" class="col-4 inlineBlock" name="storeLongitude" id="storeLongitude" readonly value="${store.storeLongitude}">
-		            					<div class="col-2">* 경도</div>	
 		            					<input type="text" class="col-4 inlineBlock" name="storeLatitude" id="storeLatitude" readonly value="${store.storeLatitude}">
+		            					<div class="col-2">* 경도</div>	
+		            					<input type="text" class="col-4 inlineBlock" name="storeLongitude" id="storeLongitude" readonly value="${store.storeLongitude}">
 	            				</div>
 	            				<div class="row justify-content-center p-4" style="display:none;" id="mapArea">
 	            					<div class="mx-2 border" id="map" style="height:300px;"></div>
 	            				</div>
-								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services"></script>
-								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>
 	            				
 	            				<div class="col-12"><h3 class="text-start"><span class="text-danger fw-bolder"> * </span>맛집 종류</h3></div>
 	            				
 	            			<div class="row mb-4">
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo" id="1" ${ store.categoryNo == '1' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="1" ${ store.categoryNo == '1' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">한식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo" id="2" ${ store.categoryNo == '2' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="2" ${ store.categoryNo == '2' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">양식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo" id="3" ${ store.categoryNo == '3' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="3" ${ store.categoryNo == '3' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">중식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo" id="4" ${ store.categoryNo == '4' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="4" ${ store.categoryNo == '4' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">일식</label>
 		            				</div>
 		            			</div>
 		            			
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo"  id="5" ${ store.categoryNo == '5' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  value="5" ${ store.categoryNo == '5' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">아시안</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo"  id="6" ${ store.categoryNo == '6' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  value="6" ${ store.categoryNo == '6' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">술집</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo"  id="7" ${ store.categoryNo == '7' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  value="7" ${ store.categoryNo == '7' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">카페, 디저트</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo"  id="8" ${ store.categoryNo == '8' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo"  value="8" ${ store.categoryNo == '8' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">분식</label>
 		            				</div>
 		            			</div>
 		            			
 		            			<div class="row mb-2">
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo" id="9" ${ store.categoryNo == '9' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="9" ${ store.categoryNo == '9' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">고기</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo" id="10" ${ store.categoryNo == '10' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="10" ${ store.categoryNo == '10' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">채식</label>
 		            				</div>
 		            				<div class="col-3">
-			            				<input class="form-check-input" type="radio" name="categoryNo" id="11" ${ store.categoryNo == '11' ? 'checked' : '' }>
+			            				<input class="form-check-input" type="radio" name="categoryNo" value="11" ${ store.categoryNo == '11' ? 'checked' : '' }>
 			            					<label class="form-check-label" for="categoryNo">패스트푸드</label>
 		            				</div>
 		            			</div>
@@ -158,14 +156,14 @@
 	            				<div class="col-12"><h3 class="text-start">대표 사진</h3></div>
 	            				<div class="row mb-4">
 		            				<div class="col-12">
-										  <input class="form-control" type="file" name="storeFileMain" id="fileMain" value="${ store.storeFileMain }">
+										  <input class="form-control" type="file" name="fileMain" id="fileMain" value="${ store.storeFileMain }">
 									</div>
 	            				</div>
 	            				
 	            				<div class="col-12"><h3 class="text-start">메뉴판 사진</h3></div>
 	            				<div class="row mb-4">
 		            				<div class="col-12">
-										  <input class="form-control" type="file" name="storeFileMenu" id="fileMenu" value="${ store.storeFileMenu }">
+										  <input class="form-control" type="file" name="fileMenu" id="fileMenu" value="${ store.storeFileMenu }">
 									</div>
 	            				</div>
 	            				

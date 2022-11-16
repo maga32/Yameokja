@@ -70,7 +70,7 @@ public class PostController {
 		out.write(bytes);
 
 		// 클라이언트에 결과 표시
-		String callback = request.getParameter("CKEditorFuncNu,li90lkm");
+		String callback = request.getParameter("CKEditorFuncNum");
 
 		// 서버=>클라이언트로 텍스트 전송(자바스크립트 실행)
 		PrintWriter printWriter = response.getWriter();

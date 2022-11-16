@@ -80,13 +80,6 @@ public class PostDaoImpl implements PostDao {
 		sqlSession.insert(NAME_SPACE + ".insertPost", post);
 	}
 	
-	// 가게 리뷰글 수정
-	@Override
-	public void updatePost(Post post) {
-		// TODO Auto-generated method stub
-
-	}
-	
 	// 가게 리뷰글 삭제
 	@Override
 	public void deletePost(int postNo) {
@@ -132,12 +125,16 @@ public class PostDaoImpl implements PostDao {
 		return sqlSession.selectList(NAME_SPACE + ".bestThreePost", storeNo);
 	}
 
-	
-
-	
-
-	
-
+	@Override
+	public int ReplyStarAvg(int storeNo) {
+		
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("storeNo", storeNo);
+		
+		System.out.println("나오나 ? : " + param);
+		
+		return sqlSession.selectOne(NAME_SPACE + ".ReplyStarAvg", param);
+	}
 
 	@Override
 	public void postReplyAdd(Post post) {
@@ -161,6 +158,14 @@ public class PostDaoImpl implements PostDao {
 	public void postDelete(int postNo) {
 		sqlSession.delete(NAME_SPACE + ".postDelete", postNo);
 	}
+
+	@Override
+	public void updatePost(Post post) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 
 }
