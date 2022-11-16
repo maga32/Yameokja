@@ -157,7 +157,8 @@
 						<i class="fa fa-bell" aria-hidden="true" onclick='window.open("reportForm?categoryNo=${store.categoryNo}&reportTarget=${store.memberId}","reportForm","width=500, height=600")'></i>
 					<div>
 						<c:if test="${sessionScope.member.memberLevel >= 7 }">
-							<a href="storeUpdateForm?storeNo=${store.storeNo}" class="fs-7">관리자만 보이는 가게수정</a>
+							<a href="storeUpdateForm?storeNo=${store.storeNo}" class="fs-7 pe-1 border-right">수정</a>
+							<a href="storeDelete?storeNo=${store.storeNo}&categoryNo=${categoryNo}" class="fs-7">삭제</a>
 						</c:if>	
 					</div>
 					</div>

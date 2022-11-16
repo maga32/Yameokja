@@ -13,7 +13,8 @@
 <article>
 
 <form action="storeUpdateProcess" encType="multipart/form-data" method="POST">
-	
+	<input type="hidden" id="storeAddress1" name="storeAddress1">
+	<input type="hidden" id="storeAddress2" name="storeAddress2">
 	<input type="hidden" name="storeNo" value="${ store.storeNo }">
 <div class="container-fluid">
 	

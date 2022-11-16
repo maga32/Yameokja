@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,6 +76,7 @@ public class StoreController {
 	// 가게 상세 and 리뷰 리스트
 	@RequestMapping("/storeDetail")
 	public String StoreDetail(Model model, int storeNo,
+			@RequestParam(value="categoryNo", required=false, defaultValue="99") int categoryNo,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 			@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy,  HttpSession session) {
 
@@ -102,6 +104,7 @@ public class StoreController {
 		
 		Map<String,Object> pList = postService.postList(storeNo,pageNum, detailOrderBy); 
 
+		model.addAttribute("categoryNo", categoryNo);
 		model.addAttribute("store", store);
 		model.addAttribute("bestOnePost", bestOnePost);
 		model.addAttribute("bestTwoPost", bestTwoPost);
@@ -192,7 +195,7 @@ public class StoreController {
 	@RequestMapping(value="/storeWriteProcess", method=RequestMethod.POST)
 	public String insertStoreProcess(String memberId, String memberNickname, String storeName, 
 			String phone1, String phone2, String phone3, String storeLatitude,
-			String storeLongitude,String address2, String address1, String storeTime,
+			String storeLongitude,String storeAddress2, String storeAddress1, String storeTime,
 			String storeDayOff, String storeParking, int categoryNo,
 			@RequestParam(value="fileMain", required=false) MultipartFile multipartFile,
 			@RequestParam(value="fileMenu", required=false) MultipartFile multipartFile2,
@@ -218,7 +221,7 @@ public class StoreController {
 		store.setMemberId(memberId);
 		store.setStoreName(storeName);
 		store.setStorePhone(phone1 + "-" + phone2 + "-" +phone3);
-		store.setStoreAddress(address1 + "," + address2);
+		store.setStoreAddress(storeAddress1 + "," + storeAddress2);
 		store.setStoreLatitude(storeLatitude);
 		store.setStoreLongitude(storeLongitude);
 		store.setStoreTime(storeTime);
@@ -230,7 +233,7 @@ public class StoreController {
 			
 			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
 			UUID uid  = UUID.randomUUID();
-			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
+			String saveName = uid.toString() + "." + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
 			
 			File file = new File(filePath, saveName);
 
@@ -242,7 +245,7 @@ public class StoreController {
 			
 			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
 			UUID uid  = UUID.randomUUID();
-			String saveName = uid.toString() + "_" + multipartFile2.getOriginalFilename();
+			String saveName = uid.toString() + "." + FilenameUtils.getExtension(multipartFile2.getOriginalFilename());
 			
 			File file = new File(filePath, saveName);
 
@@ -348,12 +351,34 @@ public class StoreController {
 			if(store.getStoreLatitude() == null) {
 				store.setStoreLatitude(oldStore.getStoreLatitude());
 				store.setStoreLongitude(oldStore.getStoreLongitude());
+				store.setStoreAddress(oldStore.getStoreAddress());
 			}
 			
 			storeService.updateStore(store);
 			
 			return "redirect:storeDetail?storeNo=" + oldStore.getStoreNo();
 		}
+		
+	@RequestMapping("/storeDelete")
+	public String storeDelete(HttpServletResponse response, HttpSession session, int storeNo,
+			@RequestParam(value="categoryNo", required=false) int categoryNo) throws IOException {
+		Member member = (Member) session.getAttribute("member");
+		
+		if(member == null || member.getMemberLevel() < 7) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('가게정보 수정은 관리자만 가능합니다!');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
+		
+		storeService.storeDelete(storeNo);
+		
+		return "redirect:/storeList?categoryNo=" + categoryNo;
+	}
 
 	// 가게 별점댓글 추가
 	@RequestMapping(value="/storeDetailReplyProcess", method=RequestMethod.POST)

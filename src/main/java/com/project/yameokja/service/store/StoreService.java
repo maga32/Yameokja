@@ -34,4 +34,7 @@ public interface StoreService {
 	// 가게 즐겨찾기 삭제
 	public void deleteBookmarks(int storeNo);
 
+	// 가게 삭제
+	public void storeDelete(int storeNo);
+
 }

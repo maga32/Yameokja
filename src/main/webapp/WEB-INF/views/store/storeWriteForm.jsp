@@ -14,7 +14,8 @@
 
 <form name="storeWriteForm" action="storeWriteProcess" 
 	id="storeWriteForm" method="POST" encType="multipart/form-data">
-
+	<input type="hidden" id="storeAddress1" name="storeAddress1">
+	<input type="hidden" id="storeAddress2" name="storeAddress2">
 <div class="container-fluid">
 	
         <div class="row">

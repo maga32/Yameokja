@@ -20,11 +20,22 @@ $(function() {
 
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 				alert("위도 : " + result[0].y + " , 경도 : " + result[0].x);
+				
 				var latitude = result[0].y;
 				var longitude = result[0].x; 
+				var address1 = result[0].road_address.region_1depth_name;
+				var address2 = result[0].road_address.region_2depth_name;
 				
+				if(address1 == '세종특별자치시') {
+					address1 = '세종';
+					address2 = '세종';
+				}
+
 				$("#storeLongitude").val(longitude);
 				$("#storeLatitude").val(latitude);
+				$("#storeAddress1").val(address1);
+				$("#storeAddress2").val(address2);
+
 			}
 			
 			var markerPosition  = new kakao.maps.LatLng(latitude , longitude);

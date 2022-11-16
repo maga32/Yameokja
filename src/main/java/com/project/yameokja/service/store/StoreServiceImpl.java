@@ -108,4 +108,10 @@ public class StoreServiceImpl implements StoreService {
 		storeDao.deleteStoreReviewCount(storeNo);
 	}
 	
+	// 가게 삭제
+	@Override
+	public void storeDelete(int storeNo) {
+		storeDao.deleteStore(storeNo);
+	}
+	
 }
