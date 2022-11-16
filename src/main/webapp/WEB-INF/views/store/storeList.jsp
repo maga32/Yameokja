@@ -84,7 +84,7 @@
 	        		<img src="/yameokja/resources/IMG/store/${ s.storeFileMain }" style="width:200; height:200;" class="img-thumbnail rounded float-start">
 	        	</div>
 	        		<div class="col-6 col-md-7 col-sm-6">
-		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }" class="text-muted font-weight-bold text-decoration-none" role="button" tabindex="0">
+		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }&categoryNo=${ s.categoryNo }" class="text-muted font-weight-bold text-decoration-none" role="button" tabindex="0">
 		        			${ s.storeName }</a></h4>
 	        			<p class="text-secondary">${ s.storeAddress }</p>
 	        			<p class="text-secondary">

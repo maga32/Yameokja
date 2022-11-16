@@ -24,7 +24,9 @@
 	<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
-				<div class="col-12 fs-4 fw-semibold text-secondary" id="storeName">${store.storeName }</div>
+				<div class="col-12 fs-3 fw-semibold text-secondary" id="storeName">
+					<a href="storeDetail?storeNo=${ store.storeNo }&categoryNo=${ store.categoryNo}">${ store.storeName }</a>
+				</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<c:if test="${ store.storeStar == 5 }">
 						<i class="fa fa-star" aria-hidden="true"></i>
@@ -271,7 +273,7 @@
 		<div class="col-12 py-3">
 			<div class="d-inline-block storeWhiteFormButton text-start"><a href="postWriteForm?storeNo=${ store.storeNo }" class="py-1 px-3">글 쓰기</a></div>
 			<div class="d-inline-block storeDetailPostButton text-end"><a href="storeDetailList?storeNo=${ store.storeNo }" class="py-1 px-3">리뷰 전체보기</a></div>
-			<div class="d-inline-block storeListButton text-end"><a href="#storeList?categoryNo=?&pageNum=?" class="py-1 px-3">가게 목록으로</a></div>
+			<div class="d-inline-block storeListButton text-end"><a href="storeList" class="py-1 px-3">가게 목록으로</a></div>
 		</div>
 	</div>
 <!-- 	review end -->
