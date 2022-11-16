@@ -80,8 +80,6 @@ public class PostServiceImpl implements PostService {
 			
 			List<Post> rList = postDao.postListReply(startRow, storeNo, PAGE_SIZE);
 			
-			System.out.println("rList : " + rList.get(0).getPostContent());
-			
 			int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0 ? 0 : 1);
 			
 			int startPage = currentPage / PAGE_GROUP * PAGE_GROUP - 

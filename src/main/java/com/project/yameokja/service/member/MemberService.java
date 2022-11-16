@@ -104,15 +104,11 @@ public class MemberService {
 		
 		String memberBookmarks = memberDao.getMember(memberId).getMemberBookmarks();
 		if(memberBookmarks == null) return false;
-		
-		System.out.println("memService - memberBookmarks : " + memberBookmarks);
 
 		String[] bookmarks = memberBookmarks.split(",");
 		for(int i=0; i < bookmarks.length; i++) {
 			if(bookmarks[i].equals(Integer.toString(storeNo))) isBookmarks = true;
 		}
-		
-		System.out.println("memService - isBookmarks : " + isBookmarks);
 		
 		return isBookmarks;
 	}

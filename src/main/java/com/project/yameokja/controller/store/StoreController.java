@@ -226,13 +226,6 @@ public class StoreController {
 		store.setStoreDayOff(storeDayOff);
 		store.setStoreParking(storeParking);
 		
-		System.out.println("store_name :" + storeName);
-		
-		System.out.println("위도 : " + storeLatitude);
-		System.out.println("경도 : " + storeLongitude);
-		
-		System.out.println("글작성하는 친구 : " + memberId);
-		
 		if(!multipartFile.isEmpty()) {
 			
 			String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
@@ -329,12 +322,10 @@ public class StoreController {
 				String saveName = uid.toString() + "_" + multipartFile3.getOriginalFilename();
 				
 				File file = new File(filePath, saveName);
-				System.out.println("file : " + file.getName());
 
 				multipartFile3.transferTo(file);
 				store.setStoreFileMain(saveName);
-				
-				System.out.println(saveName);
+
 			} else {
 				store.setStoreFileMain(oldStore.getStoreFileMain() );
 			}
@@ -346,12 +337,10 @@ public class StoreController {
 				String saveName = uid.toString() + "_" + multipartFile4.getOriginalFilename();
 				
 				File file = new File(filePath, saveName);
-				System.out.println("file : " + file.getName());
 
 				multipartFile4.transferTo(file);
 				store.setStoreFileMenu(saveName);
 				
-				System.out.println(saveName);
 			} else {
 				store.setStoreFileMenu(oldStore.getStoreFileMenu() );
 			}
@@ -362,8 +351,6 @@ public class StoreController {
 			}
 			
 			storeService.updateStore(store);
-			
-			System.out.println("store.storeNo : " + store.getStoreName());
 			
 			return "redirect:storeDetail?storeNo=" + oldStore.getStoreNo();
 		}
@@ -416,12 +403,10 @@ public class StoreController {
 			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("file : " + file.getName());
 
 			multipartFile.transferTo(file);
 			post.setPostFile1(saveName);
 			
-			System.out.println("댓글 이미지 :" + saveName);
 		} else {
 			
 			response.setContentType("text/html; charset=utf-8");
