@@ -197,10 +197,6 @@
 				</div>
 				<div id="storeDetailBestOneContent" class="col-7">${ bestOnePost.postContent }</div>
 			</div>
-			<div class="col-12 text-end">
-				<input type="button" class="updateButton text-secondary bg-white" value="수정">
-				<input type="button" class="deleteButton text-secondary border-start border-3 bg-white" value="삭제">
-			</div>
 		</div>
 	</c:if>
 	<c:if test="${ empty bestOnePost }">

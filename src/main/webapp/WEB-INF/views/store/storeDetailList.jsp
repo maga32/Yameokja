@@ -13,8 +13,6 @@
 	<form name="storeDetailForm" id="storeDetailForm" action="storeDetailList">
 		<input type="hidden" name="storeNo" value="${ store.storeNo }">
 		<input type="hidden" id="detailCheck" value="true">
-	</form>
-	
 	
 <!-- 	fullFrame start-->
 	<div class="col-12 p-2">
@@ -262,5 +260,6 @@
 	</div>
 <!-- 	fullFrame end-->			
 	</div>
+	</form>
 </div>
 </article>
