@@ -210,8 +210,10 @@
 			</div>
 			<c:if test="${ sessionScope.memberId eq post.memberId }">
 				<div class="col-12 text-end">
-					<a href="postUpdateForm?postNo=${ post.postNo }" class="text-secondary bg-white pe-1">수정</a>
-					<a href="javascript:;" class="text-secondary border-start border-3 ps-2" onclick="deletePost('${ post.postNo }')">삭제</a>
+					<c:if test="${ not empty post.postTitle }">
+						<a href="postUpdateForm?postNo=${ post.postNo }" class="text-secondary border-end border-3 pe-2">수정</a>
+					</c:if>
+					<a href="javascript:;" class="text-secondary ps-1" onclick="deletePost('${ post.postNo }')">삭제</a>
 				</div>
 			</c:if>
 			

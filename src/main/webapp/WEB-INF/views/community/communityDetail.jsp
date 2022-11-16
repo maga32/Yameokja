@@ -22,7 +22,7 @@
 						onclick='window.open("userProfile?userId=${co.memberId}","LoginForm","width=500, height=600")'/>
 			</div>
 			<div class="col-8">
-				<div class="col-12 memberNicknameFont">${ co.memberNickname }</div>
+				<div class="col-12 memberNicknameFont memberInfo" data-memberId="${ co.memberId }"> ${ co.memberNickname }</div>
 				<div class="col-12 communityRegDateFont">(<fmt:formatDate value="${co.communityRegDate}" pattern="yyyy-MM-dd hh:mm:ss"/>)</div>
 				<div class="col-12 communityReadCountFont"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;${ co.communityReadCount }</div>
 			</div>	
