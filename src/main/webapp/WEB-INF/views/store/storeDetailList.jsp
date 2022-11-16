@@ -186,7 +186,7 @@
 		<c:forEach var="p" items="${ pList }">
 			<div class="row border rounded-1 m-1 p-1">
 					<div class="col-3 align-self-center">
-						<img src="/yameokja/resources/IMG/store/${ p.postFile1 }" class="img-thumbnail rounded float-start" alt="...">
+						<img src="/yameokja/resources/IMG/post/${ p.postFile1 }" class="img-thumbnail rounded float-start" alt="...">
 					</div>
 					<div class="col-9">
 						<div class="row py-1">
