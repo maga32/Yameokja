@@ -61,7 +61,7 @@
 				<div class="col-12"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp;&nbsp;${store.storeBookmarks }</div>		
 			</div>
 			<div class="col-8">
-			<div class="row">
+				<div class="row">
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
 					
@@ -77,9 +77,8 @@
 				<!-- 지도 영역 end-->	
 
 				</div>		
+				</div>
 			</div>
-			</div>
-		</div>
 		<div class="row text-start">
 			<div class="col-6">
 				<div class="row">
@@ -163,6 +162,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 <!-- 	store info end -->
