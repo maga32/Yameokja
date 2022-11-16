@@ -96,10 +96,16 @@ public class StoreServiceImpl implements StoreService {
 	public void addStoreReadCount(int storeNo) {
 		storeDao.addStoreReadCount(storeNo);
 	}
-
+	
+	// 가게 별점댓글 수 증가
 	@Override
 	public void addStoreReviewCount(int storeNo) {
 		storeDao.addStoreReviewCount(storeNo);
+	}
+	// 가게 별점댓글 수 감소
+	@Override
+	public void deleteStoreReviewCount(int storeNo) {
+		storeDao.deleteStoreReviewCount(storeNo);
 	}
 	
 }

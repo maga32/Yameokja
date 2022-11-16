@@ -31,6 +31,9 @@ public interface PostService {
 	// 가게 별점댓글 삭제
 	public void deleteReply(int postNo);
 	
+	// 가게 별점댓글 평균
+	public void ReplyStarAvg(int storeNo);
+	
 	//베스트 포스트 리스트
 	public Post bestOnePost(int storeNo);
 	
@@ -48,4 +51,5 @@ public interface PostService {
 	
 	// 포스트 삭제
 	void postDelete(int postNo);
+
 }

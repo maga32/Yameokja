@@ -78,12 +78,16 @@ public class StoreDaoImpl implements StoreDao {
 		sqlSession.update(NAME_SPACE + ".addStoreReviewCount", storeNo);
 	}
 	
+	// 가게 별점리뷰 카운트 감소
+		@Override
+		public void deleteStoreReviewCount(int storeNo) {
+			sqlSession.update(NAME_SPACE + ".deleteStoreReviewCount", storeNo);
+	}
 	
 	//가게 수정
 	@Override
 	public void updateStore(Store store) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update(NAME_SPACE + ".updateStore", store);
 	}
 	
 	// 가게 삭제
@@ -104,6 +108,8 @@ public class StoreDaoImpl implements StoreDao {
 	public void deleteBookmarks(int storeNo) {
 		sqlSession.update(NAME_SPACE+".deleteBookmarks", storeNo);
 	}
+	
+	
 
 	
 	

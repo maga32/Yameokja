@@ -33,6 +33,9 @@ public interface PostDao {
 	// 가게 별점댓글 삭제
 	public void deleteReply(int postNo);
 	
+	// 가게 별점댓글 평균
+	public int ReplyStarAvg(int storeNo);
+	
 	// 가게 리뷰글 카운트
 	public int getPostCount(int storeNo);
 	
@@ -56,5 +59,4 @@ public interface PostDao {
 	void postDelete(int postNo);
 	
 	public void postReplyAdd(Post post);
-	
 }

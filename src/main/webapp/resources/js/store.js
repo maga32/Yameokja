@@ -1,5 +1,4 @@
 $(function() {	
-
 	$("#translateAddress2").on("click", function(){
 		alert($("#address").val());
 		
@@ -27,8 +26,8 @@ $(function() {
 				var latitude = result[0].y;
 				var longitude = result[0].x; 
 				
-				$("#longitude").val(longitude);
-				$("#latitude").val(latitude);
+				$("#storeLongitude").val(longitude);
+				$("#storeLatitude").val(latitude);
 			}
 			
 			var markerPosition  = new kakao.maps.LatLng(latitude , longitude);
