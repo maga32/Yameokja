@@ -67,9 +67,7 @@
 				<!-- 지도 영역 -->
 					<div class="col border rounded-3 p-1 m-1">
 						<div id="map" style="height:100%;"></div>
-					</div>	
-					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
-					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>	
+					</div>
 				<!-- 지도 영역 end-->	
 	
 			</div>
@@ -273,11 +271,13 @@
 							</div>
 							
 							<div class="col-3 text-end pe-3">
-								<div class="deleteButton" id="deleteButton">
-									<a href="deleteReplyProcess?postNo=${p.postNo}">
-										<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-									</a>
-								</div>
+								<c:if test="${ p.memberId == sessionScope.memberId }">
+									<div class="deleteButton" id="deleteButton">
+										<a href="deleteReplyProcess?postNo=${p.postNo}">
+											<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+										</a>
+									</div>
+								</c:if>
 							</div>
 						</div>
 					</c:forEach>
