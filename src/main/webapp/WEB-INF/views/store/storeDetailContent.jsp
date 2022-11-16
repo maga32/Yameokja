@@ -25,12 +25,34 @@
 			<div class="col-4 text-start p-0">
 				<div class="col-12 fs-4 fw-semibold text-secondary" id="storeName">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
-					<i class="fa fa-star" aria-hidden="true"></i>
-					<i class="fa fa-star" aria-hidden="true"></i>
-					<i class="fa fa-star" aria-hidden="true"></i>
-					<i class="fa fa-star" aria-hidden="true"></i>
-					<i class="fa fa-star" aria-hidden="true"></i>
-					(5.0)
+					<c:if test="${ store.storeStar == 5 }">
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+					</c:if>
+					<c:if test="${ store.storeStar == 4 }">
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+					</c:if>
+					<c:if test="${ store.storeStar == 3 }">
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+					</c:if>
+					<c:if test="${ store.storeStar == 2 }">
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+					</c:if>
+					<c:if test="${ store.storeStar == 1 }">
+						<i class="fa fa-star" aria-hidden="true"></i>
+					</c:if>
+					<c:if test="${ store.storeStar == 0 }">
+					</c:if>
+					(${ store.storeStar}.0)
 				</div>
 				<div class="col-12"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;${store.storeReadCount }</div>
 				<div class="col-12"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;${store.storeReviewCount }</div>	

@@ -87,7 +87,36 @@
 		        		<h4><a href="storeDetail?storeNo=${ s.storeNo }" class="text-muted font-weight-bold text-decoration-none" role="button" tabindex="0">
 		        			${ s.storeName }</a></h4>
 	        			<p class="text-secondary">${ s.storeAddress }</p>
-	        			<p class="text-secondary">${ s.storeStar }</p>
+	        			<p class="text-secondary">
+	        				<c:if test="${ s.storeStar == 5 }">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</c:if>
+							<c:if test="${ s.storeStar == 4 }">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</c:if>
+							<c:if test="${ s.storeStar == 3 }">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</c:if>
+							<c:if test="${ s.storeStar == 2 }">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</c:if>
+							<c:if test="${ s.storeStar == 1 }">
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</c:if>
+							<c:if test="${ s.storeStar == 0 }">
+							</c:if>
+							(${ s.storeStar}.0)
+	        			</p>
 	        		</div>
 	        	<div class="col-3 col-md-2 col-sm-3 border-start border-1">
 	        		<div class="row">
