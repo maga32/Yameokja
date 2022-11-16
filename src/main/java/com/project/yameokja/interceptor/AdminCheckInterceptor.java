@@ -18,17 +18,7 @@ public class AdminCheckInterceptor implements HandlerInterceptor {
 		
 		Member member = (Member) request.getSession().getAttribute("member");
 		
-		if(member == null) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("	alert('로그인이 필요합니다.');");
-			out.println("	window.open('/yameokja/loginForm','LoginForm','width=500, height=600');");
-			out.println("</script>");
-			out.close();
-			
-			return false;
-		} else if(member.getMemberLevel() < 7) {
+		if(member == null || member.getMemberLevel() < 7) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
