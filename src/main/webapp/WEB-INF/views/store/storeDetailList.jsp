@@ -147,11 +147,11 @@
 					
 					<c:if test = "${result}">
 						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+								 onclick="location.href = 'bookmarksUpdate?memberId=${ sessionScope.memberId }&storeNo=${ store.storeNo }' "></button>
 					</c:if>
 					<c:if test = "${!result}">
 						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+								 onclick="location.href = 'bookmarksUpdate?memberId=${ sessionScope.memberId }&storeNo=${ store.storeNo }' "></button>
 					</c:if>
 	
 						<i class="fa fa-link" aria-hidden="true"></i>
@@ -190,10 +190,10 @@
 					</div>
 					<div class="col-9">
 						<div class="row py-1">
-							<h4><a href="storeDetailContent?storeNo=${ store.storeNo}&postNo=${ p.postNo }">${ p.postTitle }</a></h4>
+							<h4><a href="storeDetailContent?storeNo=${ store.storeNo }&postNo=${ p.postNo }">${ p.postTitle }</a></h4>
 						</div>
 						<div class="row pb-1">
-							<a href="#">${ p.memberNickname }</a>
+							<a href="#" class="px-0 btn memberInfo" data-memberId="${ p.memberId }"> ${ p.memberNickname }</a>
 						</div>
 						<div class="row">
 							<span class=" fs-7 text-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>

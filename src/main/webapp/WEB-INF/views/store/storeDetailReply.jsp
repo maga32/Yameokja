@@ -215,7 +215,7 @@
 					<c:forEach var="p" items="${ rList }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
-								<img src="resources/IMG/post/${ p.postFile1 }" class="img-thumbnail" style="width:200px; height:200px;">
+								<img src="resources/IMG/post/${ p.postFile1 }" class="img-thumbnail" style="width:100%;">
 							</div>
 
 							<div class="postTitle text-start col-6 px-2">
@@ -223,7 +223,7 @@
 								<input type="hidden" name="postNo" value="${ p.postNo }" />
 									<div class="fs-6">
 										
-										<span class="py-2">${ p.memberNickname }</span><br>
+										<span class="py-2 px-0 btn memberInfo" data-memberId="${ p.memberId }"> ${ p.memberNickname }</span><br>
 										<span class="py-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 										<fmt:formatDate value="${ p.postRegDate }" pattern="yyyy-MM-dd" /></span>
 									</div>
