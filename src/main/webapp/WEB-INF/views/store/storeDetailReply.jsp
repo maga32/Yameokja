@@ -151,11 +151,11 @@
 					
 					<c:if test = "${result}">
 						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+								 onclick="location.href = 'bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 					<c:if test = "${!result}">
 						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
-								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+								 onclick="location.href = 'bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 	
 						<i class="fa fa-link" aria-hidden="true"></i>
