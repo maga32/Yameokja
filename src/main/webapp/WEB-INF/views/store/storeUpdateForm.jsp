@@ -5,8 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>					
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>						
 <script src="resources/js/store.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <meta charset="UTF-8">
@@ -87,9 +87,9 @@
 		            				</div>
 		            				<div class="col-9">
 		            					<div class="col-2">* 위도</div>	
-		            					<input type="text" class="col-4 inlineBlock" name="storeLatitude" id="storeLatitude" readonly value="${store.storeLongitude}">
+		            					<input type="text" class="col-4 inlineBlock" name="storeLatitude" id="storeLatitude" readonly value="${store.storeLatitude}">
 		            					<div class="col-2">* 경도</div>	
-		            					<input type="text" class="col-4 inlineBlock" name="storeLongitude" id="storeLongitude" readonly value="${store.storeLatitude}">
+		            					<input type="text" class="col-4 inlineBlock" name="storeLongitude" id="storeLongitude" readonly value="${store.storeLongitude}">
 	            				</div>
 	            				<div class="row justify-content-center p-4" style="display:none;" id="mapArea">
 	            					<div class="mx-2 border" id="map" style="height:300px;"></div>

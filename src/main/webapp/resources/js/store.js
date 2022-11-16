@@ -1,9 +1,7 @@
 $(function() {	
 	$("#translateAddress2").on("click", function(){
-		alert($("#address").val());
 		
 		$("#mapArea").attr("style", "display : block;");
-		
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
@@ -18,7 +16,6 @@ $(function() {
 		var geocoder = new kakao.maps.services.Geocoder();
 		
 		geocoder.addressSearch($("#address").val(), function(result, status) {
-			alert(status + result);
 			if (status === kakao.maps.services.Status.OK) {
 
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -57,12 +54,10 @@ $(function() {
 	var detailCheck = $("#detailCheck").val();
 	
 	if(detailCheck == "true"){
-		var latitude = $("#storeLongitude").val();
-		var longitude= $("#storeLatitude").val();
+		var latitude = $("#storeLatitude").val();
+		var longitude= $("#storeLongitude").val();
 		var storeName = $("#storeName").text();
-		
-		alert(latitude + ", " + longitude);
-	
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(latitude , longitude), 

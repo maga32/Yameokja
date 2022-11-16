@@ -114,9 +114,16 @@ public class StoreController {
 	
 	// 가게 상세 and 리뷰리스트
 		@RequestMapping("/storeDetailList")
-		public String storeDetailList(Model model, int storeNo,
+		public String storeDetailList(Model model, int storeNo, HttpSession session,
 				@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 				@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
+			
+			String memberId = (String) session.getAttribute("memberId");
+			
+			if(memberId != null) {
+				boolean result = memberService.isBookmarks(memberId, storeNo);
+				model.addAttribute("result", result);
+			}
 			
 			Store store = storeService.getStore(storeNo);
 			model.addAttribute("store", store);
@@ -132,8 +139,15 @@ public class StoreController {
 	
 	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
-	public String StoreDetailReply(Model model, int storeNo,
+	public String StoreDetailReply(Model model, int storeNo, HttpSession session,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		
+		if(memberId != null) {
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
+		}
 		
 		Store store = storeService.getStore(storeNo);	
 		Map<String, Object> rList = postService.postListReply(storeNo, pageNum); 
@@ -145,7 +159,14 @@ public class StoreController {
 	
 	// 가게 상세 and 포스트 글 상세
 	@RequestMapping("/storeDetailContent")
-	public String StoreDetailContent(Model model, int storeNo, int postNo)  {
+	public String StoreDetailContent(Model model, int storeNo, int postNo, HttpSession session)  {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		
+		if(memberId != null) {
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
+		}
 		
 		Store store = storeService.getStore(storeNo);
 		model.addAttribute("store", store);
@@ -333,6 +354,11 @@ public class StoreController {
 				System.out.println(saveName);
 			} else {
 				store.setStoreFileMenu(oldStore.getStoreFileMenu() );
+			}
+			
+			if(store.getStoreLatitude() == null) {
+				store.setStoreLatitude(oldStore.getStoreLatitude());
+				store.setStoreLongitude(oldStore.getStoreLongitude());
 			}
 			
 			storeService.updateStore(store);
