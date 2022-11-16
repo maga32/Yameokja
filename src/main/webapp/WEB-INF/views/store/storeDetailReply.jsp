@@ -156,7 +156,7 @@
 								 onclick="location.href = 'bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
 					</c:if>
 	
-						<i class="fa fa-link" aria-hidden="true"></i>
+						<i class="fa fa-link" aria-hidden="true" onclick="clip(); return false;"></i>
 						<i class="fa fa-bell" aria-hidden="true"></i>
 					</div>
 				</div>
