@@ -36,13 +36,13 @@
 						<div class="col-8">
 							<c:if test='${ keyword == "null" }'>
 								<input class="col-12 rounded-pill" type="text"
-									aria-label=".form-control-sm example" placeholder="검색어를 입력해주세요"
+									aria-label=".form-control-sm example" placeholder="  검색어를 입력해주세요"
 									name="communitySearchKeyword" id="communitySearchKeyword">
 							</c:if>
 							<c:if test='${ keyword != "null"}'>
 								<input class="col-12 rounded-pill inlineBlock" type="text"
 									value="${ keyword }" aria-label=".form-control-sm example"
-									placeholder="검색어를 입력해주세요" name="communitySearchKeyword"
+									placeholder="  검색어를 입력해주세요" name="communitySearchKeyword"
 									id="communitySearchKeyword">
 							</c:if>
 						</div>
@@ -55,8 +55,9 @@
 			</div>
 		</div>
 
-
-		${location}
+		<div class="mb-1">
+			<i class="fa fa-map-marker" aria-hidden="true"> ${location}</i>
+		</div> 
 		<!-- 동네글 시작지점 / 분류 전체 -->
 		<div class="row">
 			<c:if test="${ categoryNo == 'all' }">

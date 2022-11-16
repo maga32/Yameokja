@@ -11,7 +11,7 @@ public interface PostDao {
 	public abstract List<Post> postList(int storeNo,int num, int startRow, String detailOrderBy);
 	
 	// 가게 정보 별점리뷰 리스트
-	public abstract List<Post> postListReply(int storeNo, int startRow, int num);
+	public abstract List<Post> postListReply(int startRow, int storeNo, int num);
 	
 	public int myPageReplyCount(int storeNo);
 	
@@ -32,6 +32,9 @@ public interface PostDao {
 	
 	// 가게 별점댓글 삭제
 	public void deleteReply(int postNo);
+	
+	// 가게 별점댓글 평균
+	public int ReplyStarAvg(int storeNo);
 	
 	// 가게 리뷰글 카운트
 	public int getPostCount(int storeNo);
@@ -56,5 +59,4 @@ public interface PostDao {
 	void postDelete(int postNo);
 	
 	public void postReplyAdd(Post post);
-	
 }

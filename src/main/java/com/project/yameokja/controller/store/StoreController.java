@@ -1,6 +1,7 @@
 package com.project.yameokja.controller.store;
 
-import java.io.File;  
+
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.yameokja.dao.member.MemberDao;
 import com.project.yameokja.domain.Member;
 import com.project.yameokja.domain.Post;
 import com.project.yameokja.domain.Store;
@@ -57,8 +58,8 @@ public class StoreController {
 		
 		String type = "";
 		
-		type = type1+ "," + type2;		
-		
+		type = type1+ "," + type2;
+
 		Map<String, Object> sList = storeService.storeList(categoryNo, pageNum, type, keyword, orderBy);
 		
 		model.addAllAttributes(sList);
@@ -73,18 +74,22 @@ public class StoreController {
 	
 	// 가게 상세 and 리뷰 리스트
 	@RequestMapping("/storeDetail")
-	public String StoreDetail(Model model, int storeNo, HttpSession session,
+	public String StoreDetail(Model model, int storeNo,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
-			@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
+			@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy,  HttpSession session) {
 
 		String memberId = (String) session.getAttribute("memberId");
 		
 		if(memberId != null) {
-			Member user = (Member) memberService.getMember(memberId);
-			model.addAttribute("userBookmarks", user.getMemberBookmarks());
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
 		}
 		
 		Store store = storeService.getStore(storeNo);
+		
+		storeService.addStoreReadCount(storeNo);
+		storeService.addStoreReviewCount(storeNo);
+		
 		Post bestOnePost = postService.bestOnePost(storeNo);
 		List<Post> bestTwoPost = postService.bestTwoPost(storeNo);
 		List<Post> bestThreePost = postService.bestThreePost(storeNo);
@@ -109,9 +114,16 @@ public class StoreController {
 	
 	// 가게 상세 and 리뷰리스트
 		@RequestMapping("/storeDetailList")
-		public String storeDetailList(Model model, int storeNo,
+		public String storeDetailList(Model model, int storeNo, HttpSession session,
 				@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum,
 				@RequestParam(value="detailOrderBy", required=false, defaultValue="null") String detailOrderBy) {
+			
+			String memberId = (String) session.getAttribute("memberId");
+			
+			if(memberId != null) {
+				boolean result = memberService.isBookmarks(memberId, storeNo);
+				model.addAttribute("result", result);
+			}
 			
 			Store store = storeService.getStore(storeNo);
 			model.addAttribute("store", store);
@@ -127,21 +139,34 @@ public class StoreController {
 	
 	// 가게 상세 and 댓글 리스트
 	@RequestMapping("/storeDetailReply")
-	public String StoreDetailReply(Model model, int storeNo,
+	public String StoreDetailReply(Model model, int storeNo, HttpSession session,
 			@RequestParam(value="pageNum", required=false, defaultValue="1") int pageNum) {
 		
-		Store store = storeService.getStore(storeNo);
+		String memberId = (String) session.getAttribute("memberId");
 		
+		if(memberId != null) {
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
+		}
+		
+		Store store = storeService.getStore(storeNo);	
 		Map<String, Object> rList = postService.postListReply(storeNo, pageNum); 
 		model.addAllAttributes(rList);
 		model.addAttribute("store", store);
-		
+
 		return "store/storeDetailReply";
 	}
 	
 	// 가게 상세 and 포스트 글 상세
 	@RequestMapping("/storeDetailContent")
-	public String StoreDetailContent(Model model, int storeNo, int postNo)  {
+	public String StoreDetailContent(Model model, int storeNo, int postNo, HttpSession session)  {
+		
+		String memberId = (String) session.getAttribute("memberId");
+		
+		if(memberId != null) {
+			boolean result = memberService.isBookmarks(memberId, storeNo);
+			model.addAttribute("result", result);
+		}
 		
 		Store store = storeService.getStore(storeNo);
 		model.addAttribute("store", store);
@@ -153,7 +178,6 @@ public class StoreController {
 		String memberPhoto = member.getMemberPhoto();
 		model.addAttribute("memberPhoto", memberPhoto);
 		
-		
 		return "store/storeDetailContent";
 	}
 	
@@ -161,7 +185,6 @@ public class StoreController {
 	// 가게 정보 글쓰기 폼
 	@RequestMapping(value="/storeWriteForm")
 	public String insertStoreFrom() {
-		
 		return "store/storeWriteForm";
 	}
 
@@ -170,26 +193,32 @@ public class StoreController {
 	public String insertStoreProcess(String memberId, String memberNickname, String storeName, 
 			String phone1, String phone2, String phone3, String storeLatitude,
 			String storeLongitude,String address2, String address1, String storeTime,
-			String storeBookmarks, String storeDayOff, String storeParking, int categoryNo,
+			String storeDayOff, String storeParking, int categoryNo,
 			@RequestParam(value="fileMain", required=false) MultipartFile multipartFile,
 			@RequestParam(value="fileMenu", required=false) MultipartFile multipartFile2,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) 
 		throws IllegalStateException, IOException { 
-		
-		System.out.println("스토어 작성 시작");
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
 		
 		Store store =  new Store();
 		
 		memberId = (String)session.getAttribute("memberId");
 		memberNickname = (String)session.getAttribute("memberNickname");
 		
+		if(memberId == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('로그인이 필요한 서비스입니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
+		
 		store.setMemberId(memberId);
 		store.setStoreName(storeName);
 		store.setStorePhone(phone1 + "-" + phone2 + "-" +phone3);
-		store.setStoreAddress(address1 + " " + address2);
+		store.setStoreAddress(address1 + "," + address2);
 		store.setStoreLatitude(storeLatitude);
 		store.setStoreLongitude(storeLongitude);
 		store.setStoreTime(storeTime);
@@ -198,6 +227,9 @@ public class StoreController {
 		store.setStoreParking(storeParking);
 		
 		System.out.println("store_name :" + storeName);
+		
+		System.out.println("위도 : " + storeLatitude);
+		System.out.println("경도 : " + storeLongitude);
 		
 		System.out.println("글작성하는 친구 : " + memberId);
 		
@@ -208,12 +240,9 @@ public class StoreController {
 			String saveName = uid.toString() + "_" + multipartFile.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("file : " + file.getName());
 
 			multipartFile.transferTo(file);
 			store.setStoreFileMain(saveName);
-			
-			System.out.println(saveName);
 		}
 		
 		if(!multipartFile2.isEmpty()) {
@@ -223,12 +252,9 @@ public class StoreController {
 			String saveName = uid.toString() + "_" + multipartFile2.getOriginalFilename();
 			
 			File file = new File(filePath, saveName);
-			System.out.println("file : " + file.getName());
 
 			multipartFile2.transferTo(file);
 			store.setStoreFileMenu(saveName);
-			
-			System.out.println(saveName);
 		}
 		
 		storeService.insertStore(store);
@@ -236,155 +262,152 @@ public class StoreController {
 		return "redirect:storeList"; 
 	 }
 	
-	// 스토어 즐겨찾기 추가
-	@RequestMapping("/bookmarksAdd")
-	public String addBookmarks(String memberId, int storeNo,
-			HttpServletResponse response, Model model) throws IOException {
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		// 가게 즐겨찾기 확인
-		Member user = memberService.getMember(memberId);
-		
-		if(user != null) {
-			String userBookmarks = user.getMemberBookmarks();
-			
-			if(userBookmarks.contains(Integer.toString(storeNo))) {
-				out.print("<script>");
-				out.print("alert('이미 찜한 가게입니다');");
-				out.print("</script>");
-				
-				System.out.println("con - 이미 찜한 가게입니다.");
-				
-				return "redirect:storeDetail?storeNo=" + storeNo;
-			}
-			
-			String strStoreNo = Integer.toString(storeNo);
-			
-			System.out.println("strStorNo : " + strStoreNo);
-			// member > member_bookmarks 추가
-			memberService.addMemberBookmarks(memberId, strStoreNo);
-			
-			System.out.println("con-AddBookmarks end");
-			
-			// store > store_bookmarks 추가
-			storeService.addBookmarks(storeNo);
-		}
-		
-		
-		
+	// 스토어 즐겨찾기 추가 or 삭제
+	@RequestMapping("/bookmarksUpdate")
+	public String addBookmarks(String memberId, int storeNo, Model model) {
+
+		boolean result = memberService.isBookmarks(memberId, storeNo);
+		memberService.updateMemberBookmarks(memberId, storeNo, result);
+
+		storeService.addBookmarks(storeNo);
+
 		return "redirect:storeDetail?storeNo=" + storeNo;
 	}
-	
-	// 스토어 즐겨찾기 삭제
-	@RequestMapping("/bookmarksDelete")
-	public String deleteBookmarks(String memberId, int storeNo,
-			HttpServletResponse response) throws IOException {
 
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
+	// 가게글 수정폼
+	@RequestMapping("/storeUpdateForm")
+	public String storeUpdateForm(Model model,HttpServletResponse response, HttpSession session, int storeNo)
+			throws IOException {
+		
+		Store store = storeService.getStore(storeNo);
 
-		// member > member_bookmarks 삭제, 가게 즐겨찾기 확인
-		Member user = memberService.getMember(memberId);
+		Member member = (Member) session.getAttribute("member");
 		
-		if(user != null) {
-			
-			String userBookmarks = user.getMemberBookmarks();
-			
-			if(!userBookmarks.contains(Integer.toString(storeNo))) {
-				out.print("<script>");
-				out.print("alert('찜하지 않은 가게입니다');");
-				out.print("</script>");
-				
-				System.out.println("con - 찜하지 않은 가게입니다.");
-				
-				return "redirect:storeDetail?storeNo=" + storeNo;
-			}
-			
-			String strStoreNo = "";
-			
-			if(!userBookmarks.contains(",")) {
-				strStoreNo =  Integer.toString(storeNo) + ".";
-			}else {
-				strStoreNo = "," + storeNo + ".";
-			}
-			
-			memberService.deleteMemberBookmarks(memberId, strStoreNo);
-		}
-		
-		// store > store_bookmarks 삭제
-		storeService.deleteBookmarks(storeNo);
-		
-		System.out.println("con-deleteBookmarks end");
-		
-		return "redirect:storeDetail?storeNo=" + storeNo;
-	}
-	// myPage에서 스토어 즐겨찾기 삭제
-		@RequestMapping("/myPageBookmarksDelete")
-		public String myPageBookmarksDelete(String memberId, int storeNo,
-				HttpServletResponse response) throws IOException {
-
+		if(member == null || member.getMemberLevel() < 7) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-
-			// member > member_bookmarks 삭제, 가게 즐겨찾기 확인
-			Member user = memberService.getMember(memberId);
+			out.println("<script>");
+			out.println("	alert('가게정보 수정은 관리자만 가능합니다!');");
+			out.println("	history.back();");
+			out.println("</script>");
 			
-			if(user != null) {
+			return null;
+		}
+		
+		String phone = store.getStorePhone();
+		String phone1, phone2, phone3;
+		
+		String[] sArray = phone.split("-");
+		
+		phone1 = sArray[0];
+		phone2 = sArray[1];
+		phone3 = sArray[2];
+		
+		model.addAttribute("store", store);
+		model.addAttribute("phone1", phone1);
+		model.addAttribute("phone2", phone2);
+		model.addAttribute("phone3", phone3);
+		
+		return "store/storeUpdateForm";
+	}
+	
+	// 가게 수정
+		@RequestMapping("/storeUpdateProcess")
+		public String storeUpdateProcess( Store store, String phone1, String phone2, String phone3,
+				@RequestParam(value="fileMain", required=false)MultipartFile multipartFile3,
+				@RequestParam(value="fileMenu", required=false)MultipartFile multipartFile4,
+				HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException {
+			
+			Store oldStore = storeService.getStore(store.getStoreNo());
+			
+			store.setStorePhone(phone1 + "-" + phone2 + "-" +phone3);
+			
+			if(!multipartFile3.isEmpty()) {
 				
-				String userBookmarks = user.getMemberBookmarks();
+				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+				UUID uid  = UUID.randomUUID();
+				String saveName = uid.toString() + "_" + multipartFile3.getOriginalFilename();
 				
-				if(!userBookmarks.contains(Integer.toString(storeNo))) {
-					out.print("<script>");
-					out.print("alert('찜하지 않은 가게입니다');");
-					out.print("</script>");
-					
-					System.out.println("con - 찜하지 않은 가게입니다.");
-					
-					return "redirect:myPageLike";
-				}
+				File file = new File(filePath, saveName);
+				System.out.println("file : " + file.getName());
+
+				multipartFile3.transferTo(file);
+				store.setStoreFileMain(saveName);
 				
-				String strStoreNo = "";
-				
-				if(!userBookmarks.contains(",")) {
-					strStoreNo =  Integer.toString(storeNo) + ".";
-				}else {
-					strStoreNo = "," + storeNo + ".";
-				}
-				
-				memberService.deleteMemberBookmarks(memberId, strStoreNo);
+				System.out.println(saveName);
+			} else {
+				store.setStoreFileMain(oldStore.getStoreFileMain() );
 			}
 			
-			// store > store_bookmarks 삭제
-			storeService.deleteBookmarks(storeNo);
+			if(!multipartFile4.isEmpty()) {
+				
+				String filePath = request.getServletContext().getRealPath(DEFAULT_PATH);
+				UUID uid  = UUID.randomUUID();
+				String saveName = uid.toString() + "_" + multipartFile4.getOriginalFilename();
+				
+				File file = new File(filePath, saveName);
+				System.out.println("file : " + file.getName());
+
+				multipartFile4.transferTo(file);
+				store.setStoreFileMenu(saveName);
+				
+				System.out.println(saveName);
+			} else {
+				store.setStoreFileMenu(oldStore.getStoreFileMenu() );
+			}
 			
-			System.out.println("con-deleteBookmarks end");
+			if(store.getStoreLatitude() == null) {
+				store.setStoreLatitude(oldStore.getStoreLatitude());
+				store.setStoreLongitude(oldStore.getStoreLongitude());
+			}
 			
-			return "redirect:myPageLike";
+			storeService.updateStore(store);
+			
+			System.out.println("store.storeNo : " + store.getStoreName());
+			
+			return "redirect:storeDetail?storeNo=" + oldStore.getStoreNo();
 		}
-	 
-	
-	
+
+	// 가게 별점댓글 추가
 	@RequestMapping(value="/storeDetailReplyProcess", method=RequestMethod.POST)
 	public String addReply(String postContent, int postStar, int storeNo,
 			@RequestParam(value="postFile1", required=false) MultipartFile multipartFile,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
-		
-		System.out.println("댓글 작성 확인용");
 		
 		Post post =  new Post();
 		
 		String memberId = (String)session.getAttribute("memberId");
 		String memberNickname = (String)session.getAttribute("memberNickname");
 		
-		System.out.println("댓글 작성하는 아이디 / 닉네임 : " + memberId + " / " + memberNickname);
+		if(memberId == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('로그인이 필요한 서비스입니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
 		
 		post.setMemberId(memberId);
 		post.setMemberNickname(memberNickname);
 		post.setPostContent(postContent);
 		post.setPostStar(postStar);
 		post.setStoreNo(storeNo);
+		
+		if(postContent.isEmpty()) {
+			
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('댓글내용을 입력해주세요');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}		
+		
 		
 		if(!multipartFile.isEmpty()) {
 			
@@ -399,17 +422,46 @@ public class StoreController {
 			post.setPostFile1(saveName);
 			
 			System.out.println("댓글 이미지 :" + saveName);
+		} else {
+			
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('가게 관련 이미지를 첨부하셔야 합니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
 		}
 		
 		postService.addReply(post);
+		storeService.addStoreReviewCount(storeNo);
 		
 		return "redirect:/storeDetailReply?storeNo="+storeNo;
 	}
 	
+	// 가게 별점댓글 삭제
 	@RequestMapping(value="/deleteReplyProcess")
-	public String deleteReply() {
-	
-		return null;
-	}
+	public String deleteReply(HttpSession session, HttpServletResponse response, int postNo) 
+		throws IOException{	
+		
+		Post post= postService.getPost(postNo);
+		
+		if(!post.getMemberId().equals(session.getAttribute("memberId"))) {
+			
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("	alert('본인의 댓글만 삭제할 수 있습니다.');");
+			out.println("	history.back();");
+			out.println("</script>");
+			
+			return null;
+		}
+		postService.deleteReply(postNo);
+		
+		storeService.deleteStoreReviewCount(post.getStoreNo());
+		
+		return "redirect:storeDetailReply?storeNo=" + post.getStoreNo();
+	 }
 	
 }

@@ -9,7 +9,7 @@
 <!-- search start -->
 	<form name="storeSearchForm" id="storeSearchForm" action="storeList">
 		<div class="row m-0 p-0">
-			<select class="row col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" name="types1" onchange="addressChange(this)">
+			<select class="row col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" name="type1" onchange="addressChange(this)">
 				<option>선택</option>
 				<option value="서울">서울</option>
 				<option value="경기">경기</option>
@@ -29,7 +29,7 @@
 				<option value="전남">전남</option>
 				<option value="제주">제주</option>
 			</select>
-			<select class="col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" name="types2">
+			<select class="col-3 form-select-sm rounded-pill text-center border border-2 text-secondary bg-white p-1 m-1" name="type2">
 				<option>선택</option>
 			</select>
 			<div class="col-6"></div>

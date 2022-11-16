@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS report(
   report_target VARCHAR(20) NOT NULL,  
   report_content VARCHAR(1000) NOT NULL,
   report_date TIMESTAMP NOT NULL,
-  report_file INTEGER(5) NULL,
-  report_punish_check VARCHAR(100) NOT NULL default 0,
+  report_file INTEGER(100) NULL,
+  report_punish_check VARCHAR(5) NOT NULL default 0,
   report_punish_content VARCHAR(1000) NULL,
   
   member_id VARCHAR(20) NOT NULL,

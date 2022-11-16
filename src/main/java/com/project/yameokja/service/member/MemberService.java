@@ -76,6 +76,7 @@ public class MemberService {
 		
 		memberDao.memberBlock(memberId, newBlockIds);
 	}
+	
 	// 닉네임 중복확인
 	public Boolean nicknameOverlapCheck(String mbNickname) {
 		
@@ -97,14 +98,45 @@ public class MemberService {
 		memberDao.deleteMember(memberId);
 	}
 	
-	// 회원 즐겨찾기 가게 추가
-	public void addMemberBookmarks(String memberId, String strStoreNo) {
-		memberDao.addMemberBookmarks(memberId, strStoreNo);
+	// member가 storeNo에 해당하는 가게를 즐겨찾기 했는지 확인
+	public boolean isBookmarks(String memberId, int storeNo) {
+		boolean isBookmarks = false;
+		
+		String memberBookmarks = memberDao.getMember(memberId).getMemberBookmarks();
+		if(memberBookmarks == null) return false;
+		
+		System.out.println("memService - memberBookmarks : " + memberBookmarks);
+
+		String[] bookmarks = memberBookmarks.split(",");
+		for(int i=0; i < bookmarks.length; i++) {
+			if(bookmarks[i].equals(Integer.toString(storeNo))) isBookmarks = true;
+		}
+		
+		System.out.println("memService - isBookmarks : " + isBookmarks);
+		
+		return isBookmarks;
 	}
 	
-	// 회원 즐겨찾기 가게 삭제
-	public void deleteMemberBookmarks(String memberId, String strStoreNo) {
-		memberDao.deleteMemberBookmarks(memberId, strStoreNo);
-	}
+	// memberBookmarks에 storeNo 추가 or 삭제
+	public void updateMemberBookmarks(String memberId, int storeNo, boolean result) {
+		
+		String memberBookmarks = memberDao.getMember(memberId).getMemberBookmarks();
+		String air = "";
+		
+		if(result) {
+			String[] bookmarks = memberBookmarks.split(",");
+			memberBookmarks = "";
+			
+			for(int i=0; i < bookmarks.length; i++) {
+				if(!bookmarks[i].equals(Integer.toString(storeNo))) memberBookmarks += bookmarks[i] + ",";
+			}
+			if(memberBookmarks.length() != 0) memberBookmarks = memberBookmarks.substring(0, memberBookmarks.length() -1);	
+		}
+		else {
+			memberBookmarks = (memberBookmarks != null && !memberBookmarks.equals("")) ? memberBookmarks + "," + storeNo : Integer.toString(storeNo) ;
+		}
+		
+		memberDao.updateMemberBookmarks(memberId, memberBookmarks);
+	}	
 
 }

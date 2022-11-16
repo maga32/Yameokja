@@ -27,9 +27,7 @@
 		</div>
 		<br>
 		<div>
-			<textarea style="width:500px; height:300px " id="co101Content" name="co101Content">
-	    		
-	    	</textarea>
+			<textarea style="width:500px; height:300px " id="co101Content" name="co101Content"></textarea>
 		</div>
 		<br>
 		<div>

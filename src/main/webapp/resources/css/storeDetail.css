@@ -193,3 +193,8 @@ a:active {color: 4aa5ff;}
 .starListbutton a:visited {color: gray;}
 .starListbutton a:hover {color: #4aa5ff;}
 .starListbutton a:active {color: #4aa5ff;}
+
+.storeDetailContentContent {
+	max-height: 300px;
+	overflow: hidden;
+}

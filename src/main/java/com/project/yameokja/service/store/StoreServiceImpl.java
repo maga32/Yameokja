@@ -30,8 +30,6 @@ public class StoreServiceImpl implements StoreService {
 		
 		listCount = storeDao.getStoreCount(type, keyword, categoryNo);
 		
-		System.out.println(listCount + type + keyword);
-		
 		Map<String, Object> sMap =  new HashMap<String, Object>();
 		
 		if(listCount > 0) {
@@ -57,8 +55,6 @@ public class StoreServiceImpl implements StoreService {
 				sMap.put("currentPage", currentPage);
 				sMap.put("listCount", listCount);
 				sMap.put("pageGroup", PAGE_GROUP);
-				
-				System.out.println("시작페이지 - 카테고리 번호 - 현재 페이지 : " + startPage+" - " + categoryNo + " - " + currentPage);
 				
 				return sMap;
 		}
@@ -93,6 +89,23 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public void deleteBookmarks(int storeNo) {
 		storeDao.deleteBookmarks(storeNo);
+	}
+	
+	// 가게글 조회수 증가
+	@Override
+	public void addStoreReadCount(int storeNo) {
+		storeDao.addStoreReadCount(storeNo);
+	}
+	
+	// 가게 별점댓글 수 증가
+	@Override
+	public void addStoreReviewCount(int storeNo) {
+		storeDao.addStoreReviewCount(storeNo);
+	}
+	// 가게 별점댓글 수 감소
+	@Override
+	public void deleteStoreReviewCount(int storeNo) {
+		storeDao.deleteStoreReviewCount(storeNo);
 	}
 	
 }

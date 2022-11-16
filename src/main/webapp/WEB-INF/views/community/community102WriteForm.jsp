@@ -51,9 +51,7 @@
 		</div>
 		<br>
 		<div>
-			<textarea style="width:500px; height:300px " id="co102Content" name="co102Content">
-	    		
-	    	</textarea>
+			<textarea style="width:500px; height:300px " id="co102Content" name="co102Content"></textarea>
 		</div>
 		<br>
 		<div>

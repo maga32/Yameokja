@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS post(
   post_star INTEGER(10) NULL,
   post_up_count INTEGER(10) NULL DEFAULT 0,
   post_up_list VARCHAR(2000) NULL,
-  store_no INTEGER(50) NOT NULL,
+  store_no INTEGER NOT NULL,
   member_id VARCHAR(20) NOT NULL,
   member_nickname VARCHAR(20) NOT NULL,
   CONSTRAINT post_store_fk FOREIGN KEY(store_no) REFERENCES store(store_no),

@@ -51,12 +51,30 @@ public class MemberLoginController {
 		}else if(result == 0) {
 			out.println("<script>");
 			out.println("	alert('비밀번호가 다릅니다.');");
-			out.println("	location.href='loginForm'");
+			out.println("	location.href='loginForm';");
 			out.println("</script>");
 			
 			return null;
 		}
 		Member member = memberService.getMember(id);
+		
+		if(member.getMemberDelDate() != null) {
+			out.println("<script>");
+			out.println("	alert('탈퇴한 사용자입니다.');");
+			out.println("	location.href='loginForm';");
+			out.println("</script>");
+			
+			return null;
+		}
+		
+		if(member.getMemberLevel() == 0) {
+			out.println("<script>");
+			out.println("	alert('이용 제한된 사용자입니다.');");
+			out.println("	location.href='loginForm';");
+			out.println("</script>");
+			
+			return null;
+		}
 		
 		session.setAttribute("member", member);
 		session.setAttribute("memberId", member.getMemberId());

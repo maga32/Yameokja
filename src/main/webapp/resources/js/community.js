@@ -51,25 +51,22 @@ $(function(){
 		}	
 	});
 	
+	// 커뮤니티 삭제 확인
+	$("#btnCommunityDelete").on("click", function() {
+		var communityNo = $("#communityNo").val();
+
+		var con = confirm("삭제하시겠습니까?");
+	 	if(!con){
+	 	return false;
+	 	}else{
+	 	location.href='communityDelete?communityNo=' + communityNo; 
+	 	return true;
+	 	}
+	});
+	
 	
 // 커뮤니티 댓글 작성
 	$(document).on("submit", "#communityReplyWriteForm", function() {
-		
-		
-		/*
-		var communityNo = $("#communityNo").val()
-		
-		
-		
-		alert($("#communityContent").val().length);
-		
-		
-		if(($("#communityContent").val().length <= 1) && ($("#communityReplyContent").val().length <= 1)) {
-			alert("댓글은 한 글자 이상 입력해야 합니다.");
-			// Ajax 요청을 취소한다.
-			return false;
-		}
-		*/
 		
 		var id = $("#memberId").val();
 		
@@ -125,6 +122,11 @@ $(function(){
 			alert("댓글을 삭제하려면 로그인해 주세요.");
 			return false;
 		}
+		
+		var con = confirm("삭제하시겠습니까?");
+	 	if(!con){
+	 	return false;
+	 	}
 		
 		var u = "replyDelete.ajax";
 		var params = $(this).serialize();
@@ -279,8 +281,7 @@ function replyAjaxAction(u, d){
 								// + '	<input type="hidden" name="communityReplyUpdateNo" value="' + value.communityNo + '">'
 								+ '	<input type="hidden" name="communityNo2" id="communityNo' + value.communityNo + '" value="">'
 								+ '<div class="row">'
-								+ '<textarea class="col-10 p-1" id="communityReplyContentAt' + value.communityNo + '" name="communityContent" placeholder="댓글을 입력해주세요">'
-								+ '</textarea>'
+								+ '<textarea class="col-10 p-1" id="communityReplyContentAt' + value.communityNo + '" name="communityContent" placeholder="댓글을 입력해주세요"></textarea>'
 								+ '<div class="col-2">'
 								+ '<input type="submit" id="communityReplySubmit" name="communityReplySubmit" value="확인">'
 								+ 	'</div>'

@@ -276,7 +276,7 @@ public class CommunityController {
 		co.setPartyMembers(co102PartyMembers);
 		co.setPartyPlace(co102PartyPlace);
 		co.setPartyDDay(co102PartyDDayResult);
-
+		co.setCommunityFile(communityListService.getCommunityOne(communityNo).getCommunityFile());
 	
 		if( !multipartFile.isEmpty()) {
 			
@@ -385,8 +385,6 @@ public class CommunityController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		System.out.println("codetail start");
-		
 		// 조회수. readCommunityPost - 현재 세션에 담겨있는 조회한 글들을 불러오고, 없다면 새로 저장
 		String readCommunityPost = (String) session.getAttribute("readCommunityPost");
 				
@@ -398,10 +396,7 @@ public class CommunityController {
 
 		}else if(readCommunityPost != null){
 			
-			System.out.println("controllerSession3 : " + readCommunityPost);
-			
 			boolean sessionCheck = readCommunityPost.contains(Integer.toString(communityNo));
-			System.out.println("controllerSessionCheck : " + sessionCheck );
 			
 			if(!sessionCheck) {
 				communityListService.addReadCount(communityNo);
@@ -413,7 +408,6 @@ public class CommunityController {
 		
 		Community co = communityListService.getCommunityOne(communityNo);
 		model.addAttribute("co", co);
-		System.out.println("con-coMemberPhoto : " + co.getMemberPhoto() );	
 		
 		// 댓글 출력. 불러온 글의 coNo를 부모글 번호로 가지는 댓글들을 불러옴.
 		if( co != null) {
@@ -422,23 +416,12 @@ public class CommunityController {
 			model.addAttribute("coReplyList", coReplyList);
 		}
 		// 댓글 출력 end
-		
-		// mid
-		System.out.println("codetail mid");
-		
+
 		// 모집글.
 		// 모집 참여 - timestamp 확인 및 비교 메서드(partyDDayCheck)사용
 		if(co.getPartyDDay() != null) {
 			boolean result = partyDDayCheck(co);
 			model.addAttribute("result", result);
-			
-			if(!result) {
-				out.println("<script>");
-				out.println("alert('모집기간이 초과되었습니다.');");
-				out.println("</script>");
-				
-				return "redirect:communityDetail?communityNo="+communityNo;
-			}
 		}
 		
 		// 해당 글 모집 참가인원 조회
@@ -460,8 +443,6 @@ public class CommunityController {
 		model.addAttribute("memberPhotoList", memberPhotoList);
 		model.addAttribute("countPartyMembers", countPartyMembers);
 		
-		
-		System.out.println("codetail end");
 		// 모집글 end
 		
 		return "community/communityDetail";

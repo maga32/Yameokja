@@ -1,10 +1,7 @@
 $(function() {	
-
 	$("#translateAddress2").on("click", function(){
-		alert($("#address").val());
 		
 		$("#mapArea").attr("style", "display : block;");
-		
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
@@ -19,7 +16,6 @@ $(function() {
 		var geocoder = new kakao.maps.services.Geocoder();
 		
 		geocoder.addressSearch($("#address").val(), function(result, status) {
-			alert(status + result);
 			if (status === kakao.maps.services.Status.OK) {
 
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -27,8 +23,8 @@ $(function() {
 				var latitude = result[0].y;
 				var longitude = result[0].x; 
 				
-				$("#longitude").val(longitude);
-				$("#latitude").val(latitude);
+				$("#storeLongitude").val(longitude);
+				$("#storeLatitude").val(latitude);
 			}
 			
 			var markerPosition  = new kakao.maps.LatLng(latitude , longitude);
@@ -52,17 +48,16 @@ $(function() {
 
 	});
 });
+
 $(function() {
 
 	var detailCheck = $("#detailCheck").val();
 	
 	if(detailCheck == "true"){
-		var latitude = $("#storeLongitude").val();
-		var longitude= $("#storeLatitude").val();
+		var latitude = $("#storeLatitude").val();
+		var longitude= $("#storeLongitude").val();
 		var storeName = $("#storeName").text();
-		
-		alert(latitude + ", " + longitude);
-	
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(latitude , longitude), 
@@ -101,8 +96,19 @@ $(function() {
 			alert("검색어를 한 글자 이상 입력해주세요");
 			return false;
 		}
-			
 	});
+	
+// 가게 댓글 작성 시 로그인 상태가 아닐 때
+$("#storeDatailReply").on("submit", function() {
+	
+		var id = $("#memberId").val();
+		
+		if(id.length == 0){
+			alert("댓글을 작성하려면 로그인해 주세요.");
+			return false;
+		}
+		return false;
+});
 	
 	// 별점입력 시작-----------------------------------------
 	$("#rate5").click(function(){
@@ -133,4 +139,9 @@ $(function() {
 
 	});
 	
+});
+
+$(document).ready(function() {
+	$("#storeDetailContentContent img").css("width","100%").css("height","auto");
+	$("#storeDetailBestOneContent img").remove();
 });

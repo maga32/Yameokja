@@ -145,9 +145,9 @@ public class MemberController {
 			m.setMemberPhoto(saveName);
 		}
 		
-		out.println("<script>");
-		out.println("alert('회원가입이 완료되었습니다.');");
-		out.println("</script>");
+		out.print("<script>");
+		out.print("alert('회원가입이 완료되었습니다.');");
+		out.print("</script>");
 		
 		memberService.addMember(m);
 		
@@ -160,7 +160,7 @@ public class MemberController {
 			String email, String domain, String phone1, String phone2, String phone3,
 			String address1, String address2, String memberFavoriteCategory, HttpServletResponse response,
 			@RequestParam(value="memberPhoto", required=false) MultipartFile multipartFile,
-			HttpServletRequest request) throws IOException{
+			HttpServletRequest request, HttpSession session) throws IOException{
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -173,6 +173,7 @@ public class MemberController {
 		member.setMemberMobile(phone1 + "-" + phone2 + "-" +phone3);
 		member.setMemberAddress(address1 + "," + address2);
 		member.setMemberFavoriteCategory(memberFavoriteCategory);
+		member.setMemberPhoto(memberService.getMember(memberId).getMemberPhoto());
 		
 		if(!multipartFile.isEmpty()) {
 			
@@ -189,33 +190,40 @@ public class MemberController {
 		
 		memberService.updateMember(member);
 		
+		Member user = memberService.getMember(memberId);
+		
+		session.setAttribute("member", user);
+		session.setAttribute("memberId", user.getMemberId());
+		session.setAttribute("memberNickname", user.getMemberNickname());
 		
 		out.println("<script>");
 		out.println("alert('회원수정이 완료되었습니다.');");
+		out.println("location.href='main'; ");
 		out.println("</script>");
+		out.close();
 		
-		return "redirect:/main";
+		return null;
 	}
 
 	// 회원 탈퇴
 	@RequestMapping("/memberDelete")
 	public String memberDelete(HttpSession session, PrintWriter out, 
 			HttpServletResponse response) {
+		
 		String memberId = (String) session.getAttribute("memberId");
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("1");
 		out.println("<script>");
 		out.println("confirm('삭제하시겠습니까?');");
-		System.out.println("2");
 		out.println("confirm('정말 삭제하시겠습니까?');");
+		
+			memberService.deleteMember(memberId);
+			session.invalidate();
+			
+		out.println("location.href='main'; ");
 		out.println("</script>");
 		out.close();
-		System.out.println("3");
 		
-		memberService.deleteMember(memberId);
-		session.invalidate();
-		
-		return "main";
+		return null;
 	}
 	
 	// 아이디 중복확인
@@ -232,6 +240,7 @@ public class MemberController {
 			out.println("alert('아이디는 5자 이상 입력해주세요.');");
 			out.println("history.back();");
 			out.println("</script>");
+			
 			return null;
 		}
 		

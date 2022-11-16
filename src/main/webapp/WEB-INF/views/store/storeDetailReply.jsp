@@ -5,12 +5,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="resources/js/store.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c82d8d4799a3f7c97d26b169aae75c5e"></script>		
 <link rel="stylesheet" type="text/css" href="resources/css/storeDetail.css" />
 <article>
 <div class="row py-3">
 
 	<form name="storeDetailReply" id="storeDetailReply" action="storeDetailReply">
 		<input type="hidden" name="storeNo" value="${store.storeNo }">
+		<input type="hidden" id="detailCheck" value="true">
 	</form>
 	
 	<div class="col-12 p-2">
@@ -18,7 +21,7 @@
 			<div class="row border rounded-3 p-1 text-center d-flex justify-content-center m-0">
 		<div class="row border-bottom pb-2 mb-2">
 			<div class="col-4 text-start p-0">
-				<div class="col-12 fs-3 fw-semibold text-secondary">${store.storeName }</div>
+				<div class="col-12 fs-3 fw-semibold text-secondary" id="storeName">${store.storeName }</div>
 				<div class="col-12 fs-7 fw-semibold text-secondary">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
@@ -35,33 +38,17 @@
 			<div class="row">
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="..."></div>
 				<div class="col border rounded-3 p-1 m-1"><img src="/yameokja/resources/IMG/store/${ store.storeFileMenu }" class="img-thumbnail rounded float-start" alt="..."></div>
-				<div class="col border rounded-3 p-1 m-1">
 				
-					<!-- 지도 영역 -->
-					<div id="map" style="height:100%;"></div>
-						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>
-						<script>
-							var container = document.getElementById('map');
-							var options = {
-								center: new kakao.maps.LatLng(35.8189345, 128.516267),
-								level: 2
-							};
-					
-							var map = new kakao.maps.Map(container, options);
+				<input type="hidden" id="storeLatitude" value="${store.storeLatitude }">
+				<input type="hidden" id="storeLongitude" value="${store.storeLongitude }">
 							
-							var marker = new kakao.maps.Marker({
-							    position: new kakao.maps.LatLng(35.8189345, 128.516267), // 마커의 좌표
-							    map: map // 마커를 표시할 지도 객체
-							});
-							
-							var items = ${store.storeName}
-
-							// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
-							kakao.maps.event.addListener(marker, 'click', function() {
-								window.open('https://map.kakao.com/link/search/스테이블모먼트')
-							});
-						</script>
-				<!-- 지도 영역 end-->
+				<!-- 지도 영역 -->
+					<div class="col border rounded-3 p-1 m-1">
+						<div id="map" style="height:100%;"></div>
+					</div>	
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2&libraries=services,clusterer,drawing"></script>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01190664c89b1c0d146ca3c6572faed2"></script>	
+				<!-- 지도 영역 end-->	
 	
 			</div>
 				
@@ -83,7 +70,42 @@
 				</div>
 				<div class="row">
 					<div class="col-4 text-secondary fs-7 fw-bold">음식종류</div>
-					<div class="col-8 text-secondary fs-7">${ store.categoryNo }</div>
+					<div class="col-8 text-secondary fs-7">
+						<c:if test="${ store.categoryNo == 1 }">
+						한식
+						</c:if>
+						<c:if test="${ store.categoryNo == 2 }">
+						양식
+						</c:if>
+						<c:if test="${ store.categoryNo == 3 }">
+						중식
+						</c:if>
+						<c:if test="${ store.categoryNo == 4 }">
+						일식
+						</c:if>
+						<c:if test="${ store.categoryNo == 5 }">
+						아시안
+						</c:if>
+						<c:if test="${ store.categoryNo == 6 }">
+						술집
+						</c:if>
+						<c:if test="${ store.categoryNo == 7 }">
+						카페, 디저트
+						</c:if>
+						<c:if test="${ store.categoryNo == 8 }">
+						분식
+						</c:if>
+						<c:if test="${ store.categoryNo == 9 }">
+						고기
+						</c:if>
+						<c:if test="${ store.categoryNo == 10 }">
+						채식
+						</c:if>
+						<c:if test="${ store.categoryNo == 11 }">
+						패스트푸드
+						</c:if>
+					
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-4 text-secondary fs-7 fw-bold">주차</div>
@@ -104,7 +126,16 @@
 				<div class="row">
 					<div class="col-12 text-secondary fs-7">가게 사정에 따라 변경 될 수 있음</div>
 					<div class="col-12 text-end m-0 p-0 d-inline">
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
+					
+					<c:if test = "${result}">
+						<button class="fa fa-heart bookmarks-on text-danger" id="btnStoreBookmarks" name="btnStoreBookmarks"
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+					</c:if>
+					<c:if test = "${!result}">
+						<button class="fa fa-heart-o bookmarks-off" id="btnStoreBookmarks" name="btnStoreBookmarks"
+								 onclick="location.href = 'http://localhost:8080/yameokja/bookmarksUpdate?memberId=${sessionScope.memberId}&storeNo=${store.storeNo }' "></button>
+					</c:if>
+	
 						<i class="fa fa-link" aria-hidden="true"></i>
 						<i class="fa fa-bell" aria-hidden="true"></i>
 					</div>
@@ -119,15 +150,14 @@
 		<span class="postListbutton d-table-cell fs-6 fw-bold px-3 py-2"><a href="storeDetailReply?storeNo=${ store.storeNo }">별점 리뷰</a></span> 
 	</div>
 <!-- 	storeDetailHeader end -->	
-					
-					
+									
 <!-- 	postList 시작 -->
 			<div class="rounded-end rounded-bottom d-inline-block border text-center col-12 p-2">
 			
 			<form class="row m-0 d-flex align-items-center border text-center py-2 rounded mb-2" action="storeDetailReplyProcess"
 			 id="storeDatailReply" name="storeDatailReply" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="storeNo" value="${ store.storeNo }">
-				<input type="hidden" id="postStar" name="postStar" value="">
+				<input type="hidden" id="postStar" name="postStar" value="5">
 				
 				<div class="col-12 text-secondary text-start">
 				        <div class="fs-3 fw-bold text-start m-0 p-0" id="postStarSelect" style="direction:rtl;">별점 리뷰 작성
@@ -149,8 +179,6 @@
 					        
 				    </div>
 					| <input type="file" name="postFile1" size="70" id="postFile1" maxlength="50" />
-				
-				
 				</div>
 				
 				<div class="row m-0 p-0">
@@ -158,7 +186,7 @@
 						<textarea class="form-control" name="postContent" placeholder="댓글을 입력하는 곳입니다">${ postContent }</textarea>
 					</div>
 					<div class="col-2 border-start d-flex">
-						<button class="col-12 btn btn-outline-secondary" type="submit">입력</button>
+						<button class="col-12 btn btn-outline-secondary" type="submit" name="postReplyForm" id="postReplyForm">입력</button>
 					</div>
 				</div>
 			</form>
@@ -167,9 +195,7 @@
 					<c:forEach var="p" items="${ rList }">
 						<div class="d-flex align-items-center border text-center py-2 rounded col-12 mb-2">
 							<div class="col-3 px-2">
-								<a href="#"> <img src="resources/IMG/post/${ p.postFile1 }"
-									class="img-thumbnail rounded" alt="...">
-								</a>
+								<img src="resources/IMG/post/${ p.postFile1 }" class="img-thumbnail" style="width:200px; height:200px;">
 							</div>
 
 							<div class="postTitle text-start col-6 px-2">
@@ -223,18 +249,18 @@
 										 ${ p.postContent }
 									</div>
 							</div>
-
+							
 							<div class="col-3 text-end pe-3">
 								<div class="deleteButton" id="deleteButton">
-									<a href="deleteMyPagePost?postNo=${p.postNo}">
+									<a href="deleteReplyProcess?postNo=${p.postNo}">
 										<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
-
-				<!-- 페이징 -->
+					
+					<!-- 페이징 -->
 		       	<div class="row text-end justify-content-center px-3 my-2">
 		       		<div class="col-12">
 		       			<c:if test="${ listCount > 0 }">
@@ -273,8 +299,8 @@
 				<c:if test="${ empty rList }">
 					<div class="col-12 text-center"> 작성된 댓글이 없습니다.</div>
 				</c:if>
-			</div>
+			</div>		
 <!-- 	postList 끝 -->
-		</div>
-</div>	
+
+			</div>
 </article>

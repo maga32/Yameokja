@@ -6,7 +6,6 @@
 
 	<resultMap id="categoryResultMap" type="Category">
 		<id property="categoryNo" column="category_no" />
-		
 		<result property="categoryName" column="category_name" />
 		<result property="categoryOrder" column="category_order" />
 	</resultMap>

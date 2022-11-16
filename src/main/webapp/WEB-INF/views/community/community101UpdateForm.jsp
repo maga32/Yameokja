@@ -7,7 +7,7 @@
 	<form id="community101UpdateForm" action="community101UpdateProcess"
 			 method="post"	enctype="multipart/form-data">
 		<input type="hidden" id="co101Id" name="co101Id" value="${ sessionScope.memberId }">
-
+		<input type="hidden" id="communityNo" name="communityNo" value="${ co.communityNo }">
 
 		<div>
 			<h2>수다글 등록</h2>
@@ -27,7 +27,7 @@
 		</div>
 		<br>
 		<div>
-			<textarea style="width:500px; height:300px " id="co101Content" name="co101Content" vlaue="${co.communityContent }"></textarea>
+			<textarea style="width:500px; height:300px " id="co101Content" name="co101Content">${co.communityContent }</textarea>
 		</div>
 		<br>
 		<div>
