@@ -186,14 +186,14 @@
 		<c:forEach var="p" items="${ pList }">
 			<div class="row border rounded-1 m-1 p-1">
 					<div class="col-3 align-self-center">
-						<img src="/yameokja/resources/IMG/store/${ store.storeFileMain }" class="img-thumbnail rounded float-start" alt="...">
+						<img src="/yameokja/resources/IMG/store/${ p.postFile1 }" class="img-thumbnail rounded float-start" alt="...">
 					</div>
 					<div class="col-9">
 						<div class="row py-1">
 							<h4><a href="storeDetailContent?storeNo=${ store.storeNo }&postNo=${ p.postNo }">${ p.postTitle }</a></h4>
 						</div>
 						<div class="row pb-1">
-							<a href="#" class="px-0 btn memberInfo" data-memberId="${ p.memberId }"> ${ p.memberNickname }</a>
+							<a href="#" class="memberInfo" data-memberId="${ p.memberId }">${ p.memberNickname }</a>
 						</div>
 						<div class="row">
 							<span class=" fs-7 text-secondary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>

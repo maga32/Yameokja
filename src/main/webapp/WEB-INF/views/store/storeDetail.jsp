@@ -183,7 +183,7 @@
 					<img src="/yameokja/resources/IMG/member/${ bestMemberPhoto }" class="img-thumbnail rounded-circle text-center profileIMG" alt="...">
 				</div>
 				<div class="col-5 p-2 m-0">
-					<div class="col px-0 btn memberInfo" data-memberId="${ bestOnePost.memberId }"> ${ bestOnePost.memberNickname }</div>
+					<div class="col p-0 btn memberInfo" data-memberId="${ bestOnePost.memberId }"> ${ bestOnePost.memberNickname }</div>
 					<div class="col">${ bestOnePost.postRegDate }</div>
 				</div>
 				<div class="col-5 p-0 m-0">
@@ -223,7 +223,7 @@
 						<a href="storeDetailContent?storeNo=${ store.storeNo}&postNo=${ p.postNo }">${ p.postTitle }</a>
 					</div>
 					<div class="">
-						<a href="#" class="px-0 btn memberInfo" data-memberId="${ p.memberId }"> ${ p.memberNickname }</a>
+						<a href="#" class="p-0 btn memberInfo" data-memberId="${ p.memberId }"> ${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -252,7 +252,7 @@
 						<a href="storeDetailContent?storeNo=${ store.storeNo}&postNo=${ p.postNo }">${ p.postTitle }</a>
 					</div>
 					<div class="">
-						<a href="#" class="px-0 btn memberInfo" data-memberId="${ p.memberId }"> ${ p.memberNickname }</a>
+						<a href="#" class="p-0 btn memberInfo" data-memberId="${ p.memberId }"> ${ p.memberNickname }</a>
 					</div>
 					<div class="">
 						<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>

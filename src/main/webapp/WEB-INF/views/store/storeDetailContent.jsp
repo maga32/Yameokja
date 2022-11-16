@@ -184,7 +184,7 @@
 					<img src="resources/IMG/member/${ memberPhoto }" class="img-thumbnail rounded-circle float-start" alt="..."></div>
 					<div class="col-9 text-start text-secondary">
 						<p class="fs-6">
-							<a class="btn memberInfo" data-memberId="${ post.memberId }"> ${ post.memberNickname } </a>
+							<a class="btn memberInfo px-0" data-memberId="${ post.memberId }"> ${ post.memberNickname } </a>
 						</p>
 						<p class="fs-7">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -202,9 +202,6 @@
 			
 			<div class="row border-top py-4 m-1">
 				<div id="storeDetailContentContent">
-				<c:if test="${post.postFile1 != null}">
-							<img src="resources/IMG/post/${post.postFile1 }">
-						</c:if>		
 					${ post.postContent }
 				</div>
 			</div>
