@@ -84,5 +84,43 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			var url = "ws://" + window.location.host + "/yameokja/chatserver/${ chatIds }";
+			var ws = new WebSocket(url);
+			ws.onopen = function (evt) {
+		   		console.log('서버 연결 성공');
+			};
+			
+			ws.onmessage = function (evt) {
+				console.log(evt.data); 
+				if(evt.data == "${ target.memberId }#read"){
+					$("#chattingFrame").contents().find(".readCount").css("display", "none");
+				}
+				if(evt.data == "${ target.memberId }#send"){
+					setTimeout(function() {
+						$("#chattingFrame").attr("src", $("#chattingFrame").attr("src"));
+						setTimeout(function() {
+							ws.send("${ memberId }#read");
+						}, 1000);
+					}, 1000);
+				}
+			};
+	
+			setTimeout(function() {
+				ws.send("${ memberId }#read");
+			}, 1000);
+			
+			ws.onclose = function (evt) {
+				console.log('소켓이 닫힙니다.');
+			};
+			
+			ws.onerror = function (evt) {
+				alert(evt.data);
+			};
+			
+			$("#chatSendConfirm").click(function(){
+				ws.send("${ memberId }#send");
+			});
+		</script>
 	</body>
 </html>

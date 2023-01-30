@@ -29,7 +29,7 @@
 										<span style="white-space:pre-line;">${ li.chatContent }</span>
 									</div>
 									<div class="d-inline text-center mx-2">
-										<span class="text-warning">
+										<span class="text-warning readCount">
 											${ li.chatReadCheck == 0 ? "1" : "" }
 										</span>
 										<br>

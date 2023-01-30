@@ -93,6 +93,7 @@ public class ChatController {
 		
 		chatService.chatReadUpdate(chatIds, memberId);
 		
+		model.addAttribute("chatIds", chatIds);
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("chatTargetList", chatService.chatTargetList(chatIds, orderCheck));
 		model.addAttribute("target", memberService.getMember(targetId));
