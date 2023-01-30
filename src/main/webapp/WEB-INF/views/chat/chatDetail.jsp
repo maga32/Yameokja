@@ -85,7 +85,7 @@
 			</div>
 		</div>
 		<script>
-			var url = "ws://" + window.location.host + "/yameokja/chatserver/${ chatIds }";
+			var url = "wss://" + window.location.host + "/yameokja/chatserver/${ chatIds }";
 			var ws = new WebSocket(url);
 			ws.onopen = function (evt) {
 		   		console.log('서버 연결 성공');
