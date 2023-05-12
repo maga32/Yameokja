@@ -1,6 +1,7 @@
 package com.project.yameokja.controller.mypage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.yameokja.dao.mypage.MyPageDao;
@@ -142,9 +142,26 @@ public class MyPageController {
 	
 	@RequestMapping(value="/myPageLike")
 	public String myPageLike(
-			Model model, 
+			Model model, HttpSession session, HttpServletResponse response,
 			@RequestParam(value = "userId", required = false, defaultValue = "")String userId, 
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1")int pageNum ) {
+
+			if(userId.equals("")) {
+				userId = (String) session.getAttribute("memberId");
+				if(userId == null || userId.equals("")) {
+					try {
+						response.setContentType("text/html; charset=utf-8");
+						PrintWriter out = response.getWriter();
+						out.println("<script>");
+						out.println("	alert('로그인이 필요합니다.');");
+						out.println("	window.open('/yameokja/loginForm','LoginForm','width=500, height=600');");
+						out.println("</script>");
+						out.close();
+					} catch (Exception e) {}
+
+					return null;
+				}
+			}
 			Member user = memberService.getMember(userId);
 			
 			Map<String, Object> myPageLikeList = myPageService.myPageLike(userId, pageNum);
