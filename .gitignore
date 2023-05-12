@@ -1,10 +1,12 @@
 src/main/webapp/resources/js/jquery-3.2.1.min.js
-src/main/webapp/resources/upload/community/F
-target/classes/com/project/yameokja/service/MemberLoginService.class
-target/classes/repository/mappers/MemberLoginMapper.xml
-target/m2e-wtp/web-resources/META-INF/maven/com.springstudy/yameokja/pom.properties
-target/m2e-wtp/web-resources/META-INF/maven/com.springstudy/yameokja/pom.xml
-target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-target/m2e-wtp/web-resources/META-INF/maven/com.springstudy/springstudy-bbs01/pom.properties
-.settings/org.eclipse.jst.j2ee.ejb.annotations.xdoclet.prefs
-target/m2e-wtp/web-resources/META-INF/maven/com.springstudy/springclass-blog01/pom.properties
+target/
+
+# Legacy Eclipse project files
+.classpath
+.project
+.cproject
+.settings/
+
+# IntelliJ
+.idea/*
+*.iml
