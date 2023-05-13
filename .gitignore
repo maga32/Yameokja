@@ -1,6 +1,9 @@
 src/main/webapp/resources/js/jquery-3.2.1.min.js
 target/
 
+# settings
+*/*.properties
+
 # Legacy Eclipse project files
 .classpath
 .project
